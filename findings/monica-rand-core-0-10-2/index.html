@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'">
-<title>Finding: monica_rand_core 0.10.2</title>
+<title>Finding: monica_rand_core 0.10.1 to 0.10.3</title>
 <link rel="stylesheet" href="../../site.css">
 </head>
 <body>
@@ -12,59 +12,73 @@
 <h1>monica_rand_core</h1>
 <p><a href="../../">Back to the numbers</a></p>
 
-<p>Version 0.10.2 of <code>monica_rand_core</code> copied the metadata of
-the widely used <code>rand_core</code> crate. Its build script printed
-every environment variable of the build into the build output, then wrote
-a prebuilt program for the build machine's operating system to a temporary
-directory and started it in the background. Anyone who built a project
-depending on this version ran both steps on their machine.</p>
+<p>Versions 0.10.1, 0.10.2 and 0.10.3 of <code>monica_rand_core</code>
+copied the metadata of the widely used <code>rand_core</code> crate. Their
+build scripts wrote a prebuilt program for the build machine's operating
+system to a temporary directory and started it in the background. Version
+0.10.2 also printed every environment variable of the build into the build
+output. Anyone who built a project depending on one of these versions ran
+these steps on their machine.</p>
 
 <table>
 <tr><th>Crate</th><td><code>monica_rand_core</code> on crates.io (removed)</td></tr>
-<tr><th>Affected versions</th><td>0.10.2; 0.10.1 did not show this behavior in Crateward's analysis</td></tr>
+<tr><th>Affected versions</th><td>0.10.1, 0.10.2 and 0.10.3</td></tr>
 <tr><th>Classification</th><td>Malicious</td></tr>
 <tr><th>Coverage</th><td>Built and traced in a microVM on Linux</td></tr>
 <tr><th>Reported to</th><td>Not reported: crates.io removed the crate before a report (date unknown)</td></tr>
 <tr><th>Status</th><td>Removed from crates.io</td></tr>
-<tr><th>Score</th><td>100 of 100, critical</td></tr>
+<tr><th>Score</th><td>Critical for every version</td></tr>
 </table>
 
 <h2>Timeline</h2>
 <table>
-<tr><th>2026-09-29 05:45 UTC</th><td>Version published</td></tr>
-<tr><th>2026-09-29 05:46 UTC</th><td>Crateward verdict: critical</td></tr>
+<tr><th>2026-09-29 02:14 UTC</th><td>0.10.1 published</td></tr>
+<tr><th>2026-09-29 02:16 UTC</th><td>Crateward verdict for 0.10.1: not flagged for review (see below)</td></tr>
+<tr><th>2026-09-29 05:45 UTC</th><td>0.10.2 published</td></tr>
+<tr><th>2026-09-29 05:46 UTC</th><td>Crateward verdict for 0.10.2: critical</td></tr>
+<tr><th>2026-09-29 06:06 UTC</th><td>0.10.3 published</td></tr>
+<tr><th>2026-09-29 06:08 UTC</th><td>Crateward verdict for 0.10.3: not flagged for review (see below)</td></tr>
 <tr><th>Unknown</th><td>Removed by crates.io</td></tr>
-<tr><th>2026-10-02</th><td>Removal confirmed: the index entry and the crate file are gone</td></tr>
-<tr><th>2026-10-02</th><td>Published here</td></tr>
+<tr><th>2026-10-02</th><td>Removal confirmed: the index entry and the 0.10.2 crate file are gone</td></tr>
+<tr><th>2026-10-02</th><td>Published here for 0.10.2</td></tr>
+<tr><th>2026-10-06</th><td>Crateward verdicts for 0.10.1 and 0.10.3: critical, after a change to its scoring. Their crate files are gone too</td></tr>
+<tr><th>2026-10-06</th><td>This page updated to cover all three versions</td></tr>
 </table>
 
 <h2>Behavior</h2>
 <p>All of it happens in <code>build.rs</code>, which Cargo runs on the
 building machine before compiling the crate:</p>
 <ol>
-<li><p>It prints each environment variable as a Cargo warning
-(<code>cargo:warning=KEY=VALUE</code>, line 78). For a dependency from
-crates.io, Cargo does not show these warnings unless asked to
+<li><p>Version 0.10.2 only: it prints each environment variable as a Cargo
+warning (<code>cargo:warning=KEY=VALUE</code>, line 78). For a dependency
+from crates.io, Cargo does not show these warnings unless asked to
 (<code>-vv</code>), but it stores them in the build directory, under
 <code>target/</code>, where build caches and CI artifacts can carry them
 further. In the microVM, the fake GitHub token Crateward planted in the
 environment ended up in that stored output.</p></li>
-<li><p>It embeds one of three prebuilt executables, chosen by operating
-system (<code>helper/linux</code>, <code>helper/darwin</code>,
+<li><p>Every version embeds one of three prebuilt executables, chosen by
+operating system (<code>helper/linux</code>, <code>helper/darwin</code>,
 <code>helper/windows</code>), and writes it to
 <code>/tmp/code-helper</code>, or <code>code-helper.exe</code> in the
-temporary directory on Windows.</p></li>
+temporary directory on Windows. The three executables are the same in
+all three versions.</p></li>
 <li><p>On Linux and macOS it makes the file executable and starts it in a
 new session with its input and output discarded, so it outlives the build.
-On Windows it starts it hidden through <code>ShellExecuteW</code>.</p></li>
+On Windows it starts it hidden through <code>ShellExecuteW</code>. Version
+0.10.3 starts it in the directory that holds the build's
+<code>target/</code> directory, normally the root of the project being
+built.</p></li>
 </ol>
-<p>In the microVM the Linux helper started, made no network attempt and
-exited with status 101. Crateward's VM has no internet, and the helper may
-behave differently elsewhere; its purpose was not analyzed further.</p>
+<p>In the microVM the Linux helper started in every version, made no
+network attempt and exited with status 101. Crateward's VM has no internet,
+and the helper may behave differently elsewhere. Its purpose was not
+analyzed further.</p>
 
 <h2>Indicators</h2>
 <table>
-<tr><th>Crate file (SHA-256)</th><td><code>b48735ac515873879ef74566b587bb5e98c1c2eb626d41ec2d1c054f1f2b27c7</code></td></tr>
+<tr><th>0.10.1 crate file (SHA-256)</th><td><code>0163b4cc1ae2aa04c4d1b117f693a9a357b9adc741ec9048ecd1951268defe12</code></td></tr>
+<tr><th>0.10.2 crate file (SHA-256)</th><td><code>b48735ac515873879ef74566b587bb5e98c1c2eb626d41ec2d1c054f1f2b27c7</code></td></tr>
+<tr><th>0.10.3 crate file (SHA-256)</th><td><code>63807ab2b6793482ac03df72099328cb665cdef7a1d175c7ef0f30cd79f95043</code></td></tr>
 <tr><th><code>helper/linux</code> (SHA-256)</th><td><code>68fab57a13f9f22f7a5fdf6feba042e71f600dbb5040e9f9a26c0b05f8ba745a</code></td></tr>
 <tr><th><code>helper/darwin</code> (SHA-256)</th><td><code>91b0656bf0779446450927738e50486d0aac1dae6d89e8b7011c78095ac7de34</code></td></tr>
 <tr><th><code>helper/windows</code> (SHA-256)</th><td><code>d9879c72586d80899d0b700d3dd09e1ec1e01dff9eae94bc72536a53d56003b5</code></td></tr>
@@ -72,32 +86,41 @@ behave differently elsewhere; its purpose was not analyzed further.</p>
 </table>
 
 <h2>How Crateward found it</h2>
-<p>The version was fetched within a minute of its publication. The static
-analysis flagged the build script reading every environment variable, the
-three embedded executables and the hidden process start. The build in the
-microVM then showed the planted token copied into the build output. A full
-build in a fresh VM confirmed it,
-and a human reviewed the evidence. MITRE ATT&amp;CK techniques the evidence
-is consistent with: T1082 (system information discovery), T1552.001 (credentials in files) and
-T1027.009 (embedded payloads).</p>
+<p>Each version was fetched within three minutes of its publication. The
+static analysis flagged the three embedded executables and the hidden
+process start in every version, and in 0.10.2 also the build script
+reading every environment variable. The builds in the microVM recorded the
+helper starting from <code>/tmp</code> in every version, and in 0.10.2 the
+planted token copied into the build output. A full build in a fresh VM
+confirmed 0.10.2.</p>
+<p>Correction: on 2026-10-02 this page said that 0.10.1 did not show this
+behavior in Crateward's analysis. That was wrong. Crateward's trace of
+0.10.1 showed the helper starting, but its scoring at the time weighed the
+copied token and not a program started from a temporary directory, so
+0.10.1 and 0.10.3 were not flagged for review. After the scoring changed
+on 2026-10-06, re-scoring the stored evidence flagged both as critical,
+and a human reviewed it.</p>
+<p>MITRE ATT&amp;CK techniques the evidence is consistent with: T1082
+(system information discovery, 0.10.2), T1552.001 (credentials in files,
+0.10.2) and T1027.009 (embedded payloads).</p>
 
 <h2>Remediation</h2>
 <p>If a machine or CI job built a project depending on
-<code>monica_rand_core</code> 0.10.2:</p>
+<code>monica_rand_core</code> 0.10.1, 0.10.2 or 0.10.3:</p>
 <ul>
-<li>Treat every secret in that build's environment as exposed: tokens,
-cloud keys and registry credentials. Rotate them, and check verbose build logs, build
-caches and CI artifacts that include <code>target/</code> for the printed
-values.</li>
 <li>Treat the machine as compromised: an unknown program ran on it, and it
 may still be running. Look for <code>code-helper</code> processes and
 files.</li>
+<li>Treat every secret on that machine or in that build's environment as
+exposed: tokens, cloud keys and registry credentials. Rotate them. For
+0.10.2, also check verbose build logs, build caches and CI artifacts that
+include <code>target/</code> for the printed values.</li>
 <li>Replace the dependency with <code>rand_core</code> from the Rand
 project.</li>
 </ul>
 
-<p class="muted">Crateward keeps the original crate file as it was
-published, with the checksum crates.io listed for it. Contact:
+<p class="muted">Crateward keeps the original crate files as they were
+published, with the checksums crates.io listed for them. Contact:
 security@janfedler.de. Mistakes are corrected on this page.</p>
 </main>
 </body>
