@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: trylle-cli 1.2.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>trylle-cli <span class="version">1.2.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 174462</span>
+      <a class="muted" href="https://crates.io/crates/trylle-cli/1.2.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="174462.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="174462.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (81 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">333</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · trylle-cli</div></td><td class="mono where"><a href="https://crates.io/crates/trylle-cli/1.2.1/code/build.rs#L79" rel="noreferrer noopener" target="_blank">build.rs:79</a></td><td>medium severity process_spawn in build_script code (81 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · trylle-cli</div></td><td class="mono where"><a href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L876" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:876</a></td><td>medium severity credential_access in library code (8 places): id_ed25519.pub</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · trylle-cli</div></td><td class="mono where"><a href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4406" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4406</a></td><td>medium severity obfuscated_data in test code: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0cnlsbGUtbWFnaWMtc2Vzc2lvbnMiLCJzdWIiOiJib3RfbXMiLCJtYWdpY19zZXNzaW9uX2lkIjoibXMtMSIsInNjb3BlcyI6WyJyZXBvOnJlYWQiXSwicmVwb3MiOlsicmVwby0xIl0sImV4cCI6MjUzNDAyMzAwNzk5fQ.…</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · trylle-cli</div></td><td class="mono where"><a href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L292" rel="noreferrer noopener" target="_blank">src/command/agent.rs:292</a></td><td>medium severity secret_environment_variable in library code (13 places): OPENAI_API_KEY</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · trylle-cli</div></td><td class="mono where"><a href="https://crates.io/crates/trylle-cli/1.2.1/code/src/telemetry.rs#L489" rel="noreferrer noopener" target="_blank">src/telemetry.rs:489</a></td><td>medium severity shell_command in library code (2 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · trylle-cli</div></td><td class="mono where"><a href="https://crates.io/crates/trylle-cli/1.2.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">333</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">25</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">128</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">180</span></label>
+  <span class="muted">16 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">10</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">OPENAI_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L292" rel="noreferrer noopener" target="_blank">src/command/agent.rs:292</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L303" rel="noreferrer noopener" target="_blank">src/command/agent.rs:303</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L529" rel="noreferrer noopener" target="_blank">src/command/agent.rs:529</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L554" rel="noreferrer noopener" target="_blank">src/command/agent.rs:554</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/config/providers.rs#L25" rel="noreferrer noopener" target="_blank">src/config/providers.rs:25</a> </span></li>
+
+<li><code class="evidence-text">ANTHROPIC_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L298" rel="noreferrer noopener" target="_blank">src/command/agent.rs:298</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L305" rel="noreferrer noopener" target="_blank">src/command/agent.rs:305</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L542" rel="noreferrer noopener" target="_blank">src/command/agent.rs:542</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L558" rel="noreferrer noopener" target="_blank">src/command/agent.rs:558</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/config/providers.rs#L39" rel="noreferrer noopener" target="_blank">src/config/providers.rs:39</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">id_ed25519.pub</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L876" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:876</a> </span></li>
+
+<li><code class="evidence-text">id_ecdsa.pub</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L876" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:876</a> </span></li>
+
+<li><code class="evidence-text">id_rsa.pub</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L876" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:876</a> </span></li>
+
+<li><code class="evidence-text">ssh -i ~/.ssh/work</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4795" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4795</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4807" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4807</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">id_ed25519.pub</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4022" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4022</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4120" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4120</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4211" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4211</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GITHUB_TOKEN: ${{ github.token }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L47" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:47</a> </span></li>
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L54" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:54</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L199" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:199</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/telemetry.rs#L489" rel="noreferrer noopener" target="_blank">src/telemetry.rs:489</a> </span></li>
+
+<li><code class="evidence-text">/bin/sh -c </code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L1180" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:1180</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0cnlsbGUtbWFnaWMtc2Vzc2lvbnMiLCJzdWIiOiJib3RfbXMiLCJtYWdpY19zZXNzaW9uX2lkIjoibXMtMSIsInNjb3BlcyI6WyJyZXBvOnJlYWQiXSwicmVwb3MiOlsicmVwby0xIl0sImV4cCI6MjUzNDAyMzAwNzk5fQ.…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4406" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4406</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/build.rs#L79" rel="noreferrer noopener" target="_blank">build.rs:79</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">53</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L208" rel="noreferrer noopener" target="_blank">src/command/agent.rs:208</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L283" rel="noreferrer noopener" target="_blank">src/command/agent.rs:283</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L966" rel="noreferrer noopener" target="_blank">src/version_update.rs:966</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L211" rel="noreferrer noopener" target="_blank">src/command/agent.rs:211</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L221" rel="noreferrer noopener" target="_blank">src/command/agent.rs:221</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L232" rel="noreferrer noopener" target="_blank">src/command/agent.rs:232</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L502" rel="noreferrer noopener" target="_blank">src/command/agent.rs:502</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L724" rel="noreferrer noopener" target="_blank">src/version_update.rs:724</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L969" rel="noreferrer noopener" target="_blank">src/version_update.rs:969</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L975" rel="noreferrer noopener" target="_blank">src/version_update.rs:975</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L1993" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:1993</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L1998" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:1998</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L2282" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:2282</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L2286" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:2286</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L2290" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:2290</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/mod.rs#L182" rel="noreferrer noopener" target="_blank">src/command/diff/mod.rs:182</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L135" rel="noreferrer noopener" target="_blank">src/command/draft.rs:135</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L191" rel="noreferrer noopener" target="_blank">src/command/draft.rs:191</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L212" rel="noreferrer noopener" target="_blank">src/command/draft.rs:212</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L230" rel="noreferrer noopener" target="_blank">src/command/draft.rs:230</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L265" rel="noreferrer noopener" target="_blank">src/command/draft.rs:265</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L361" rel="noreferrer noopener" target="_blank">src/command/draft.rs:361</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L369" rel="noreferrer noopener" target="_blank">src/command/draft.rs:369</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L384" rel="noreferrer noopener" target="_blank">src/command/draft.rs:384</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L405" rel="noreferrer noopener" target="_blank">src/command/draft.rs:405</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L418" rel="noreferrer noopener" target="_blank">src/command/draft.rs:418</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L431" rel="noreferrer noopener" target="_blank">src/command/draft.rs:431</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L439" rel="noreferrer noopener" target="_blank">src/command/draft.rs:439</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L454" rel="noreferrer noopener" target="_blank">src/command/draft.rs:454</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/mod.rs#L156" rel="noreferrer noopener" target="_blank">src/command/mod.rs:156</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/operate.rs#L217" rel="noreferrer noopener" target="_blank">src/command/operate.rs:217</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/operate.rs#L223" rel="noreferrer noopener" target="_blank">src/command/operate.rs:223</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L816" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:816</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L836" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:836</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L590" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:590</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L1379" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:1379</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L1249" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:1249</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L1620" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:1620</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L1626" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:1626</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L3031" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:3031</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L3173" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:3173</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L3214" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:3214</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4394" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4394</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4401" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4401</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4408" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4408</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4488" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4488</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/repo.rs#L176" rel="noreferrer noopener" target="_blank">src/trylle/repo.rs:176</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/repo.rs#L191" rel="noreferrer noopener" target="_blank">src/trylle/repo.rs:191</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/vcs/test_utils.rs#L132" rel="noreferrer noopener" target="_blank">src/vcs/test_utils.rs:132</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/draft.rs#L264" rel="noreferrer noopener" target="_blank">src/command/draft.rs:264</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4425" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4425</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4463" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4463</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4463" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4463</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">34</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/skill.rs#L384" rel="noreferrer noopener" target="_blank">src/command/skill.rs:384</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L487" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:487</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L65" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:65</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L647" rel="noreferrer noopener" target="_blank">src/version_update.rs:647</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/provider/mod.rs#L20" rel="noreferrer noopener" target="_blank">src/provider/mod.rs:20</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L398" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:398</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L719" rel="noreferrer noopener" target="_blank">src/version_update.rs:719</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L436" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:436</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L98" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:98</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L646" rel="noreferrer noopener" target="_blank">src/version_update.rs:646</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::GET</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L541" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:541</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::POST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L542" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:542</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PUT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L543" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:543</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PATCH</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L544" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:544</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::DELETE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L545" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:545</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_TYPE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L556" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:556</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L875" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:875</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L372" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:372</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L703" rel="noreferrer noopener" target="_blank">src/version_update.rs:703</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url::parse</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L882" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:882</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L264" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:264</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L271" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:271</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L323" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:323</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L330" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:330</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L335" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:335</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L127" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:127</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L704" rel="noreferrer noopener" target="_blank">src/version_update.rs:704</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L461" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:461</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L462" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:462</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::windows::named_pipe::NamedPipeClient</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L468" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:468</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::windows::named_pipe::ClientOptions::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L469" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:469</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L826" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:826</a> </span></li>
+
+<li><code class="evidence-text">reqwest::RequestBuilder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L118" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:118</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L138" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:138</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">27</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L7" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:7</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/version_update_cli.rs#L79" rel="noreferrer noopener" target="_blank">tests/version_update_cli.rs:79</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L8" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:8</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L132" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:132</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L108" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:108</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L136" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:136</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L163" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:163</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L265" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:265</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L285" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:285</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L324" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:324</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L439" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:439</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L628" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:628</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L651" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:651</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/app_commands.rs#L38" rel="noreferrer noopener" target="_blank">tests/app_commands.rs:38</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L193" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:193</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/root_help_cli.rs#L4" rel="noreferrer noopener" target="_blank">tests/root_help_cli.rs:4</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/root_help_cli.rs#L22" rel="noreferrer noopener" target="_blank">tests/root_help_cli.rs:22</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/telemetry_cli.rs#L11" rel="noreferrer noopener" target="_blank">tests/telemetry_cli.rs:11</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/telemetry_cli.rs#L30" rel="noreferrer noopener" target="_blank">tests/telemetry_cli.rs:30</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L270" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:270</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L510" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:510</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4146" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4146</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4219" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4219</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_mock.rs#L65" rel="noreferrer noopener" target="_blank">tests/trylle_cli_mock.rs:65</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_seedlocal.rs#L210" rel="noreferrer noopener" target="_blank">tests/trylle_seedlocal.rs:210</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_seedlocal.rs#L258" rel="noreferrer noopener" target="_blank">tests/trylle_seedlocal.rs:258</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/version_update_cli.rs#L80" rel="noreferrer noopener" target="_blank">tests/version_update_cli.rs:80</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">13</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L85" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:85</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/app_commands.rs#L144" rel="noreferrer noopener" target="_blank">tests/app_commands.rs:144</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L73" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:73</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L86" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:86</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L142" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:142</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_mock.rs#L22" rel="noreferrer noopener" target="_blank">tests/trylle_cli_mock.rs:22</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/version_update_cli.rs#L22" rel="noreferrer noopener" target="_blank">tests/version_update_cli.rs:22</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L214" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:214</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L249" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:249</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L319" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:319</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L492" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:492</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_mock.rs#L84" rel="noreferrer noopener" target="_blank">tests/trylle_cli_mock.rs:84</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/version_update_cli.rs#L63" rel="noreferrer noopener" target="_blank">tests/version_update_cli.rs:63</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">126</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://gateway.trylle.test/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L506" rel="noreferrer noopener" target="_blank">src/command/agent.rs:506</a> </span></li>
+
+<li><code class="evidence-text">https://gateway.trylle.test/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L526" rel="noreferrer noopener" target="_blank">src/command/agent.rs:526</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L547" rel="noreferrer noopener" target="_blank">src/command/agent.rs:547</a> </span></li>
+
+<li><code class="evidence-text">https://gateway.trylle.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L536" rel="noreferrer noopener" target="_blank">src/command/agent.rs:536</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L551" rel="noreferrer noopener" target="_blank">src/command/agent.rs:551</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L2368" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:2368</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/seed/demo/pulls/42/files#diff-{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/app.rs#L2378" rel="noreferrer noopener" target="_blank">src/command/diff/app.rs:2378</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/mod.rs#L60" rel="noreferrer noopener" target="_blank">src/command/diff/mod.rs:60</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L787" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:787</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L263" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:263</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/mod.rs#L60" rel="noreferrer noopener" target="_blank">src/command/diff/mod.rs:60</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L786" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:786</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L263" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:263</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/seed/demo/{route}/42</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/diff/mod.rs#L574" rel="noreferrer noopener" target="_blank">src/command/diff/mod.rs:574</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/trylle/skills/archive/main.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/skill.rs#L16" rel="noreferrer noopener" target="_blank">src/command/skill.rs:16</a> </span></li>
+
+<li><code class="evidence-text">\u{1b}[38;2;110;231;183mhttps://discord.gg/trylle\u{1b}[0m</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/config/cli.rs#L19" rel="noreferrer noopener" target="_blank">src/config/cli.rs:19</a> </span></li>
+
+<li><code class="evidence-text"># Result\u{a}\u{a}1. **Status:** `ready`\u{a}2. [Docs](https://trylle.com/docs)\u{a}\u{a}- [x] Complete\u{a}\u{a}~~Old~~</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/output.rs#L1392" rel="noreferrer noopener" target="_blank">src/output.rs:1392</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/docs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/output.rs#L1398" rel="noreferrer noopener" target="_blank">src/output.rs:1398</a> </span></li>
+
+<li><code class="evidence-text">https://opencode.ai/zen/v1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/provider/mod.rs#L60" rel="noreferrer noopener" target="_blank">src/provider/mod.rs:60</a> </span></li>
+
+<li><code class="evidence-text">https://openrouter.ai/api/v1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/provider/mod.rs#L65" rel="noreferrer noopener" target="_blank">src/provider/mod.rs:65</a> </span></li>
+
+<li><code class="evidence-text">https://ai-gateway.vercel.sh/v1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/provider/mod.rs#L71" rel="noreferrer noopener" target="_blank">src/provider/mod.rs:71</a> </span></li>
+
+<li><code class="evidence-text">https://api.z.ai/api/paas/v4/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/provider/mod.rs#L76" rel="noreferrer noopener" target="_blank">src/provider/mod.rs:76</a> </span></li>
+
+<li><code class="evidence-text">https://u.trylle.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/telemetry.rs#L15" rel="noreferrer noopener" target="_blank">src/telemetry.rs:15</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L13" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:13</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L484" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:484</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L44" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:44</a> </span></li>
+
+<li><code class="evidence-text">https://api.trylle.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L14" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:14</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L484" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:484</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L28" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:28</a> </span></li>
+
+<li><code class="evidence-text">ssh://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L785" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:785</a> </span></li>
+
+<li><code class="evidence-text">https://host/git/trylle/core.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1018" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1018</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4000/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1028" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1028</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1038" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1038</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1146" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1146</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4000/v1/repositories?page=2&#38;per_page=50</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1031" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1031</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4000/v1/viewer</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1039" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1039</a> </span></li>
+
+<li><code class="evidence-text">http://host/owner/repo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1135" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1135</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4000/v1/repositories/a/b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/api.rs#L1147" rel="noreferrer noopener" target="_blank">src/trylle/api.rs:1147</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{owner}/{name}/pull/{number}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L203" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:203</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L329" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:329</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L620" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:620</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L1291" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:1291</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4477" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4477</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4617" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4617</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/acme/api/pulls/12</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L511" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:511</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/acme/api/pulls/12/files?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L515" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:515</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/acme/api/pull/12</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L519" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:519</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/api/pull/7#discussion</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L523" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:523</a> </span></li>
+
+<li><code class="evidence-text">https://www.github.com/acme/api/pull/7/files</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L527" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:527</a> </span></li>
+
+<li><code class="evidence-text">https://GitHub.com:443/acme/api/pull/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L532" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:532</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com:443/acme/api/pulls/12</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L536" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:536</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/pull/pull/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L541" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:541</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/pulls/pulls/pulls/3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L545" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:545</a> </span></li>
+
+<li><code class="evidence-text">ssh://git@github.com/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L557" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:557</a> </span></li>
+
+<li><code class="evidence-text">git://github.com/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L558" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:558</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/api</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L559" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:559</a> </span></li>
+
+<li><code class="evidence-text">ssh://git@TRYLLE.com:222/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L561" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:561</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/git/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L562" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:562</a> </span></li>
+
+<li><code class="evidence-text">https://api.trylle.com/git/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L564" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:564</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L574" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:574</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L605" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:605</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L645" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:645</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4010</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L574" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:574</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L605" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:605</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L645" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:645</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4010/git/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L576" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:576</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L591" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:591</a> </span></li>
+
+<li><code class="evidence-text">https://bitbucket.org/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L587" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:587</a> </span></li>
+
+<li><code class="evidence-text">https://gitlab.com/git/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L589" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:589</a> </span></li>
+
+<li><code class="evidence-text">https://api.trylle.com.evil.test/git/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L590" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:590</a> </span></li>
+
+<li><code class="evidence-text">https://gitlab.com/team@trylle.com/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L593" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:593</a> </span></li>
+
+<li><code class="evidence-text">file:///srv/git/acme/api</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L594" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:594</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4000/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L606" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:606</a> </span></li>
+
+<li><code class="evidence-text">https://oauth2:glpat-SECRET@gitlab.com/acme/api.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L612" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:612</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000/acme/api/pulls/5</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L647" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:647</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4000/acme/api/pulls/5</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L650" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:650</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/forge</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L652" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:652</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/api</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L652" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:652</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/forge/acme/api/pulls/5</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L656" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:656</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/acme/api/pulls/5</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L663" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:663</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/acme</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L673" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:673</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/pulls/3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L674" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:674</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/api/tree/main/pull/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L676" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:676</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/acme/api/src/branch/main/pulls/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L677" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:677</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/api/pulls/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L678" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:678</a> </span></li>
+
+<li><code class="evidence-text">https://github.acme.corp/acme/api/pull/12</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L680" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:680</a> </span></li>
+
+<li><code class="evidence-text">https://gitea.example.com/acme/api/pulls/12</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L681" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:681</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com.evil.test/acme/api/pulls/12</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/app.rs#L682" rel="noreferrer noopener" target="_blank">src/trylle/app.rs:682</a> </span></li>
+
+<li><code class="evidence-text">https://cdn.trylle.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L27" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:27</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L828" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:828</a> </span></li>
+
+<li><code class="evidence-text">https://cdn/a/b/before</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L770" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:770</a> </span></li>
+
+<li><code class="evidence-text">https://cdn/a/b/after</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L771" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:771</a> </span></li>
+
+<li><code class="evidence-text">https://cdn/a/b/demo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L772" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:772</a> </span></li>
+
+<li><code class="evidence-text">Before: ![old state](https://cdn/a/b/before)\u{a}\u{a}`![skip](./after.png)`\u{a}\u{a}```\u{a}![skip](after.png)\u{a}```\u{a}\u{a}&#60;video src=&#34;https://cdn/a/b/demo&#34; controls preload=&#34;metadata&#34; title=&#34;d…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L777" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:777</a> </span></li>
+
+<li><code class="evidence-text">https://cdn/s</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L784" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:784</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L797" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:797</a> </span></li>
+
+<li><code class="evidence-text">https://cdn/c</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L785" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:785</a> </span></li>
+
+<li><code class="evidence-text">See [clip](https://cdn/c) inline.\u{a}\u{a}[shot]: https://cdn/s &#34;Title&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L790" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:790</a> </span></li>
+
+<li><code class="evidence-text">![shot][shot]\u{a}\u{a}[shot]: https://cdn/s &#34;Title&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L801" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:801</a> </span></li>
+
+<li><code class="evidence-text">https://cdn.trylle.com/attachments/a/b/ab12-cd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L829" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:829</a> </span></li>
+
+<li><code class="evidence-text">http://forgejo/attachments/ab12-cd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/attach.rs#L837" rel="noreferrer noopener" target="_blank">src/trylle/attach.rs:837</a> </span></li>
+
+<li><code class="evidence-text">SSH to session {id} tunnels over WebSocket through cloudflared, which is not on PATH; install it (for example `brew install cloudflared`, or see https://developers.cloudflare.com/cloudflare-one/networ…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L584" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:584</a> </span></li>
+
+<li><code class="evidence-text">ProxyCommand=cloudflared access tcp --hostname https://%h</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L668" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:668</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L1288" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:1288</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L1535" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:1535</a> </span></li>
+
+<li><code class="evidence-text">&#39;ProxyCommand=cloudflared access tcp --hostname https://%h&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L1289" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:1289</a> </span></li>
+
+<li><code class="evidence-text">https://discord.gg/trylle</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L46" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:46</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/settings/cli</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L67" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:67</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/trylle/skills</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4765" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4765</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/trylle/skills.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4766" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4766</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4784" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4784</a> </span></li>
+
+<li><code class="evidence-text">ssh://git@trylle.com/trylle/skills.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4778" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4778</a> </span></li>
+
+<li><code class="evidence-text">git+ssh://git@trylle.com/trylle/skills.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4779" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4779</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000/trylle/skills.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4785" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4785</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/skills.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4786" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4786</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4924" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4924</a> </span></li>
+
+<li><code class="evidence-text">https://example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4925" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4925</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/owner/repo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4972" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4972</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4973" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4973</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.test/git/trylle/private%20repo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4996" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4996</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/mod.rs#L4997" rel="noreferrer noopener" target="_blank">src/trylle/mod.rs:4997</a> </span></li>
+
+<li><code class="evidence-text">https://{basin}.b.s2.dev</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/session_logs.rs#L25" rel="noreferrer noopener" target="_blank">src/trylle/session_logs.rs:25</a> </span></li>
+
+<li><code class="evidence-text">https://registry.npmjs.org</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L22" rel="noreferrer noopener" target="_blank">src/version_update.rs:22</a> </span></li>
+
+<li><code class="evidence-text">https://pypi.org</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update.rs#L23" rel="noreferrer noopener" target="_blank">src/version_update.rs:23</a> </span></li>
+
+<li><code class="evidence-text">https://registry.example.test/base</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update_tests.rs#L271" rel="noreferrer noopener" target="_blank">src/version_update_tests.rs:271</a> </span></li>
+
+<li><code class="evidence-text">https://registry.example.test/base/@trylle%2Ftrylle-cli/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/version_update_tests.rs#L277" rel="noreferrer noopener" target="_blank">src/version_update_tests.rs:277</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">51</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Join the Trylle community Discord: https://discord.gg/trylle</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L65" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:65</a> </span></li>
+
+<li><code class="evidence-text">License: MIT\u{a}Join the Trylle community Discord: https://discord.gg/trylle\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L69" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:69</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L84" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:84</a> </span></li>
+
+<li><code class="evidence-text">https://discord.gg/trylle</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/about_cli.rs#L86" rel="noreferrer noopener" target="_blank">tests/about_cli.rs:86</a> </span></li>
+
+<li><code class="evidence-text">http://{address}/main.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/agent_skill_commands.rs#L102" rel="noreferrer noopener" target="_blank">tests/agent_skill_commands.rs:102</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/api/pull/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/app_commands.rs#L91" rel="noreferrer noopener" target="_blank">tests/app_commands.rs:91</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/app_commands.rs#L145" rel="noreferrer noopener" target="_blank">tests/app_commands.rs:145</a> </span></li>
+
+<li><code class="evidence-text">https://crates.io/api/v1/crates/$crate_name/$crate_version</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L66" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:66</a> </span></li>
+
+<li><code class="evidence-text">http://{address}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/release_metadata.rs#L197" rel="noreferrer noopener" target="_blank">tests/release_metadata.rs:197</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/version_update_cli.rs#L51" rel="noreferrer noopener" target="_blank">tests/version_update_cli.rs:51</a> </span></li>
+
+<li><code class="evidence-text">\u{1b}[38;2;110;231;183mhttps://discord.gg/trylle\u{1b}[0m</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/root_help_cli.rs#L50" rel="noreferrer noopener" target="_blank">tests/root_help_cli.rs:50</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L126" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:126</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L192" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:192</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_mock.rs#L53" rel="noreferrer noopener" target="_blank">tests/trylle_cli_mock.rs:53</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/settings/cli</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L655" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:655</a> </span></li>
+
+<li><code class="evidence-text">https://host/git/seed/demo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L676" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:676</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L798" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:798</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L1471" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:1471</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2055" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2055</a> </span></li>
+
+<li><code class="evidence-text">file://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L962" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:962</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L1289" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:1289</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L1428" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:1428</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2024" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2024</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3344" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3344</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/trylle/skills</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L1293" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:1293</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/trylle/skills.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L1294" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:1294</a> </span></li>
+
+<li><code class="evidence-text">{&#34;items&#34;:[{&#34;number&#34;:7,&#34;title&#34;:&#34;Current work&#34;,&#34;state&#34;:&#34;open&#34;,&#34;headBranch&#34;:&#34;feature/checks&#34;,&#34;baseBranch&#34;:&#34;main&#34;,&#34;url&#34;:&#34;https://trylle.com/seed/demo/pull/7&#34;}]}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2061" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2061</a> </span></li>
+
+<li><code class="evidence-text">{&#34;repositoryId&#34;:201,&#34;detail&#34;:{&#34;number&#34;:7,&#34;title&#34;:&#34;Current work&#34;,&#34;state&#34;:&#34;open&#34;,&#34;headBranch&#34;:&#34;feature/checks&#34;,&#34;baseBranch&#34;:&#34;main&#34;,&#34;url&#34;:&#34;https://trylle.com/seed/demo/pull/7&#34;,&#34;body&#34;:&#34;## Summary\n\n**Rea…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2066" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2066</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/seed/demo/pulls/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2107" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2107</a> </span></li>
+
+<li><code class="evidence-text">{&#34;repositoryId&#34;:&#34;201&#34;,&#34;detail&#34;:{&#34;number&#34;:7,&#34;title&#34;:&#34;Rendered body&#34;,&#34;state&#34;:&#34;open&#34;,&#34;headBranch&#34;:&#34;feature/body&#34;,&#34;baseBranch&#34;:&#34;main&#34;,&#34;url&#34;:&#34;https://trylle.com/seed/demo/pulls/7&#34;,&#34;body&#34;:&#34;## Summary\n\n**R…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2129" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2129</a> </span></li>
+
+<li><code class="evidence-text">https://trylle.com/docs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L2154" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:2154</a> </span></li>
+
+<li><code class="evidence-text">{{&#34;name&#34;:&#34;file&#34;,&#34;uuid&#34;:&#34;{uuid}&#34;,&#34;downloadUrl&#34;:&#34;http://forgejo.internal/attachments/{uuid}&#34;}}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3585" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3585</a> </span></li>
+
+<li><code class="evidence-text">https://cdn.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3596" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3596</a> </span></li>
+
+<li><code class="evidence-text">{&#34;number&#34;:7,&#34;htmlUrl&#34;:&#34;http://web/seed/demo/issues/7&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3611" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3611</a> </span></li>
+
+<li><code class="evidence-text">&#34;body&#34;:&#34;Broken: ![state](https://cdn.example/attachments/a/b/ab01)\n\n![The fix](https://cdn.example/attachments/c/d/cd02)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3618" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3618</a> </span></li>
+
+<li><code class="evidence-text">&#60;video src=\&#34;https://cdn.example/attachments/e/f/ef03\&#34; controls preload=\&#34;metadata\&#34; title=\&#34;demo.webm\&#34;&#62;&#60;/video&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3623" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3623</a> </span></li>
+
+<li><code class="evidence-text">&#34;body&#34;:&#34;Existing body\n\n![after](https://cdn.example/attachments/0/a/0a04)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3632" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3632</a> </span></li>
+
+<li><code class="evidence-text">&#34;body&#34;:&#34;Looks good\n\n![after](https://cdn.example/attachments/2/c/2c06)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3638" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3638</a> </span></li>
+
+<li><code class="evidence-text">&#34;body&#34;:&#34;See ![here](https://cdn.example/attachments/1/b/1b05)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3639" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3639</a> </span></li>
+
+<li><code class="evidence-text">&#34;body&#34;:&#34;Fixed\n\n![before](https://cdn.example/attachments/3/d/3d07)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3648" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3648</a> </span></li>
+
+<li><code class="evidence-text">{&#34;id&#34;:5,&#34;htmlUrl&#34;:&#34;http://web/seed/demo/issues/7#issuecomment-5&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3661" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3661</a> </span></li>
+
+<li><code class="evidence-text">&#34;body&#34;:&#34;Two shots\n\n![before](https://cdn.example/attachments/4/e/4e08)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3663" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3663</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L3813" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:3813</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4393" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4393</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4398" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4398</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4438" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4438</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4445" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4445</a> </span></li>
+
+<li><code class="evidence-text">ProxyCommand=cloudflared access tcp --hostname https://%h</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4060" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4060</a> </span></li>
+
+<li><code class="evidence-text">&#39;ProxyCommand=cloudflared access tcp --hostname https://%h&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4076" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4076</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_seedlocal.rs#L14" rel="noreferrer noopener" target="_blank">tests/trylle_seedlocal.rs:14</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_seedlocal.rs#L17" rel="noreferrer noopener" target="_blank">tests/trylle_seedlocal.rs:17</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/command/agent.rs#L430" rel="noreferrer noopener" target="_blank">src/command/agent.rs:430</a> <a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/src/trylle/magic.rs#L1472" rel="noreferrer noopener" target="_blank">src/trylle/magic.rs:1472</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/trylle-cli/1.2.1/code/tests/trylle_cli_commands_mock.rs#L4236" rel="noreferrer noopener" target="_blank">tests/trylle_cli_commands_mock.rs:4236</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>912 ms</dd></div><div><dt>VM restore</dt><dd>74 ms</dd></div><div><dt>Payload</dt><dd>36221 files, 764.5 MiB</dd></div><div><dt>Files opened</dt><dd>1387</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">902 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">659 ms</td>
+<td class="nowrap">205 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.80s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-15 23:18 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 23:18 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 23:18 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 23:18 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 23:18 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 23:18 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

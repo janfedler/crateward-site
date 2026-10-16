@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: potluckdb 0.1.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>potluckdb <span class="version">0.1.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 120721</span>
+      <a class="muted" href="https://crates.io/crates/potluckdb/0.1.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="120721.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="120721.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity shell_command in build_script code (2 places): curl exited with {}</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">45</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">5</span></a>
+  <a href="#behavior">Behavior <span class="count">4</span></a>
+  <a href="#findings">Static findings <span class="count">18</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · potluckdb</div></td><td class="mono where"><a href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs#L144" rel="noreferrer noopener" target="_blank">build.rs:144</a></td><td>high severity shell_command in build_script code (2 places): curl exited with {}</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · potluckdb</div></td><td class="mono where">downloads.potluckdb.com</td><td>The build looked up downloads.potluckdb.com.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · potluckdb</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>2 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · potluckdb</div></td><td class="mono where"><a href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · potluckdb</div></td><td class="mono where"><a href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs#L123" rel="noreferrer noopener" target="_blank">build.rs:123</a></td><td>medium severity process_spawn in build_script code: std::process::Command::new</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">net:downloads.potluckdb.com</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">18</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">5</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">10</span></label>
+  <span class="muted">6 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">curl exited with {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs#L144" rel="noreferrer noopener" target="_blank">build.rs:144</a> </span></li>
+
+<li><code class="evidence-text">curl failed: {detail}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs#L146" rel="noreferrer noopener" target="_blank">build.rs:146</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs#L123" rel="noreferrer noopener" target="_blank">build.rs:123</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/integrator/mod.rs#L265" rel="noreferrer noopener" target="_blank">src/integrator/mod.rs:265</a> <a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/integrator/mod.rs#L315" rel="noreferrer noopener" target="_blank">src/integrator/mod.rs:315</a> <a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L293" rel="noreferrer noopener" target="_blank">src/storage.rs:293</a> <a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L377" rel="noreferrer noopener" target="_blank">src/storage.rs:377</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Get a license key at https://potluckdb.com/pricing or, with a company license, claim yours at https://account.potluckdb.com/key and supply it through the license key open option, POTLUCKDB_LICENSE_KEY…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/application.rs#L485" rel="noreferrer noopener" target="_blank">src/application.rs:485</a> </span></li>
+
+<li><code class="evidence-text">https://account.r2.cloudflarestorage.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L1038" rel="noreferrer noopener" target="_blank">src/storage.rs:1038</a> </span></li>
+
+<li><code class="evidence-text">&#34;endpoint&#34;:&#34;https://account.r2.cloudflarestorage.com&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L1048" rel="noreferrer noopener" target="_blank">src/storage.rs:1048</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:4443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L1159" rel="noreferrer noopener" target="_blank">src/storage.rs:1159</a> </span></li>
+
+<li><code class="evidence-text">{&#34;provider&#34;:&#34;gcs&#34;,&#34;bucket&#34;:&#34;potluck&#34;,&#34;namespace&#34;:&#34;app/notes&#34;,&#34;endpoint&#34;:&#34;http://127.0.0.1:4443&#34;,&#34;credentials&#34;:{&#34;mode&#34;:&#34;explicit&#34;,&#34;service_account&#34;:&#34;{\&#34;type\&#34;:\&#34;service_account\&#34;}&#34;}}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L1162" rel="noreferrer noopener" target="_blank">src/storage.rs:1162</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:10000/devstoreaccount1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L1184" rel="noreferrer noopener" target="_blank">src/storage.rs:1184</a> </span></li>
+
+<li><code class="evidence-text">{&#34;provider&#34;:&#34;azure&#34;,&#34;account&#34;:&#34;devstoreaccount1&#34;,&#34;container&#34;:&#34;potluck&#34;,&#34;namespace&#34;:&#34;app/notes&#34;,&#34;endpoint_url&#34;:&#34;http://127.0.0.1:10000/devstoreaccount1&#34;,&#34;credentials&#34;:{&#34;mode&#34;:&#34;explicit&#34;,&#34;account_key&#34;:&#34;…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L1187" rel="noreferrer noopener" target="_blank">src/storage.rs:1187</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">107 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/integrator/adapters.rs#L144" rel="noreferrer noopener" target="_blank">src/integrator/adapters.rs:144</a> </span></li>
+
+<li><code class="evidence-text">187 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/integrator/mod.rs#L208" rel="noreferrer noopener" target="_blank">src/integrator/mod.rs:208</a> </span></li>
+
+<li><code class="evidence-text">35 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/potluckdb/0.1.0/code/src/storage.rs#L216" rel="noreferrer noopener" target="_blank">src/storage.rs:216</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>9.4 s</dd></div><div><dt>VM restore</dt><dd>69 ms</dd></div><div><dt>Payload</dt><dd>1178 files, 20.1 MiB</dd></div><div><dt>Files opened</dt><dd>2305</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">47</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 41 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">9.2 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="23 similar processes, the first one shown">×23</span></td>
+<td class="mono args">--crate-name typenum --edition=2018 /cw/vendor/typenum-1.20.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg feature=&#34;const-generics&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;const-generics&#34;, &#34;i128&#34;, &#34;scale-info&#34;, &#34;scale_info&#34;, &#34;strict&#34;)) -C metadata=98665f2e9774125c -C extra-filename=-f1c3ee9134ede149 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">133 ms</td>
+<td class="nowrap">1.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/zmij-1.0.23/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;no-panic&#34;)) -C metadata=b02eb29be8d181b3 -C extra-filename=-00ef422b5889701d --out-dir /work/target/debug/build/zmij-00ef422b5889701d -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.5 s</td>
+<td class="nowrap">252 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 602: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/zmij-00ef422b5889701d/rustcXK6dAQ/symbols.o /work/target/debug/build/zmij-00ef422b5889701d/build_script_build-00ef422b5889701d.build_script_build.12137430c9c200c1-cgu.0.rcgu.o /work/target/debug/build/zmij-00ef422b5889701d/build_script_build-00ef422b5889701d.4agl3rvd4gz874eqz8hcq8ta7.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_demangle-cfd0ab</td>
+<td class="nowrap muted">1.7 s</td>
+<td class="nowrap">130 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 603: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccO8F2rE.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/zmij-00ef422b5889701d/build_script_build-00ef422b5889701d /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/zmij-00ef422b5889701d/rustcXK6dAQ/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../li</td>
+<td class="nowrap muted">1.7 s</td>
+<td class="nowrap">120 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 604: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccO8F2rE.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/zmij-00ef422b5889701d/build_script_build-00ef422b5889701d /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/zmij-00ef422b5889701d/rustcXK6dAQ/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.7 s</td>
+<td class="nowrap">111 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 624: /work/target/debug/build/serde_core-d67557c37d205b40/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 625: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 633: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.9 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 634: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 668: /work/target/debug/build/serde_json-4139c5c286a55775/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 812: /work/target/debug/build/potluckdb-7f8041a366939f2a/build-script-build">potluckdb</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.1 s</td>
+<td class="nowrap">60 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 813: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">--fail --location --proto =https --tlsv1.2 --silent --show-error --connect-timeout 30 --max-filesize 27691667 --output /work/target/debug/build/potluckdb-2efa728702195f76/out/potluckdb-c-sdk-0.1.0-linux-x86_64-gnu.zip.part https://downloads.potluckdb.com/releases/0.1.0/c-sdk/potluckdb-c-sdk-0.1.0-linux-x86_64-gnu.zip</td>
+<td class="nowrap muted">9.1 s</td>
+<td class="nowrap">58 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">downloads.potluckdb.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI downloads.potluckdb.com, inside TLS: GET /releases/0.1.0/c-sdk/potluckdb-c-sdk-0.1.0-linux-x86_64-gnu.zip, host downloads.potluckdb.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">9.2 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">9.2 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">9.2 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>211</dd></div><div><dt>Directories</dt><dd>61</dd></div><div><dt>Size</dt><dd>74.3 MiB</dd></div><div><dt>Compiled units</dt><dd>38</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling typenum v1.20.1
+   Compiling hybrid-array v0.4.15
+   Compiling zmij v1.0.23
+   Compiling serde_core v1.0.229
+   Compiling block-buffer v0.12.1
+   Compiling crypto-common v0.2.2
+   Compiling serde_json v1.0.151
+   Compiling digest v0.11.3
+   Compiling adler2 v2.0.1
+   Compiling memchr v2.8.3
+   Compiling cfg-if v1.0.5
+   Compiling cpufeatures v0.3.1
+   Compiling itoa v1.0.18
+   Compiling sha2 v0.11.0
+   Compiling miniz_oxide v0.9.1
+   Compiling potluckdb v0.1.0
+error: failed to run custom build command for `potluckdb v0.1.0`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/potluckdb-7f8041a366939f2a/build-script-build` (exit status: 1)
+  --- stdout
+  cargo:rustc-check-cfg=cfg(potluckdb_linked_runtime)
+  cargo:rustc-check-cfg=cfg(potluckdb_sdk_test_hooks)
+  cargo:rerun-if-changed=archive_catalog.json
+  cargo:rerun-if-env-changed=CARGO_MANIFEST_DIR
+  cargo:rerun-if-env-changed=OUT_DIR
+  cargo:rerun-if-env-changed=TARGET
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_OS
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ARCH
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ENV
+  cargo:rerun-if-env-changed=CARGO_FEATURE_ANALYTICS
+  cargo:rerun-if-env-changed=POTLUCKDB_ARCHIVE_DIR
+  cargo:rerun-if-env-changed=POTLUCKDB_RUNTIME_LIBRARY_PATH
+  cargo:rerun-if-env-changed=POTLUCKDB_STORAGE_LIBRARY_PATH
+  cargo:rerun-if-env-changed=DOCS_RS
+
+  --- stderr
+  potluckdb build script: could not obtain potluckdb-c-sdk-0.1.0-linux-x86_64-gnu.zip: curl failed: curl: (22) The requested URL returned error: 404; tried POTLUCKDB_ARCHIVE_DIR (unset) and https://downloads.potluckdb.com/releases/0.1.0/c-sdk/potluckdb-c-sdk-0.1.0-linux-x86_64-gnu.zip
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-10 08:25 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 08:25 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 08:25 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 08:26 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 08:26 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 08:26 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

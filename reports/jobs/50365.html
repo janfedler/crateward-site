@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: parlar-moonshine 0.1.4</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>parlar-moonshine <span class="version">0.1.4</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 50365</span>
+      <a class="muted" href="https://crates.io/crates/parlar-moonshine/0.1.4" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="50365.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="50365.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity downloader_pattern in build_script code: https://github.com/moonshine-ai/moonshine/releases/download/{VERSION}/{name}.tar.gz at build.rs:49 with std::process::Command::new at build.rs:51</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">50</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">2</span></a>
+  <a href="#findings">Static findings <span class="count">8</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · parlar-moonshine</div></td><td class="mono where"><a href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L49" rel="noreferrer noopener" target="_blank">build.rs:49</a></td><td>high severity downloader_pattern in build_script code: https://github.com/moonshine-ai/moonshine/releases/download/{VERSION}/{name}.tar.gz at build.rs:49 with std::process::Command::new at build.rs:51</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">build_script_added</span><div class="sub">diff · parlar-moonshine</div></td><td class="mono where"></td><td>A build script was added since 0.1.3.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · parlar-moonshine</div></td><td class="mono where"><a href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L49" rel="noreferrer noopener" target="_blank">build.rs:49</a></td><td>New since 0.1.3: downloader_pattern</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>3 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · parlar-moonshine</div></td><td class="mono where"><a href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · parlar-moonshine</div></td><td class="mono where"><a href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L51" rel="noreferrer noopener" target="_blank">build.rs:51</a></td><td>medium severity process_spawn in build_script code (3 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · parlar-moonshine</div></td><td class="mono where"><a href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L49" rel="noreferrer noopener" target="_blank">build.rs:49</a></td><td>low severity url_literal in build_script code: https://github.com/moonshine-ai/moonshine/releases/download/{VERSION}/{name}.tar.gz</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">static:downloader_pattern</code> <code class="chip new">static:process_spawn</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">8</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">1</span></label>
+  <span class="muted">6 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/moonshine-ai/moonshine/releases/download/{VERSION}/{name}.tar.gz at build.rs:49 with std::process::Command::new at build.rs:51</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L49" rel="noreferrer noopener" target="_blank">build.rs:49</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L51" rel="noreferrer noopener" target="_blank">build.rs:51</a> <a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L60" rel="noreferrer noopener" target="_blank">build.rs:60</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L65" rel="noreferrer noopener" target="_blank">build.rs:65</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/src/lib.rs#L178" rel="noreferrer noopener" target="_blank">src/lib.rs:178</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/moonshine-ai/moonshine/releases/download/{VERSION}/{name}.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/build.rs#L49" rel="noreferrer noopener" target="_blank">build.rs:49</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">20 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/parlar-moonshine/0.1.4/code/src/lib.rs#L118" rel="noreferrer noopener" target="_blank">src/lib.rs:118</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>2.8 s</dd></div><div><dt>VM restore</dt><dd>132 ms</dd></div><div><dt>Payload</dt><dd>674 files, 6.3 MiB</dd></div><div><dt>Files opened</dt><dd>1149</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">20</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 17 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">2.8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 580: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">156 ms</td>
+<td class="nowrap">109 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 581: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">157 ms</td>
+<td class="nowrap">107 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 584: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="12 similar processes, the first one shown">×12</span></td>
+<td class="mono args">--crate-name typenum --edition=2018 /cw/vendor/typenum-1.20.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;const-generics&#34;, &#34;i128&#34;, &#34;scale-info&#34;, &#34;scale_info&#34;, &#34;strict&#34;)) -C metadata=c2f9d4ec114b3c29 -C extra-filename=-08d86263206dd805 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">266 ms</td>
+<td class="nowrap">799 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 649: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2024 /cw/vendor/parlar-moonshine-0.1.4/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=a28ec2108ba7bd19 -C extra-filename=-0fde8f3060dfbf8f --out-dir /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f -L dependency=/work/target/debug/deps --extern sha2=/work/target/debug/deps/libsha2-a8fc11932f29aef6.rlib --cap-lints allow</td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">278 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 657: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/rustcXpPKpg/symbols.o /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/build_script_build-0fde8f3060dfbf8f.build_script_build.6a17af8baa6936ae-cgu.0.rcgu.o /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/build_script_build-0fde8f3060dfbf8f.build_script_build.6a17af8baa6936ae-cgu.1.rcgu.o /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/build_script_build-0fde8f3060dfbf8f.6tsmy0k6blvmptu0a80jmoyy3.rcgu.o -Wl,--as-needed -Wl,-Bstatic /work/target/debug/deps/libsha2-a8fc11932f29aef6.rlib /work/target/debug/deps/libcpufeatures-fb48d1e8a2ee030a.rlib /work/target/debug/deps/libcfg_if-d05893e10c9c8e83.rlib /work/target/debug/deps/libdigest-fa0dd86653c64d42.rlib /work/target/debug/deps/libblock_buffer-9fb011f963fcbb5d.rlib /work/target/debug/deps/libcrypto_common-1b18ef7c2a6918be.rlib /work/target/debug/deps/libgeneric_array-0c3fb031f1d3ceb9.rlib /work/target/debug/deps/libtypenum-08d86263206dd805.rlib /usr/local/lib/ru</td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">135 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 658: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRLsWkQ.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/build_script_build-0fde8f3060dfbf8f /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/rustcXpPKpg/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-li</td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">129 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 659: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRLsWkQ.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/build_script_build-0fde8f3060dfbf8f /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/rustcXpPKpg/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr</td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">125 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 662: /work/target/debug/build/parlar-moonshine-0fde8f3060dfbf8f/build-script-build">parlar-moonshine</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>126</dd></div><div><dt>Directories</dt><dd>41</dd></div><div><dt>Size</dt><dd>39.9 MiB</dd></div><div><dt>Compiled units</dt><dd>24</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling generic-array v0.14.7
+   Compiling typenum v1.20.1
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling cfg-if v1.0.5
+   Compiling digest v0.10.7
+   Compiling cpufeatures v0.2.17
+   Compiling sha2 v0.10.9
+   Compiling parlar-moonshine v0.1.4
+   Compiling anyhow v1.0.104
+   Compiling libloading v0.9.0
+   Compiling crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.75s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-627152</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-450252</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 14:02 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-523934</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

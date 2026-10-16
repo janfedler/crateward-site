@@ -1,0 +1,1485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: rust_widgets 2.8.7</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>rust_widgets <span class="version">2.8.7</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 180574</span>
+      <a class="muted" href="https://crates.io/crates/rust_widgets/2.8.7" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="180574.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="180574.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="180574-diff.html">Compare with 2.8.6</a>
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (27 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">327</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · rust_widgets</div></td><td class="mono where"><a href="https://crates.io/crates/rust_widgets/2.8.7/code/build.rs#L459" rel="noreferrer noopener" target="_blank">build.rs:459</a></td><td>medium severity process_spawn in build_script code (27 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · rust_widgets</div></td><td class="mono where"><a href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/arabic.rs#L24" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/arabic.rs:24</a></td><td>medium severity included_binary in library code (9 places): src/render/text/font_assets/arabic.ttf (70576 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · rust_widgets</div></td><td class="mono where"><a href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/cjk_bitmap_data.rs#L29" rel="noreferrer noopener" target="_blank">src/render/text/cjk_bitmap_data.rs:29</a></td><td>medium severity obfuscated_data in library code (3 places): array of 2361 integer literals</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · rust_widgets</div></td><td class="mono where"><a href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/types.rs#L98" rel="noreferrer noopener" target="_blank">src/platform/types.rs:98</a></td><td>medium severity shell_command in library code (2 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:invisible_characters</span><div class="sub">static · rust_widgets</div></td><td class="mono where"><a href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/color_bitmap.rs#L28" rel="noreferrer noopener" target="_blank">src/render/text/color_bitmap.rs:28</a></td><td>medium severity yara:invisible_characters in library code: Zero width or invisible characters, which can hide identifiers or payloads</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · rust_widgets</div></td><td class="mono where"><a href="https://crates.io/crates/rust_widgets/2.8.7/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:included_binary</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:invisible_characters</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">327</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">17</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">44</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">266</span></label>
+  <span class="muted">14 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">9</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">src/render/text/font_assets/arabic.ttf (70576 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/arabic.rs#L24" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/arabic.rs:24</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/cjk.ttf (361704 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/cjk.rs#L26" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/cjk.rs:26</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/cjk_shard_fullwidth.ttf (64492 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/cjk_shard_fullwidth.rs#L23" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/cjk_shard_fullwidth.rs:23</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/cjk_shard_han.ttf (163016 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/cjk_shard_han.rs#L23" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/cjk_shard_han.rs:23</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/cjk_shard_kana.ttf (119556 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/cjk_shard_kana.rs#L23" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/cjk_shard_kana.rs:23</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/cjk_shard_latin.ttf (54104 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/cjk_shard_latin.rs#L23" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/cjk_shard_latin.rs:23</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/cjk_shard_symbols.ttf (10012 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/cjk_shard_symbols.rs#L23" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/cjk_shard_symbols.rs:23</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/emoji.ttf (1602492 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/emoji.rs#L25" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/emoji.rs:25</a> </span></li>
+
+<li><code class="evidence-text">src/render/text/font_assets/latin.ttf (35896 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/latin.rs#L24" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/latin.rs:24</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">array of 2361 integer literals</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/cjk_bitmap_data.rs#L29" rel="noreferrer noopener" target="_blank">src/render/text/cjk_bitmap_data.rs:29</a> </span></li>
+
+<li><code class="evidence-text">array of 75552 integer literals</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/cjk_bitmap_data.rs#L334" rel="noreferrer noopener" target="_blank">src/render/text/cjk_bitmap_data.rs:334</a> </span></li>
+
+<li><code class="evidence-text">array of 331 integer literals</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/video/decoder.rs#L356" rel="noreferrer noopener" target="_blank">src/video/decoder.rs:356</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/build.rs#L459" rel="noreferrer noopener" target="_blank">build.rs:459</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/build.rs#L492" rel="noreferrer noopener" target="_blank">build.rs:492</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/types.rs#L98" rel="noreferrer noopener" target="_blank">src/platform/types.rs:98</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/platform_impl.rs#L435" rel="noreferrer noopener" target="_blank">src/platform/windows/platform_impl.rs:435</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match invisible_characters</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Zero width or invisible characters, which can hide identifiers or payloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/color_bitmap.rs#L28" rel="noreferrer noopener" target="_blank">src/render/text/color_bitmap.rs:28</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">18</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L38" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:38</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L38" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:38</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L49" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:49</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L49" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:49</a> </span></li>
+
+<li><code class="evidence-text">std::os::unix::process::CommandExt::process_group</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L45" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:45</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L119" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:119</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L139" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:139</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/darwin_probes.rs#L74" rel="noreferrer noopener" target="_blank">src/platform/darwin_probes.rs:74</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/darwin_probes.rs#L96" rel="noreferrer noopener" target="_blank">src/platform/darwin_probes.rs:96</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/darwin_probes_tests.rs#L58" rel="noreferrer noopener" target="_blank">src/platform/darwin_probes_tests.rs:58</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/darwin_probes_tests.rs#L80" rel="noreferrer noopener" target="_blank">src/platform/darwin_probes_tests.rs:80</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/external.rs#L121" rel="noreferrer noopener" target="_blank">src/platform/external.rs:121</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/os_probes.rs#L251" rel="noreferrer noopener" target="_blank">src/platform/os_probes.rs:251</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/tests.rs#L265" rel="noreferrer noopener" target="_blank">src/platform/tests.rs:265</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/tests.rs#L266" rel="noreferrer noopener" target="_blank">src/platform/tests.rs:266</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/types.rs#L79" rel="noreferrer noopener" target="_blank">src/platform/types.rs:79</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/types.rs#L98" rel="noreferrer noopener" target="_blank">src/platform/types.rs:98</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/platform_impl.rs#L435" rel="noreferrer noopener" target="_blank">src/platform/windows/platform_impl.rs:435</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">17</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/accessibility/macos.rs#L24" rel="noreferrer noopener" target="_blank">src/platform/accessibility/macos.rs:24</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/android_jni.rs#L124" rel="noreferrer noopener" target="_blank">src/platform/android_jni.rs:124</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L74" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:74</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L114" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:114</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/accessibility.rs#L227" rel="noreferrer noopener" target="_blank">src/platform/harmony/accessibility.rs:227</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/pasteboard.rs#L106" rel="noreferrer noopener" target="_blank">src/platform/harmony/pasteboard.rs:106</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/xcomponent.rs#L327" rel="noreferrer noopener" target="_blank">src/platform/harmony/xcomponent.rs:327</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/xcomponent.rs#L1343" rel="noreferrer noopener" target="_blank">src/platform/harmony/xcomponent.rs:1343</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/ime_windows.rs#L163" rel="noreferrer noopener" target="_blank">src/platform/ime_windows.rs:163</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/ime_windows.rs#L250" rel="noreferrer noopener" target="_blank">src/platform/ime_windows.rs:250</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/ime_windows.rs#L881" rel="noreferrer noopener" target="_blank">src/platform/ime_windows.rs:881</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/canvas.rs#L50" rel="noreferrer noopener" target="_blank">src/platform/macos/canvas.rs:50</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/cg.rs#L80" rel="noreferrer noopener" target="_blank">src/platform/macos/cg.rs:80</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/canvas.rs#L153" rel="noreferrer noopener" target="_blank">src/platform/windows/canvas.rs:153</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/file_picker.rs#L134" rel="noreferrer noopener" target="_blank">src/platform/windows/file_picker.rs:134</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/notify.rs#L20" rel="noreferrer noopener" target="_blank">src/platform/windows/notify.rs:20</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/platform_impl.rs#L1092" rel="noreferrer noopener" target="_blank">src/platform/windows/platform_impl.rs:1092</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">binary</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/examples/probe_file_picker.rs#L260" rel="noreferrer noopener" target="_blank">examples/probe_file_picker.rs:260</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/examples/probe_window_on_screen.rs#L110" rel="noreferrer noopener" target="_blank">examples/probe_window_on_screen.rs:110</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/examples/probe_window_on_screen.rs#L265" rel="noreferrer noopener" target="_blank">examples/probe_window_on_screen.rs:265</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/examples/probe_window_on_screen.rs#L283" rel="noreferrer noopener" target="_blank">examples/probe_window_on_screen.rs:283</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/examples/probe_window_on_screen.rs#L294" rel="noreferrer noopener" target="_blank">examples/probe_window_on_screen.rs:294</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/tests/generated_artifacts_are_lint_clean_test.rs#L90" rel="noreferrer noopener" target="_blank">tests/generated_artifacts_are_lint_clean_test.rs:90</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/tests/generator_output_compiles_test.rs#L149" rel="noreferrer noopener" target="_blank">tests/generator_output_compiles_test.rs:149</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::get</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L63" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:63</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">220</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;{w}&#34; height=&#34;{h}&#34;&#62;\u{a}  &#60;image href=&#34;data:image/png;base64,{b64}&#34; width=&#34;{w}&#34; height=&#34;{h}&#34;/&#62;\u{a}&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/image/encoder.rs#L968" rel="noreferrer noopener" target="_blank">src/image/encoder.rs:968</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;100&#34; height=&#34;50&#34;&#62;&#60;rect width=&#34;100&#34; height=&#34;50&#34; fill=&#34;red&#34;/&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/pdf/export.rs#L773" rel="noreferrer noopener" target="_blank">src/pdf/export.rs:773</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;&#62;&#60;rect width=&#34;10&#34; height=&#34;10&#34; fill=&#34;red&#34;/&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/pdf/export.rs#L826" rel="noreferrer noopener" target="_blank">src/pdf/export.rs:826</a> </span></li>
+
+<li><code class="evidence-text">https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/pdf/hyperlink.rs#L285" rel="noreferrer noopener" target="_blank">src/pdf/hyperlink.rs:285</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/pdf/writer.rs#L702" rel="noreferrer noopener" target="_blank">src/pdf/writer.rs:702</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/external.rs#L146" rel="noreferrer noopener" target="_blank">src/platform/external.rs:146</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L346" rel="noreferrer noopener" target="_blank">src/web/history.rs:346</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L347" rel="noreferrer noopener" target="_blank">src/web/history.rs:347</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L355" rel="noreferrer noopener" target="_blank">src/web/history.rs:355</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L382" rel="noreferrer noopener" target="_blank">src/web/history.rs:382</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L390" rel="noreferrer noopener" target="_blank">src/web/history.rs:390</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L391" rel="noreferrer noopener" target="_blank">src/web/history.rs:391</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L411" rel="noreferrer noopener" target="_blank">src/web/history.rs:411</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L412" rel="noreferrer noopener" target="_blank">src/web/history.rs:412</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L442" rel="noreferrer noopener" target="_blank">src/web/history.rs:442</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L452" rel="noreferrer noopener" target="_blank">src/web/history.rs:452</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L456" rel="noreferrer noopener" target="_blank">src/web/history.rs:456</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L557" rel="noreferrer noopener" target="_blank">src/web/history.rs:557</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L558" rel="noreferrer noopener" target="_blank">src/web/history.rs:558</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/mod.rs#L66" rel="noreferrer noopener" target="_blank">src/web/mod.rs:66</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/mod.rs#L70" rel="noreferrer noopener" target="_blank">src/web/mod.rs:70</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/mod.rs#L73" rel="noreferrer noopener" target="_blank">src/web/mod.rs:73</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L320" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:320</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L326" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:326</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L373" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:373</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L554" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:554</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L805" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:805</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L806" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:806</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L818" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:818</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L821" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:821</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L823" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:823</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L970" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:970</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1069" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1069</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1125" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1125</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1140" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1140</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L373" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:373</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L374" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:374</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L410" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:410</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L486" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:486</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L582" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:582</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L583" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:583</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L588" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:588</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L604" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:604</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L369" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:369</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L370" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:370</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L410" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:410</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L500" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:500</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L516" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:516</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/web_widgets/web_engine.rs#L1004" rel="noreferrer noopener" target="_blank">src/widget/web_widgets/web_engine.rs:1004</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/web_widgets/web_engine.rs#L1005" rel="noreferrer noopener" target="_blank">src/widget/web_widgets/web_engine.rs:1005</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/web_widgets/web_engine.rs#L1028" rel="noreferrer noopener" target="_blank">src/widget/web_widgets/web_engine.rs:1028</a> </span></li>
+
+<li><code class="evidence-text">/A &#60;&#60; /Type /Action /S /URI /URI (https://example.com) &#62;&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/pdf/writer.rs#L707" rel="noreferrer noopener" target="_blank">src/pdf/writer.rs:707</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/svg/backend.rs#L82" rel="noreferrer noopener" target="_blank">src/render/svg/backend.rs:82</a> </span></li>
+
+<li><code class="evidence-text">https://a.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L402" rel="noreferrer noopener" target="_blank">src/web/history.rs:402</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L421" rel="noreferrer noopener" target="_blank">src/web/history.rs:421</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L431" rel="noreferrer noopener" target="_blank">src/web/history.rs:431</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L435" rel="noreferrer noopener" target="_blank">src/web/history.rs:435</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L470" rel="noreferrer noopener" target="_blank">src/web/history.rs:470</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L472" rel="noreferrer noopener" target="_blank">src/web/history.rs:472</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L475" rel="noreferrer noopener" target="_blank">src/web/history.rs:475</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L481" rel="noreferrer noopener" target="_blank">src/web/history.rs:481</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L491" rel="noreferrer noopener" target="_blank">src/web/history.rs:491</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L497" rel="noreferrer noopener" target="_blank">src/web/history.rs:497</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L504" rel="noreferrer noopener" target="_blank">src/web/history.rs:504</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L514" rel="noreferrer noopener" target="_blank">src/web/history.rs:514</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L623" rel="noreferrer noopener" target="_blank">src/web/history.rs:623</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L633" rel="noreferrer noopener" target="_blank">src/web/history.rs:633</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L643" rel="noreferrer noopener" target="_blank">src/web/history.rs:643</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L654" rel="noreferrer noopener" target="_blank">src/web/history.rs:654</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L698" rel="noreferrer noopener" target="_blank">src/web/history.rs:698</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L388" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:388</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L404" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:404</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L420" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:420</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L448" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:448</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L459" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:459</a> </span></li>
+
+<li><code class="evidence-text">https://b.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L403" rel="noreferrer noopener" target="_blank">src/web/history.rs:403</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L422" rel="noreferrer noopener" target="_blank">src/web/history.rs:422</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L432" rel="noreferrer noopener" target="_blank">src/web/history.rs:432</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L436" rel="noreferrer noopener" target="_blank">src/web/history.rs:436</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L471" rel="noreferrer noopener" target="_blank">src/web/history.rs:471</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L482" rel="noreferrer noopener" target="_blank">src/web/history.rs:482</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L492" rel="noreferrer noopener" target="_blank">src/web/history.rs:492</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L498" rel="noreferrer noopener" target="_blank">src/web/history.rs:498</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L505" rel="noreferrer noopener" target="_blank">src/web/history.rs:505</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L508" rel="noreferrer noopener" target="_blank">src/web/history.rs:508</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L515" rel="noreferrer noopener" target="_blank">src/web/history.rs:515</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L624" rel="noreferrer noopener" target="_blank">src/web/history.rs:624</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L634" rel="noreferrer noopener" target="_blank">src/web/history.rs:634</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L644" rel="noreferrer noopener" target="_blank">src/web/history.rs:644</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L655" rel="noreferrer noopener" target="_blank">src/web/history.rs:655</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L669" rel="noreferrer noopener" target="_blank">src/web/history.rs:669</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L686" rel="noreferrer noopener" target="_blank">src/web/history.rs:686</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L699" rel="noreferrer noopener" target="_blank">src/web/history.rs:699</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L701" rel="noreferrer noopener" target="_blank">src/web/history.rs:701</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L393" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:393</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L425" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:425</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L453" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:453</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L460" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:460</a> </span></li>
+
+<li><code class="evidence-text">https://c.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L404" rel="noreferrer noopener" target="_blank">src/web/history.rs:404</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L483" rel="noreferrer noopener" target="_blank">src/web/history.rs:483</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L506" rel="noreferrer noopener" target="_blank">src/web/history.rs:506</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L520" rel="noreferrer noopener" target="_blank">src/web/history.rs:520</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L625" rel="noreferrer noopener" target="_blank">src/web/history.rs:625</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L656" rel="noreferrer noopener" target="_blank">src/web/history.rs:656</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L668" rel="noreferrer noopener" target="_blank">src/web/history.rs:668</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L671" rel="noreferrer noopener" target="_blank">src/web/history.rs:671</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L685" rel="noreferrer noopener" target="_blank">src/web/history.rs:685</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L689" rel="noreferrer noopener" target="_blank">src/web/history.rs:689</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L398" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:398</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L430" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:430</a> </span></li>
+
+<li><code class="evidence-text">https://nonexistent.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L415" rel="noreferrer noopener" target="_blank">src/web/history.rs:415</a> </span></li>
+
+<li><code class="evidence-text">https://rust-lang.org</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L443" rel="noreferrer noopener" target="_blank">src/web/history.rs:443</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L446" rel="noreferrer noopener" target="_blank">src/web/history.rs:446</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L836" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:836</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L837" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:837</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L382" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:382</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L383" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:383</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L378" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:378</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L379" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:379</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/web_widgets/web_engine.rs#L1041" rel="noreferrer noopener" target="_blank">src/widget/web_widgets/web_engine.rs:1041</a> </span></li>
+
+<li><code class="evidence-text">https://other.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L453" rel="noreferrer noopener" target="_blank">src/web/history.rs:453</a> </span></li>
+
+<li><code class="evidence-text">https://EXAMPLE.COM</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L462" rel="noreferrer noopener" target="_blank">src/web/history.rs:462</a> </span></li>
+
+<li><code class="evidence-text">https://page{i}.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L533" rel="noreferrer noopener" target="_blank">src/web/history.rs:533</a> </span></li>
+
+<li><code class="evidence-text">https://page1.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L565" rel="noreferrer noopener" target="_blank">src/web/history.rs:565</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L574" rel="noreferrer noopener" target="_blank">src/web/history.rs:574</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L577" rel="noreferrer noopener" target="_blank">src/web/history.rs:577</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L591" rel="noreferrer noopener" target="_blank">src/web/history.rs:591</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L609" rel="noreferrer noopener" target="_blank">src/web/history.rs:609</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L336" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:336</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L351" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:351</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L944" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:944</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L952" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:952</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1068" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1068</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1090" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1090</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1096" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1096</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1107" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1107</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1168" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1168</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1177" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1177</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L392" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:392</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L401" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:401</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L388" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:388</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L395" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:395</a> </span></li>
+
+<li><code class="evidence-text">https://page2.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L566" rel="noreferrer noopener" target="_blank">src/web/history.rs:566</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L568" rel="noreferrer noopener" target="_blank">src/web/history.rs:568</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L575" rel="noreferrer noopener" target="_blank">src/web/history.rs:575</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L592" rel="noreferrer noopener" target="_blank">src/web/history.rs:592</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L595" rel="noreferrer noopener" target="_blank">src/web/history.rs:595</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L610" rel="noreferrer noopener" target="_blank">src/web/history.rs:610</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L341" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:341</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L347" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:347</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L357" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:357</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L945" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:945</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L955" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:955</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1091" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1091</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1108" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1108</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1114" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1114</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L395" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:395</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L404" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:404</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L389" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:389</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L398" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:398</a> </span></li>
+
+<li><code class="evidence-text">https://page3.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L614" rel="noreferrer noopener" target="_blank">src/web/history.rs:614</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L617" rel="noreferrer noopener" target="_blank">src/web/history.rs:617</a> </span></li>
+
+<li><code class="evidence-text">https://{page}.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L665" rel="noreferrer noopener" target="_blank">src/web/history.rs:665</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L681" rel="noreferrer noopener" target="_blank">src/web/history.rs:681</a> </span></li>
+
+<li><code class="evidence-text">https://d.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L672" rel="noreferrer noopener" target="_blank">src/web/history.rs:672</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L674" rel="noreferrer noopener" target="_blank">src/web/history.rs:674</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L690" rel="noreferrer noopener" target="_blank">src/web/history.rs:690</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/history.rs#L692" rel="noreferrer noopener" target="_blank">src/web/history.rs:692</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L407" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:407</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L412" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:412</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L435" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:435</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L441" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:441</a> </span></li>
+
+<li><code class="evidence-text">https://t.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/mod.rs#L118" rel="noreferrer noopener" target="_blank">src/web/mod.rs:118</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/data</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L476" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:476</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L480" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:480</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/hello</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L487" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:487</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L488" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:488</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L495" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:495</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L496" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:496</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/{i}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L576" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:576</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/17</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L590" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:590</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/18</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L590" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:590</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/19</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/navigation.rs#L590" rel="noreferrer noopener" target="_blank">src/web/navigation.rs:590</a> </span></li>
+
+<li><code class="evidence-text">https://tracker.com/pixel</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/privacy.rs#L937" rel="noreferrer noopener" target="_blank">src/web/privacy.rs:937</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/privacy.rs#L949" rel="noreferrer noopener" target="_blank">src/web/privacy.rs:949</a> </span></li>
+
+<li><code class="evidence-text">https://ad.com/tracker</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/privacy.rs#L958" rel="noreferrer noopener" target="_blank">src/web/privacy.rs:958</a> </span></li>
+
+<li><code class="evidence-text">https://beacon.com/pixel</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/privacy.rs#L966" rel="noreferrer noopener" target="_blank">src/web/privacy.rs:966</a> </span></li>
+
+<li><code class="evidence-text">https://tracker.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/privacy.rs#L977" rel="noreferrer noopener" target="_blank">src/web/privacy.rs:977</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L242" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:242</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L294" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:294</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L243" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:243</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L294" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:294</a> </span></li>
+
+<li><code class="evidence-text">file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L244" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:244</a> </span></li>
+
+<li><code class="evidence-text">Invalid URL scheme for &#39;{url}&#39; — must start with http://, https://, or file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L250" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:250</a> </span></li>
+
+<li><code class="evidence-text">https://base.url</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L848" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:848</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L849" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:849</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L435" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:435</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L436" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:436</a> </span></li>
+
+<li><code class="evidence-text">https://data.url</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L863" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:863</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L864" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:864</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L444" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:444</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L445" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:445</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L456" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:456</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_view.rs#L457" rel="noreferrer noopener" target="_blank">src/web/web_view.rs:457</a> </span></li>
+
+<li><code class="evidence-text">https://old.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L913" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:913</a> </span></li>
+
+<li><code class="evidence-text">file://new-document</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L917" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:917</a> </span></li>
+
+<li><code class="evidence-text">file://history-back</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L926" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:926</a> </span></li>
+
+<li><code class="evidence-text">file://history-forward</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L927" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:927</a> </span></li>
+
+<li><code class="evidence-text">https://site-a.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_core.rs#L1169" rel="noreferrer noopener" target="_blank">src/web/web_core.rs:1169</a> </span></li>
+
+<li><code class="evidence-text">https://example.org</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L585" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:585</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L591" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:591</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/web/web_engine.rs#L593" rel="noreferrer noopener" target="_blank">src/web/web_engine.rs:593</a> </span></li>
+
+<li><code class="evidence-text">xmlns=&#34;http://www.w3.org/2000/svg&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/advanced_widgets/key_sequence_edit.rs#L834" rel="noreferrer noopener" target="_blank">src/widget/advanced_widgets/key_sequence_edit.rs:834</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/advanced_widgets/pie_menu.rs#L1710" rel="noreferrer noopener" target="_blank">src/widget/advanced_widgets/pie_menu.rs:1710</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/dialog/message_box.rs#L1669" rel="noreferrer noopener" target="_blank">src/widget/dialog/message_box.rs:1669</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/view_widgets/table_widget.rs#L1239" rel="noreferrer noopener" target="_blank">src/widget/view_widgets/table_widget.rs:1239</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;{}&#34; height=&#34;{}&#34; viewBox=&#34;0 0 {} {}&#34;&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/chart_widgets/svg.rs#L31" rel="noreferrer noopener" target="_blank">src/widget/chart_widgets/svg.rs:31</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/item/€9999_special_edition</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/misc_widgets/barcode_scanner.rs#L664" rel="noreferrer noopener" target="_blank">src/widget/misc_widgets/barcode_scanner.rs:664</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/web_widgets/web_engine.rs#L1108" rel="noreferrer noopener" target="_blank">src/widget/web_widgets/web_engine.rs:1108</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/web_widgets/web_engine.rs#L1146" rel="noreferrer noopener" target="_blank">src/widget/web_widgets/web_engine.rs:1146</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">44</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/audio/ffmpeg_encoder.rs#L232" rel="noreferrer noopener" target="_blank">src/audio/ffmpeg_encoder.rs:232</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/image/encoder.rs#L950" rel="noreferrer noopener" target="_blank">src/image/encoder.rs:950</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/accessibility/windows.rs#L60" rel="noreferrer noopener" target="_blank">src/platform/accessibility/windows.rs:60</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/android/platform_impl.rs#L452" rel="noreferrer noopener" target="_blank">src/platform/android/platform_impl.rs:452</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/linux/canvas.rs#L433" rel="noreferrer noopener" target="_blank">src/platform/linux/canvas.rs:433</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/linux/platform_impl.rs#L224" rel="noreferrer noopener" target="_blank">src/platform/linux/platform_impl.rs:224</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/file_picker.rs#L38" rel="noreferrer noopener" target="_blank">src/platform/macos/file_picker.rs:38</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/pipeline/pixel_ops.rs#L474" rel="noreferrer noopener" target="_blank">src/render/pipeline/pixel_ops.rs:474</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/a11y_submit.rs#L133" rel="noreferrer noopener" target="_blank">src/widget/a11y_submit.rs:133</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/registry.rs#L53" rel="noreferrer noopener" target="_blank">src/widget/registry.rs:53</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/widget/runtime.rs#L2154" rel="noreferrer noopener" target="_blank">src/widget/runtime.rs:2154</a> </span></li>
+
+<li><code class="evidence-text">76 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/bindings/binding_impl.rs#L128" rel="noreferrer noopener" target="_blank">src/bindings/binding_impl.rs:128</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/bindings/java_jni.rs#L78" rel="noreferrer noopener" target="_blank">src/bindings/java_jni.rs:78</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/accessibility.rs#L138" rel="noreferrer noopener" target="_blank">src/platform/harmony/accessibility.rs:138</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/displays.rs#L61" rel="noreferrer noopener" target="_blank">src/platform/macos/displays.rs:61</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/render/text/font_assets/mod.rs#L270" rel="noreferrer noopener" target="_blank">src/render/text/font_assets/mod.rs:270</a> </span></li>
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/compat.rs#L404" rel="noreferrer noopener" target="_blank">src/compat.rs:404</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/json/events.rs#L54" rel="noreferrer noopener" target="_blank">src/json/events.rs:54</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/accessibility/macos.rs#L39" rel="noreferrer noopener" target="_blank">src/platform/accessibility/macos.rs:39</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/android_jni.rs#L109" rel="noreferrer noopener" target="_blank">src/platform/android_jni.rs:109</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/cg.rs#L132" rel="noreferrer noopener" target="_blank">src/platform/macos/cg.rs:132</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/memory/allocators.rs#L145" rel="noreferrer noopener" target="_blank">src/memory/allocators.rs:145</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/ime_macos.rs#L55" rel="noreferrer noopener" target="_blank">src/platform/ime_macos.rs:55</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/ime_windows.rs#L186" rel="noreferrer noopener" target="_blank">src/platform/ime_windows.rs:186</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/file_picker.rs#L63" rel="noreferrer noopener" target="_blank">src/platform/windows/file_picker.rs:63</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/android/types.rs#L85" rel="noreferrer noopener" target="_blank">src/platform/android/types.rs:85</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/child_process.rs#L86" rel="noreferrer noopener" target="_blank">src/platform/child_process.rs:86</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/darwin_probes.rs#L54" rel="noreferrer noopener" target="_blank">src/platform/darwin_probes.rs:54</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/ios/native.rs#L113" rel="noreferrer noopener" target="_blank">src/platform/ios/native.rs:113</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/linux/types.rs#L93" rel="noreferrer noopener" target="_blank">src/platform/linux/types.rs:93</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/types.rs#L63" rel="noreferrer noopener" target="_blank">src/platform/macos/types.rs:63</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/wayland/platform_impl.rs#L680" rel="noreferrer noopener" target="_blank">src/platform/wayland/platform_impl.rs:680</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/notify.rs#L24" rel="noreferrer noopener" target="_blank">src/platform/windows/notify.rs:24</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/video/ffmpeg_decoder.rs#L144" rel="noreferrer noopener" target="_blank">src/video/ffmpeg_decoder.rs:144</a> </span></li>
+
+<li><code class="evidence-text">14 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/clipboard_stubs.rs#L135" rel="noreferrer noopener" target="_blank">src/platform/clipboard_stubs.rs:135</a> </span></li>
+
+<li><code class="evidence-text">32 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/pasteboard.rs#L166" rel="noreferrer noopener" target="_blank">src/platform/harmony/pasteboard.rs:166</a> </span></li>
+
+<li><code class="evidence-text">24 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/harmony/xcomponent.rs#L492" rel="noreferrer noopener" target="_blank">src/platform/harmony/xcomponent.rs:492</a> </span></li>
+
+<li><code class="evidence-text">38 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/canvas.rs#L74" rel="noreferrer noopener" target="_blank">src/platform/macos/canvas.rs:74</a> </span></li>
+
+<li><code class="evidence-text">13 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos/platform_impl.rs#L32" rel="noreferrer noopener" target="_blank">src/platform/macos/platform_impl.rs:32</a> </span></li>
+
+<li><code class="evidence-text">22 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/macos_objc2/native.rs#L74" rel="noreferrer noopener" target="_blank">src/platform/macos_objc2/native.rs:74</a> </span></li>
+
+<li><code class="evidence-text">21 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/canvas.rs#L109" rel="noreferrer noopener" target="_blank">src/platform/windows/canvas.rs:109</a> <a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/types.rs#L13" rel="noreferrer noopener" target="_blank">src/platform/windows/types.rs:13</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/displays.rs#L88" rel="noreferrer noopener" target="_blank">src/platform/windows/displays.rs:88</a> </span></li>
+
+<li><code class="evidence-text">37 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/src/platform/windows/platform_impl.rs#L71" rel="noreferrer noopener" target="_blank">src/platform/windows/platform_impl.rs:71</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/tests/icon_allocations.rs#L48" rel="noreferrer noopener" target="_blank">tests/icon_allocations.rs:48</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rust_widgets/2.8.7/code/tests/icon_shared_pixels_budget_test.rs#L54" rel="noreferrer noopener" target="_blank">tests/icon_shared_pixels_budget_test.rs:54</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>3 min 12 s</dd></div><div><dt>VM restore</dt><dd>157 ms</dd></div><div><dt>Payload</dt><dd>21719 files, 492.8 MiB</dd></div><div><dt>Files opened</dt><dd>36411</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">612</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 567 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">14 ms</td>
+<td class="nowrap">3 min 12 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="66 similar processes, the first one shown">×66</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">725 ms</td>
+<td class="nowrap">910 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcdZ5dyf/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">143 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLaSreB.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcdZ5dyf/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">136 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLaSreB.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcdZ5dyf/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">132 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.6 s</td>
+<td class="nowrap">82 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.6 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 608: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="261 similar processes, the first one shown">×261</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.7 s</td>
+<td class="nowrap">71 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 628: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 629: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 713: /work/target/debug/build/libc-0455987895a38b7c/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.5 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 714: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">11.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 745: /work/target/debug/build/libm-bf7234d1701b6a93/build-script-build">libm</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 773: /work/target/debug/build/num-traits-e52ebcd8ebc5315f/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.8 s</td>
+<td class="nowrap">46 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 774: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">13.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 814: /work/target/debug/build/zerocopy-36da5f8be1e21021/build-script-build">zerocopy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">14.6 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 815: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">14.6 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 928: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.2 s</td>
+<td class="nowrap">66 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 929: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">23.2 s</td>
+<td class="nowrap">36 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 933: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">23.2 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 981: /work/target/debug/build/serde_core-14ba724c95763ebd/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">25.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 982: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">25.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1059: /work/target/debug/build/crossbeam-utils-416887bede60e6f8/build-script-build">crossbeam-utils</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">29.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1061: /work/target/debug/build/serde-593ffa063ad862ba/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">29.8 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1062: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">29.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1142: /work/target/debug/build/paste-486a5cb33bee7857/build-script-build">paste</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">33.7 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1143: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">33.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1151: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.3 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1152: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">34.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1209: /work/target/debug/build/crossbeam-epoch-e24b1982d8741dc3/build-script-build">crossbeam-epoch</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">36.6 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1330: /work/target/debug/build/crc32fast-2ad1f9244d9f468c/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.9 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1331: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">40.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1334: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1341: /work/target/debug/build/crossbeam-deque-868263c99ffe5d02/build-script-build">crossbeam-deque</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">41.7 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1343: /work/target/debug/build/ahash-86ad56338b965f08/build-script-build">ahash</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">41.7 s</td>
+<td class="nowrap">47 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1344: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">41.7 s</td>
+<td class="nowrap">44 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1446: /work/target/debug/build/rayon-core-6dbcc2d56647fc95/build-script-build">rayon-core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">44.0 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1569: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">46.5 s</td>
+<td class="nowrap">139 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1570: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">46.5 s</td>
+<td class="nowrap">73 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1574: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">46.6 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1577: /work/target/debug/build/icu_locid_transform_data-33f0398818f4a07d/build-script-build">icu_locid_transform_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">46.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1606: /work/target/debug/build/ash-d5ae764480590b43/build-script-build">ash</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1608: /work/target/debug/build/naga-6b9f47066d1d87e0/build-script-build">naga</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1745: /work/target/debug/build/icu_properties_data-ccbf9af0ce63848d/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">54.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1760: /work/target/debug/build/khronos-egl-2ba125a6fccbce80/build-script-build">khronos-egl</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1797: /work/target/debug/build/wayland-sys-527523e02f7158d8/build-script-build">wayland-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 17 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2021: /work/target/debug/build/av-scenechange-09687a720b5ebcf5/build-script-build">av-scenechange</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2023: /work/target/debug/build/slotmap-29573c15084a874c/build-script-build">slotmap</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">36 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2024: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2041: /work/target/debug/build/wgpu-hal-c6d6a04d2f6321fe/build-script-build">wgpu-hal</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2275: /work/target/debug/build/inotify-sys-062c6e654218302a/build-script-build">inotify-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 39 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2277: /work/target/debug/build/icu_normalizer_data-682c4d72a63d2093/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 39 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2284: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 42 s</td>
+<td class="nowrap">27 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2285: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 42 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2290: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 42 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2291: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 42 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2294: /work/target/debug/build/rustversion-cd03e7da230c42f2/build-script-build">rustversion</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 42 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2295: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 42 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2308: /work/target/debug/build/memoffset-7bfd48076ab8b0dd/build-script-build">memoffset</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 43 s</td>
+<td class="nowrap">57 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2309: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 43 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2359: /work/target/debug/build/rav1e-85ffb39787d56e34/build-script-build">rav1e</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">174 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2360: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-V</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2362: /usr/local/bin/rustdoc">/usr/local/bin/rustdoc</span></td>
+<td class="mono args">-V</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">138 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2596: /work/target/debug/build/portable-atomic-df2adbef8625d15d/build-script-build">portable-atomic</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 0 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2597: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">2 min 0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2626: /work/target/debug/build/serde_json-8bdb9b394c8b5974/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2643: /work/target/debug/build/wgpu-core-e44ced2e91781745/build-script-build">wgpu-core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2645: /work/target/debug/build/minimp3-sys-5abe1a60032637a5/build-script-build">minimp3-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">933 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2646: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/2275984190067931631detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">80 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2647: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/2275984190067931631detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 2275984190067931631detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">71 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2648: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2649: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/flag_check -c /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/flag_check.c</td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">61 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2650: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/flag_check.c -quiet -dumpdir /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccmuyNog.s</td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">50 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2651: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/flag_check /tmp/ccmuyNog.s</td>
+<td class="nowrap muted">2 min 2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2655: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/libminimp3.a /work/target/debug/build/minimp3-sys-c223b3024c41c9e1/out/db3b6bfb95261072-minimp3.o</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2933: /work/target/debug/build/getrandom-ff13900ae77c80ab/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 22 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2970: /work/target/debug/build/wgpu-76e8f1c967cee622/build-script-build">wgpu</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 27 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3095: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name boa_engine --edition=2021 /cw/vendor/boa_engine-0.19.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type cdylib --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --warn=warnings --warn=variant_size_differences --warn=unused_qualifications --warn=unused_lifetimes --warn=unused_import_braces --warn=unused_crate_dependencies --warn=unused --warn=unsafe_op_in_unsafe_fn --warn=unreachable_pub --warn=trivial_numeric_casts --warn=trivial_casts --warn=clippy::suspicious --warn=clippy::style --warn=single_use_lifetimes --warn=rust_2021_compatibility --warn=rust_2018_idioms</td>
+<td class="nowrap muted">2 min 40 s</td>
+<td class="nowrap">7.4 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 3099: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">locate-project --workspace --message-format=plain --manifest-path=/cw/vendor/boa_engine-0.19.1/Cargo.toml</td>
+<td class="nowrap muted">2 min 40 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3101: /work/target/debug/build/rust_widgets-7b91eca83db59aba/build-script-build">rust_widgets</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>2317</dd></div><div><dt>Directories</dt><dd>515</dd></div><div><dt>Size</dt><dd>872.6 MiB</dd></div><div><dt>Compiled units</dt><dd>317</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v2.0.119
+   Compiling syn v3.0.9
+   Compiling libc v0.2.190
+   Compiling autocfg v1.5.1
+   Compiling libm v0.2.16
+   Compiling version_check v0.9.5
+   Compiling num-traits v0.2.19
+    Checking log v0.4.34
+   Compiling zerocopy v0.8.63
+   Compiling zerocopy-derive v0.8.63
+   Compiling bytemuck_derive v1.12.1
+    Checking once_cell v1.21.4
+    Checking bytemuck v1.25.2
+    Checking bitflags v2.13.2
+    Checking foldhash v0.2.0
+    Checking stable_deref_trait v1.2.1
+   Compiling synstructure v0.13.2
+    Checking equivalent v1.0.3
+   Compiling thiserror v2.0.21
+    Checking smallvec v1.16.3
+   Compiling thiserror-impl v2.0.21
+   Compiling cfg_aliases v0.2.2
+    Checking memchr v2.8.3
+   Compiling serde_core v1.0.229
+    Checking hashbrown v0.17.1
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+    Checking indexmap v2.14.2
+   Compiling serde v1.0.229
+   Compiling crossbeam-utils v0.8.23
+    Checking zerofrom v0.1.8
+   Compiling yoke-derive v0.7.5
+   Compiling generic-array v0.14.7
+   Compiling serde_derive v1.0.229
+   Compiling paste v1.0.15
+    Checking yoke v0.7.5
+    Checking num-integer v0.1.47
+   Compiling zerovec-derive v0.10.4
+    Checking typenum v1.20.1
+    Checking simd-adler32 v0.3.10
+   Compiling crossbeam-epoch v0.9.21
+    Checking zerovec v0.10.4
+    Checking num-bigint v0.4.8
+   Compiling ahash v0.8.12
+    Checking libloading v0.8.9
+   Compiling displaydoc v0.2.7
+   Compiling crossbeam-deque v0.8.8
+    Checking allocator-api2 v0.2.21
+   Compiling parking_lot_core v0.9.12
+   Compiling crc32fast v1.5.2
+    Checking adler2 v2.0.1
+    Checking siphasher v1.0.4
+    Checking either v1.19.0
+    Checking hashbrown v0.16.1
+    Checking half v2.7.1
+   Compiling equator-macro v0.4.2
+   Compiling profiling-procmacros v1.0.18
+   Compiling rayon-core v1.13.0
+   Compiling rand_core v0.6.4
+    Checking rustc-hash v1.1.0
+    Checking scopeguard v1.2.0
+    Checking lock_api v0.4.14
+    Checking naga-types v30.0.1
+   Compiling phf_shared v0.11.3
+   Compiling rand v0.8.8
+    Checking profiling v1.0.18
+    Checking equator v0.4.2
+    Checking miniz_oxide v0.9.1
+    Checking tinystr v0.7.6
+   Compiling naga v30.0.1
+    Checking litemap v0.7.5
+   Compiling ash v0.38.0+1.3.281
+   Compiling pkg-config v0.3.34
+    Checking bit-vec v0.9.1
+    Checking unicode-width v0.2.2
+    Checking writeable v0.5.5
+   Compiling icu_locid_transform_data v1.5.1
+   Compiling anyhow v1.0.104
+    Checking icu_locid v1.5.0
+    Checking codespan-reporting v0.13.1
+    Checking bit-set v0.10.0
+   Compiling wayland-sys v0.31.11
+    Checking flate2 v1.1.10
+    Checking hashbrown v0.14.5
+    Checking aligned-vec v0.6.4
+   Compiling phf_generator v0.11.3
+    Checking spirv v0.4.0+sdk-1.4.341.0
+   Compiling icu_provider_macros v1.5.0
+    Checking sptr v0.3.2
+   Compiling khronos-egl v6.0.0
+   Compiling icu_properties_data v1.5.1
+   Compiling winnow v1.0.4
+    Checking raw-window-handle v0.6.2
+    Checking fast-float v0.2.0
+    Checking boa_string v0.19.1
+    Checking wgpu-types v30.0.1
+   Compiling toml_parser v1.1.5+spec-1.1.0
+    Checking icu_provider v1.5.0
+   Compiling phf_macros v0.11.3
+    Checking v_frame v0.3.9
+    Checking rayon v1.12.0
+    Checking dlib v0.5.3
+    Checking num-rational v0.4.2
+    Checking crypto-common v0.1.7
+   Compiling wgpu-hal v30.0.1
+   Compiling boa_macros v0.19.1
+    Checking as-slice v0.2.1
+    Checking font-types v0.12.7
+   Compiling slotmap v1.1.1
+   Compiling av-scenechange v0.14.1
+   Compiling built v0.8.1
+    Checking presser v0.3.1
+    Checking boa_profiler v0.19.1
+    Checking float-cmp v0.9.0
+    Checking thin-vec v0.2.21
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling find-msvc-tools v0.1.14
+    Checking quick-error v2.0.1
+   Compiling shlex v2.0.1
+   Compiling cc v1.8.0
+   Compiling toml_edit v0.25.17+spec-1.1.0
+    Checking boa_gc v0.19.1
+    Checking strict-num v0.1.1
+    Checking gpu-allocator v0.28.0
+   Compiling rav1e v0.8.1
+    Checking read-fonts v0.41.0
+    Checking aligned v0.4.3
+    Checking phf v0.11.3
+    Checking icu_locid_transform v1.5.0
+    Checking wgpu-naga-bridge v30.0.1
+    Checking parking_lot v0.12.5
+    Checking miniz_oxide v0.8.9
+    Checking icu_collections v1.5.0
+    Checking block-padding v0.3.3
+    Checking fdeflate v0.3.7
+    Checking no_std_io2 v0.9.4
+    Checking nom v8.0.0
+    Checking polycool v0.4.0
+    Checking ordered-float v5.5.0
+   Compiling memoffset v0.9.1
+    Checking getrandom v0.2.17
+   Compiling arg_enum_proc_macro v0.3.4
+    Checking y4m v0.8.0
+    Checking roxmltree v0.20.0
+   Compiling rustversion v1.0.23
+   Compiling zmij v1.0.23
+   Compiling thiserror v1.0.69
+    Checking glow v0.17.0
+    Checking renderdoc-sys v1.1.0
+   Compiling icu_normalizer_data v1.5.1
+   Compiling inotify-sys v0.1.8
+   Compiling pastey v0.1.1
+    Checking zune-core v0.5.3
+    Checking weezl v0.1.12
+    Checking arrayref v0.3.9
+    Checking tiny-skia-path v0.12.0
+    Checking zune-jpeg v0.5.15
+    Checking fontconfig-parser v0.5.8
+    Checking kurbo v0.13.1
+    Checking av1-grain v0.2.5
+    Checking bitstream-io v4.10.0
+    Checking png v0.18.1
+    Checking inout v0.1.4
+    Checking icu_properties v1.5.1
+    Checking boa_interner v0.19.1
+   Compiling proc-macro-crate v3.5.0
+   Compiling minimp3-sys v0.3.2
+    Checking itertools v0.14.0
+   Compiling wgpu-core v30.0.1
+    Checking rgb v0.8.53
+    Checking ppv-lite86 v0.2.21
+    Checking memmap2 v0.9.11
+    Checking maybe-rayon v0.1.1
+   Compiling num-derive v0.4.2
+   Compiling thiserror-impl v1.0.69
+   Compiling simd_helpers v0.1.0
+    Checking tinyvec v1.13.3
+   Compiling time-core v0.1.9
+   Compiling noop_proc_macro v0.3.0
+    Checking unicode-script v0.5.8
+   Compiling serde_json v1.0.154
+    Checking imgref v1.12.3
+    Checking byteorder-lite v0.1.0
+   Compiling litrs v1.0.1
+   Compiling portable-atomic v1.15.0
+   Compiling num-conv v0.2.2
+    Checking new_debug_unreachable v1.0.6
+    Checking color_quant v1.1.0
+    Checking gif v0.14.2
+   Compiling time-macros v0.2.32
+   Compiling document-features v0.2.12
+    Checking image-webp v0.2.4
+    Checking loop9 v0.1.5
+    Checking fontdb v0.24.0
+    Checking rand_chacha v0.3.1
+   Compiling num_enum_derive v0.7.6
+    Checking boa_ast v0.19.1
+    Checking cipher v0.4.4
+    Checking svgtypes v0.16.1
+    Checking wgpu-core-deps-windows-linux-android v30.0.1
+    Checking harfrust v0.12.0
+    Checking skrifa v0.44.0
+    Checking regress v0.10.5
+    Checking block-buffer v0.10.4
+    Checking roxmltree v0.21.1
+   Compiling wgpu v30.0.1
+    Checking avif-serialize v0.8.9
+    Checking simplecss v0.2.2
+    Checking core_maths v0.1.1
+    Checking instant v0.1.13
+    Checking bitflags v1.3.2
+    Checking powerfmt v0.2.1
+    Checking utf8_iter v1.0.4
+    Checking imagesize v0.15.0
+    Checking data-url v0.3.2
+    Checking option-ext v0.2.0
+    Checking pxfm v0.1.30
+    Checking deranged v0.5.9
+   Compiling getrandom v0.3.4
+    Checking same-file v1.0.6
+    Checking utf16_iter v1.0.5
+    Checking base64 v0.23.1
+    Checking cpufeatures v0.2.17
+    Checking num_threads v0.1.7
+    Checking write16 v1.0.0
+    Checking pico-args v0.5.0
+    Checking unicode-vo v0.1.0
+    Checking xmlwriter v0.1.0
+    Checking fax v0.2.7
+    Checking unicode-bidi v0.3.18
+    Checking usvg v0.48.1
+    Checking tiff v0.11.3
+    Checking icu_normalizer v1.5.0
+    Checking time v0.3.55
+    Checking walkdir v2.5.0
+    Checking moxcms v0.8.1
+    Checking dirs-sys v0.5.0
+    Checking inotify v0.10.2
+    Checking notify-types v1.0.1
+    Checking ttf-parser v0.25.1
+    Checking ravif v0.13.0
+    Checking digest v0.10.7
+    Checking boa_parser v0.19.1
+    Checking num_enum v0.7.6
+    Checking intrusive-collections v0.9.7
+    Checking tiny-skia v0.12.0
+    Checking dashmap v5.5.3
+    Checking itertools v0.13.0
+    Checking mio v1.2.4
+    Checking slice-ring-buffer v0.3.4
+    Checking filetime v0.2.29
+   Compiling rust_widgets v2.8.7
+    Checking unicode-properties v0.1.4
+    Checking unicode-ccc v0.4.0
+    Checking tap v1.0.1
+    Checking pollster v0.3.0
+    Checking unicode-bidi-mirroring v0.4.0
+    Checking iana-time-zone v0.1.65
+    Checking chrono v0.4.45
+    Checking rustybuzz v0.20.1
+    Checking boa_engine v0.19.1
+    Checking notify v7.0.0
+    Checking minimp3_fixed v0.5.4
+    Checking resvg v0.48.1
+    Checking sha2 v0.10.9
+    Checking image v0.25.10
+    Checking dirs v6.0.0
+    Checking aes v0.8.4
+    Checking cbc v0.1.2
+    Checking jpeg-decoder v0.3.2
+    Checking crossbeam-channel v0.5.17
+    Checking font8x8 v0.2.7
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3m 12s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-16 15:27 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 15:27 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 15:41 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 15:45 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 15:45 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 15:45 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

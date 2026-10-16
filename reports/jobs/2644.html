@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: mozjs_sys 153.3.0-1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>mozjs_sys <span class="version">153.3.0-1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 2644</span>
+      <a class="muted" href="https://crates.io/crates/mozjs_sys/153.3.0-1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="2644.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="2644.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity downloader_pattern in build_script code: https://github.com/servo/mozjs/releases at build.rs:1249 with std::process::Command::new at build.rs:163</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">45</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">10</span></a>
+  <a href="#behavior">Behavior <span class="count">7</span></a>
+  <a href="#findings">Static findings <span class="count">37</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1249" rel="noreferrer noopener" target="_blank">build.rs:1249</a></td><td>high severity downloader_pattern in build_script code: https://github.com/servo/mozjs/releases at build.rs:1249 with std::process::Command::new at build.rs:163</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · mozjs_normalizer_glue</div></td><td class="mono where">index.crates.io</td><td>The build looked up index.crates.io.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · mozjs_sys</div></td><td class="mono where">net:index.crates.io</td><td>New since the previous version: net:index.crates.io.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>7 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L163" rel="noreferrer noopener" target="_blank">build.rs:163</a></td><td>medium severity process_spawn in build_script code (8 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L755" rel="noreferrer noopener" target="_blank">build.rs:755</a></td><td>low severity url_literal in build_script code (2 places): MozTools or MozillaBuild not found!\u{a} Follow instructions on: https://github.com/servo/mozjs?tab=readme-ov-file#windows</td></tr>
+
+<tr><td class="signal"><span class="word">static:yara:embedded_macho_executable</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/testing/mozbase/mozgeckoprofiler/mozgeckoprofiler/dump_syms_mac" rel="noreferrer noopener" target="_blank">mozjs/testing/mozbase/mozgeckoprofiler/mozgeckoprofiler/dump_syms_mac</a></td><td>medium severity yara:embedded_macho_executable in library code: A Mach-O executable shipped inside the crate</td></tr>
+
+<tr><td class="signal"><span class="word">static:yara:embedded_pe_executable</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/cli-32.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/cli-32.exe</a></td><td>medium severity yara:embedded_pe_executable in library code (8 places): A Windows executable shipped inside the crate</td></tr>
+
+<tr><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/python/mach/docs/usage.rst#L77" rel="noreferrer noopener" target="_blank">mozjs/python/mach/docs/usage.rst:77</a></td><td>medium severity yara:persistence_locations in library code (4 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="signal"><span class="word">static:yara:sandbox_evasion</span><div class="sub">static · mozjs_sys</div></td><td class="mono where"><a href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/build/pgo/js-input/sunspider/string-tagcloud.html#L266" rel="noreferrer noopener" target="_blank">mozjs/build/pgo/js-input/sunspider/string-tagcloud.html:266</a></td><td>medium severity yara:sandbox_evasion in library code (3 places): Checks for virtual machines, sandboxes or debuggers</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">net:index.crates.io</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">net:index.crates.io</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> <code class="chip">static:yara:embedded_macho_executable</code> <code class="chip">static:yara:embedded_pe_executable</code> <code class="chip">static:yara:persistence_locations</code> <code class="chip">static:yara:sandbox_evasion</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">37</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">24</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">4</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">8</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/servo/mozjs/releases at build.rs:1249 with std::process::Command::new at build.rs:163</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1249" rel="noreferrer noopener" target="_blank">build.rs:1249</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L163" rel="noreferrer noopener" target="_blank">build.rs:163</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L325" rel="noreferrer noopener" target="_blank">build.rs:325</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L328" rel="noreferrer noopener" target="_blank">build.rs:328</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L766" rel="noreferrer noopener" target="_blank">build.rs:766</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1077" rel="noreferrer noopener" target="_blank">build.rs:1077</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1147" rel="noreferrer noopener" target="_blank">build.rs:1147</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1216" rel="noreferrer noopener" target="_blank">build.rs:1216</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1256" rel="noreferrer noopener" target="_blank">build.rs:1256</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match embedded_pe_executable</span> <span class="context">library</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">A Windows executable shipped inside the crate</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/cli-32.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/cli-32.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/cli-64.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/cli-64.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/cli-arm64.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/cli-arm64.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/cli.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/cli.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/gui-32.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/gui-32.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/gui-64.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/gui-64.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/gui-arm64.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/gui-arm64.exe</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/setuptools/setuptools/gui.exe" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/setuptools/setuptools/gui.exe</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/python/mach/docs/usage.rst#L77" rel="noreferrer noopener" target="_blank">mozjs/python/mach/docs/usage.rst:77</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/python/mozboot/mozboot/base.py#L87" rel="noreferrer noopener" target="_blank">mozjs/python/mozboot/mozboot/base.py:87</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/pygments/pygments/lexers/_mapping.py#L49" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/pygments/pygments/lexers/_mapping.py:49</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/pygments/pygments/lexers/shell.py#L34" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/pygments/pygments/lexers/shell.py:34</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match sandbox_evasion</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Checks for virtual machines, sandboxes or debuggers</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/build/pgo/js-input/sunspider/string-tagcloud.html#L266" rel="noreferrer noopener" target="_blank">mozjs/build/pgo/js-input/sunspider/string-tagcloud.html:266</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/js/src/util/UnicodeData.txt#L39179" rel="noreferrer noopener" target="_blank">mozjs/js/src/util/UnicodeData.txt:39179</a> <a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/third_party/python/rich/rich/_emoji_codes.py#L863" rel="noreferrer noopener" target="_blank">mozjs/third_party/python/rich/rich/_emoji_codes.py:863</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match embedded_macho_executable</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">A Mach-O executable shipped inside the crate</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/mozjs/testing/mozbase/mozgeckoprofiler/mozgeckoprofiler/dump_syms_mac" rel="noreferrer noopener" target="_blank">mozjs/testing/mozbase/mozgeckoprofiler/mozgeckoprofiler/dump_syms_mac</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">MozTools or MozillaBuild not found!\u{a} Follow instructions on: https://github.com/servo/mozjs?tab=readme-ov-file#windows</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L755" rel="noreferrer noopener" target="_blank">build.rs:755</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/servo/mozjs/releases</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs#L1249" rel="noreferrer noopener" target="_blank">build.rs:1249</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/lib.rs#L70" rel="noreferrer noopener" target="_blank">src/lib.rs:70</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/glue.rs#L18" rel="noreferrer noopener" target="_blank">src/glue.rs:18</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/jsgc.rs#L358" rel="noreferrer noopener" target="_blank">src/jsgc.rs:358</a> </span></li>
+
+<li><code class="evidence-text">29 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/jsimpls.rs#L36" rel="noreferrer noopener" target="_blank">src/jsimpls.rs:36</a> </span></li>
+
+<li><code class="evidence-text">16 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/jsval.rs#L551" rel="noreferrer noopener" target="_blank">src/jsval.rs:551</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/lib.rs#L75" rel="noreferrer noopener" target="_blank">src/lib.rs:75</a> </span></li>
+
+<li><code class="evidence-text">27 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/src/trace.rs#L47" rel="noreferrer noopener" target="_blank">src/trace.rs:47</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">native_link</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">links = &#34;mozjs&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/Cargo.toml" rel="noreferrer noopener" target="_blank">Cargo.toml</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mozjs_sys/153.3.0-1/code/tests/evaluate.rs#L52" rel="noreferrer noopener" target="_blank">tests/evaluate.rs:52</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>38.1 s</dd></div><div><dt>VM restore</dt><dd>61 ms</dd></div><div><dt>Payload</dt><dd>17266 files, 226.4 MiB</dd></div><div><dt>Files opened</dt><dd>7398</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">100</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 89 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">37.9 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="65 similar processes, the first one shown">×65</span></td>
+<td class="mono args">--crate-name cfg_if --edition=2018 /cw/vendor/cfg-if-1.0.5/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;core&#34;, &#34;rustc-dep-of-std&#34;)) -C metadata=8fbcd44a3da28d1d -C extra-filename=-d05893e10c9c8e83 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">275 ms</td>
+<td class="nowrap">227 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 644: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3.0 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 645: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-0f4e2900de2476d1/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">3.0 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 789: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">7.5 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 850: /work/target/debug/build/serde-393d124c797c9427/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.6 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 851: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">12.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 937: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/cbindgen-0.29.4/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;clap&#34; --cfg feature=&#34;default&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;clap&#34;, &#34;default&#34;, &#34;unstable_ir&#34;)) -C metadata=7519b431021eac92 -C extra-filename=-6c0bef207331a9ec --out-dir /work/target/debug/build/cbindgen-6c0bef207331a9ec -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">16.7 s</td>
+<td class="nowrap">200 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 944: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/cbindgen-6c0bef207331a9ec/rustcmNgTOA/symbols.o /work/target/debug/build/cbindgen-6c0bef207331a9ec/build_script_build-6c0bef207331a9ec.build_script_build.c467a335c5ed84ee-cgu.0.rcgu.o /work/target/debug/build/cbindgen-6c0bef207331a9ec/build_script_build-6c0bef207331a9ec.avy5yrn8ka6q6vxmny2b8bv6d.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_dem</td>
+<td class="nowrap muted">16.8 s</td>
+<td class="nowrap">104 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 945: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cclZV250.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/cbindgen-6c0bef207331a9ec/build_script_build-6c0bef207331a9ec /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/cbindgen-6c0bef207331a9ec/rustcmNgTOA/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/l</td>
+<td class="nowrap muted">16.8 s</td>
+<td class="nowrap">98 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 946: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cclZV250.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/cbindgen-6c0bef207331a9ec/build_script_build-6c0bef207331a9ec /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/cbindgen-6c0bef207331a9ec/rustcmNgTOA/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linu</td>
+<td class="nowrap muted">16.8 s</td>
+<td class="nowrap">94 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1009: /work/target/debug/build/cbindgen-6c0bef207331a9ec/build-script-build">cbindgen</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.4 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1036: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">21.3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1037: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">21.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1143: /work/target/debug/build/mozjs_icu_normalizer_data-435cdb505b8f2e25/build-script-build">mozjs_icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1300: /work/target/debug/build/encoding_c_mem-977bad3e31865db5/build-script-build">encoding_c_mem</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">36.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1319: /work/target/debug/build/encoding_c-74ca4077585b6aff/build-script-build">encoding_c</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">36.9 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1344: /work/target/debug/build/mozjs_normalizer_glue-43883c919f75b7a1/build-script-build">mozjs_normalizer_glue</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">37.8 s</td>
+<td class="nowrap">152 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 1345: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">metadata --all-features --format-version 1 --manifest-path ./Cargo.toml</td>
+<td class="nowrap muted">37.8 s</td>
+<td class="nowrap">149 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">14</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">index.crates.io</code> <code class="chip">index.crates.io.0.2.2</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">37.8 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">37.8 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">37.8 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>581</dd></div><div><dt>Directories</dt><dd>147</dd></div><div><dt>Size</dt><dd>360.2 MiB</dd></div><div><dt>Compiled units</dt><dd>130</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling cfg-if v1.0.5
+   Compiling zerofrom v0.1.8
+   Compiling stable_deref_trait v1.2.1
+   Compiling yoke v0.8.3
+   Compiling zerovec v0.11.8
+   Compiling libc v0.2.189
+   Compiling bitflags v2.13.2
+   Compiling writeable v0.6.4
+   Compiling rustix v1.1.5
+   Compiling linux-raw-sys v0.12.1
+   Compiling tinystr v0.8.4
+   Compiling utf8parse v0.2.2
+   Compiling litemap v0.8.3
+   Compiling icu_locale_core v2.3.0
+   Compiling anstyle-parse v1.0.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling colorchoice v1.0.5
+   Compiling anstyle-query v1.1.5
+   Compiling anstyle v1.0.14
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstream v1.0.0
+   Compiling getrandom v0.4.3
+   Compiling icu_provider v2.3.1
+   Compiling icu_collections v2.1.1
+   Compiling syn v2.0.119
+   Compiling winnow v1.0.4
+   Compiling clap_lex v1.1.1
+   Compiling serde v1.0.229
+   Compiling clap_builder v4.6.7
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling icu_properties v2.1.2
+   Compiling toml_datetime v0.7.5+spec-1.1.0
+   Compiling serde_spanned v1.1.1
+   Compiling hashbrown v0.17.1
+   Compiling fastrand v2.5.0
+   Compiling cbindgen v0.29.4
+   Compiling once_cell v1.21.4
+   Compiling winnow v0.7.15
+   Compiling toml v0.9.12+spec-1.1.0
+   Compiling indexmap v2.14.2
+   Compiling tempfile v3.27.0
+   Compiling serde_json v1.0.151
+   Compiling icu_casemap v2.1.1
+   Compiling clap v4.6.7
+   Compiling crc32fast v1.5.2
+   Compiling mozjs_icu_collections v153.3.0
+   Compiling libloading v0.8.9
+   Compiling adler2 v2.0.1
+   Compiling scopeguard v1.2.0
+   Compiling simdutf8 v0.1.5
+   Compiling core_detect v1.0.0
+   Compiling mozjs_icu_normalizer_data v153.3.0
+   Compiling simd-adler32 v0.3.10
+   Compiling miniz_oxide v0.9.1
+   Compiling encoding_rs v0.8.42
+   Compiling clang-sys v1.9.1
+   Compiling mozjs_normalizer_glue v153.3.0
+   Compiling xattr v1.6.1
+   Compiling filetime v0.2.29
+   Compiling encoding_c v0.9.8
+   Compiling same-file v1.0.6
+   Compiling smallvec v1.16.2
+   Compiling encoding_c_mem v0.2.6
+   Compiling bindgen v0.72.1
+   Compiling write16 v1.0.0
+   Compiling walkdir v2.5.0
+   Compiling tar v0.4.46
+   Compiling flate2 v1.1.10
+error: failed to run custom build command for `mozjs_normalizer_glue v153.3.0`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/mozjs_normalizer_glue-43883c919f75b7a1/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:include=/work/target/debug/build/mozjs_normalizer_glue-2cbb6d769f5a1edd/out/include
+
+  --- stderr
+
+  thread &#39;main&#39; (1344) panicked at /cw/vendor/mozjs_normalizer_glue-153.3.0/build.rs:7:10:
+  Unable to generate bindings: CargoMetadata(&#34;./Cargo.toml&#34;, Metadata(Output { status: ExitStatus(unix_wait_status(25856)), stdout: &#34;&#34;, stderr: &#34;    Updating crates.io index\nerror: no matching package named `encoding_rs` found\nlocation searched: crates.io index\nrequired by package `mozjs_normalizer_glue v153.3.0 (/cw/vendor/mozjs_normalizer_glue-153.3.0)`\n&#34; }))
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-09-25 21:32 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-523930</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:32 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-450252</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:33 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-525005-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:34 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-525005-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:34 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:34 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-525005-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:35 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-525005-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:35 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-09-25 21:35 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-523934</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: gmsh_ffi 0.2.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>gmsh_ffi <span class="version">0.2.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 127592</span>
+      <a class="muted" href="https://crates.io/crates/gmsh_ffi/0.2.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="127592.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="127592.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="127592-diff.html">Compare with 0.2.0</a>
+    </p>
+    <p class="headline">high severity shell_command in build_script code: curl failed</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">55</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">6</span></a>
+  <a href="#findings">Static findings <span class="count">396</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · gmsh_ffi</div></td><td class="mono where"><a href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L196" rel="noreferrer noopener" target="_blank">build.rs:196</a></td><td>high severity shell_command in build_script code: curl failed</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">disk_outside_build</span><div class="sub">disk</div></td><td class="mono where">/work/home/.cache</td><td>The build left /work/home/.cache (dir) and 3 entries below it.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · gmsh_ffi</div></td><td class="mono where">gmsh.info</td><td>The build looked up gmsh.info.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · gmsh_ffi</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>4 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · gmsh_ffi</div></td><td class="mono where"><a href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · gmsh_ffi</div></td><td class="mono where"><a href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L139" rel="noreferrer noopener" target="_blank">build.rs:139</a></td><td>high severity downloader_pattern in build_script code: https://gmsh.info/bin/Linux/gmsh-{}-Linux64-sdk.tgz at build.rs:139 with std::process::Command::new at build.rs:185</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · gmsh_ffi</div></td><td class="mono where"><a href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L185" rel="noreferrer noopener" target="_blank">build.rs:185</a></td><td>medium severity process_spawn in build_script code (5 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · gmsh_ffi</div></td><td class="mono where"><a href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L139" rel="noreferrer noopener" target="_blank">build.rs:139</a></td><td>low severity url_literal in build_script code (3 places): https://gmsh.info/bin/Linux/gmsh-{}-Linux64-sdk.tgz</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">disk:outside</code> <code class="chip">exec:downloader</code> <code class="chip">net:gmsh.info</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">396</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">5</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">387</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">2</span></label>
+  <span class="muted">8 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://gmsh.info/bin/Linux/gmsh-{}-Linux64-sdk.tgz at build.rs:139 with std::process::Command::new at build.rs:185</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L139" rel="noreferrer noopener" target="_blank">build.rs:139</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">curl failed</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L196" rel="noreferrer noopener" target="_blank">build.rs:196</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L185" rel="noreferrer noopener" target="_blank">build.rs:185</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L213" rel="noreferrer noopener" target="_blank">build.rs:213</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L250" rel="noreferrer noopener" target="_blank">build.rs:250</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L383" rel="noreferrer noopener" target="_blank">build.rs:383</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L395" rel="noreferrer noopener" target="_blank">build.rs:395</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">383</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L25" rel="noreferrer noopener" target="_blank">src/bindings.rs:25</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L28" rel="noreferrer noopener" target="_blank">src/bindings.rs:28</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L31" rel="noreferrer noopener" target="_blank">src/bindings.rs:31</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L40" rel="noreferrer noopener" target="_blank">src/bindings.rs:40</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L43" rel="noreferrer noopener" target="_blank">src/bindings.rs:43</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L46" rel="noreferrer noopener" target="_blank">src/bindings.rs:46</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L49" rel="noreferrer noopener" target="_blank">src/bindings.rs:49</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L52" rel="noreferrer noopener" target="_blank">src/bindings.rs:52</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L55" rel="noreferrer noopener" target="_blank">src/bindings.rs:55</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L58" rel="noreferrer noopener" target="_blank">src/bindings.rs:58</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L65" rel="noreferrer noopener" target="_blank">src/bindings.rs:65</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L72" rel="noreferrer noopener" target="_blank">src/bindings.rs:72</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L79" rel="noreferrer noopener" target="_blank">src/bindings.rs:79</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L86" rel="noreferrer noopener" target="_blank">src/bindings.rs:86</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L96" rel="noreferrer noopener" target="_blank">src/bindings.rs:96</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L106" rel="noreferrer noopener" target="_blank">src/bindings.rs:106</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L109" rel="noreferrer noopener" target="_blank">src/bindings.rs:109</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L112" rel="noreferrer noopener" target="_blank">src/bindings.rs:112</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L115" rel="noreferrer noopener" target="_blank">src/bindings.rs:115</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L122" rel="noreferrer noopener" target="_blank">src/bindings.rs:122</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L128" rel="noreferrer noopener" target="_blank">src/bindings.rs:128</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L134" rel="noreferrer noopener" target="_blank">src/bindings.rs:134</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L140" rel="noreferrer noopener" target="_blank">src/bindings.rs:140</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L146" rel="noreferrer noopener" target="_blank">src/bindings.rs:146</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L154" rel="noreferrer noopener" target="_blank">src/bindings.rs:154</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L162" rel="noreferrer noopener" target="_blank">src/bindings.rs:162</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L170" rel="noreferrer noopener" target="_blank">src/bindings.rs:170</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L176" rel="noreferrer noopener" target="_blank">src/bindings.rs:176</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L184" rel="noreferrer noopener" target="_blank">src/bindings.rs:184</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L195" rel="noreferrer noopener" target="_blank">src/bindings.rs:195</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L204" rel="noreferrer noopener" target="_blank">src/bindings.rs:204</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L212" rel="noreferrer noopener" target="_blank">src/bindings.rs:212</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L221" rel="noreferrer noopener" target="_blank">src/bindings.rs:221</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L231" rel="noreferrer noopener" target="_blank">src/bindings.rs:231</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L238" rel="noreferrer noopener" target="_blank">src/bindings.rs:238</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L246" rel="noreferrer noopener" target="_blank">src/bindings.rs:246</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L254" rel="noreferrer noopener" target="_blank">src/bindings.rs:254</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L260" rel="noreferrer noopener" target="_blank">src/bindings.rs:260</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L268" rel="noreferrer noopener" target="_blank">src/bindings.rs:268</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L280" rel="noreferrer noopener" target="_blank">src/bindings.rs:280</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L291" rel="noreferrer noopener" target="_blank">src/bindings.rs:291</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L298" rel="noreferrer noopener" target="_blank">src/bindings.rs:298</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L312" rel="noreferrer noopener" target="_blank">src/bindings.rs:312</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L325" rel="noreferrer noopener" target="_blank">src/bindings.rs:325</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L328" rel="noreferrer noopener" target="_blank">src/bindings.rs:328</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L337" rel="noreferrer noopener" target="_blank">src/bindings.rs:337</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L345" rel="noreferrer noopener" target="_blank">src/bindings.rs:345</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L353" rel="noreferrer noopener" target="_blank">src/bindings.rs:353</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L361" rel="noreferrer noopener" target="_blank">src/bindings.rs:361</a> <a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/bindings.rs#L372" rel="noreferrer noopener" target="_blank">src/bindings.rs:372</a> <span class="muted">and 333 more</span></span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://gmsh.info/bin/Linux/gmsh-{}-Linux64-sdk.tgz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L139" rel="noreferrer noopener" target="_blank">build.rs:139</a> </span></li>
+
+<li><code class="evidence-text">https://gmsh.info/bin/Windows/gmsh-{}-Windows64-sdk.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L147" rel="noreferrer noopener" target="_blank">build.rs:147</a> </span></li>
+
+<li><code class="evidence-text">https://gmsh.info/bin/MacOSX/gmsh-{}-{}-sdk.tgz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs#L161" rel="noreferrer noopener" target="_blank">build.rs:161</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">native_link</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">links = &#34;gmsh&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/Cargo.toml" rel="noreferrer noopener" target="_blank">Cargo.toml</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">424 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gmsh_ffi/0.2.1/code/src/gmsh.rs#L62" rel="noreferrer noopener" target="_blank">src/gmsh.rs:62</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>987 ms</dd></div><div><dt>VM restore</dt><dd>63 ms</dd></div><div><dt>Payload</dt><dd>15 files, 462.3 KiB</dd></div><div><dt>Files opened</dt><dd>269</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">7</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 4 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">975 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/gmsh_ffi-0.2.1/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;)) -C metadata=e9044e6878181f2e -C extra-filename=-5ebea67cb968d838 --out-dir /work/target/debug/build/gmsh_ffi-5ebea67cb968d838 -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">106 ms</td>
+<td class="nowrap">802 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/rustcyG6Uvs/symbols.o /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build_script_build-5ebea67cb968d838.build_script_build.142a2d6c5af869f4-cgu.0.rcgu.o /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build_script_build-5ebea67cb968d838.build_script_build.142a2d6c5af869f4-cgu.1.rcgu.o /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build_script_build-5ebea67cb968d838.ds7owip78kyx3yif3yht172u9.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/l</td>
+<td class="nowrap muted">748 ms</td>
+<td class="nowrap">156 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc9T5H6r.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build_script_build-5ebea67cb968d838 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/gmsh_ffi-5ebea67cb968d838/rustcyG6Uvs/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/l</td>
+<td class="nowrap muted">754 ms</td>
+<td class="nowrap">150 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc9T5H6r.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build_script_build-5ebea67cb968d838 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/gmsh_ffi-5ebea67cb968d838/rustcyG6Uvs/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linu</td>
+<td class="nowrap muted">757 ms</td>
+<td class="nowrap">146 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build-script-build">gmsh_ffi</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">912 ms</td>
+<td class="nowrap">67 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 593: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-L -f -A Mozilla/5.0 https://gmsh.info/bin/Linux/gmsh-4.15.2-Linux64-sdk.tgz -o /work/home/.cache/gmsh-sdk/4.15.2/linux-x86_64/gmsh-4.15.2-Linux64-sdk.tgz</td>
+<td class="nowrap muted">913 ms</td>
+<td class="nowrap">65 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">gmsh.info</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI gmsh.info, inside TLS: GET /bin/Linux/gmsh-4.15.2-Linux64-sdk.tgz, host gmsh.info, agent Mozilla/5.0</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">950 ms</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">952 ms</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">953 ms</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">4</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>19</dd></div><div><dt>Directories</dt><dd>26</dd></div><div><dt>Size</dt><dd>9.2 MiB</dd></div><div><dt>Compiled units</dt><dd>0</dd></div>
+</dl>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Why</th><th>Path</th><th>Kind</th><th>Size</th><th>Mode</th></tr></thead>
+<tbody>
+<tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cache</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr><tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cache/gmsh-sdk</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr><tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cache/gmsh-sdk/4.15.2</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr><tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cache/gmsh-sdk/4.15.2/linux-x86_64</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling gmsh_ffi v0.2.1
+warning: gmsh_ffi@0.2.1: Downloading Gmsh SDK from https://gmsh.info/bin/Linux/gmsh-4.15.2-Linux64-sdk.tgz...
+error: failed to run custom build command for `gmsh_ffi v0.2.1`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/gmsh_ffi-5ebea67cb968d838/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-changed=build.rs
+  cargo:warning=Downloading Gmsh SDK from https://gmsh.info/bin/Linux/gmsh-4.15.2-Linux64-sdk.tgz...
+
+  --- stderr
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                   Dload  Upload   Total   Spent    Left  Speed
+    0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  curl: (22) The requested URL returned error: 404
+
+  thread &#39;main&#39; (592) panicked at /cw/vendor/gmsh_ffi-0.2.1/build.rs:198:13:
+  Download failed
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 03:06 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

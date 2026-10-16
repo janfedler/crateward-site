@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: ghostty-vt-sys 0.6.0+ghostty.1.3.2-main.b40acce</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>ghostty-vt-sys <span class="version">0.6.0+ghostty.1.3.2-main.b40acce</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 99558</span>
+      <a class="muted" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="99558.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="99558.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">A build script was added since 0.0.1.</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">60</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">4</span></a>
+  <a href="#findings">Static findings <span class="count">212</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">build_script_added</span><div class="sub">diff · ghostty-vt-sys</div></td><td class="mono where"></td><td>A build script was added since 0.0.1.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · ghostty-vt-sys</div></td><td class="mono where">tip.files.ghostty.org</td><td>The build looked up tip.files.ghostty.org.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · ghostty-vt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L281" rel="noreferrer noopener" target="_blank">build.rs:281</a></td><td>New since 0.0.1: downloader_pattern</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · ghostty-vt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L281" rel="noreferrer noopener" target="_blank">build.rs:281</a></td><td>high severity downloader_pattern in build_script code: ureq::tls::TlsProvider::NativeTls at build.rs:281 with std::process::Command::new at build.rs:340</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:network_access</span><div class="sub">static · ghostty-vt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L281" rel="noreferrer noopener" target="_blank">build.rs:281</a></td><td>medium severity network_access in build_script code (5 places): ureq::tls::TlsProvider::NativeTls</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · ghostty-vt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L340" rel="noreferrer noopener" target="_blank">build.rs:340</a></td><td>medium severity process_spawn in build_script code (4 places): std::process::Command::new</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>2 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · ghostty-vt-sys</div></td><td class="mono where">net:tip.files.ghostty.org</td><td>New since the previous version: net:tip.files.ghostty.org.</td></tr>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · ghostty-vt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">net:tip.files.ghostty.org</code> <code class="chip new">static:downloader_pattern</code> <code class="chip new">static:network_access</code> <code class="chip new">static:process_spawn</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">net:tip.files.ghostty.org</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:network_access</code> <code class="chip">static:process_spawn</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">212</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">9</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">199</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">3</span></label>
+  <span class="muted">7 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::tls::TlsProvider::NativeTls at build.rs:281 with std::process::Command::new at build.rs:340</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L281" rel="noreferrer noopener" target="_blank">build.rs:281</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::tls::TlsProvider::NativeTls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L281" rel="noreferrer noopener" target="_blank">build.rs:281</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::TlsProvider::Rustls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L283" rel="noreferrer noopener" target="_blank">build.rs:283</a> </span></li>
+
+<li><code class="evidence-text">ureq::Agent</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L285" rel="noreferrer noopener" target="_blank">build.rs:285</a> </span></li>
+
+<li><code class="evidence-text">ureq::Agent::config_builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L285" rel="noreferrer noopener" target="_blank">build.rs:285</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::TlsConfig::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L286" rel="noreferrer noopener" target="_blank">build.rs:286</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L340" rel="noreferrer noopener" target="_blank">build.rs:340</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L409" rel="noreferrer noopener" target="_blank">build.rs:409</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L445" rel="noreferrer noopener" target="_blank">build.rs:445</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs#L460" rel="noreferrer noopener" target="_blank">build.rs:460</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">198</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L308" rel="noreferrer noopener" target="_blank">src/bindings.rs:308</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L396" rel="noreferrer noopener" target="_blank">src/bindings.rs:396</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L400" rel="noreferrer noopener" target="_blank">src/bindings.rs:400</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L441" rel="noreferrer noopener" target="_blank">src/bindings.rs:441</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L508" rel="noreferrer noopener" target="_blank">src/bindings.rs:508</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L512" rel="noreferrer noopener" target="_blank">src/bindings.rs:512</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L520" rel="noreferrer noopener" target="_blank">src/bindings.rs:520</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L528" rel="noreferrer noopener" target="_blank">src/bindings.rs:528</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L537" rel="noreferrer noopener" target="_blank">src/bindings.rs:537</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L541" rel="noreferrer noopener" target="_blank">src/bindings.rs:541</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L552" rel="noreferrer noopener" target="_blank">src/bindings.rs:552</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L556" rel="noreferrer noopener" target="_blank">src/bindings.rs:556</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L560" rel="noreferrer noopener" target="_blank">src/bindings.rs:560</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L564" rel="noreferrer noopener" target="_blank">src/bindings.rs:564</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L568" rel="noreferrer noopener" target="_blank">src/bindings.rs:568</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L680" rel="noreferrer noopener" target="_blank">src/bindings.rs:680</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L699" rel="noreferrer noopener" target="_blank">src/bindings.rs:699</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L938" rel="noreferrer noopener" target="_blank">src/bindings.rs:938</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L946" rel="noreferrer noopener" target="_blank">src/bindings.rs:946</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L956" rel="noreferrer noopener" target="_blank">src/bindings.rs:956</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L964" rel="noreferrer noopener" target="_blank">src/bindings.rs:964</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1083" rel="noreferrer noopener" target="_blank">src/bindings.rs:1083</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1087" rel="noreferrer noopener" target="_blank">src/bindings.rs:1087</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1118" rel="noreferrer noopener" target="_blank">src/bindings.rs:1118</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1122" rel="noreferrer noopener" target="_blank">src/bindings.rs:1122</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1126" rel="noreferrer noopener" target="_blank">src/bindings.rs:1126</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1135" rel="noreferrer noopener" target="_blank">src/bindings.rs:1135</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1144" rel="noreferrer noopener" target="_blank">src/bindings.rs:1144</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1652" rel="noreferrer noopener" target="_blank">src/bindings.rs:1652</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1660" rel="noreferrer noopener" target="_blank">src/bindings.rs:1660</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1664" rel="noreferrer noopener" target="_blank">src/bindings.rs:1664</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1672" rel="noreferrer noopener" target="_blank">src/bindings.rs:1672</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1681" rel="noreferrer noopener" target="_blank">src/bindings.rs:1681</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1688" rel="noreferrer noopener" target="_blank">src/bindings.rs:1688</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1692" rel="noreferrer noopener" target="_blank">src/bindings.rs:1692</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1696" rel="noreferrer noopener" target="_blank">src/bindings.rs:1696</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1705" rel="noreferrer noopener" target="_blank">src/bindings.rs:1705</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1716" rel="noreferrer noopener" target="_blank">src/bindings.rs:1716</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1724" rel="noreferrer noopener" target="_blank">src/bindings.rs:1724</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1732" rel="noreferrer noopener" target="_blank">src/bindings.rs:1732</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1740" rel="noreferrer noopener" target="_blank">src/bindings.rs:1740</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1747" rel="noreferrer noopener" target="_blank">src/bindings.rs:1747</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1755" rel="noreferrer noopener" target="_blank">src/bindings.rs:1755</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1765" rel="noreferrer noopener" target="_blank">src/bindings.rs:1765</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1775" rel="noreferrer noopener" target="_blank">src/bindings.rs:1775</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1783" rel="noreferrer noopener" target="_blank">src/bindings.rs:1783</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1791" rel="noreferrer noopener" target="_blank">src/bindings.rs:1791</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1800" rel="noreferrer noopener" target="_blank">src/bindings.rs:1800</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1809" rel="noreferrer noopener" target="_blank">src/bindings.rs:1809</a> <a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L1836" rel="noreferrer noopener" target="_blank">src/bindings.rs:1836</a> <span class="muted">and 148 more</span></span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">44 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/bindings.rs#L233" rel="noreferrer noopener" target="_blank">src/bindings.rs:233</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/src/lib.rs#L65" rel="noreferrer noopener" target="_blank">src/lib.rs:65</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">native_link</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">links = &#34;ghostty-vt&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ghostty-vt-sys/0.6.0%2Bghostty.1.3.2-main.b40acce/code/Cargo.toml" rel="noreferrer noopener" target="_blank">Cargo.toml</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>22.8 s</dd></div><div><dt>VM restore</dt><dd>62 ms</dd></div><div><dt>Payload</dt><dd>5272 files, 140.8 MiB</dd></div><div><dt>Files opened</dt><dd>7727</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">191</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 182 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">22.7 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="44 similar processes, the first one shown">×44</span></td>
+<td class="mono args">--crate-name cfg_if --edition=2018 /cw/vendor/cfg-if-1.0.5/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;core&#34;, &#34;rustc-dep-of-std&#34;)) -C metadata=400facf07191281c -C extra-filename=-e5a3a60555e44b7f --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">199 ms</td>
+<td class="nowrap">212 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 587: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/libc-0.2.190/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --allow=unused_qualifications --warn=clippy::unnecessary_semicolon --allow=clippy::unnecessary_cast --warn=clippy::ptr_as_ptr --allow=clippy::non_minimal_cfg --allow=clippy::missing_safety_doc --warn=clippy::map_unwrap_or --warn=clippy::manual_assert --allow=clippy::identity_op --warn=clippy::explicit_iter_loop --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;align&#34;, &#34;const-extern-fn&#34;, &#34;default&#34;, &#34;extra_traits&#34;, &#34;rustc-dep-of-std&#34;, &#34;rustc-std-workspace-core&#34;, &#34;std&#34;, &#34;use_std&#34;)) -C metadata=cc8fbcc4ffcedc67</td>
+<td class="nowrap muted">414 ms</td>
+<td class="nowrap">589 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 597: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/libc-d6090283aeec6873/rustcs4q0lB/symbols.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.0.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.1.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.2.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.3.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.duv7zwsm27ecgad8ejp2yfjq7.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rus</td>
+<td class="nowrap muted">864 ms</td>
+<td class="nowrap">138 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 598: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAjKc0B.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/libc-d6090283aeec6873/rustcs4q0lB/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../li</td>
+<td class="nowrap muted">871 ms</td>
+<td class="nowrap">131 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 599: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAjKc0B.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/libc-d6090283aeec6873/rustcs4q0lB/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">873 ms</td>
+<td class="nowrap">127 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 602: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 603: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 688: /work/target/debug/build/ring-96611430f60b1c73/build-script-build">ring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">1.5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 689: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/ring-88f4c4b66b466fb5/out/8118485219780970543detect_compiler_family.c</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 690: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-88f4c4b66b466fb5/out/8118485219780970543detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 8118485219780970543detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 691: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 692: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="30 similar processes, the first one shown">×30</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -I /cw/vendor/ring-0.17.14/include -I /cw/vendor/ring-0.17.14/pregenerated -Wall -Wextra -fvisibility=hidden -std=c1x -Wall -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wmissing-field-initializers -Wmissing-include-dirs -Wnested-externs -Wredundant-decls -Wshadow -Wsign-compare -Wsign-conversion -Wstrict-prototypes -Wundef -Wuninitialized -g3 -DNDEBUG -o</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">222 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 693: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/ring-0.17.14/include -I /cw/vendor/ring-0.17.14/pregenerated -imultiarch x86_64-linux-gnu -dD -D NDEBUG /cw/vendor/ring-0.17.14/crypto/curve25519/curve25519.c -quiet -dumpdir /work/target/debug/build/ring-88f4c4b66b466fb5/out/ -dumpbase 25ac62e5b3c53843-curve25519.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -g3 -O0 -Wextra -Wall -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wmissing-field-initializers -Wmissing-include-dirs</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">195 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 694: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-I /cw/vendor/ring-0.17.14/include -I /cw/vendor/ring-0.17.14/pregenerated --gdwarf-5 --64 -o /work/target/debug/build/ring-88f4c4b66b466fb5/out/25ac62e5b3c53843-curve25519.o /tmp/ccS1J2JL.s</td>
+<td class="nowrap muted">4.1 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 779: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/ring-88f4c4b66b466fb5/out/libring_core_0_17_14_.a /work/target/debug/build/ring-88f4c4b66b466fb5/out/25ac62e5b3c53843-curve25519.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/0bbbd18bda93c05b-aes_nohw.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/00c879ee3285a50d-montgomery.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/00c879ee3285a50d-montgomery_inv.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/a0330e891e733f4e-ecp_nistz.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/a0330e891e733f4e-gfp_p256.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/a0330e891e733f4e-gfp_p384.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/a0330e891e733f4e-p256.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/aaa1ba3e455ee2e1-limbs.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/a4019cc0736b0423-mem.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/d5a9841f3dc6e253-poly1305.o /work/target/debug/build/ring-88f4c4b66b466fb5/out/a4019cc0736b0423-crypt</td>
+<td class="nowrap muted">5.3 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 790: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.4 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 791: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">5.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 869: /work/target/debug/build/httparse-ff8e02b0c1a970cf/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 870: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 896: /work/target/debug/build/rustix-7cc0ced723d2828d/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">8.7 s</td>
+<td class="nowrap">39 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 897: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-91fad39b65314a2d/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">8.7 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 983: /work/target/debug/build/rustls-1551d69aa1a87bbc/build-script-build">rustls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 985: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.7 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 986: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">10.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1262: /work/target/debug/build/ghostty-vt-sys-002e4bd10c27b699/build-script-build">ghostty-vt-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">22.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">tip.files.ghostty.org</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI tip.files.ghostty.org</td><td class="nowrap">248 B</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">22.7 s</td><td class="mono">/work/target/debug/build/ghostty-vt-sys-002e4bd10c27b699/build-script-build</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">22.7 s</td><td class="mono">/work/target/debug/build/ghostty-vt-sys-002e4bd10c27b699/build-script-build</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">22.7 s</td><td class="mono">/work/target/debug/build/ghostty-vt-sys-002e4bd10c27b699/build-script-build</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>450</dd></div><div><dt>Directories</dt><dd>102</dd></div><div><dt>Size</dt><dd>180.3 MiB</dd></div><div><dt>Compiled units</dt><dd>88</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: Cargo.toml: version requirement `=0.6.0+ghostty.1.3.2-main.b40acce` for dependency `target` includes semver metadata which will be ignored, removing the metadata is recommended to avoid confusion
+warning: `crateward-probe` (manifest) generated 1 warning
+   Compiling cfg-if v1.0.5
+   Compiling libc v0.2.190
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.14
+   Compiling cc v1.6.0
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling ring v0.17.14
+   Compiling zeroize v1.9.1
+   Compiling typenum v1.20.1
+   Compiling rustls-pki-types v1.15.1
+   Compiling getrandom v0.2.17
+   Compiling rustix v1.1.5
+   Compiling untrusted v0.9.0
+   Compiling httparse v1.10.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling bitflags v2.13.2
+   Compiling log v0.4.34
+   Compiling bytes v1.12.1
+   Compiling crc32fast v1.5.2
+   Compiling rustls v0.23.45
+   Compiling itoa v1.0.18
+   Compiling http v1.5.0
+   Compiling rustls-webpki v0.103.15
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling adler2 v2.0.1
+   Compiling subtle v2.6.1
+   Compiling base64 v0.23.1
+   Compiling simd-adler32 v0.3.10
+   Compiling once_cell v1.21.4
+   Compiling miniz_oxide v0.9.1
+   Compiling ureq-proto v0.6.4
+   Compiling digest v0.10.7
+   Compiling xattr v1.6.1
+   Compiling webpki-roots v1.0.9
+   Compiling filetime v0.2.29
+   Compiling utf8-zero v0.8.1
+   Compiling cpufeatures v0.2.17
+   Compiling percent-encoding v2.3.2
+   Compiling ureq v3.4.2
+   Compiling sha2 v0.10.9
+   Compiling tar v0.4.46
+   Compiling flate2 v1.1.10
+   Compiling ghostty-vt-sys v0.6.0+ghostty.1.3.2-main.b40acce
+error: failed to run custom build command for `ghostty-vt-sys v0.6.0+ghostty.1.3.2-main.b40acce`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/ghostty-vt-sys-002e4bd10c27b699/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-changed=build.rs
+  cargo:rerun-if-changed=GHOSTTY.lock
+  cargo:rerun-if-env-changed=DOCS_RS
+  cargo:rerun-if-env-changed=GHOSTTY_SOURCE_DIR
+  cargo:rerun-if-env-changed=GHOSTTY_SOURCE_URL
+  cargo:rerun-if-env-changed=GHOSTTY_ZIG_SYSTEM_DIR
+  cargo:rerun-if-env-changed=GHOSTTY_VT_CPU
+  cargo:rerun-if-env-changed=ZIG
+  cargo:rerun-if-changed=/cw/vendor/ghostty-vt-sys-0.6.0+ghostty.1.3.2-main.b40acce/../../third_party/ghostty/.git
+  cargo:rustc-env=GHOSTTY_VT_COMMIT=b40acce58dcf77df52231c3798ea58e924647c89
+  cargo:rustc-env=GHOSTTY_VT_VERSION=1.3.2-main+b40acce
+  cargo::metadata=COMMIT=b40acce58dcf77df52231c3798ea58e924647c89
+  cargo::metadata=VERSION=1.3.2-main+b40acce
+
+  --- stderr
+
+  thread &#39;main&#39; (1262) panicked at /cw/vendor/ghostty-vt-sys-0.6.0+ghostty.1.3.2-main.b40acce/build.rs:224:23:
+
+  ghostty-vt-sys could not obtain the Ghostty source tarball.
+
+  error:    io: invalid peer certificate: UnknownIssuer
+  url:      https://tip.files.ghostty.org/b40acce58dcf77df52231c3798ea58e924647c89/libghostty-vt-source.tar.gz
+  sha256:   a623aa0b1267594d9a1bb76a5fef535f198004e78730894f494a5bdc522a4850
+  commit:   b40acce58dcf77df52231c3798ea58e924647c89
+
+  Without network access, point GHOSTTY_SOURCE_DIR at a Ghostty checkout or
+  an extracted libghostty-vt source tarball at commit b40acce58dcf77df52231c3798ea58e924647c89, or set
+  GHOSTTY_SOURCE_URL to a mirror of the tarball. The tarball is reproducible
+  from a Ghostty checkout with:
+
+    printf &#39;1.3.2-main+b40acce&#39; &#62; VERSION
+    git archive --format=tgz --prefix=libghostty-vt-1.3.2-main+b40acce/ --add-file=VERSION \
+      --prefix=libghostty-vt-1.3.2-main+b40acce/ -o libghostty-vt-source.tar.gz b40acce58dcf77df52231c3798ea58e924647c89 \
+      $(for d in images macos dist/doxygen dist/linux dist/macos dist/windows \
+        flatpak snap po example test src/font/res src/crash/testdata \
+        pkg/wuffs/src/too_big.jpg pkg/wuffs/src/too_big.png pkg/breakpad/vendor \
+        vendor; do printf &#39;:(exclude)%s &#39; $d; done)
+
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-08 07:17 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-799714</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:17 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-799757</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:17 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-800051-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:18 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-800051-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:18 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-800083</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:18 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-800051-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:18 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-800051-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:18 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-800083</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 07:18 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-800083</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

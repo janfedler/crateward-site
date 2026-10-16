@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: github-copilot-sdk 1.0.17-preview.7</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>github-copilot-sdk <span class="version">1.0.17-preview.7</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 79121</span>
+      <a class="muted" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="79121.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="79121.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">The build looked up github.com.</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">45</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">10</span></a>
+  <a href="#behavior">Behavior <span class="count">7</span></a>
+  <a href="#findings">Static findings <span class="count">201</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · github-copilot-sdk</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L6" rel="noreferrer noopener" target="_blank">build/download.rs:6</a></td><td>high severity downloader_pattern in build_script code: ureq::Error at build/download.rs:6 with std::process::Command at build/in_process/tests.rs:380</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:network_access</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L6" rel="noreferrer noopener" target="_blank">build/download.rs:6</a></td><td>medium severity network_access in build_script code (77 places): ureq::Error</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L380" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:380</a></td><td>medium severity process_spawn in build_script code (16 places): std::process::Command</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · github-copilot-sdk</div></td><td class="mono where">net:github.com</td><td>New since the previous version: net:github.com.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>5 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L656" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:656</a></td><td>medium severity secret_environment_variable in test code (4 places): GH_TOKEN</td></tr>
+
+<tr><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mode_empty.rs#L32" rel="noreferrer noopener" target="_blank">tests/e2e/mode_empty.rs:32</a></td><td>medium severity shell_command in test code (2 places): powershell</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L494" rel="noreferrer noopener" target="_blank">build/in_process.rs:494</a></td><td>low severity url_literal in build_script code (90 places): https://github.com/github/copilot-cli/releases/download/v{version}</td></tr>
+
+<tr><td class="signal"><span class="word">static:windows_api</span><div class="sub">static · github-copilot-sdk</div></td><td class="mono where"><a href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/generated/rpc.rs#L13753" rel="noreferrer noopener" target="_blank">src/generated/rpc.rs:13753</a></td><td>medium severity windows_api in library code: ShellExecuteUserRequestedRequest</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">net:github.com</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">net:github.com</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:network_access</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:windows_api</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">201</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">35</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">90</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">75</span></label>
+  <span class="muted">17 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::Error at build/download.rs:6 with std::process::Command at build/in_process/tests.rs:380</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L6" rel="noreferrer noopener" target="_blank">build/download.rs:6</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">26</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L6" rel="noreferrer noopener" target="_blank">build/download.rs:6</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L26" rel="noreferrer noopener" target="_blank">build/download.rs:26</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L8" rel="noreferrer noopener" target="_blank">build/download.rs:8</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L28" rel="noreferrer noopener" target="_blank">build/download.rs:28</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::BadUri</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L9" rel="noreferrer noopener" target="_blank">build/download.rs:9</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::Http</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L10" rel="noreferrer noopener" target="_blank">build/download.rs:10</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::InvalidProxyUrl</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L11" rel="noreferrer noopener" target="_blank">build/download.rs:11</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::TooManyRedirects</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L12" rel="noreferrer noopener" target="_blank">build/download.rs:12</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::RedirectFailed</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L13" rel="noreferrer noopener" target="_blank">build/download.rs:13</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::RequireHttpsOnly</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L14" rel="noreferrer noopener" target="_blank">build/download.rs:14</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::TlsRequired</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L15" rel="noreferrer noopener" target="_blank">build/download.rs:15</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::Tls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L16" rel="noreferrer noopener" target="_blank">build/download.rs:16</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::NativeTls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L17" rel="noreferrer noopener" target="_blank">build/download.rs:17</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::Pem</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L18" rel="noreferrer noopener" target="_blank">build/download.rs:18</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::Der</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L19" rel="noreferrer noopener" target="_blank">build/download.rs:19</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::BodyExceedsLimit</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L20" rel="noreferrer noopener" target="_blank">build/download.rs:20</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::LargeResponseHeader</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L21" rel="noreferrer noopener" target="_blank">build/download.rs:21</a> </span></li>
+
+<li><code class="evidence-text">ureq::http::StatusCode::from_u16</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/download.rs#L29" rel="noreferrer noopener" target="_blank">build/download.rs:29</a> </span></li>
+
+<li><code class="evidence-text">ureq::Agent::config_builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L1015" rel="noreferrer noopener" target="_blank">build/in_process.rs:1015</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/out_of_process.rs#L596" rel="noreferrer noopener" target="_blank">build/out_of_process.rs:596</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::TlsConfig::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L1017" rel="noreferrer noopener" target="_blank">build/in_process.rs:1017</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/out_of_process.rs#L598" rel="noreferrer noopener" target="_blank">build/out_of_process.rs:598</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::TlsProvider::NativeTls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L1018" rel="noreferrer noopener" target="_blank">build/in_process.rs:1018</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/out_of_process.rs#L599" rel="noreferrer noopener" target="_blank">build/out_of_process.rs:599</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::RootCerts::PlatformVerifier</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L1019" rel="noreferrer noopener" target="_blank">build/in_process.rs:1019</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/out_of_process.rs#L600" rel="noreferrer noopener" target="_blank">build/out_of_process.rs:600</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">test</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L656" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:656</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1466" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1466</a> </span></li>
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L657" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:657</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1467" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1467</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L380" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:380</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L381" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:381</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mode_empty.rs#L32" rel="noreferrer noopener" target="_blank">tests/e2e/mode_empty.rs:32</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mode_empty.rs#L123" rel="noreferrer noopener" target="_blank">tests/e2e/mode_empty.rs:123</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">windows_api</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ShellExecuteUserRequestedRequest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/generated/rpc.rs#L13753" rel="noreferrer noopener" target="_blank">src/generated/rpc.rs:13753</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">44</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::Error::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L8" rel="noreferrer noopener" target="_blank">tests/build_download.rs:8</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L18" rel="noreferrer noopener" target="_blank">tests/build_download.rs:18</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L30" rel="noreferrer noopener" target="_blank">tests/build_download.rs:30</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::Io</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L9" rel="noreferrer noopener" target="_blank">tests/build_download.rs:9</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::HostNotFound</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L12" rel="noreferrer noopener" target="_blank">tests/build_download.rs:12</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::BodyStalled</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L13" rel="noreferrer noopener" target="_blank">tests/build_download.rs:13</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::BadUri</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L19" rel="noreferrer noopener" target="_blank">tests/build_download.rs:19</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::InvalidProxyUrl</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L22" rel="noreferrer noopener" target="_blank">tests/build_download.rs:22</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L34" rel="noreferrer noopener" target="_blank">tests/build_download.rs:34</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::TooManyRedirects</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L23" rel="noreferrer noopener" target="_blank">tests/build_download.rs:23</a> </span></li>
+
+<li><code class="evidence-text">ureq::Error::TlsRequired</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/build_download.rs#L24" rel="noreferrer noopener" target="_blank">tests/build_download.rs:24</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/builtin_plugin_directories_test.rs#L50" rel="noreferrer noopener" target="_blank">tests/builtin_plugin_directories_test.rs:50</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/copilot_request_handler.rs#L462" rel="noreferrer noopener" target="_blank">tests/e2e/copilot_request_handler.rs:462</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/copilot_request_handler.rs#L475" rel="noreferrer noopener" target="_blank">tests/e2e/copilot_request_handler.rs:475</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/extension_launch_provider_test.rs#L332" rel="noreferrer noopener" target="_blank">tests/extension_launch_provider_test.rs:332</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/extension_launch_provider_test.rs#L426" rel="noreferrer noopener" target="_blank">tests/extension_launch_provider_test.rs:426</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L61" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:61</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L467" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:467</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/installation_confirmation_test.rs#L508" rel="noreferrer noopener" target="_blank">tests/installation_confirmation_test.rs:508</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/installation_confirmation_test.rs#L570" rel="noreferrer noopener" target="_blank">tests/installation_confirmation_test.rs:570</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/installation_confirmation_test.rs#L694" rel="noreferrer noopener" target="_blank">tests/installation_confirmation_test.rs:694</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/copilot_request_handler.rs#L405" rel="noreferrer noopener" target="_blank">tests/e2e/copilot_request_handler.rs:405</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/extension_launch_provider_test.rs#L391" rel="noreferrer noopener" target="_blank">tests/extension_launch_provider_test.rs:391</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url::parse</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mcp_oauth.rs#L67" rel="noreferrer noopener" target="_blank">tests/e2e/mcp_oauth.rs:67</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/runtime_host_support.rs#L208" rel="noreferrer noopener" target="_blank">tests/e2e/runtime_host_support.rs:208</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/runtime_host_support.rs#L523" rel="noreferrer noopener" target="_blank">tests/e2e/runtime_host_support.rs:523</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/runtime_host_support.rs#L591" rel="noreferrer noopener" target="_blank">tests/e2e/runtime_host_support.rs:591</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/runtime_host_e2e.rs#L394" rel="noreferrer noopener" target="_blank">tests/runtime_host_e2e.rs:394</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/runtime_host_e2e.rs#L418" rel="noreferrer noopener" target="_blank">tests/runtime_host_e2e.rs:418</a> </span></li>
+
+<li><code class="evidence-text">reqwest::get</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mcp_oauth.rs#L464" rel="noreferrer noopener" target="_blank">tests/e2e/mcp_oauth.rs:464</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/multi_client.rs#L451" rel="noreferrer noopener" target="_blank">tests/e2e/multi_client.rs:451</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/multi_client_commands_elicitation.rs#L224" rel="noreferrer noopener" target="_blank">tests/e2e/multi_client_commands_elicitation.rs:224</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/pending_work_resume.rs#L340" rel="noreferrer noopener" target="_blank">tests/e2e/pending_work_resume.rs:340</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/session_config.rs#L634" rel="noreferrer noopener" target="_blank">tests/e2e/session_config.rs:634</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/runtime_host_e2e.rs#L196" rel="noreferrer noopener" target="_blank">tests/runtime_host_e2e.rs:196</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/runtime_host_e2e.rs#L299" rel="noreferrer noopener" target="_blank">tests/runtime_host_e2e.rs:299</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/runtime_host_support.rs#L592" rel="noreferrer noopener" target="_blank">tests/e2e/runtime_host_support.rs:592</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L759" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:759</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L762" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:762</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/fixtures/connector-runtime/src/main.rs#L50" rel="noreferrer noopener" target="_blank">tests/fixtures/connector-runtime/src/main.rs:50</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::tcp::OwnedReadHalf</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L27" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:27</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L54" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:54</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::tcp::OwnedWriteHalf</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L44" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:44</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L55" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:55</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">23</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v{version}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L494" rel="noreferrer noopener" target="_blank">build/in_process.rs:494</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L104" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:104</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L154" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:154</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L189" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:189</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/out_of_process.rs#L81" rel="noreferrer noopener" target="_blank">build/out_of_process.rs:81</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/releases/download/runtime-{version}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L496" rel="noreferrer noopener" target="_blank">build/in_process.rs:496</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L152" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:152</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L187" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:187</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/releases/download/runtime-{}/{asset_name}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L517" rel="noreferrer noopener" target="_blank">build/in_process.rs:517</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v{}/{asset_name}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process.rs#L522" rel="noreferrer noopener" target="_blank">build/in_process.rs:522</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/releases/download/runtime-{VERSION}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L31" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:31</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L43" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:43</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v{VERSION}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L45" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:45</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/releases/download/runtime-9.9.9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L214" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:214</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/releases/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L215" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:215</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-agent-runtime/releases/download/runtime-1.2.3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L216" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:216</a> </span></li>
+
+<li><code class="evidence-text">https://token@github.com/github/copilot-sdk/releases/download/runtime-1.2.3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L217" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:217</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v1.2.3/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L218" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:218</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v1.2.3?token=secret</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L219" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:219</a> </span></li>
+
+<li><code class="evidence-text">http://github.com/github/copilot-cli/releases/download/v1.2.3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L220" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:220</a> </span></li>
+
+<li><code class="evidence-text">release-url=https://github.com/github/copilot-sdk/releases/download/runtime-{VERSION}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L352" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:352</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/in_process/tests.rs#L529" rel="noreferrer noopener" target="_blank">build/in_process/tests.rs:529</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v{version}/SHA256SUMS.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build/out_of_process.rs#L259" rel="noreferrer noopener" target="_blank">build/out_of_process.rs:259</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">9</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/cli_resolution_test.rs#L320" rel="noreferrer noopener" target="_blank">tests/cli_resolution_test.rs:320</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client_lifecycle.rs#L185" rel="noreferrer noopener" target="_blank">tests/e2e/client_lifecycle.rs:185</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/runtime_host_support.rs#L38" rel="noreferrer noopener" target="_blank">tests/e2e/runtime_host_support.rs:38</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1230" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1230</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1303" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1303</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/extension_launch_provider_runtime_test.rs#L287" rel="noreferrer noopener" target="_blank">tests/extension_launch_provider_runtime_test.rs:287</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/extension_launch_provider_runtime_test.rs#L307" rel="noreferrer noopener" target="_blank">tests/extension_launch_provider_runtime_test.rs:307</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client_options.rs#L915" rel="noreferrer noopener" target="_blank">tests/e2e/client_options.rs:915</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mcp_oauth.rs#L439" rel="noreferrer noopener" target="_blank">tests/e2e/mcp_oauth.rs:439</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/copilot_request_handler.rs#L385" rel="noreferrer noopener" target="_blank">src/copilot_request_handler.rs:385</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/copilot_request_handler.rs#L386" rel="noreferrer noopener" target="_blank">src/copilot_request_handler.rs:386</a> </span></li>
+
+<li><code class="evidence-text">reqwest::redirect::Policy::none</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/copilot_request_handler.rs#L387" rel="noreferrer noopener" target="_blank">src/copilot_request_handler.rs:387</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::from_bytes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/copilot_request_handler.rs#L399" rel="noreferrer noopener" target="_blank">src/copilot_request_handler.rs:399</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/copilot_request_handler.rs#L435" rel="noreferrer noopener" target="_blank">src/copilot_request_handler.rs:435</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/lib.rs#L1507" rel="noreferrer noopener" target="_blank">src/lib.rs:1507</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/lib.rs#L1543" rel="noreferrer noopener" target="_blank">src/lib.rs:1543</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/lib.rs#L2214" rel="noreferrer noopener" target="_blank">src/lib.rs:2214</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/process_tree.rs#L14" rel="noreferrer noopener" target="_blank">src/process_tree.rs:14</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/process_tree.rs#L91" rel="noreferrer noopener" target="_blank">src/process_tree.rs:91</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L184" rel="noreferrer noopener" target="_blank">src/tests.rs:184</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/lib.rs#L2215" rel="noreferrer noopener" target="_blank">src/lib.rs:2215</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/embeddedcli.rs#L413" rel="noreferrer noopener" target="_blank">src/embeddedcli.rs:413</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">43</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.com/github.svg</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/api_types_test.rs#L538" rel="noreferrer noopener" target="_blank">tests/api_types_test.rs:538</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/api_types_test.rs#L544" rel="noreferrer noopener" target="_blank">tests/api_types_test.rs:544</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-cli/releases/download/v{version}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/cli_resolution_test.rs#L248" rel="noreferrer noopener" target="_blank">tests/cli_resolution_test.rs:248</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/releases/download/runtime-{version}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/cli_resolution_test.rs#L252" rel="noreferrer noopener" target="_blank">tests/cli_resolution_test.rs:252</a> </span></li>
+
+<li><code class="evidence-text">https://byok-endpoint.invalid/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/byok_bearer_token_provider.rs#L20" rel="noreferrer noopener" target="_blank">tests/e2e/byok_bearer_token_provider.rs:20</a> </span></li>
+
+<li><code class="evidence-text">https://byok-red.invalid/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/byok_bearer_token_provider.rs#L22" rel="noreferrer noopener" target="_blank">tests/e2e/byok_bearer_token_provider.rs:22</a> </span></li>
+
+<li><code class="evidence-text">https://byok-blue.invalid/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/byok_bearer_token_provider.rs#L24" rel="noreferrer noopener" target="_blank">tests/e2e/byok_bearer_token_provider.rs:24</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/counter/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/canvas.rs#L85" rel="noreferrer noopener" target="_blank">tests/e2e/canvas.rs:85</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/counter/counter-1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/canvas.rs#L195" rel="noreferrer noopener" target="_blank">tests/e2e/canvas.rs:195</a> </span></li>
+
+<li><code class="evidence-text">https://tenant.ghe.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client.rs#L113" rel="noreferrer noopener" target="_blank">tests/e2e/client.rs:113</a> </span></li>
+
+<li><code class="evidence-text">https://fallback.ghe.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client.rs#L115" rel="noreferrer noopener" target="_blank">tests/e2e/client.rs:115</a> </span></li>
+
+<li><code class="evidence-text">https://github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client.rs#L116" rel="noreferrer noopener" target="_blank">tests/e2e/client.rs:116</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/fixtures/connector-runtime/src/main.rs#L122" rel="noreferrer noopener" target="_blank">tests/fixtures/connector-runtime/src/main.rs:122</a> </span></li>
+
+<li><code class="evidence-text">https://models.example.test/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client_options.rs#L177" rel="noreferrer noopener" target="_blank">tests/e2e/client_options.rs:177</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client_options.rs#L207" rel="noreferrer noopener" target="_blank">tests/e2e/client_options.rs:207</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/pull/610</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client_options.rs#L434" rel="noreferrer noopener" target="_blank">tests/e2e/client_options.rs:434</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{authority}{path_and_query}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/copilot_request_handler.rs#L323" rel="noreferrer noopener" target="_blank">tests/e2e/copilot_request_handler.rs:323</a> </span></li>
+
+<li><code class="evidence-text">https://byok.invalid/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/copilot_request_handler.rs#L758" rel="noreferrer noopener" target="_blank">tests/e2e/copilot_request_handler.rs:758</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/copilot/cli/client-metadata.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/mcp_oauth.rs#L25" rel="noreferrer noopener" target="_blank">tests/e2e/mcp_oauth.rs:25</a> </span></li>
+
+<li><code class="evidence-text">https://alpha.example.test/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/multi_provider_registry.rs#L34" rel="noreferrer noopener" target="_blank">tests/e2e/multi_provider_registry.rs:34</a> </span></li>
+
+<li><code class="evidence-text">https://beta.example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/multi_provider_registry.rs#L39" rel="noreferrer noopener" target="_blank">tests/e2e/multi_provider_registry.rs:39</a> </span></li>
+
+<li><code class="evidence-text">ahp-root://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/runtime_host_support.rs#L23" rel="noreferrer noopener" target="_blank">tests/e2e/runtime_host_support.rs:23</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/github/copilot-sdk/issues/1234</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/session.rs#L1576" rel="noreferrer noopener" target="_blank">tests/e2e/session.rs:1576</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/session.rs#L1738" rel="noreferrer noopener" target="_blank">tests/e2e/session.rs:1738</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/session.rs#L1804" rel="noreferrer noopener" target="_blank">tests/e2e/session.rs:1804</a> </span></li>
+
+<li><code class="evidence-text">https://my-resource.openai.azure.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/session.rs#L1766" rel="noreferrer noopener" target="_blank">tests/e2e/session.rs:1766</a> </span></li>
+
+<li><code class="evidence-text">https://anthropic-citations.invalid/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/session_config.rs#L489" rel="noreferrer noopener" target="_blank">tests/e2e/session_config.rs:489</a> </span></li>
+
+<li><code class="evidence-text">Listening: (http://[^\s]+)\s+(\{.*\})$</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1328" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1328</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1558" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1558</a> </span></li>
+
+<li><code class="evidence-text">http://unused.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L187" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:187</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L347" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:347</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L365" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:365</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L419" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:419</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L448" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:448</a> </span></li>
+
+<li><code class="evidence-text">http://{}/stream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/http_response_forwarding_test.rs#L468" rel="noreferrer noopener" target="_blank">tests/http_response_forwarding_test.rs:468</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/mcp_plan_transport_choice_test.rs#L55" rel="noreferrer noopener" target="_blank">tests/mcp_plan_transport_choice_test.rs:55</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L282" rel="noreferrer noopener" target="_blank">tests/session_test.rs:282</a> </span></li>
+
+<li><code class="evidence-text">{&#34;resource&#34;:&#34;https://example.com/mcp&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L947" rel="noreferrer noopener" target="_blank">tests/session_test.rs:947</a> </span></li>
+
+<li><code class="evidence-text">https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L2945" rel="noreferrer noopener" target="_blank">tests/session_test.rs:2945</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L2955" rel="noreferrer noopener" target="_blank">tests/session_test.rs:2955</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L2965" rel="noreferrer noopener" target="_blank">tests/session_test.rs:2965</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/counter</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L6502" rel="noreferrer noopener" target="_blank">tests/session_test.rs:6502</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/counter-updated</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/session_test.rs#L6647" rel="noreferrer noopener" target="_blank">tests/session_test.rs:6647</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">24</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ws://127.0.0.1:4321</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/ahp_host/tests.rs#L150" rel="noreferrer noopener" target="_blank">src/ahp_host/tests.rs:150</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/ahp_host/tests.rs#L156" rel="noreferrer noopener" target="_blank">src/ahp_host/tests.rs:156</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:4321</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/ahp_host/tests.rs#L192" rel="noreferrer noopener" target="_blank">src/ahp_host/tests.rs:192</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/canvas/tests.rs#L24" rel="noreferrer noopener" target="_blank">src/canvas/tests.rs:24</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/echo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/canvas/tests.rs#L73" rel="noreferrer noopener" target="_blank">src/canvas/tests.rs:73</a> </span></li>
+
+<li><code class="evidence-text">http://collector:4318</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L194" rel="noreferrer noopener" target="_blank">src/tests.rs:194</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L201" rel="noreferrer noopener" target="_blank">src/tests.rs:201</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L234" rel="noreferrer noopener" target="_blank">src/tests.rs:234</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L250" rel="noreferrer noopener" target="_blank">src/tests.rs:250</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L298" rel="noreferrer noopener" target="_blank">src/tests.rs:298</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L311" rel="noreferrer noopener" target="_blank">src/tests.rs:311</a> </span></li>
+
+<li><code class="evidence-text">http://from-config:4318</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L329" rel="noreferrer noopener" target="_blank">src/tests.rs:329</a> </span></li>
+
+<li><code class="evidence-text">http://from-user-env:4318</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L334" rel="noreferrer noopener" target="_blank">src/tests.rs:334</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tests.rs#L341" rel="noreferrer noopener" target="_blank">src/tests.rs:341</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/data.bin</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tool/tests.rs#L119" rel="noreferrer noopener" target="_blank">src/tool/tests.rs:119</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/report.pdf</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/tool/tests.rs#L177" rel="noreferrer noopener" target="_blank">src/tool/tests.rs:177</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L707" rel="noreferrer noopener" target="_blank">src/types/tests.rs:707</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L726" rel="noreferrer noopener" target="_blank">src/types/tests.rs:726</a> </span></li>
+
+<li><code class="evidence-text">https://example.openai.azure.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L749" rel="noreferrer noopener" target="_blank">src/types/tests.rs:749</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/oauth/client-metadata.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L893" rel="noreferrer noopener" target="_blank">src/types/tests.rs:893</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L1339" rel="noreferrer noopener" target="_blank">src/types/tests.rs:1339</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L1352" rel="noreferrer noopener" target="_blank">src/types/tests.rs:1352</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L1379" rel="noreferrer noopener" target="_blank">src/types/tests.rs:1379</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/issues/7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/types/tests.rs#L1766" rel="noreferrer noopener" target="_blank">src/types/tests.rs:1766</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/embeddedcli.rs#L421" rel="noreferrer noopener" target="_blank">src/embeddedcli.rs:421</a> </span></li>
+
+<li><code class="evidence-text">18 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/ffi.rs#L55" rel="noreferrer noopener" target="_blank">src/ffi.rs:55</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/ffi/shutdown_tests.rs#L17" rel="noreferrer noopener" target="_blank">src/ffi/shutdown_tests.rs:17</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/ffi/tests.rs#L18" rel="noreferrer noopener" target="_blank">src/ffi/tests.rs:18</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/src/process_tree.rs#L75" rel="noreferrer noopener" target="_blank">src/process_tree.rs:75</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/cli_resolution_test.rs#L35" rel="noreferrer noopener" target="_blank">tests/cli_resolution_test.rs:35</a> <a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/client_lifecycle.rs#L259" rel="noreferrer noopener" target="_blank">tests/e2e/client_lifecycle.rs:259</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/github-copilot-sdk/1.0.17-preview.7/code/tests/e2e/support.rs#L1089" rel="noreferrer noopener" target="_blank">tests/e2e/support.rs:1089</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>50.2 s</dd></div><div><dt>VM restore</dt><dd>78 ms</dd></div><div><dt>Payload</dt><dd>12813 files, 288.0 MiB</dd></div><div><dt>Files opened</dt><dd>12257</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">165</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 152 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">50.0 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="11 similar processes, the first one shown">×11</span></td>
+<td class="mono args">--crate-name build_script_main --edition=2021 /cw/vendor/openssl-sys-0.9.117/build/main.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;aws-lc&#34;, &#34;aws-lc-fips&#34;, &#34;bindgen&#34;, &#34;bssl-sys&#34;, &#34;openssl-src&#34;, &#34;unstable_boringssl&#34;, &#34;vendored&#34;)) -C metadata=2edb96d013ecd99c -C extra-filename=-487175f8e4d9a365 --out-dir /work/target/debug/build/openssl-sys-487175f8e4d9a365 -L dependency=/work/target/debug/deps --extern cc=/work/target/debug/deps/libcc-473cda074eec1c88.rlib --extern pkg_config=/work/target/debug/deps/libpkg_config-df4e365301e68a72.rlib --extern vcpkg=/work/target/debug/deps/libvcpkg-8e4474c5871a9cef.rlib --cap-lints allow</td>
+<td class="nowrap muted">378 ms</td>
+<td class="nowrap">952 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/openssl-sys-487175f8e4d9a365/rustcj6ipaB/symbols.o /work/target/debug/build/openssl-sys-487175f8e4d9a365/build_script_main-487175f8e4d9a365.build_script_main.911dedd87a18722-cgu.0.rcgu.o /work/target/debug/build/openssl-sys-487175f8e4d9a365/build_script_main-487175f8e4d9a365.build_script_main.911dedd87a18722-cgu.1.rcgu.o /work/target/debug/build/openssl-sys-487175f8e4d9a365/build_script_main-487175f8e4d9a365.526ibirz3evm50z81yaysf8nh.rcgu.o -Wl,--as-needed -Wl,-Bstatic /work/target/debug/deps/libvcpkg-8e4474c5871a9cef.rlib /work/target/debug/deps/libpkg_config-df4e365301e68a72.rlib /work/target/debug/deps/libcc-473cda074eec1c88.rlib /work/target/debug/deps/libfind_msvc_tools-47d85dec6b12ba9f.rlib /work/target/debug/deps/libshlex-69c11c7589f0c135.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobj</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">201 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc0LnmJK.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/openssl-sys-487175f8e4d9a365/build_script_main-487175f8e4d9a365 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/openssl-sys-487175f8e4d9a365/rustcj6ipaB/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">193 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc0LnmJK.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/openssl-sys-487175f8e4d9a365/build_script_main-487175f8e4d9a365 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/openssl-sys-487175f8e4d9a365/rustcj6ipaB/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">188 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="94 similar processes, the first one shown">×94</span></td>
+<td class="mono args">--crate-name syn --edition=2021 /cw/vendor/syn-2.0.119/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg feature=&#34;clone-impls&#34; --cfg feature=&#34;default&#34; --cfg feature=&#34;derive&#34; --cfg feature=&#34;extra-traits&#34; --cfg feature=&#34;full&#34; --cfg feature=&#34;parsing&#34; --cfg feature=&#34;printing&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;visit-mut&#34; --check-cfg cfg(docsrs,test)</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">3.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 615: /work/target/debug/build/openssl-sys-487175f8e4d9a365/build-script-main">openssl-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">78 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 616: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--libs --cflags openssl</td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 618: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/10254679019711729998detect_compiler_family.c</td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 619: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/10254679019711729998detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 10254679019711729998detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 620: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 621: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/flag_check -c /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/flag_check.c</td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 622: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/flag_check.c -quiet -dumpdir /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc5RDV7O.s</td>
+<td class="nowrap muted">5.0 s</td>
+<td class="nowrap">27 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 623: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/openssl-sys-24e11a7fe85b6eea/out/flag_check /tmp/cc5RDV7O.s</td>
+<td class="nowrap muted">5.1 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 639: /work/target/debug/build/openssl-5b0637e9b4e9865b/build-script-build">openssl</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 697: /work/target/debug/build/rustix-7cc0ced723d2828d/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.6 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 698: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-8273b0e35e9c3920/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">9.6 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 771: /work/target/debug/build/zerocopy-8218bed16b79f0b1/build-script-build">zerocopy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 772: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 775: /work/target/debug/build/crc32fast-2ad1f9244d9f468c/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 776: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 779: /work/target/debug/build/native-tls-6dd16e355eb22313/build-script-build">native-tls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 872: /work/target/debug/build/httparse-ff8e02b0c1a970cf/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.2 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 873: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">17.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1020: /work/target/debug/build/native-tls-737da4b4f5619c2f/build-script-build">native-tls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1344: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">41.4 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1345: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">41.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1506: /work/target/debug/build/github-copilot-sdk-ba766757c2bac75b/build-script-build">github-copilot-sdk</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.9 s</td>
+<td class="nowrap">63 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">github.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /github/copilot-cli/releases/download/v1.0.93-1/github-copilot-1.0.93-1-linux-x64.tgz, host github.com, agent ureq/3.4.2</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">50.0 s</td><td class="mono">/work/target/debug/build/github-copilot-sdk-ba766757c2bac75b/build-script-build</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">50.0 s</td><td class="mono">/work/target/debug/build/github-copilot-sdk-ba766757c2bac75b/build-script-build</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">50.0 s</td><td class="mono">/work/target/debug/build/github-copilot-sdk-ba766757c2bac75b/build-script-build</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>791</dd></div><div><dt>Directories</dt><dd>183</dd></div><div><dt>Size</dt><dd>428.8 MiB</dd></div><div><dt>Compiled units</dt><dd>147</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling openssl-sys v0.9.117
+   Compiling syn v2.0.119
+   Compiling openssl v0.10.81
+   Compiling openssl-macros v0.1.1
+    Checking mio v1.2.4
+   Compiling cfg-if v1.0.5
+    Checking tokio v1.53.2
+   Compiling libc v0.2.190
+    Checking slab v0.4.12
+   Compiling rustix v1.1.5
+   Compiling bitflags v2.13.2
+    Checking foreign-types-shared v0.1.1
+    Checking foreign-types v0.3.2
+   Compiling typenum v1.20.1
+   Compiling native-tls v0.2.18
+   Compiling log v0.4.34
+   Compiling zerocopy v0.8.60
+   Compiling crc32fast v1.5.2
+    Checking futures-util v0.3.34
+   Compiling generic-array v0.14.7
+    Checking tokio-util v0.7.19
+   Compiling tracing-attributes v0.1.31
+    Checking openssl-probe v0.2.1
+   Compiling zeroize v1.9.0
+   Compiling httparse v1.10.1
+   Compiling simd-adler32 v0.3.10
+    Checking indexmap v2.14.2
+    Checking tracing v0.1.44
+   Compiling bytes v1.12.1
+   Compiling adler2 v2.0.1
+    Checking fnv v1.0.7
+   Compiling base64ct v1.8.3
+   Compiling linux-raw-sys v0.12.1
+   Compiling pem-rfc7468 v1.0.0
+    Checking h2 v0.4.19
+   Compiling miniz_oxide v0.9.1
+   Compiling http v1.5.0
+    Checking want v0.3.2
+    Checking ppv-lite86 v0.2.21
+   Compiling rustls-pki-types v1.15.1
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+    Checking futures-channel v0.3.34
+   Compiling bumpalo v3.20.3
+   Compiling option-ext v0.2.0
+   Compiling base64 v0.23.1
+   Compiling zlib-rs v0.6.8
+   Compiling flate2 v1.1.10
+   Compiling ureq-proto v0.6.4
+   Compiling dirs-sys v0.4.1
+   Compiling zopfli v0.8.3
+    Checking hyper v1.11.1
+   Compiling digest v0.10.7
+   Compiling webpki-root-certs v1.0.9
+    Checking rand_chacha v0.9.0
+   Compiling der v0.8.2
+   Compiling xattr v1.6.1
+    Checking tokio-native-tls v0.3.1
+    Checking form_urlencoded v1.2.2
+   Compiling filetime v0.2.29
+   Compiling cpufeatures v0.2.17
+   Compiling utf8-zero v0.8.1
+   Compiling typed-path v0.12.3
+   Compiling percent-encoding v2.3.2
+   Compiling ureq v3.4.2
+   Compiling zip v7.2.0
+    Checking tower v0.5.3
+    Checking hyper-util v0.1.21
+   Compiling sha2 v0.10.9
+   Compiling tar v0.4.46
+   Compiling serde_json v1.0.151
+    Checking url v2.5.8
+    Checking rand v0.9.5
+   Compiling dirs v5.0.1
+    Checking aho-corasick v1.1.5
+    Checking tungstenite v0.28.0
+    Checking regex-automata v0.4.18
+    Checking hyper-tls v0.6.0
+   Compiling github-copilot-sdk v1.0.17-preview.7
+    Checking tower-http v0.6.11
+    Checking serde v1.0.229
+    Checking uuid v1.27.0
+    Checking reqwest v0.13.5
+warning: github-copilot-sdk@1.0.17-preview.7: Downloading https://github.com/github/copilot-cli/releases/download/v1.0.93-1/github-copilot-1.0.93-1-linux-x64.tgz
+error: failed to run custom build command for `github-copilot-sdk v1.0.17-preview.7`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/github-copilot-sdk-ba766757c2bac75b/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-env-changed=DOCS_RS
+  cargo:rerun-if-env-changed=COPILOT_SKIP_CLI_DOWNLOAD
+  cargo:rerun-if-env-changed=COPILOT_CLI_EXTRACT_DIR
+  cargo:rerun-if-env-changed=BUNDLED_CLI_CACHE_DIR
+  cargo::rustc-check-cfg=cfg(has_bundled_cli)
+  cargo::rustc-check-cfg=cfg(has_extracted_cli)
+  cargo:rerun-if-changed=cli-version.txt
+  cargo:rerun-if-changed=cli-version-in-process.txt
+  cargo:rustc-env=COPILOT_SDK_CLI_VERSION=1.0.93-1
+  cargo:rustc-env=COPILOT_SDK_CLI_CACHE_ID=1.0.93-1
+  cargo:warning=Downloading https://github.com/github/copilot-cli/releases/download/v1.0.93-1/github-copilot-1.0.93-1-linux-x64.tgz
+
+  --- stderr
+
+  thread &#39;main&#39; (1506) panicked at /cw/vendor/github-copilot-sdk-1.0.17-preview.7/build/in_process.rs:1000:25:
+  Failed to download https://github.com/github/copilot-cli/releases/download/v1.0.93-1/github-copilot-1.0.93-1-linux-x64.tgz: HTTP 404 Not Found
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-06 02:17 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-4912</td></tr>
+
+<tr><td class="muted nowrap">2026-10-06 02:17 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-4913</td></tr>
+
+<tr><td class="muted nowrap">2026-10-06 02:31 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-4917-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-06 02:32 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-4917-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-06 02:32 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-4914</td></tr>
+
+<tr><td class="muted nowrap">2026-10-06 02:32 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-4914</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: ranma 0.4.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>ranma <span class="version">0.4.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 178823</span>
+      <a class="muted" href="https://crates.io/crates/ranma/0.4.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="178823.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="178823.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="178823-diff.html">Compare with 0.3.0</a>
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (27 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">101</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · ranma</div></td><td class="mono where"><a href="https://crates.io/crates/ranma/0.4.0/code/build.rs#L8" rel="noreferrer noopener" target="_blank">build.rs:8</a></td><td>medium severity process_spawn in build_script code (27 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · ranma</div></td><td class="mono where"><a href="https://crates.io/crates/ranma/0.4.0/code/src/tmux.rs#L367" rel="noreferrer noopener" target="_blank">src/tmux.rs:367</a></td><td>medium severity environment_enumeration in library code: std::env::vars_os</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · ranma</div></td><td class="mono where"><a href="https://crates.io/crates/ranma/0.4.0/code/src/graphics.rs#L35" rel="noreferrer noopener" target="_blank">src/graphics.rs:35</a></td><td>medium severity obfuscated_data in library code: array of 297 integer literals</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · ranma</div></td><td class="mono where"><a href="https://crates.io/crates/ranma/0.4.0/code/src/action.rs#L455" rel="noreferrer noopener" target="_blank">src/action.rs:455</a></td><td>medium severity shell_command in library code (3 places): &#60;ctrl|alt|shift&#62;</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · ranma</div></td><td class="mono where"><a href="https://crates.io/crates/ranma/0.4.0/code/doc/CONFIG.md#L2079" rel="noreferrer noopener" target="_blank">doc/CONFIG.md:2079</a></td><td>medium severity yara:persistence_locations in library code (3 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · ranma</div></td><td class="mono where"><a href="https://crates.io/crates/ranma/0.4.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">101</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">9</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">27</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">65</span></label>
+  <span class="muted">10 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">&#60;ctrl|alt|shift&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/action.rs#L455" rel="noreferrer noopener" target="_blank">src/action.rs:455</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L543" rel="noreferrer noopener" target="_blank">src/paste.rs:543</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L700" rel="noreferrer noopener" target="_blank">src/paste.rs:700</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/doc/CONFIG.md#L2079" rel="noreferrer noopener" target="_blank">doc/CONFIG.md:2079</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/doc/man/man5/ranma.5#L2742" rel="noreferrer noopener" target="_blank">doc/man/man5/ranma.5:2742</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/install.sh#L70" rel="noreferrer noopener" target="_blank">install.sh:70</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/tmux.rs#L367" rel="noreferrer noopener" target="_blank">src/tmux.rs:367</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">array of 297 integer literals</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/graphics.rs#L35" rel="noreferrer noopener" target="_blank">src/graphics.rs:35</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/build.rs#L8" rel="noreferrer noopener" target="_blank">build.rs:8</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">25</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/hints.rs#L95" rel="noreferrer noopener" target="_blank">src/app/hints.rs:95</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/run.rs#L362" rel="noreferrer noopener" target="_blank">src/app/run.rs:362</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/run.rs#L532" rel="noreferrer noopener" target="_blank">src/app/run.rs:532</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/run.rs#L553" rel="noreferrer noopener" target="_blank">src/app/run.rs:553</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/bar.rs#L486" rel="noreferrer noopener" target="_blank">src/bar.rs:486</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/client.rs#L95" rel="noreferrer noopener" target="_blank">src/client.rs:95</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/jobs.rs#L424" rel="noreferrer noopener" target="_blank">src/jobs.rs:424</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/os/macos.rs#L330" rel="noreferrer noopener" target="_blank">src/os/macos.rs:330</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L431" rel="noreferrer noopener" target="_blank">src/paste.rs:431</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L475" rel="noreferrer noopener" target="_blank">src/paste.rs:475</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L529" rel="noreferrer noopener" target="_blank">src/paste.rs:529</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L543" rel="noreferrer noopener" target="_blank">src/paste.rs:543</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L574" rel="noreferrer noopener" target="_blank">src/paste.rs:574</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L600" rel="noreferrer noopener" target="_blank">src/paste.rs:600</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L610" rel="noreferrer noopener" target="_blank">src/paste.rs:610</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L625" rel="noreferrer noopener" target="_blank">src/paste.rs:625</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L631" rel="noreferrer noopener" target="_blank">src/paste.rs:631</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/pipe.rs#L55" rel="noreferrer noopener" target="_blank">src/pipe.rs:55</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/tmux.rs#L95" rel="noreferrer noopener" target="_blank">src/tmux.rs:95</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/tmux.rs#L119" rel="noreferrer noopener" target="_blank">src/tmux.rs:119</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/update.rs#L148" rel="noreferrer noopener" target="_blank">src/update.rs:148</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/update.rs#L377" rel="noreferrer noopener" target="_blank">src/update.rs:377</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/update.rs#L467" rel="noreferrer noopener" target="_blank">src/update.rs:467</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L717" rel="noreferrer noopener" target="_blank">src/paste.rs:717</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L727" rel="noreferrer noopener" target="_blank">src/paste.rs:727</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/main.rs#L337" rel="noreferrer noopener" target="_blank">src/main.rs:337</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">51</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/drag.rs#L402" rel="noreferrer noopener" target="_blank">src/app/drag.rs:402</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/drag.rs#L416" rel="noreferrer noopener" target="_blank">src/app/drag.rs:416</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{REPO}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hako.rs#L69" rel="noreferrer noopener" target="_blank">src/hako.rs:69</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hako.rs#L240" rel="noreferrer noopener" target="_blank">src/hako.rs:240</a> </span></li>
+
+<li><code class="evidence-text">\u{a}fatal: unable to access &#39;https://github.com/&#39;: no route\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hako.rs#L188" rel="noreferrer noopener" target="_blank">src/hako.rs:188</a> </span></li>
+
+<li><code class="evidence-text">fatal: unable to access &#39;https://github.com/&#39;: no route</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hako.rs#L193" rel="noreferrer noopener" target="_blank">src/hako.rs:193</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L26" rel="noreferrer noopener" target="_blank">src/hints.rs:26</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L26" rel="noreferrer noopener" target="_blank">src/hints.rs:26</a> </span></li>
+
+<li><code class="evidence-text">file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L26" rel="noreferrer noopener" target="_blank">src/hints.rs:26</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/osc.rs#L371" rel="noreferrer noopener" target="_blank">src/osc.rs:371</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L51" rel="noreferrer noopener" target="_blank">src/paste.rs:51</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L252" rel="noreferrer noopener" target="_blank">src/paste.rs:252</a> </span></li>
+
+<li><code class="evidence-text">ftp://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L26" rel="noreferrer noopener" target="_blank">src/hints.rs:26</a> </span></li>
+
+<li><code class="evidence-text">see https://example.com/a?b=1, or (http://x.org/wiki/Foo_(bar)) now.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L191" rel="noreferrer noopener" target="_blank">src/hints.rs:191</a> </span></li>
+
+<li><code class="evidence-text">mail mailto:me@x.org; file file:///tmp/a.txt.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L192" rel="noreferrer noopener" target="_blank">src/hints.rs:192</a> </span></li>
+
+<li><code class="evidence-text">nothing here: https:// and xhttps://no.pe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L193" rel="noreferrer noopener" target="_blank">src/hints.rs:193</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/a?b=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L198" rel="noreferrer noopener" target="_blank">src/hints.rs:198</a> </span></li>
+
+<li><code class="evidence-text">http://x.org/wiki/Foo_(bar)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L199" rel="noreferrer noopener" target="_blank">src/hints.rs:199</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/a.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L201" rel="noreferrer noopener" target="_blank">src/hints.rs:201</a> </span></li>
+
+<li><code class="evidence-text">go to https://exam</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L209" rel="noreferrer noopener" target="_blank">src/hints.rs:209</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L214" rel="noreferrer noopener" target="_blank">src/hints.rs:214</a> </span></li>
+
+<li><code class="evidence-text">docs https://shown.example here</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L220" rel="noreferrer noopener" target="_blank">src/hints.rs:220</a> </span></li>
+
+<li><code class="evidence-text">https://real.example/target</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L222" rel="noreferrer noopener" target="_blank">src/hints.rs:222</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L227" rel="noreferrer noopener" target="_blank">src/hints.rs:227</a> </span></li>
+
+<li><code class="evidence-text">https://first.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L224" rel="noreferrer noopener" target="_blank">src/hints.rs:224</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hints.rs#L227" rel="noreferrer noopener" target="_blank">src/hints.rs:227</a> </span></li>
+
+<li><code class="evidence-text">build ok\u{d}\u{a}see https://x.io/a\u{d}\u{a}$ make\u{d}\u{a}error: boom\u{d}\u{a}$ </code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/luapane.rs#L488" rel="noreferrer noopener" target="_blank">src/luapane.rs:488</a> </span></li>
+
+<li><code class="evidence-text">\u{a}            local p = ranma.pane()\u{a}            assert(p.id == 1 and p.title == &#34;title 1&#34; and p.workspace == 1)\u{a}            assert(ranma.pane(2):lines()[1] == &#34;other&#34;)\u{a}            asse…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/luapane.rs#L494" rel="noreferrer noopener" target="_blank">src/luapane.rs:494</a> </span></li>
+
+<li><code class="evidence-text">ranma.tooltip({ line = 3, col = 4, span = 20 },\u{a}            { title = &#34;a link&#34;, lines = { &#34;https://x.io&#34;, { { &#34;opens in &#34;, &#34;dim&#34; }, { &#34;1 nvim&#34; } } }, keys = { { &#34;o&#34;, &#34;open&#34; } } })</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/luaui.rs#L360" rel="noreferrer noopener" target="_blank">src/luaui.rs:360</a> </span></li>
+
+<li><code class="evidence-text">[site](https://x.y)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/man.rs#L614" rel="noreferrer noopener" target="_blank">src/man.rs:614</a> </span></li>
+
+<li><code class="evidence-text">site\fR &#60;https://x.y&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/man.rs#L614" rel="noreferrer noopener" target="_blank">src/man.rs:614</a> </span></li>
+
+<li><code class="evidence-text">ssh://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/pane.rs#L1067" rel="noreferrer noopener" target="_blank">src/pane.rs:1067</a> </span></li>
+
+<li><code class="evidence-text">-o ProxyJump=j -vX ssh://me@vps:22</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/pane.rs#L1355" rel="noreferrer noopener" target="_blank">src/pane.rs:1355</a> </span></li>
+
+<li><code class="evidence-text">see https://a.io\u{d}\u{a}mid\u{d}\u{a}https://b.io/x ok\u{d}\u{a}end\u{d}\u{a}last</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L372" rel="noreferrer noopener" target="_blank">src/panetext.rs:372</a> </span></li>
+
+<li><code class="evidence-text">https://[a-z./]+</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L373" rel="noreferrer noopener" target="_blank">src/panetext.rs:373</a> </span></li>
+
+<li><code class="evidence-text">https://b.io/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L378" rel="noreferrer noopener" target="_blank">src/panetext.rs:378</a> </span></li>
+
+<li><code class="evidence-text">https://a.io</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L378" rel="noreferrer noopener" target="_blank">src/panetext.rs:378</a> </span></li>
+
+<li><code class="evidence-text">see https://ranma.dev/doc ok</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L426" rel="noreferrer noopener" target="_blank">src/panetext.rs:426</a> </span></li>
+
+<li><code class="evidence-text">https://ranma.dev/doc</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L427" rel="noreferrer noopener" target="_blank">src/panetext.rs:427</a> </span></li>
+
+<li><code class="evidence-text">0123456789 https://example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L430" rel="noreferrer noopener" target="_blank">src/panetext.rs:430</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L431" rel="noreferrer noopener" target="_blank">src/panetext.rs:431</a> </span></li>
+
+<li><code class="evidence-text">日⊡ https://a.io/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L441" rel="noreferrer noopener" target="_blank">src/panetext.rs:441</a> </span></li>
+
+<li><code class="evidence-text">https://a.io/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/panetext.rs#L444" rel="noreferrer noopener" target="_blank">src/panetext.rs:444</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/my%20shot.jpg</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L824" rel="noreferrer noopener" target="_blank">src/paste.rs:824</a> </span></li>
+
+<li><code class="evidence-text">file://localhost/tmp/b.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L828" rel="noreferrer noopener" target="_blank">src/paste.rs:828</a> </span></li>
+
+<li><code class="evidence-text">file://box/tmp/a.png</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L848" rel="noreferrer noopener" target="_blank">src/paste.rs:848</a> </span></li>
+
+<li><code class="evidence-text"># copied\u{d}\u{a}file:///home/me/a%20b.zip\u{d}\u{a}https://x.org/c\u{d}\u{a}file:///home/me/d.html\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L868" rel="noreferrer noopener" target="_blank">src/paste.rs:868</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/masshirodev/ranma/blob/main/doc/CONFIG.md#plugins</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/screen.rs#L2659" rel="noreferrer noopener" target="_blank">src/screen.rs:2659</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/mas…doc/CONFIG.md#plugins</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/screen.rs#L2662" rel="noreferrer noopener" target="_blank">src/screen.rs:2662</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/masshirodev/ranma.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/update.rs#L56" rel="noreferrer noopener" target="_blank">src/update.rs:56</a> </span></li>
+
+<li><code class="evidence-text">git clone &#39;https://github.com/masshirodev/ranma.git&#39; &#39;/d/ranma/repo&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/update.rs#L599" rel="noreferrer noopener" target="_blank">src/update.rs:599</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">14</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/run.rs#L395" rel="noreferrer noopener" target="_blank">src/app/run.rs:395</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/pane.rs#L343" rel="noreferrer noopener" target="_blank">src/pane.rs:343</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/app/upgrade.rs#L188" rel="noreferrer noopener" target="_blank">src/app/upgrade.rs:188</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/bar.rs#L512" rel="noreferrer noopener" target="_blank">src/bar.rs:512</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/client.rs#L101" rel="noreferrer noopener" target="_blank">src/client.rs:101</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/jobs.rs#L541" rel="noreferrer noopener" target="_blank">src/jobs.rs:541</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/paste.rs#L385" rel="noreferrer noopener" target="_blank">src/paste.rs:385</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/hostcolors.rs#L201" rel="noreferrer noopener" target="_blank">src/hostcolors.rs:201</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/os/linux.rs#L79" rel="noreferrer noopener" target="_blank">src/os/linux.rs:79</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/update.rs#L430" rel="noreferrer noopener" target="_blank">src/update.rs:430</a> <a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/winch.rs#L59" rel="noreferrer noopener" target="_blank">src/winch.rs:59</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/ipc.rs#L56" rel="noreferrer noopener" target="_blank">src/ipc.rs:56</a> </span></li>
+
+<li><code class="evidence-text">19 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/os/macos.rs#L20" rel="noreferrer noopener" target="_blank">src/os/macos.rs:20</a> </span></li>
+
+<li><code class="evidence-text">16 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/ranma/0.4.0/code/src/pty.rs#L47" rel="noreferrer noopener" target="_blank">src/pty.rs:47</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>53.4 s</dd></div><div><dt>VM restore</dt><dd>57 ms</dd></div><div><dt>Payload</dt><dd>14322 files, 415.7 MiB</dd></div><div><dt>Files opened</dt><dd>21370</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">396</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 373 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">53.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="30 similar processes, the first one shown">×30</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">353 ms</td>
+<td class="nowrap">688 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc5Oxw8l/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">884 ms</td>
+<td class="nowrap">154 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccTtvaIe.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc5Oxw8l/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">891 ms</td>
+<td class="nowrap">147 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccTtvaIe.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc5Oxw8l/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">893 ms</td>
+<td class="nowrap">143 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">86 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 608: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="125 similar processes, the first one shown">×125</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">48 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 628: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 629: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 659: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 660: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 683: /work/target/debug/build/serde_core-6d38a3ce35613dd3/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.2 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 684: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 781: /work/target/debug/build/rustversion-cd03e7da230c42f2/build-script-build">rustversion</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.7 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 782: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">9.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 785: /work/target/debug/build/serde-593ffa063ad862ba/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.7 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 786: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">9.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 925: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.1 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 926: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">15.2 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 930: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">15.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 933: /work/target/debug/build/rustix-3295a607d57eda14/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.2 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 934: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-e0bf333779de65e8/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">15.2 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 943: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1203: /work/target/debug/build/signal-hook-112904c118828de3/build-script-build">signal-hook</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">25.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1307: /work/target/debug/build/num-traits-34c9d17fcc634a35/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">27.9 s</td>
+<td class="nowrap">42 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1308: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">27.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1487: /work/target/debug/build/typeid-3ea790f0d2d04791/build-script-build">typeid</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">31.4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1488: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">31.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1491: /work/target/debug/build/inotify-sys-062c6e654218302a/build-script-build">inotify-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">31.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1559: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1560: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">32.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1568: /work/target/debug/build/signal-hook-a37e593db9313ff1/build-script-build">signal-hook</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">33.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1570: /work/target/debug/build/erased-serde-bb935db29e0a324a/build-script-build">erased-serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">33.4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1571: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">33.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1599: /work/target/debug/build/mlua-sys-3ab31d445978d028/build-script-main">mlua-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.7 s</td>
+<td class="nowrap">2.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1600: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/18125774896566412785detect_compiler_family.c</td>
+<td class="nowrap muted">34.7 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1601: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/18125774896566412785detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 18125774896566412785detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1602: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1603: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="34 similar processes, the first one shown">×34</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/flag_check -c /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/flag_check.c</td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1604: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/flag_check.c -quiet -dumpdir /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccgKEcoS.s</td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1605: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/flag_check /tmp/ccgKEcoS.s</td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1705: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/liblua5.4.a /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lapi.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lauxlib.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lbaselib.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lcode.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lcorolib.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lctype.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-ldblib.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-ldebug.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-ldo.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-ldump.o /work/target/debug/build/mlua-sys-6f85e757083d1af6/out/lib/ca14ba81c56d4f78-lfunc.o /work/target/</td>
+<td class="nowrap muted">37.0 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1808: /work/target/debug/build/serde_json-8bdb9b394c8b5974/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">42.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1815: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">42.4 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1816: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">42.4 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1820: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">42.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1955: /work/target/debug/build/ranma-b9c861f79bfdc530/build-script-build">ranma</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1956: "></span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.0 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1151</dd></div><div><dt>Directories</dt><dd>256</dd></div><div><dt>Size</dt><dd>377.7 MiB</dd></div><div><dt>Compiled units</dt><dd>158</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling libc v0.2.190
+   Compiling serde_core v1.0.229
+   Compiling syn v3.0.9
+    Checking bitflags v2.13.2
+   Compiling syn v2.0.119
+   Compiling heck v0.5.0
+   Compiling serde v1.0.229
+   Compiling rustversion v1.0.23
+    Checking errno v0.3.14
+   Compiling serde_derive v1.0.229
+   Compiling parking_lot_core v0.9.12
+   Compiling strsim v0.11.1
+    Checking equivalent v1.0.3
+    Checking allocator-api2 v0.2.21
+   Compiling rustix v1.1.5
+   Compiling thiserror v2.0.21
+   Compiling ident_case v1.0.1
+    Checking either v1.19.0
+    Checking foldhash v0.2.0
+    Checking hashbrown v0.17.1
+   Compiling darling_core v0.24.1
+    Checking signal-hook-registry v1.4.8
+   Compiling thiserror-impl v2.0.21
+   Compiling shlex v2.0.1
+    Checking linux-raw-sys v0.12.1
+    Checking smallvec v1.16.3
+    Checking scopeguard v1.2.0
+    Checking unicode-width v0.2.2
+   Compiling find-msvc-tools v0.1.14
+    Checking memchr v2.8.3
+   Compiling cc v1.8.0
+    Checking lock_api v0.4.14
+    Checking castaway v0.2.4
+   Compiling darling_macro v0.24.1
+    Checking itertools v0.14.0
+   Compiling strum_macros v0.28.0
+    Checking ryu v1.0.23
+   Compiling signal-hook v0.3.18
+    Checking unicode-segmentation v1.13.3
+   Compiling autocfg v1.5.1
+   Compiling convert_case v0.10.0
+   Compiling num-traits v0.2.19
+    Checking unicode-truncate v2.0.1
+    Checking compact_str v0.9.1
+   Compiling which v8.0.6
+    Checking strum v0.28.0
+   Compiling darling v0.24.1
+    Checking kasuari v0.4.13
+    Checking parking_lot v0.12.5
+    Checking lru v0.18.5
+    Checking mio v1.2.4
+    Checking critical-section v1.2.0
+   Compiling indoc v2.0.8
+    Checking utf8parse v0.2.2
+    Checking anstyle-parse v1.0.0
+   Compiling instability v0.3.14
+    Checking ratatui-core v0.1.2
+   Compiling luajit-src v210.7.4+c6ffc14
+   Compiling derive_more-impl v2.1.1
+   Compiling lua-src v551.0.2
+   Compiling inotify-sys v0.1.8
+    Checking num_threads v0.1.7
+   Compiling cfg-if v1.0.5
+   Compiling typeid v1.0.3
+    Checking anstyle-query v1.1.5
+   Compiling litrs v1.0.1
+    Checking deranged v0.5.9
+    Checking colorchoice v1.0.5
+    Checking is_terminal_polyfill v1.70.2
+    Checking num-conv v0.2.2
+    Checking powerfmt v0.2.1
+    Checking time-core v0.1.9
+   Compiling pkg-config v0.3.34
+    Checking anstyle v1.0.14
+    Checking anstream v1.0.0
+   Compiling mlua-sys v0.13.0
+    Checking time v0.3.55
+   Compiling document-features v0.2.12
+    Checking derive_more v2.1.1
+    Checking signal-hook-mio v0.2.5
+    Checking line-clipping v0.3.8
+   Compiling erased-serde v0.4.10
+   Compiling signal-hook v0.4.5
+    Checking clap_lex v1.1.1
+   Compiling zmij v1.0.23
+    Checking clap_builder v4.6.7
+    Checking ratatui-widgets v0.3.2
+    Checking crossterm v0.29.0
+    Checking ordered-float v2.10.1
+    Checking aho-corasick v1.1.5
+   Compiling clap_derive v4.6.7
+   Compiling anyhow v1.0.104
+    Checking option-ext v0.2.0
+    Checking arrayvec v0.7.8
+   Compiling serde_json v1.0.154
+    Checking cursor-icon v1.2.0
+    Checking regex-syntax v0.8.11
+    Checking winnow v1.0.4
+    Checking same-file v1.0.6
+    Checking walkdir v2.5.0
+    Checking toml_parser v1.1.5+spec-1.1.0
+    Checking regex-automata v0.4.18
+    Checking vte v0.15.0
+    Checking dirs-sys v0.5.0
+    Checking clap v4.6.7
+    Checking inotify v0.11.5
+    Checking serde-value v0.7.0
+    Checking ratatui-crossterm v0.1.2
+    Checking ratatui-macros v0.7.2
+    Checking polling v3.11.0
+    Checking rustix-openpty v0.2.0
+    Checking bstr v1.13.1
+    Checking notify-types v2.1.0
+    Checking serde_spanned v1.1.2
+    Checking toml_datetime v1.1.2+spec-1.1.0
+   Compiling ranma v0.4.0
+    Checking rustc-hash v2.1.3
+    Checking base64 v0.22.1
+    Checking toml_writer v1.1.3+spec-1.1.0
+    Checking roff v1.1.1
+    Checking home v0.5.12
+    Checking alacritty_terminal v0.26.0
+    Checking clap_mangen v0.3.3
+    Checking toml v1.1.8+spec-1.1.0
+    Checking mlua v0.12.2
+    Checking notify v8.2.0
+    Checking ratatui v0.30.2
+    Checking dirs v7.0.0
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 53.23s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-16 12:19 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:19 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:19 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:20 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:20 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:20 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: barretenberg-rs 6.0.0-nightly.20261016.a</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>barretenberg-rs <span class="version">6.0.0-nightly.20261016.a</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 178869</span>
+      <a class="muted" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="178869.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="178869.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">The build looked up github.com.</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">47</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">4</span></a>
+  <a href="#findings">Static findings <span class="count">8</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · barretenberg-rs</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · barretenberg-rs</div></td><td class="mono where"><a href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a></td><td>high severity downloader_pattern in build_script code: https://github.com/AztecProtocol/barretenberg/releases/download/v{}/barretenberg-static-{}.tar.gz at build.rs:88 with std::process::Command::new at build.rs:97</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · barretenberg-rs</div></td><td class="mono where"><a href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L97" rel="noreferrer noopener" target="_blank">build.rs:97</a></td><td>medium severity process_spawn in build_script code (3 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · barretenberg-rs</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · barretenberg-rs</div></td><td class="mono where">exec:downloader</td><td>New since the previous version: exec:downloader.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · barretenberg-rs</div></td><td class="mono where">net:github.com</td><td>New since the previous version: net:github.com.</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · barretenberg-rs</div></td><td class="mono where"><a href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · barretenberg-rs</div></td><td class="mono where"><a href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a></td><td>low severity url_literal in build_script code: https://github.com/AztecProtocol/barretenberg/releases/download/v{}/barretenberg-static-{}.tar.gz</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">exec:downloader</code> <code class="chip new">net:github.com</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">net:github.com</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">8</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">4</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">1</span></label>
+  <span class="muted">7 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/AztecProtocol/barretenberg/releases/download/v{}/barretenberg-static-{}.tar.gz at build.rs:88 with std::process::Command::new at build.rs:97</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L97" rel="noreferrer noopener" target="_blank">build.rs:97</a> <a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L112" rel="noreferrer noopener" target="_blank">build.rs:112</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/src/backends/ffi.rs#L33" rel="noreferrer noopener" target="_blank">src/backends/ffi.rs:33</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/src/backends/pipe.rs#L27" rel="noreferrer noopener" target="_blank">src/backends/pipe.rs:27</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/AztecProtocol/barretenberg/releases/download/v{}/barretenberg-static-{}.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/barretenberg-rs/6.0.0-nightly.20261016.a/code/src/backends/ffi.rs#L83" rel="noreferrer noopener" target="_blank">src/backends/ffi.rs:83</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>17.7 s</dd></div><div><dt>VM restore</dt><dd>63 ms</dd></div><div><dt>Payload</dt><dd>2766 files, 48.1 MiB</dd></div><div><dt>Files opened</dt><dd>5327</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">108</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 96 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">17.6 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="14 similar processes, the first one shown">×14</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">154 ms</td>
+<td class="nowrap">703 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcIfgvSs/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">697 ms</td>
+<td class="nowrap">157 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccEpBwog.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcIfgvSs/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">703 ms</td>
+<td class="nowrap">151 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccEpBwog.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcIfgvSs/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">706 ms</td>
+<td class="nowrap">147 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">862 ms</td>
+<td class="nowrap">75 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">863 ms</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">870 ms</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 608: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="26 similar processes, the first one shown">×26</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">938 ms</td>
+<td class="nowrap">49 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 628: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 629: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 678: /work/target/debug/build/libc-ca3b81bba335f01d/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 679: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 722: /work/target/debug/build/num-traits-8f76fc38ea2a0840/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.9 s</td>
+<td class="nowrap">40 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 723: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">5.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 787: /work/target/debug/build/serde_core-304eefece1a1291c/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 788: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">9.4 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 791: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 837: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 838: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">10.2 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 846: /work/target/debug/build/memoffset-7bfd48076ab8b0dd/build-script-build">memoffset</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.3 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 847: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">10.3 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 921: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">14.0 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 922: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">14.0 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1040: /work/target/debug/build/barretenberg-rs-1a83aed420598e44/build-script-build">barretenberg-rs</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.5 s</td>
+<td class="nowrap">57 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1041: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-L -f -o /work/target/debug/build/barretenberg-rs-878ef032e6bb5b02/out/barretenberg-static.tar.gz https://github.com/AztecProtocol/barretenberg/releases/download/v6.0.0-nightly.20261016.a/barretenberg-static-amd64-linux.tar.gz</td>
+<td class="nowrap muted">17.5 s</td>
+<td class="nowrap">55 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">github.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /AztecProtocol/barretenberg/releases/download/v6.0.0-nightly.20261016.a/barretenberg-static-amd64-linux.tar.gz, host github.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">17.6 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">17.6 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">17.6 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>323</dd></div><div><dt>Directories</dt><dd>104</dd></div><div><dt>Size</dt><dd>168.4 MiB</dd></div><div><dt>Compiled units</dt><dd>36</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling autocfg v1.5.1
+   Compiling libc v0.2.190
+   Compiling num-traits v0.2.19
+   Compiling syn v3.0.9
+   Compiling syn v2.0.119
+   Compiling parking_lot_core v0.9.12
+   Compiling serde_core v1.0.229
+   Compiling memoffset v0.9.1
+    Checking smallvec v1.16.3
+   Compiling serde v1.0.229
+    Checking scopeguard v1.2.0
+    Checking lock_api v0.4.14
+    Checking rmp v0.8.15
+   Compiling serde_derive v1.0.229
+    Checking errno v0.3.14
+   Compiling thiserror v1.0.69
+    Checking once_cell v1.21.4
+    Checking tracing-core v0.1.36
+    Checking signal-hook-registry v1.4.8
+    Checking parking_lot v0.12.5
+   Compiling thiserror-impl v1.0.69
+   Compiling tracing-attributes v0.1.31
+   Compiling tokio-macros v2.7.2
+    Checking socket2 v0.6.5
+    Checking mio v1.2.4
+    Checking bytes v1.12.1
+   Compiling barretenberg-rs v6.0.0-nightly.20261016.a
+    Checking bitflags v2.13.2
+    Checking nix v0.27.1
+warning: barretenberg-rs@6.0.0-nightly.20261016.a: Downloading barretenberg static library from https://github.com/AztecProtocol/barretenberg/releases/download/v6.0.0-nightly.20261016.a/barretenberg-static-amd64-linux.tar.gz
+error: failed to run custom build command for `barretenberg-rs v6.0.0-nightly.20261016.a`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/barretenberg-rs-1a83aed420598e44/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:warning=Downloading barretenberg static library from https://github.com/AztecProtocol/barretenberg/releases/download/v6.0.0-nightly.20261016.a/barretenberg-static-amd64-linux.tar.gz
+
+  --- stderr
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                   Dload  Upload   Total   Spent    Left  Speed
+    0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  curl: (22) The requested URL returned error: 404
+
+  thread &#39;main&#39; (1040) panicked at /cw/vendor/barretenberg-rs-6.0.0-nightly.20261016.a/build.rs:105:9:
+  Failed to download barretenberg static library from https://github.com/AztecProtocol/barretenberg/releases/download/v6.0.0-nightly.20261016.a/barretenberg-static-amd64-linux.tar.gz. Make sure version v6.0.0-nightly.20261016.a exists as a GitHub release.
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-16 12:30 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:30 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:30 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:30 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:30 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 12:30 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

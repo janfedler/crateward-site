@@ -1,0 +1,1187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: oxijolt-sys 1.1.0+jolt-5.6.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>oxijolt-sys <span class="version">1.1.0+jolt-5.6.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 126179</span>
+      <a class="muted" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="126179.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="126179.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity downloader_pattern in build_script code: http:// at build/prebuilt_curl.rs:174 with curl was not found at build/prebuilt.rs:117</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">53</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">4</span></a>
+  <a href="#findings">Static findings <span class="count">2000</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L174" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:174</a></td><td>high severity downloader_pattern in build_script code: http:// at build/prebuilt_curl.rs:174 with curl was not found at build/prebuilt.rs:117</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt.rs#L117" rel="noreferrer noopener" target="_blank">build/prebuilt.rs:117</a></td><td>New since 1.0.1+jolt-5.6.0: shell_command</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L174" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:174</a></td><td>New since 1.0.1+jolt-5.6.0: downloader_pattern</td></tr>
+
+<tr><td class="num"><span class="points low">3</span></td><td class="signal"><span class="word">exec_shell</span><div class="sub">trace · oxijolt-sys</div></td><td class="mono where">/bin/sh</td><td>The build ran /bin/sh.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>4 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_archive.rs#L407" rel="noreferrer noopener" target="_blank">build/prebuilt_archive.rs:407</a></td><td>medium severity process_spawn in build_script code (2 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt.rs#L117" rel="noreferrer noopener" target="_blank">build/prebuilt.rs:117</a></td><td>high severity shell_command in build_script code (3 places): curl was not found</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · oxijolt-sys</div></td><td class="mono where"><a href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L174" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:174</a></td><td>low severity url_literal in build_script code (2 places): http://</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">static:downloader_pattern</code> <code class="chip new">static:process_spawn</code> <code class="chip new">static:shell_command</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:shell</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">2000</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">4</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">1994</span></label>
+  <span class="muted">6 groups, 9072 more dropped by the analysis limit</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">curl was not found</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt.rs#L117" rel="noreferrer noopener" target="_blank">build/prebuilt.rs:117</a> </span></li>
+
+<li><code class="evidence-text">curl did not finish: {e}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L111" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:111</a> </span></li>
+
+<li><code class="evidence-text">curl exit {code}: {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L118" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:118</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http:// at build/prebuilt_curl.rs:174 with curl was not found at build/prebuilt.rs:117</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L174" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:174</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_archive.rs#L407" rel="noreferrer noopener" target="_blank">build/prebuilt_archive.rs:407</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L65" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:65</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1991</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2669" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2669</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2674" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2674</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2679" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2679</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2682" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2682</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2685" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2685</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2688" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2688</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2691" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2691</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2694" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2694</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2697" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2697</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2702" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2702</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2707" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2707</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2712" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2712</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2720" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2720</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2726" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2726</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2733" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2733</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2736" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2736</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2739" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2739</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2745" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2745</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2748" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2748</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2751" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2751</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2756" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2756</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2763" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2763</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2770" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2770</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2777" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2777</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2782" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2782</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2787" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2787</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2795" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2795</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2969" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2969</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2974" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2974</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2977" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2977</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2983" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2983</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2989" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2989</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L2992" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:2992</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3000" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3000</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3005" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3005</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3010" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3010</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3015" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3015</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3020" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3020</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3025" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3025</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3030" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3030</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3035" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3035</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3041" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3041</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3047" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3047</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3053" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3053</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3060" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3060</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3063" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3063</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3069" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3069</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3072" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3072</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3075" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3075</a> <a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/src/bindings/gnu/double_precision.rs#L3081" rel="noreferrer noopener" target="_blank">src/bindings/gnu/double_precision.rs:3081</a> <span class="muted">and 1941 more</span></span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L174" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:174</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build/prebuilt_curl.rs#L174" rel="noreferrer noopener" target="_blank">build/prebuilt_curl.rs:174</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/oxijolt-sys/1.1.0%2Bjolt-5.6.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>2 min 5 s</dd></div><div><dt>VM restore</dt><dd>60 ms</dd></div><div><dt>Payload</dt><dd>1705 files, 17.8 MiB</dd></div><div><dt>Files opened</dt><dd>37529</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1062</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 544 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">2 min 5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="24 similar processes, the first one shown">×24</span></td>
+<td class="mono args">--crate-name version_check --edition=2015 /cw/vendor/version_check-0.9.5/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=761591b74bd31af4 -C extra-filename=-4132b826e7cdd7f2 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">129 ms</td>
+<td class="nowrap">620 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 588: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2015 /cw/vendor/generic-array-0.14.7/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;more_lengths&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;more_lengths&#34;, &#34;serde&#34;, &#34;zeroize&#34;)) -C metadata=c6193d51ea47c358 -C extra-filename=-4cac162ab79b2857 --out-dir /work/target/debug/build/generic-array-4cac162ab79b2857 -L dependency=/work/target/debug/deps --extern version_check=/work/target/debug/deps/libversion_check-4132b826e7cdd7f2.rlib --cap-lints allow</td>
+<td class="nowrap muted">758 ms</td>
+<td class="nowrap">165 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 595: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/generic-array-4cac162ab79b2857/rustcwFs8wV/symbols.o /work/target/debug/build/generic-array-4cac162ab79b2857/build_script_build-4cac162ab79b2857.build_script_build.219a34a113ead989-cgu.0.rcgu.o /work/target/debug/build/generic-array-4cac162ab79b2857/build_script_build-4cac162ab79b2857.2b97gkja43qeirmggk3az0ly6.rcgu.o -Wl,--as-needed -Wl,-Bstatic /work/target/debug/deps/libversion_check-4132b826e7cdd7f2.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba</td>
+<td class="nowrap muted">790 ms</td>
+<td class="nowrap">132 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 596: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBVvrbf.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/generic-array-4cac162ab79b2857/build_script_build-4cac162ab79b2857 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/generic-array-4cac162ab79b2857/rustcwFs8wV/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gn</td>
+<td class="nowrap muted">796 ms</td>
+<td class="nowrap">126 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 597: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBVvrbf.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/generic-array-4cac162ab79b2857/build_script_build-4cac162ab79b2857 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/generic-array-4cac162ab79b2857/rustcwFs8wV/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x</td>
+<td class="nowrap muted">798 ms</td>
+<td class="nowrap">122 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 600: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">927 ms</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 601: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">928 ms</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 643: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 644: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 659: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 660: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 765: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.1 s</td>
+<td class="nowrap">40 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 766: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-53d53971fb3aec2e/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">5.1 s</td>
+<td class="nowrap">29 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 770: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">5.1 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 883: /work/target/debug/build/oxijolt-sys-9d3d7ef226c450a7/build-script-build">oxijolt-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">7.6 s</td>
+<td class="nowrap">1 min 57 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 884: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/8393862379653327404detect_compiler_family.c</td>
+<td class="nowrap muted">7.6 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 885: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/8393862379653327404detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 8393862379653327404detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">7.6 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 886: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">7.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 887: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/13799097614311107025detect_compiler_family.c</td>
+<td class="nowrap muted">7.6 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 888: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/13799097614311107025detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 13799097614311107025detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">7.6 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 889: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">7.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 890: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">7.7 s</td>
+<td class="nowrap">61 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 891: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native -B /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build -DJOLTC_SOURCE_DIR=/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc -DJOLT_PHYSICS_ROOT=/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics -DFETCHCONTENT_FULLY_DISCONNECTED=ON -DINTERPROCEDURAL_OPTIMIZATION=OFF -DENABLE_ALL_WARNINGS=OFF -DENABLE_INSTALL=OFF -DGENERATE_DEBUG_SYMBOLS=OFF -DJPH_USE_DX12=OFF -DJPH_USE_VK=OFF -DJPH_USE_MTL=OFF -DJPH_USE_CPU_COMPUTE=OFF -DFLOATING_POINT_EXCEPTIONS_ENABLED=OFF -DPROFILER_IN_DEBUG_AND_RELEASE=OFF -DDEBUG_RENDERER_IN_DISTRIBUTION=OFF -DDEBUG_RENDERER_IN_DEBUG_AND_RELEASE=OFF -DDOUBLE_PRECISION=OFF -DUSE_ASSERTS=OFF -DCROSS_PLATFORM_DETERMINISTIC=OFF -DCMAKE_OSX_ARCHITECTURES= -DCMAKE_INSTALL_PREFIX=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc -DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w -DCMAKE_C_COMPILER=/usr/bin/cc -DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w -DCMAK</td>
+<td class="nowrap muted">7.7 s</td>
+<td class="nowrap">529 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 892: /usr/bin/uname">/usr/bin/uname</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-r</td>
+<td class="nowrap muted">7.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 894: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w CMakeCCompilerId.c</td>
+<td class="nowrap muted">7.7 s</td>
+<td class="nowrap">66 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 895: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu CMakeCCompilerId.c -quiet -dumpdir a- -dumpbase CMakeCCompilerId.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -w -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccExQLnn.s</td>
+<td class="nowrap muted">7.7 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 896: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W --64 -o /tmp/ccImIYPW.o /tmp/ccExQLnn.s</td>
+<td class="nowrap muted">7.8 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 897: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8grCqE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccImIYPW.o -lgcc</td>
+<td class="nowrap muted">7.8 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d5"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 898: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8grCqE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccImIYPW.o -lgcc</td>
+<td class="nowrap muted">7.8 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 899: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-print-sysroot</td>
+<td class="nowrap muted">7.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 900: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w CMakeCXXCompilerId.cpp</td>
+<td class="nowrap muted">7.8 s</td>
+<td class="nowrap">65 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 901: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE CMakeCXXCompilerId.cpp -quiet -dumpdir a- -dumpbase CMakeCXXCompilerId.cpp -dumpbase-ext .cpp -m64 -mtune=generic -march=x86-64 -w -ffunction-sections -fdata-sections -fPIC -foffload-options=-l_GCC_m -fasynchronous-unwind-tables -o /tmp/ccMJy4RF.s</td>
+<td class="nowrap muted">7.8 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 902: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W --64 -o /tmp/ccMNICtW.o /tmp/ccMJy4RF.s</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 903: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cckpF75o.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccMNICtW.o -lstdc++</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d5"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 904: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cckpF75o.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccMNICtW.o -lstdc++</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 905: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-print-sysroot</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 906: /usr/bin/ld">/usr/bin/ld</span> <span class="times" title="9 similar processes, the first one shown">×9</span></td>
+<td class="mono args">--help</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 907: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1e330/fast</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">81 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 908: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile cmTC_1e330/fast</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">70 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 909: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f CMakeFiles/cmTC_1e330.dir/build.make CMakeFiles/cmTC_1e330.dir/build</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">68 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 910: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles/CMakeScratch/TryCompile-zkR68S/CMakeFiles --progress-num=1 &#34;Building C object CMakeFiles/cmTC_1e330.dir/CMakeCCompilerABI.c.o&#34;</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 911: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles/CMakeScratch/TryCompile-zkR68S/CMakeFiles --progress-num=1 Building C object CMakeFiles/cmTC_1e330.dir/CMakeCCompilerABI.c.o</td>
+<td class="nowrap muted">7.9 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 912: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -o CMakeFiles/cmTC_1e330.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 913: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_1e330.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -w -version -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccu2wXyv.s</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 914: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-v -W --64 -o CMakeFiles/cmTC_1e330.dir/CMakeCCompilerABI.c.o /tmp/ccu2wXyv.s</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 917: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/cmTC_1e330.dir/link.txt --verbose=1</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 918: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -Wl,-v CMakeFiles/cmTC_1e330.dir/CMakeCCompilerABI.c.o -o cmTC_1e330</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 919: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHZwdUV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_1e330 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 920: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccHZwdUV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_1e330 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">8.0 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 927: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0aa5d/fast</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">88 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 928: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile cmTC_0aa5d/fast</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">78 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 929: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f CMakeFiles/cmTC_0aa5d.dir/build.make CMakeFiles/cmTC_0aa5d.dir/build</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">77 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 930: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles/CMakeScratch/TryCompile-X8awPe/CMakeFiles --progress-num=1 &#34;Building CXX object CMakeFiles/cmTC_0aa5d.dir/CMakeCXXCompilerABI.cpp.o&#34;</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 931: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles/CMakeScratch/TryCompile-X8awPe/CMakeFiles --progress-num=1 Building CXX object CMakeFiles/cmTC_0aa5d.dir/CMakeCXXCompilerABI.cpp.o</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 932: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -o CMakeFiles/cmTC_0aa5d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 933: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_0aa5d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -m64 -mtune=generic -march=x86-64 -w -version -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccw6iRsa.s</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 934: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-v -W --64 -o CMakeFiles/cmTC_0aa5d.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccw6iRsa.s</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 937: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/cmTC_0aa5d.dir/link.txt --verbose=1</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 938: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -Wl,-v CMakeFiles/cmTC_0aa5d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_0aa5d</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">27 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 939: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cciBzm8S.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_0aa5d /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 940: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cciBzm8S.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_0aa5d /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">8.1 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 944: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">--build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build --target install --config Release</td>
+<td class="nowrap muted">8.2 s</td>
+<td class="nowrap">1 min 56 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 945: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile install</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">1 min 56 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 946: /usr/bin/cmake">/usr/bin/cmake</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-S/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native -B/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build --check-build-system CMakeFiles/Makefile.cmake 0</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 948: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f CMakeFiles/Makefile2 all</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">1 min 56 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 949: /usr/bin/gmake">/usr/bin/gmake</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-s -f _deps/joltphysics-build/CMakeFiles/Jolt.dir/build.make _deps/joltphysics-build/CMakeFiles/Jolt.dir/depend</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 950: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build &#38;&#38; /usr/bin/cmake -E cmake_depends &#34;Unix Makefiles&#34; /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build/CMakeFiles/Jolt.d…</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 951: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_depends Unix Makefiles /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build/CMakeFiles/Jolt.dir/DependInfo.cmake --color=</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 952: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f _deps/joltphysics-build/CMakeFiles/Jolt.dir/build.make _deps/joltphysics-build/CMakeFiles/Jolt.dir/build</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">1 min 32 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 953: /bin/sh">/bin/sh</span> <span class="times" title="141 similar processes, the first one shown">×141</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num= &#34;Building CXX object _deps/joltphysics-build/CMakeFiles/Jolt.dir/cmake_pch.hxx.gch&#34;</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 954: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num= Building CXX object _deps/joltphysics-build/CMakeFiles/Jolt.dir/cmake_pch.hxx.gch</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 955: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build &#38;&#38; /usr/bin/c++ -DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -ffunction-sections -fdata-sections -fPIC -m64 -w -fno-rtti -fno-exceptions -Wno-stringop-overflow -Wno-psabi -ffp-contract=fast -O3 -std=c++17 -fP…</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">2.8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 956: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -ffunction-sections -fdata-sections -fPIC -m64 -w -fno-rtti -fno-exceptions -Wno-stringop-overflow -Wno-psabi -ffp-contract=fast -O3 -std=c++17 -fPIC -fvisibility=hidden -mavx2 -mbmi -mpopcnt -mlzcnt -mf16c</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">2.8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 957: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -imultiarch x86_64-linux-gnu -MD CMakeFiles/Jolt.dir/cmake_pch.hxx.d -MF CMakeFiles/Jolt.dir/cmake_pch.hxx.gch.d -MT _deps/joltphysics-build/CMakeFiles/Jolt.dir/cmake_pch.hxx.gch -D_GNU_SOURCE -D_REENTRANT -D JPH_OBJECT_LAYER_BITS=32 -D JPH_OBJECT_STREAM -D JPH_USE_AVX -D JPH_USE_AVX2 -D JPH_USE_F16C -D JPH_USE_FMADD -D JPH_USE_LZCNT -D JPH_USE_SSE4_1 -D JPH_USE_SSE4_2</td>
+<td class="nowrap muted">8.3 s</td>
+<td class="nowrap">2.8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 960: /bin/sh">/bin/sh</span> <span class="times" title="138 similar processes, the first one shown">×138</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build &#38;&#38; /usr/bin/c++ -DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -ffunction-sections -fdata-sections -fPIC -m64 -w -fno-rtti -fno-exceptions -Wno-stringop-overflow -Wno-psabi -ffp-contract=fast -O3 -std=c++17 -fP…</td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">485 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 961: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -ffunction-sections -fdata-sections -fPIC -m64 -w -fno-rtti -fno-exceptions -Wno-stringop-overflow -Wno-psabi -ffp-contract=fast -O3 -std=c++17 -fPIC -fvisibility=hidden -mavx2 -mbmi -mpopcnt -mlzcnt -mf16c</td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">485 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 962: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -imultiarch x86_64-linux-gnu -MD CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/AABBTree/AABBTreeBuilder.cpp.d -MF CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/AABBTree/AABBTreeBuilder.cpp.o.d -MT _deps/joltphysics-build/CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/AABBTree/AABBTreeBuilder.cpp.o -D_GNU_SOURCE -D_REENTRANT -D JPH_OBJECT_LAYER_BITS=32 -D JPH_OBJECT_STREAM -D JPH_USE_AVX -D JPH_USE_AVX2 -D JPH_USE_F16C -D JPH_USE_FMADD -D JPH_USE_LZCNT -D JPH_USE_SSE4_1 -D JPH_USE_SSE4_2</td>
+<td class="nowrap muted">11.1 s</td>
+<td class="nowrap">474 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 963: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. --64 -o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/AABBTree/AABBTreeBuilder.cpp.o /tmp/ccBaWE9N.s</td>
+<td class="nowrap muted">11.6 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1790: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/_deps/joltphysics-build &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/Jolt.dir/link.txt --verbose=</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">133 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1791: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/Jolt.dir/link.txt --verbose=</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">132 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1792: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libJolt.a CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/AABBTree/AABBTreeBuilder.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Compute/ComputeSystem.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/Color.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/Factory.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/IssueReporting.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/JobSystemSingleThreaded.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/JobSystemThreadPool.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/JobSystemWithBarrier.cpp.o CMakeFiles/Jolt.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Jolt/Core/LinearCurve.cpp.o CMakeFile</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">63 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1793: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libJolt.a</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">58 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1794: /bin/sh">/bin/sh</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91 &#34;Built target Jolt&#34;</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1795: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91 Built target Jolt</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1799: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f joltc/CMakeFiles/joltc.dir/build.make joltc/CMakeFiles/joltc.dir/build</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">22.4 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1800: /bin/sh">/bin/sh</span> <span class="times" title="13 similar processes, the first one shown">×13</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num=92 &#34;Building CXX object joltc/CMakeFiles/joltc.dir/src/joltc.cpp.o&#34;</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1801: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num=92 Building CXX object joltc/CMakeFiles/joltc.dir/src/joltc.cpp.o</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1802: /bin/sh">/bin/sh</span> <span class="times" title="10 similar processes, the first one shown">×10</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc &#38;&#38; /usr/bin/c++ -DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I/work/target/debug/build/oxijolt-sys-94c5…</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">8.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1803: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc_ext_generated -ffunction-sections -fdata-sections -fPIC -m64 -w -fno-rtti -fno-exceptions -Wno-stringop-overflow -ffp-contract=off -O3 -std=c++17 -fPIC -fvisibility=hidden -mavx2 -mbmi -mpopcnt</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">8.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1804: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc_ext_generated -imultiarch x86_64-linux-gnu -MD CMakeFiles/joltc.dir/src/joltc.cpp.d -MF CMakeFiles/joltc.dir/src/joltc.cpp.o.d -MT joltc/CMakeFiles/joltc.dir/src/joltc.cpp.o -D_GNU_SOURCE -D_REENTRANT -D JPH_OBJECT_LAYER_BITS=32 -D JPH_OBJECT_STREAM -D JPH_USE_AVX -D JPH_USE_AVX2 -D JPH_USE_F16C -D JPH_USE_FMADD</td>
+<td class="nowrap muted">1 min 41 s</td>
+<td class="nowrap">7.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1805: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc_ext_generated --64 -o CMakeFiles/joltc.dir/src/joltc.cpp.o /tmp/ccfhVxYP.s</td>
+<td class="nowrap muted">1 min 49 s</td>
+<td class="nowrap">81 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1814: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc &#38;&#38; /usr/bin/cc -DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I/work/target/debug/build/oxijolt-sys-94c55…</td>
+<td class="nowrap muted">1 min 50 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1815: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc_ext_generated -ffunction-sections -fdata-sections -fPIC -m64 -w -O3 -DNDEBUG -fPIC -mavx2 -mbmi -mpopcnt -mlzcnt -mf16c -mfma -mfpmath=sse -pthread</td>
+<td class="nowrap muted">1 min 50 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1816: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc_ext_generated -imultiarch x86_64-linux-gnu -MD CMakeFiles/joltc.dir/src/joltc.c.d -MF CMakeFiles/joltc.dir/src/joltc.c.o.d -MT joltc/CMakeFiles/joltc.dir/src/joltc.c.o -D_REENTRANT -D JPH_OBJECT_LAYER_BITS=32 -D JPH_OBJECT_STREAM -D JPH_USE_AVX -D JPH_USE_AVX2 -D JPH_USE_F16C -D JPH_USE_FMADD -D</td>
+<td class="nowrap muted">1 min 50 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1817: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext -I /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc_ext_generated --64 -o CMakeFiles/joltc.dir/src/joltc.c.o /tmp/ccF6K6Hk.s</td>
+<td class="nowrap muted">1 min 50 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1870: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/joltc &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/joltc.dir/link.txt --verbose=</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">29 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1871: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/joltc.dir/link.txt --verbose=</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1872: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libjoltc.a CMakeFiles/joltc.dir/src/joltc.cpp.o CMakeFiles/joltc.dir/src/joltc_assert.cpp.o CMakeFiles/joltc.dir/src/joltc.c.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_body.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_listener.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_material.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_shape.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_shape_state.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_skeleton.cpp.o CMakeFiles/joltc.dir/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/native/joltc_ext/joltc_ext_vehicle.cpp.o</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1873: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libjoltc.a</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1879: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f CMakeFiles/joltc_layout_checks.dir/build.make CMakeFiles/joltc_layout_checks.dir/build</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">1.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1880: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num=100 &#34;Building CXX object CMakeFiles/joltc_layout_checks.dir/layout_checks.cpp.o&#34;</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1881: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/oxijolt-sys-94c55393afaf22e1/out/joltc/build/CMakeFiles --progress-num=100 Building CXX object CMakeFiles/joltc_layout_checks.dir/layout_checks.cpp.o</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1882: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DJPH_OBJECT_LAYER_BITS=32 -DJPH_OBJECT_STREAM -DJPH_USE_AVX -DJPH_USE_AVX2 -DJPH_USE_F16C -DJPH_USE_FMADD -DJPH_USE_LZCNT -DJPH_USE_SSE4_1 -DJPH_USE_SSE4_2 -DJPH_USE_TZCNT -DNDEBUG -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I/cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -ffunction-sections -fdata-sections -fPIC -m64 -w -O3 -DNDEBUG -std=gnu++17 -mavx2 -mbmi -mpopcnt -mlzcnt -mf16c -mfma -mfpmath=sse -pthread -MD -MT</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">1.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1883: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. -imultiarch x86_64-linux-gnu -MD CMakeFiles/joltc_layout_checks.dir/layout_checks.cpp.d -MF CMakeFiles/joltc_layout_checks.dir/layout_checks.cpp.o.d -MT CMakeFiles/joltc_layout_checks.dir/layout_checks.cpp.o -D_GNU_SOURCE -D_REENTRANT -D JPH_OBJECT_LAYER_BITS=32 -D JPH_OBJECT_STREAM -D JPH_USE_AVX -D JPH_USE_AVX2 -D JPH_USE_F16C -D JPH_USE_FMADD -D JPH_USE_LZCNT -D JPH_USE_SSE4_1</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">1.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1884: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/joltc/include -I /cw/vendor/oxijolt-sys-1.1.0+jolt-5.6.0/vendor/JoltPhysics/Build/.. --64 -o CMakeFiles/joltc_layout_checks.dir/layout_checks.cpp.o /tmp/cc1FxzjT.s</td>
+<td class="nowrap muted">2 min 4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1888: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f CMakeFiles/Makefile2 preinstall</td>
+<td class="nowrap muted">2 min 4 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1889: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --cyan &#34;Install the project...&#34;</td>
+<td class="nowrap muted">2 min 4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1890: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --cyan Install the project...</td>
+<td class="nowrap muted">2 min 4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>620</dd></div><div><dt>Directories</dt><dd>121</dd></div><div><dt>Size</dt><dd>200.5 MiB</dd></div><div><dt>Compiled units</dt><dd>48</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: Cargo.toml: version requirement `=1.1.0+jolt-5.6.0` for dependency `target` includes semver metadata which will be ignored, removing the metadata is recommended to avoid confusion
+warning: `crateward-probe` (manifest) generated 1 warning
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling cfg-if v1.0.5
+   Compiling typenum v1.20.1
+   Compiling libc v0.2.190
+   Compiling crc32fast v1.5.2
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling anyhow v1.0.104
+   Compiling find-msvc-tools v0.1.14
+   Compiling simd-adler32 v0.3.10
+   Compiling adler2 v2.0.1
+   Compiling shlex v2.0.1
+   Compiling cc v1.7.0
+   Compiling miniz_oxide v0.9.1
+   Compiling digest v0.10.7
+   Compiling filetime v0.2.29
+   Compiling cpufeatures v0.2.17
+   Compiling sha2 v0.10.9
+   Compiling flate2 v1.1.10
+   Compiling tar v0.4.46
+   Compiling cmake v0.1.58
+   Compiling oxijolt-sys v1.1.0+jolt-5.6.0
+   Compiling crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2m 05s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-10 22:55 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:55 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:55 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:57 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:57 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:57 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:59 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:59 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-10 22:59 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>
