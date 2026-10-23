@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: mobux 0.54.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>mobux <span class="version">0.54.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 147962</span>
+      <a class="muted" href="https://crates.io/crates/mobux/0.54.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="147962.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="147962.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">A build script was added since 0.53.1.</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">4</span></a>
+  <a href="#findings">Static findings <span class="count">305</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">build_script_added</span><div class="sub">diff · mobux</div></td><td class="mono where"></td><td>A build script was added since 0.53.1.</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · mobux</div></td><td class="mono where"><a href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1483" rel="noreferrer noopener" target="_blank">src/config.rs:1483</a></td><td>medium severity environment_enumeration in library code: std::env::vars</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · mobux</div></td><td class="mono where"><a href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L28" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:28</a></td><td>medium severity included_binary in library code: src/local_stt/melfilters.bytes (64320 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · mobux</div></td><td class="mono where"><a href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1010" rel="noreferrer noopener" target="_blank">src/tmux.rs:1010</a></td><td>medium severity shell_command in library code: run-shell -b &#39;curl -fsS --max-time 2 -H &#34;X-Mobux-Token: {token}&#34; -X POST &#34;http://127.0.0.1:{port}/internal/trigger?kind=bell&#38;session=#{{hook_session_name}}&#38;window=#{{window_index}}&#34; &#62;/dev/null 2&#62;&#38;1 ||…</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · mobux</div></td><td class="mono where"><a href="https://crates.io/crates/mobux/0.54.0/code/bin/setup-twa#L386" rel="noreferrer noopener" target="_blank">bin/setup-twa:386</a></td><td>medium severity yara:persistence_locations in library code (6 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · mobux</div></td><td class="mono where"><a href="https://crates.io/crates/mobux/0.54.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:included_binary</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">305</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">9</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">126</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">170</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/bin/setup-twa#L386" rel="noreferrer noopener" target="_blank">bin/setup-twa:386</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L789" rel="noreferrer noopener" target="_blank">src/service.rs:789</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/shell_integration.rs#L115" rel="noreferrer noopener" target="_blank">src/shell_integration.rs:115</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_text.rs#L835" rel="noreferrer noopener" target="_blank">src/speech_text.rs:835</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L636" rel="noreferrer noopener" target="_blank">src/tmux.rs:636</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/web/static/spa/assets/index-UB0LJGu3.js#L3" rel="noreferrer noopener" target="_blank">web/static/spa/assets/index-UB0LJGu3.js:3</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1483" rel="noreferrer noopener" target="_blank">src/config.rs:1483</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">src/local_stt/melfilters.bytes (64320 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L28" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:28</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">run-shell -b &#39;curl -fsS --max-time 2 -H &#34;X-Mobux-Token: {token}&#34; -X POST &#34;http://127.0.0.1:{port}/internal/trigger?kind=bell&#38;session=#{{hook_session_name}}&#38;window=#{{window_index}}&#34; &#62;/dev/null 2&#62;&#38;1 ||…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1010" rel="noreferrer noopener" target="_blank">src/tmux.rs:1010</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">70</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L169" rel="noreferrer noopener" target="_blank">src/access.rs:169</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L177" rel="noreferrer noopener" target="_blank">src/access.rs:177</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L337" rel="noreferrer noopener" target="_blank">src/access.rs:337</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L218" rel="noreferrer noopener" target="_blank">src/push.rs:218</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L186" rel="noreferrer noopener" target="_blank">src/release_asset.rs:186</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L287" rel="noreferrer noopener" target="_blank">src/release_asset.rs:287</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L317" rel="noreferrer noopener" target="_blank">src/release_asset.rs:317</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L284" rel="noreferrer noopener" target="_blank">src/access.rs:284</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L303" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:303</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L496" rel="noreferrer noopener" target="_blank">src/access.rs:496</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L874" rel="noreferrer noopener" target="_blank">src/access.rs:874</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/kyutai_stt.rs#L268" rel="noreferrer noopener" target="_blank">src/kyutai_stt.rs:268</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L736" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:736</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L830" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:830</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L981" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:981</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_tts/engine.rs#L678" rel="noreferrer noopener" target="_blank">src/local_tts/engine.rs:678</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L235" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:235</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/nodes.rs#L118" rel="noreferrer noopener" target="_blank">src/nodes.rs:118</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/nodes.rs#L130" rel="noreferrer noopener" target="_blank">src/nodes.rs:130</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/pages_settings.rs#L327" rel="noreferrer noopener" target="_blank">src/pages_settings.rs:327</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L625" rel="noreferrer noopener" target="_blank">src/proxy.rs:625</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L848" rel="noreferrer noopener" target="_blank">src/proxy.rs:848</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L454" rel="noreferrer noopener" target="_blank">src/release_asset.rs:454</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L330" rel="noreferrer noopener" target="_blank">src/transcribe.rs:330</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L393" rel="noreferrer noopener" target="_blank">src/transcribe.rs:393</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L418" rel="noreferrer noopener" target="_blank">src/transcribe.rs:418</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L457" rel="noreferrer noopener" target="_blank">src/transcribe.rs:457</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tts_provider.rs#L129" rel="noreferrer noopener" target="_blank">src/tts_provider.rs:129</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L615" rel="noreferrer noopener" target="_blank">src/update.rs:615</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L533" rel="noreferrer noopener" target="_blank">src/access.rs:533</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L304" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:304</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L358" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:358</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L178" rel="noreferrer noopener" target="_blank">src/push.rs:178</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L459" rel="noreferrer noopener" target="_blank">src/release_asset.rs:459</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/kyutai_stt.rs#L93" rel="noreferrer noopener" target="_blank">src/kyutai_stt.rs:93</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1064" rel="noreferrer noopener" target="_blank">src/proxy.rs:1064</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1088" rel="noreferrer noopener" target="_blank">src/proxy.rs:1088</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1107" rel="noreferrer noopener" target="_blank">src/proxy.rs:1107</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L216" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:216</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L234" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:234</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L296" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:296</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L397" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:397</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L496" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:496</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L508" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:508</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L519" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:519</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L303" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:303</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L315" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:315</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/nodes.rs#L84" rel="noreferrer noopener" target="_blank">src/nodes.rs:84</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1065" rel="noreferrer noopener" target="_blank">src/proxy.rs:1065</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::OK</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L386" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:386</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L474" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:474</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L489" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:489</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L523" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:523</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::legacy::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L68" rel="noreferrer noopener" target="_blank">src/proxy.rs:68</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::legacy::connect::HttpConnector</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L68" rel="noreferrer noopener" target="_blank">src/proxy.rs:68</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::legacy::connect::HttpConnector::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L78" rel="noreferrer noopener" target="_blank">src/proxy.rs:78</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::legacy::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L93" rel="noreferrer noopener" target="_blank">src/proxy.rs:93</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::legacy::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L490" rel="noreferrer noopener" target="_blank">src/proxy.rs:490</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::NOT_FOUND</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L286" rel="noreferrer noopener" target="_blank">src/push.rs:286</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::GONE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L286" rel="noreferrer noopener" target="_blank">src/push.rs:286</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L168" rel="noreferrer noopener" target="_blank">src/release_asset.rs:168</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L93" rel="noreferrer noopener" target="_blank">src/transcribe.rs:93</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L189" rel="noreferrer noopener" target="_blank">src/transcribe.rs:189</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tts_provider.rs#L38" rel="noreferrer noopener" target="_blank">src/tts_provider.rs:38</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L194" rel="noreferrer noopener" target="_blank">src/update.rs:194</a> </span></li>
+
+<li><code class="evidence-text">reqwest::multipart::Part::bytes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L98" rel="noreferrer noopener" target="_blank">src/transcribe.rs:98</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L194" rel="noreferrer noopener" target="_blank">src/transcribe.rs:194</a> </span></li>
+
+<li><code class="evidence-text">reqwest::multipart::Form::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L103" rel="noreferrer noopener" target="_blank">src/transcribe.rs:103</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L201" rel="noreferrer noopener" target="_blank">src/transcribe.rs:201</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tts_provider.rs#L44" rel="noreferrer noopener" target="_blank">src/tts_provider.rs:44</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">36</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/files.rs#L680" rel="noreferrer noopener" target="_blank">src/files.rs:680</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L935" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:935</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L605" rel="noreferrer noopener" target="_blank">src/release_asset.rs:605</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L455" rel="noreferrer noopener" target="_blank">src/service.rs:455</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L536" rel="noreferrer noopener" target="_blank">src/service.rs:536</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L405" rel="noreferrer noopener" target="_blank">src/tmux.rs:405</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/twa.rs#L109" rel="noreferrer noopener" target="_blank">src/twa.rs:109</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/twa.rs#L489" rel="noreferrer noopener" target="_blank">src/twa.rs:489</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/twa.rs#L555" rel="noreferrer noopener" target="_blank">src/twa.rs:555</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/twa.rs#L620" rel="noreferrer noopener" target="_blank">src/twa.rs:620</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L566" rel="noreferrer noopener" target="_blank">src/update.rs:566</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L705" rel="noreferrer noopener" target="_blank">src/update.rs:705</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update_cli.rs#L158" rel="noreferrer noopener" target="_blank">src/update_cli.rs:158</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update_cli.rs#L246" rel="noreferrer noopener" target="_blank">src/update_cli.rs:246</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/host_suggestions.rs#L126" rel="noreferrer noopener" target="_blank">src/host_suggestions.rs:126</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/host_suggestions.rs#L174" rel="noreferrer noopener" target="_blank">src/host_suggestions.rs:174</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L35" rel="noreferrer noopener" target="_blank">src/tmux.rs:35</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L73" rel="noreferrer noopener" target="_blank">src/tmux.rs:73</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L121" rel="noreferrer noopener" target="_blank">src/tmux.rs:121</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L167" rel="noreferrer noopener" target="_blank">src/tmux.rs:167</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L340" rel="noreferrer noopener" target="_blank">src/tmux.rs:340</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L360" rel="noreferrer noopener" target="_blank">src/tmux.rs:360</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1016" rel="noreferrer noopener" target="_blank">src/tmux.rs:1016</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1655" rel="noreferrer noopener" target="_blank">src/tmux.rs:1655</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1703" rel="noreferrer noopener" target="_blank">src/tmux.rs:1703</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1775" rel="noreferrer noopener" target="_blank">src/tmux.rs:1775</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1819" rel="noreferrer noopener" target="_blank">src/tmux.rs:1819</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1849" rel="noreferrer noopener" target="_blank">src/tmux.rs:1849</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L454" rel="noreferrer noopener" target="_blank">src/service.rs:454</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L465" rel="noreferrer noopener" target="_blank">src/service.rs:465</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/twa.rs#L108" rel="noreferrer noopener" target="_blank">src/twa.rs:108</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L34" rel="noreferrer noopener" target="_blank">src/tmux.rs:34</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L70" rel="noreferrer noopener" target="_blank">src/tmux.rs:70</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L429" rel="noreferrer noopener" target="_blank">src/tmux.rs:429</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L455" rel="noreferrer noopener" target="_blank">src/tmux.rs:455</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1444" rel="noreferrer noopener" target="_blank">src/tmux.rs:1444</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">binary</span> <span class="count">11</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L507" rel="noreferrer noopener" target="_blank">src/main.rs:507</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L596" rel="noreferrer noopener" target="_blank">src/main.rs:596</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L613" rel="noreferrer noopener" target="_blank">src/main.rs:613</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L698" rel="noreferrer noopener" target="_blank">src/main.rs:698</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L4156" rel="noreferrer noopener" target="_blank">src/main.rs:4156</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L4982" rel="noreferrer noopener" target="_blank">src/main.rs:4982</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5609" rel="noreferrer noopener" target="_blank">src/main.rs:5609</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L621" rel="noreferrer noopener" target="_blank">src/main.rs:621</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L4075" rel="noreferrer noopener" target="_blank">src/main.rs:4075</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L4747" rel="noreferrer noopener" target="_blank">src/main.rs:4747</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L4871" rel="noreferrer noopener" target="_blank">src/main.rs:4871</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">binary</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L184" rel="noreferrer noopener" target="_blank">src/main.rs:184</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L248" rel="noreferrer noopener" target="_blank">src/main.rs:248</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L286" rel="noreferrer noopener" target="_blank">src/main.rs:286</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L287" rel="noreferrer noopener" target="_blank">src/main.rs:287</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5987" rel="noreferrer noopener" target="_blank">src/main.rs:5987</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L3800" rel="noreferrer noopener" target="_blank">src/main.rs:3800</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L3807" rel="noreferrer noopener" target="_blank">src/main.rs:3807</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5988" rel="noreferrer noopener" target="_blank">src/main.rs:5988</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">156</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L352" rel="noreferrer noopener" target="_blank">src/access.rs:352</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L300" rel="noreferrer noopener" target="_blank">src/config.rs:300</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1903" rel="noreferrer noopener" target="_blank">src/config.rs:1903</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L696" rel="noreferrer noopener" target="_blank">src/db.rs:696</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L174" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:174</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L497" rel="noreferrer noopener" target="_blank">src/access.rs:497</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L875" rel="noreferrer noopener" target="_blank">src/access.rs:875</a> </span></li>
+
+<li><code class="evidence-text">https://other.cloudflareaccess.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L644" rel="noreferrer noopener" target="_blank">src/access.rs:644</a> </span></li>
+
+<li><code class="evidence-text">http://evil.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1071" rel="noreferrer noopener" target="_blank">src/access.rs:1071</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L401" rel="noreferrer noopener" target="_blank">src/mcp.rs:401</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:5153</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1086" rel="noreferrer noopener" target="_blank">src/access.rs:1086</a> </span></li>
+
+<li><code class="evidence-text">https://127.0.0.1:5153</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1088" rel="noreferrer noopener" target="_blank">src/access.rs:1088</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:5154</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1092" rel="noreferrer noopener" target="_blank">src/access.rs:1092</a> </span></li>
+
+<li><code class="evidence-text">https://Mobux.Example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1101" rel="noreferrer noopener" target="_blank">src/access.rs:1101</a> </span></li>
+
+<li><code class="evidence-text">http://mobux.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1105" rel="noreferrer noopener" target="_blank">src/access.rs:1105</a> </span></li>
+
+<li><code class="evidence-text">https://mobux.example.com.evil.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/access.rs#L1109" rel="noreferrer noopener" target="_blank">src/access.rs:1109</a> </span></li>
+
+<li><code class="evidence-text">https://acme.example/dir</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/cli.rs#L854" rel="noreferrer noopener" target="_blank">src/cli.rs:854</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/cli.rs#L872" rel="noreferrer noopener" target="_blank">src/cli.rs:872</a> </span></li>
+
+<li><code class="evidence-text">https://index.example/mobux</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/cli.rs#L905" rel="noreferrer noopener" target="_blank">src/cli.rs:905</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/cli.rs#L935" rel="noreferrer noopener" target="_blank">src/cli.rs:935</a> </span></li>
+
+<li><code class="evidence-text">https://acme-v02.api.letsencrypt.org/directory</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L24" rel="noreferrer noopener" target="_blank">src/config.rs:24</a> </span></li>
+
+<li><code class="evidence-text">https://index.crates.io/mo/bu/mobux</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L28" rel="noreferrer noopener" target="_blank">src/config.rs:28</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L647" rel="noreferrer noopener" target="_blank">src/update.rs:647</a> </span></li>
+
+<li><code class="evidence-text">https://{domain}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L303" rel="noreferrer noopener" target="_blank">src/config.rs:303</a> </span></li>
+
+<li><code class="evidence-text">VAPID contact, a mailto: address or an https:// URL</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1025" rel="noreferrer noopener" target="_blank">src/config.rs:1025</a> </span></li>
+
+<li><code class="evidence-text">Cloudflare Access team domain or https:// origin, e.g. example.cloudflareaccess.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1046" rel="noreferrer noopener" target="_blank">src/config.rs:1046</a> </span></li>
+
+<li><code class="evidence-text">must be an https:// origin or a bare hostname such as example.cloudflareaccess.com, without a path or query; http:// is allowed only for 127.0.0.1 and localhost</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1891" rel="noreferrer noopener" target="_blank">src/config.rs:1891</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1977" rel="noreferrer noopener" target="_blank">src/config.rs:1977</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1977" rel="noreferrer noopener" target="_blank">src/config.rs:1977</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1994" rel="noreferrer noopener" target="_blank">src/config.rs:1994</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2218" rel="noreferrer noopener" target="_blank">src/config.rs:2218</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3106" rel="noreferrer noopener" target="_blank">src/config.rs:3106</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L94" rel="noreferrer noopener" target="_blank">src/mcp.rs:94</a> </span></li>
+
+<li><code class="evidence-text">must be an https:// URL</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1980" rel="noreferrer noopener" target="_blank">src/config.rs:1980</a> </span></li>
+
+<li><code class="evidence-text">must be a mailto: address or an https:// URL</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L1998" rel="noreferrer noopener" target="_blank">src/config.rs:1998</a> </span></li>
+
+<li><code class="evidence-text">{&#34;tls&#34;: {&#34;acme_directory&#34;: &#34;http://acme.example/dir&#34;}}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2216" rel="noreferrer noopener" target="_blank">src/config.rs:2216</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}                &#34;server&#34;: {&#34;base_path&#34;: &#34;/filed&#34;, &#34;behind_tls_proxy&#34;: false},\u{a}                &#34;auth&#34;: {&#34;pass&#34;: &#34;filed&#34;},\u{a}                &#34;tls&#34;: {\u{a}                    &#34;enabled&#34;: true,…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2530" rel="noreferrer noopener" target="_blank">src/config.rs:2530</a> </span></li>
+
+<li><code class="evidence-text">https://enved.example/dir</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2560" rel="noreferrer noopener" target="_blank">src/config.rs:2560</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2581" rel="noreferrer noopener" target="_blank">src/config.rs:2581</a> </span></li>
+
+<li><code class="evidence-text">https://enved.example/index</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2568" rel="noreferrer noopener" target="_blank">src/config.rs:2568</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L2589" rel="noreferrer noopener" target="_blank">src/config.rs:2589</a> </span></li>
+
+<li><code class="evidence-text">https://example.cloudflareaccess.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3058" rel="noreferrer noopener" target="_blank">src/config.rs:3058</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3070" rel="noreferrer noopener" target="_blank">src/config.rs:3070</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3078" rel="noreferrer noopener" target="_blank">src/config.rs:3078</a> </span></li>
+
+<li><code class="evidence-text">https://example.cloudflareaccess.com/cdn-cgi/access/certs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3061" rel="noreferrer noopener" target="_blank">src/config.rs:3061</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3081" rel="noreferrer noopener" target="_blank">src/config.rs:3081</a> </span></li>
+
+<li><code class="evidence-text">https://Example.CloudflareAccess.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3067" rel="noreferrer noopener" target="_blank">src/config.rs:3067</a> </span></li>
+
+<li><code class="evidence-text">https://example.cloudflareaccess.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3075" rel="noreferrer noopener" target="_blank">src/config.rs:3075</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9123</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3088" rel="noreferrer noopener" target="_blank">src/config.rs:3088</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3088" rel="noreferrer noopener" target="_blank">src/config.rs:3088</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:9123</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3089" rel="noreferrer noopener" target="_blank">src/config.rs:3089</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3089" rel="noreferrer noopener" target="_blank">src/config.rs:3089</a> </span></li>
+
+<li><code class="evidence-text">http://example.cloudflareaccess.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3100" rel="noreferrer noopener" target="_blank">src/config.rs:3100</a> </span></li>
+
+<li><code class="evidence-text">ftp://example.cloudflareaccess.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3101" rel="noreferrer noopener" target="_blank">src/config.rs:3101</a> </span></li>
+
+<li><code class="evidence-text">https://example.cloudflareaccess.com/cdn-cgi</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3102" rel="noreferrer noopener" target="_blank">src/config.rs:3102</a> </span></li>
+
+<li><code class="evidence-text">https://example.cloudflareaccess.com?team=x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3104" rel="noreferrer noopener" target="_blank">src/config.rs:3104</a> </span></li>
+
+<li><code class="evidence-text">https://example.cloudflareaccess.com:https</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3105" rel="noreferrer noopener" target="_blank">src/config.rs:3105</a> </span></li>
+
+<li><code class="evidence-text">must be an https:// origin</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3112" rel="noreferrer noopener" target="_blank">src/config.rs:3112</a> </span></li>
+
+<li><code class="evidence-text">https://evil.example/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3122" rel="noreferrer noopener" target="_blank">src/config.rs:3122</a> </span></li>
+
+<li><code class="evidence-text">https://mobux.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3136" rel="noreferrer noopener" target="_blank">src/config.rs:3136</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}            &#34;stt&#34;: {&#34;active&#34;: &#34;mistral&#34;, &#34;providers&#34;: {\u{a}                &#34;mistral&#34;: {&#34;host&#34;: &#34;https://api.mistral.ai&#34;, &#34;port&#34;: &#34;443&#34;,\u{a}                            &#34;model&#34;: &#34;voxtral-mini-la…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/config.rs#L3277" rel="noreferrer noopener" target="_blank">src/config.rs:3277</a> </span></li>
+
+<li><code class="evidence-text"># tunnel and credentials-file come from `cloudflared tunnel create mobux`\u{a}tunnel: &#60;TUNNEL-ID&#62;\u{a}credentials-file: /home/&#60;user&#62;/.cloudflared/&#60;TUNNEL-ID&#62;.json\u{a}\u{a}ingress:\u{a}  - hostname: {…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/configure.rs#L337" rel="noreferrer noopener" target="_blank">src/configure.rs:337</a> </span></li>
+
+<li><code class="evidence-text"># tunnel and credentials-file come from `cloudflared tunnel create mobux`\u{a}tunnel: &#60;TUNNEL-ID&#62;\u{a}credentials-file: /home/&#60;user&#62;/.cloudflared/&#60;TUNNEL-ID&#62;.json\u{a}\u{a}ingress:\u{a}  - hostname: m…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/configure.rs#L775" rel="noreferrer noopener" target="_blank">src/configure.rs:775</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/configure.rs#L831" rel="noreferrer noopener" target="_blank">src/configure.rs:831</a> </span></li>
+
+<li><code class="evidence-text">CREATE TABLE IF NOT EXISTS vapid_keys (\u{a}                id INTEGER PRIMARY KEY,\u{a}                public_key BLOB NOT NULL,\u{a}                private_key BLOB NOT NULL,\u{a}                cre…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L150" rel="noreferrer noopener" target="_blank">src/db.rs:150</a> </span></li>
+
+<li><code class="evidence-text">https://push.example/abc</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L777" rel="noreferrer noopener" target="_blank">src/db.rs:777</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L790" rel="noreferrer noopener" target="_blank">src/db.rs:790</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L803" rel="noreferrer noopener" target="_blank">src/db.rs:803</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:5200/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L902" rel="noreferrer noopener" target="_blank">src/db.rs:902</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/stt_debug.rs#L135" rel="noreferrer noopener" target="_blank">src/stt_debug.rs:135</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/stt_debug.rs#L183" rel="noreferrer noopener" target="_blank">src/stt_debug.rs:183</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L218" rel="noreferrer noopener" target="_blank">src/transcribe.rs:218</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L240" rel="noreferrer noopener" target="_blank">src/transcribe.rs:240</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L903" rel="noreferrer noopener" target="_blank">src/db.rs:903</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/stt_debug.rs#L133" rel="noreferrer noopener" target="_blank">src/stt_debug.rs:133</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/stt_debug.rs#L179" rel="noreferrer noopener" target="_blank">src/stt_debug.rs:179</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tts_provider.rs#L132" rel="noreferrer noopener" target="_blank">src/tts_provider.rs:132</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com:443/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L906" rel="noreferrer noopener" target="_blank">src/db.rs:906</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L253" rel="noreferrer noopener" target="_blank">src/transcribe.rs:253</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L260" rel="noreferrer noopener" target="_blank">src/transcribe.rs:260</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L907" rel="noreferrer noopener" target="_blank">src/db.rs:907</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L970" rel="noreferrer noopener" target="_blank">src/db.rs:970</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L56" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:56</a> </span></li>
+
+<li><code class="evidence-text">CREATE TABLE IF NOT EXISTS stt_config (\u{a}                id INTEGER PRIMARY KEY CHECK (id = 1),\u{a}                kind TEXT NOT NULL,\u{a}                url TEXT NOT NULL,\u{a}                mo…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/db.rs#L919" rel="noreferrer noopener" target="_blank">src/db.rs:919</a> </span></li>
+
+<li><code class="evidence-text">https://host/proxy/workspace/8080/files/site</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/files.rs#L616" rel="noreferrer noopener" target="_blank">src/files.rs:616</a> </span></li>
+
+<li><code class="evidence-text">https://host/proxy/workspace/8080/files/site/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/files.rs#L617" rel="noreferrer noopener" target="_blank">src/files.rs:617</a> </span></li>
+
+<li><code class="evidence-text">https://host/proxy/workspace/8080/files/site/css</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/files.rs#L629" rel="noreferrer noopener" target="_blank">src/files.rs:629</a> </span></li>
+
+<li><code class="evidence-text">https://host/proxy/workspace/8080/files/site/css/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/files.rs#L632" rel="noreferrer noopener" target="_blank">src/files.rs:632</a> </span></li>
+
+<li><code class="evidence-text">ws://{addr}{PATH}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/kyutai_stt.rs#L271" rel="noreferrer noopener" target="_blank">src/kyutai_stt.rs:271</a> </span></li>
+
+<li><code class="evidence-text">ws://127.0.0.1:19998{PATH}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/kyutai_stt.rs#L367" rel="noreferrer noopener" target="_blank">src/kyutai_stt.rs:367</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/mvhenten/mobux/releases/download/v{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt.rs#L57" rel="noreferrer noopener" target="_blank">src/local_stt.rs:57</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_tts.rs#L58" rel="noreferrer noopener" target="_blank">src/local_tts.rs:58</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L741" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:741</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L839" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:839</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L988" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:988</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_tts/engine.rs#L686" rel="noreferrer noopener" target="_blank">src/local_tts/engine.rs:686</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L337" rel="noreferrer noopener" target="_blank">src/transcribe.rs:337</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:*</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L33" rel="noreferrer noopener" target="_blank">src/mcp.rs:33</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:*</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L34" rel="noreferrer noopener" target="_blank">src/mcp.rs:34</a> </span></li>
+
+<li><code class="evidence-text">http://[::1]:*</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L35" rel="noreferrer noopener" target="_blank">src/mcp.rs:35</a> </span></li>
+
+<li><code class="evidence-text">https://localhost:*</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L36" rel="noreferrer noopener" target="_blank">src/mcp.rs:36</a> </span></li>
+
+<li><code class="evidence-text">https://127.0.0.1:*</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L37" rel="noreferrer noopener" target="_blank">src/mcp.rs:37</a> </span></li>
+
+<li><code class="evidence-text">https://[::1]:*</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L38" rel="noreferrer noopener" target="_blank">src/mcp.rs:38</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L94" rel="noreferrer noopener" target="_blank">src/mcp.rs:94</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L385" rel="noreferrer noopener" target="_blank">src/mcp.rs:385</a> </span></li>
+
+<li><code class="evidence-text">https://127.0.0.1.evil.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L402" rel="noreferrer noopener" target="_blank">src/mcp.rs:402</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L442" rel="noreferrer noopener" target="_blank">src/mcp.rs:442</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp.rs#L443" rel="noreferrer noopener" target="_blank">src/mcp.rs:443</a> </span></li>
+
+<li><code class="evidence-text">mcp: http://127.0.0.1:{port}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L225" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:225</a> </span></li>
+
+<li><code class="evidence-text">claude mcp add --scope user --transport http mobux http://127.0.0.1:{port}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L242" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:242</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L305" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:305</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L357" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:357</a> </span></li>
+
+<li><code class="evidence-text">claude mcp add --scope user --transport http mobux http://127.0.0.1:9123/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L454" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:454</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8415/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/mcp_settings.rs#L464" rel="noreferrer noopener" target="_blank">src/mcp_settings.rs:464</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}/{rest}?{query}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L174" rel="noreferrer noopener" target="_blank">src/proxy.rs:174</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}/{rest}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L175" rel="noreferrer noopener" target="_blank">src/proxy.rs:175</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L594" rel="noreferrer noopener" target="_blank">src/proxy.rs:594</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1031" rel="noreferrer noopener" target="_blank">src/proxy.rs:1031</a> </span></li>
+
+<li><code class="evidence-text">https://host/outer/proxy/up/a/b/redirect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1025" rel="noreferrer noopener" target="_blank">src/proxy.rs:1025</a> </span></li>
+
+<li><code class="evidence-text">https://host/outer/proxy/up/landing?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/proxy.rs#L1026" rel="noreferrer noopener" target="_blank">src/proxy.rs:1026</a> </span></li>
+
+<li><code class="evidence-text">https://host/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L324" rel="noreferrer noopener" target="_blank">src/push.rs:324</a> </span></li>
+
+<li><code class="evidence-text">https://host/s/work</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L327" rel="noreferrer noopener" target="_blank">src/push.rs:327</a> </span></li>
+
+<li><code class="evidence-text">https://host/s/work?w=3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L331" rel="noreferrer noopener" target="_blank">src/push.rs:331</a> </span></li>
+
+<li><code class="evidence-text">https://host/mobux/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L337" rel="noreferrer noopener" target="_blank">src/push.rs:337</a> </span></li>
+
+<li><code class="evidence-text">https://host/mobux/s/work?w=3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/push.rs#L340" rel="noreferrer noopener" target="_blank">src/push.rs:340</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}/{asset}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/release_asset.rs#L464" rel="noreferrer noopener" target="_blank">src/release_asset.rs:464</a> </span></li>
+
+<li><code class="evidence-text">mobux listens on {scheme}://&#60;this-host&#62;:{} as user {:?}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L259" rel="noreferrer noopener" target="_blank">src/service.rs:259</a> </span></li>
+
+<li><code class="evidence-text">mobux listens on {scheme}://&#60;this-host&#62;:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/service.rs#L262" rel="noreferrer noopener" target="_blank">src/service.rs:262</a> </span></li>
+
+<li><code class="evidence-text">https://api.mistral.ai</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L57" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:57</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L100" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:100</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L333" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:333</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L411" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:411</a> </span></li>
+
+<li><code class="evidence-text">ws://localhost</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L58" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:58</a> </span></li>
+
+<li><code class="evidence-text">http://localhost</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L106" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:106</a> </span></li>
+
+<li><code class="evidence-text">http://{host}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L177" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:177</a> </span></li>
+
+<li><code class="evidence-text">{&#34;kind&#34;: &#34;kyutai&#34;, &#34;host&#34;: &#34;http://pocket&#34;, &#34;port&#34;: &#34;8000&#34;, &#34;voice&#34;: &#34;alba&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L381" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:381</a> </span></li>
+
+<li><code class="evidence-text">http://pocket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L427" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:427</a> </span></li>
+
+<li><code class="evidence-text">INSERT INTO stt_providers (kind, host, port, url, model, api_key)\u{a}                 VALUES (&#39;openai&#39;, &#39;https://api.openai.com&#39;, &#39;443&#39;, &#39;&#39;, &#39;whisper-1&#39;, &#39;sk-old&#39;);\u{a}                 INSERT INTO s…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L449" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:449</a> </span></li>
+
+<li><code class="evidence-text">ws://localhost:8080/api/asr-streaming</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L503" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:503</a> </span></li>
+
+<li><code class="evidence-text">https://api.mistral.ai:443/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L508" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:508</a> </span></li>
+
+<li><code class="evidence-text">http://lab</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_settings.rs#L510" rel="noreferrer noopener" target="_blank">src/speech_settings.rs:510</a> </span></li>
+
+<li><code class="evidence-text">\u{1b}]8;;https://example.com\u{1b}\link\u{1b}]8;;\u{1b}\</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/speech_text.rs#L701" rel="noreferrer noopener" target="_blank">src/speech_text.rs:701</a> </span></li>
+
+<li><code class="evidence-text">run-shell -b &#39;curl -fsS --max-time 2 -H &#34;X-Mobux-Token: {token}&#34; -X POST &#34;http://127.0.0.1:{port}/internal/trigger?kind=bell&#38;session=#{{hook_session_name}}&#38;window=#{{window_index}}&#34; &#62;/dev/null 2&#62;&#38;1 ||…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tmux.rs#L1010" rel="noreferrer noopener" target="_blank">src/tmux.rs:1010</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:5200</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L227" rel="noreferrer noopener" target="_blank">src/transcribe.rs:227</a> </span></li>
+
+<li><code class="evidence-text">http://lab:8081/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L271" rel="noreferrer noopener" target="_blank">src/transcribe.rs:271</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L278" rel="noreferrer noopener" target="_blank">src/transcribe.rs:278</a> </span></li>
+
+<li><code class="evidence-text">ws://gpu:8080/api/asr-streaming</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L290" rel="noreferrer noopener" target="_blank">src/transcribe.rs:290</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:19999/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L373" rel="noreferrer noopener" target="_blank">src/transcribe.rs:373</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L435" rel="noreferrer noopener" target="_blank">src/transcribe.rs:435</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L400" rel="noreferrer noopener" target="_blank">src/transcribe.rs:400</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L425" rel="noreferrer noopener" target="_blank">src/transcribe.rs:425</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/transcribe.rs#L464" rel="noreferrer noopener" target="_blank">src/transcribe.rs:464</a> </span></li>
+
+<li><code class="evidence-text">voice_url must start with http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/tts_provider.rs#L249" rel="noreferrer noopener" target="_blank">src/tts_provider.rs:249</a> </span></li>
+
+<li><code class="evidence-text">https://box.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/twa.rs#L355" rel="noreferrer noopener" target="_blank">src/twa.rs:355</a> </span></li>
+
+<li><code class="evidence-text"> (self-update; +https://github.com/mvhenten/mobux)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L47" rel="noreferrer noopener" target="_blank">src/update.rs:47</a> </span></li>
+
+<li><code class="evidence-text">http://{}/index</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L616" rel="noreferrer noopener" target="_blank">src/update.rs:616</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">11</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">mobux listening on https://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L590" rel="noreferrer noopener" target="_blank">src/main.rs:590</a> </span></li>
+
+<li><code class="evidence-text">mobux listening on http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L595" rel="noreferrer noopener" target="_blank">src/main.rs:595</a> </span></li>
+
+<li><code class="evidence-text">access: listening on http://{addr} for Cloudflare Access team {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L625" rel="noreferrer noopener" target="_blank">src/main.rs:625</a> </span></li>
+
+<li><code class="evidence-text">[ssl] ACME: HTTP-01 challenge server listening on http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L705" rel="noreferrer noopener" target="_blank">src/main.rs:705</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L4160" rel="noreferrer noopener" target="_blank">src/main.rs:4160</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com:443/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5462" rel="noreferrer noopener" target="_blank">src/main.rs:5462</a> </span></li>
+
+<li><code class="evidence-text">http://lab:8081/v1/audio/transcriptions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5477" rel="noreferrer noopener" target="_blank">src/main.rs:5477</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5625" rel="noreferrer noopener" target="_blank">src/main.rs:5625</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5758" rel="noreferrer noopener" target="_blank">src/main.rs:5758</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L5784" rel="noreferrer noopener" target="_blank">src/main.rs:5784</a> </span></li>
+
+<li><code class="evidence-text">\u{1b}]8;;https://example.com\u{1b}\link\u{1b}]8;;\u{1b}\</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/main.rs#L6086" rel="noreferrer noopener" target="_blank">src/main.rs:6086</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/local_stt/engine.rs#L351" rel="noreferrer noopener" target="_blank">src/local_stt/engine.rs:351</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/shell_integration.rs#L417" rel="noreferrer noopener" target="_blank">src/shell_integration.rs:417</a> <a class="place" href="https://crates.io/crates/mobux/0.54.0/code/src/update.rs#L685" rel="noreferrer noopener" target="_blank">src/update.rs:685</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>725 ms</dd></div><div><dt>VM restore</dt><dd>72 ms</dd></div><div><dt>Payload</dt><dd>23100 files, 452.6 MiB</dd></div><div><dt>Files opened</dt><dd>1026</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">715 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">437 ms</td>
+<td class="nowrap">255 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.64s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-13 10:36 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 10:36 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 11:49 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 11:49 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 11:49 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 11:49 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

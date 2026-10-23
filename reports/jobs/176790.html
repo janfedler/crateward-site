@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: rauto 0.5.3</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>rauto <span class="version">0.5.3</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">static only</span>
+      <span class="muted">job 176790</span>
+      <a class="muted" href="https://crates.io/crates/rauto/0.5.3" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="176790.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="176790.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity yara:bidi_control_characters in library code: Unicode bidirectional control characters, used to make source code read differently than it compiles (Trojan Source, CVE-2021-42574)</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">52</span></a>
+  
+  <a href="#timeline">Timeline <span class="count">4</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:yara:bidi_control_characters</span><div class="sub">static · rauto</div></td><td class="mono where"><a href="https://crates.io/crates/rauto/0.5.3/code/static/assets/code-editor-C2UQv0uH.js#L9" rel="noreferrer noopener" target="_blank">static/assets/code-editor-C2UQv0uH.js:9</a></td><td>high severity yara:bidi_control_characters in library code: Unicode bidirectional control characters, used to make source code read differently than it compiles (Trojan Source, CVE-2021-42574)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · rauto</div></td><td class="mono where"><a href="https://crates.io/crates/rauto/0.5.3/code/src/cli/commands.rs#L1382" rel="noreferrer noopener" target="_blank">src/cli/commands.rs:1382</a></td><td>medium severity credential_access in library code (5 places): /run/secrets/id_ed25519</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · rauto</div></td><td class="mono where"><a href="https://crates.io/crates/rauto/0.5.3/code/src/cli/completion.rs#L42" rel="noreferrer noopener" target="_blank">src/cli/completion.rs:42</a></td><td>medium severity shell_command in library code (6 places): completion/powershell.ps1</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:invisible_characters</span><div class="sub">static · rauto</div></td><td class="mono where"><a href="https://crates.io/crates/rauto/0.5.3/code/static/assets/code-editor-C2UQv0uH.js#L9" rel="noreferrer noopener" target="_blank">static/assets/code-editor-C2UQv0uH.js:9</a></td><td>medium severity yara:invisible_characters in library code: Zero width or invisible characters, which can hide identifiers or payloads</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · rauto</div></td><td class="mono where"><a href="https://crates.io/crates/rauto/0.5.3/code/README.md#L165" rel="noreferrer noopener" target="_blank">README.md:165</a></td><td>medium severity yara:persistence_locations in library code: Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · rauto</div></td><td class="mono where"><a href="https://crates.io/crates/rauto/0.5.3/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:bidi_control_characters</code> <code class="chip">static:yara:invisible_characters</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">52</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">13</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">16</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">22</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">yara_match bidi_control_characters</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Unicode bidirectional control characters, used to make source code read differently than it compiles (Trojan Source, CVE-2021-42574)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/static/assets/code-editor-C2UQv0uH.js#L9" rel="noreferrer noopener" target="_blank">static/assets/code-editor-C2UQv0uH.js:9</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">/run/secrets/id_ed25519</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/cli/commands.rs#L1382" rel="noreferrer noopener" target="_blank">src/cli/commands.rs:1382</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/config/device_credential_import.rs#L538" rel="noreferrer noopener" target="_blank">src/config/device_credential_import.rs:538</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/config/session_recording.rs#L138" rel="noreferrer noopener" target="_blank">src/config/session_recording.rs:138</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/device_credential_store.rs#L691" rel="noreferrer noopener" target="_blank">src/infrastructure/db/device_credential_store.rs:691</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/device_credential_store.rs#L696" rel="noreferrer noopener" target="_blank">src/infrastructure/db/device_credential_store.rs:696</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L72" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:72</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L86" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:86</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L90" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:90</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L247" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:247</a> </span></li>
+
+<li><code class="evidence-text">\u{a}$ErrorActionPreference = &#39;Stop&#39;\u{a}Set-StrictMode -Version Latest\u{a}. $env:RAUTO_TEST_COMPLETION_SCRIPT\u{a}function rauto { throw &#39;Completion must not invoke rauto&#39; }\u{a}foreach ($case in @(…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L248" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:248</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">completion/powershell.ps1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/cli/completion.rs#L42" rel="noreferrer noopener" target="_blank">src/cli/completion.rs:42</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match invisible_characters</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Zero width or invisible characters, which can hide identifiers or payloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/static/assets/code-editor-C2UQv0uH.js#L9" rel="noreferrer noopener" target="_blank">static/assets/code-editor-C2UQv0uH.js:9</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/README.md#L165" rel="noreferrer noopener" target="_blank">README.md:165</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">12</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/mod.rs#L150" rel="noreferrer noopener" target="_blank">src/agent/mod.rs:150</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/agent_handlers.rs#L144" rel="noreferrer noopener" target="_blank">src/web/agent_handlers.rs:144</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/handlers/device_discovery.rs#L558" rel="noreferrer noopener" target="_blank">src/web/handlers/device_discovery.rs:558</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/registration.rs#L46" rel="noreferrer noopener" target="_blank">src/agent/registration.rs:46</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url::parse</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/registration.rs#L255" rel="noreferrer noopener" target="_blank">src/agent/registration.rs:255</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/registration.rs#L271" rel="noreferrer noopener" target="_blank">src/agent/registration.rs:271</a> </span></li>
+
+<li><code class="evidence-text">reqwest::RequestBuilder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/registration/task_reporting.rs#L221" rel="noreferrer noopener" target="_blank">src/agent/registration/task_reporting.rs:221</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/handlers/device_discovery.rs#L1103" rel="noreferrer noopener" target="_blank">src/web/handlers/device_discovery.rs:1103</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/server.rs#L542" rel="noreferrer noopener" target="_blank">src/web/server.rs:542</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/server.rs#L663" rel="noreferrer noopener" target="_blank">src/web/server.rs:663</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/server.rs#L541" rel="noreferrer noopener" target="_blank">src/web/server.rs:541</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/server.rs#L548" rel="noreferrer noopener" target="_blank">src/web/server.rs:548</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L18" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:18</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L19" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:19</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/tests/cli_completion.rs#L66" rel="noreferrer noopener" target="_blank">tests/cli_completion.rs:66</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">13</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://manager.local:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/config.rs#L193" rel="noreferrer noopener" target="_blank">src/agent/config.rs:193</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/config.rs#L203" rel="noreferrer noopener" target="_blank">src/agent/config.rs:203</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/config.rs#L216" rel="noreferrer noopener" target="_blank">src/agent/config.rs:216</a> </span></li>
+
+<li><code class="evidence-text">grpc://manager/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/agent/registration/task_reporting.rs#L190" rel="noreferrer noopener" target="_blank">src/agent/registration/task_reporting.rs:190</a> </span></li>
+
+<li><code class="evidence-text">db://custom-textfsm/{}/{}?template={}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/config/textfsm.rs#L220" rel="noreferrer noopener" target="_blank">src/config/textfsm.rs:220</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#templates/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/content_store.rs#L15" rel="noreferrer noopener" target="_blank">src/infrastructure/db/content_store.rs:15</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#device-profiles/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/content_store.rs#L23" rel="noreferrer noopener" target="_blank">src/infrastructure/db/content_store.rs:23</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#interactive-templates/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/content_store.rs#L31" rel="noreferrer noopener" target="_blank">src/infrastructure/db/content_store.rs:31</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#tx-block-templates/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/content_store.rs#L39" rel="noreferrer noopener" target="_blank">src/infrastructure/db/content_store.rs:39</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#tx-workflow-templates/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/content_store.rs#L47" rel="noreferrer noopener" target="_blank">src/infrastructure/db/content_store.rs:47</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#orchestration-templates/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/content_store.rs#L55" rel="noreferrer noopener" target="_blank">src/infrastructure/db/content_store.rs:55</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}#history/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/history_store.rs#L342" rel="noreferrer noopener" target="_blank">src/infrastructure/db/history_store.rs:342</a> </span></li>
+
+<li><code class="evidence-text">Web UI started at http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/web/server.rs#L553" rel="noreferrer noopener" target="_blank">src/web/server.rs:553</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/config/config_catalog.rs#L274" rel="noreferrer noopener" target="_blank">src/config/config_catalog.rs:274</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/config/interactive_vars.rs#L418" rel="noreferrer noopener" target="_blank">src/config/interactive_vars.rs:418</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/autodetect_cache.rs#L103" rel="noreferrer noopener" target="_blank">src/infrastructure/db/autodetect_cache.rs:103</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/command_blacklist.rs#L189" rel="noreferrer noopener" target="_blank">src/infrastructure/db/command_blacklist.rs:189</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/connection_store.rs#L392" rel="noreferrer noopener" target="_blank">src/infrastructure/db/connection_store.rs:392</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/device_credential_store.rs#L563" rel="noreferrer noopener" target="_blank">src/infrastructure/db/device_credential_store.rs:563</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/infrastructure/db/inventory_store.rs#L193" rel="noreferrer noopener" target="_blank">src/infrastructure/db/inventory_store.rs:193</a> <a class="place" href="https://crates.io/crates/rauto/0.5.3/code/src/orchestrator/tests.rs#L30" rel="noreferrer noopener" target="_blank">src/orchestrator/tests.rs:30</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rauto/0.5.3/code/build.rs#L3" rel="noreferrer noopener" target="_blank">build.rs:3</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">4</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-16 06:46 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 06:46 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">StaticallyAnalyzed</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 06:46 UTC</td><td class="nowrap">StaticallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-16 06:46 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

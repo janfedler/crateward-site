@@ -1,0 +1,2323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: lbug 0.21.2</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>lbug <span class="version">0.21.2</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 54239</span>
+      <a class="muted" href="https://crates.io/crates/lbug/0.21.2" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="54239.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="54239.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="54239-diff.html">Compare with 0.21.1</a>
+    </p>
+    <p class="headline">high severity shell_command in build_script code: powershell</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">61</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">10</span></a>
+  <a href="#behavior">Behavior <span class="count">8</span></a>
+  <a href="#findings">Static findings <span class="count">38</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · lbug</div></td><td class="mono where"><a href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L297" rel="noreferrer noopener" target="_blank">build.rs:297</a></td><td>high severity shell_command in build_script code: powershell</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · lbug</div></td><td class="mono where">api.github.com</td><td>The build looked up api.github.com.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · lbug</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · lbug</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+<tr><td class="num"><span class="points low">3</span></td><td class="signal"><span class="word">exec_interpreter</span><div class="sub">trace · lbug</div></td><td class="mono where">/usr/bin/python3</td><td>The build ran /usr/bin/python3.</td></tr>
+
+<tr><td class="num"><span class="points low">3</span></td><td class="signal"><span class="word">exec_shell</span><div class="sub">trace · lbug</div></td><td class="mono where">/usr/bin/sh</td><td>The build ran /usr/bin/sh.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>4 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · lbug</div></td><td class="mono where"><a href="https://crates.io/crates/lbug/0.21.2/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · lbug</div></td><td class="mono where"><a href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L491" rel="noreferrer noopener" target="_blank">build.rs:491</a></td><td>high severity downloader_pattern in build_script code: https://github.com/LadybugDB/ladybug/archive/refs/tags/{}.tar.gz at build.rs:491 with std::process::Command::new at build.rs:35</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · lbug</div></td><td class="mono where"><a href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L35" rel="noreferrer noopener" target="_blank">build.rs:35</a></td><td>medium severity process_spawn in build_script code (8 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · lbug</div></td><td class="mono where"><a href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L491" rel="noreferrer noopener" target="_blank">build.rs:491</a></td><td>low severity url_literal in build_script code (3 places): https://github.com/LadybugDB/ladybug/archive/refs/tags/{}.tar.gz</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">exec:interpreter</code> <code class="chip">exec:shell</code> <code class="chip">net:api.github.com</code> <code class="chip">net:github.com</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">38</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">8</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">22</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">6</span></label>
+  <span class="muted">7 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/LadybugDB/ladybug/archive/refs/tags/{}.tar.gz at build.rs:491 with std::process::Command::new at build.rs:35</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L491" rel="noreferrer noopener" target="_blank">build.rs:491</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L297" rel="noreferrer noopener" target="_blank">build.rs:297</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L35" rel="noreferrer noopener" target="_blank">build.rs:35</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L279" rel="noreferrer noopener" target="_blank">build.rs:279</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L297" rel="noreferrer noopener" target="_blank">build.rs:297</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L407" rel="noreferrer noopener" target="_blank">build.rs:407</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L444" rel="noreferrer noopener" target="_blank">build.rs:444</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L503" rel="noreferrer noopener" target="_blank">build.rs:503</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L516" rel="noreferrer noopener" target="_blank">build.rs:516</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L544" rel="noreferrer noopener" target="_blank">build.rs:544</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">18</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L32" rel="noreferrer noopener" target="_blank">src/ffi.rs:32</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L124" rel="noreferrer noopener" target="_blank">src/ffi.rs:124</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L130" rel="noreferrer noopener" target="_blank">src/ffi.rs:130</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L143" rel="noreferrer noopener" target="_blank">src/ffi.rs:143</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L155" rel="noreferrer noopener" target="_blank">src/ffi.rs:155</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L177" rel="noreferrer noopener" target="_blank">src/ffi.rs:177</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L218" rel="noreferrer noopener" target="_blank">src/ffi.rs:218</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L252" rel="noreferrer noopener" target="_blank">src/ffi.rs:252</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L262" rel="noreferrer noopener" target="_blank">src/ffi.rs:262</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L300" rel="noreferrer noopener" target="_blank">src/ffi.rs:300</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L312" rel="noreferrer noopener" target="_blank">src/ffi.rs:312</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L320" rel="noreferrer noopener" target="_blank">src/ffi.rs:320</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L424" rel="noreferrer noopener" target="_blank">src/ffi.rs:424</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi/arrow.rs#L19" rel="noreferrer noopener" target="_blank">src/ffi/arrow.rs:19</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi/arrow.rs#L37" rel="noreferrer noopener" target="_blank">src/ffi/arrow.rs:37</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi/arrow.rs#L62" rel="noreferrer noopener" target="_blank">src/ffi/arrow.rs:62</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi/arrow.rs#L74" rel="noreferrer noopener" target="_blank">src/ffi/arrow.rs:74</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/partition_routing.rs#L118" rel="noreferrer noopener" target="_blank">src/partition_routing.rs:118</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/LadybugDB/ladybug/archive/refs/tags/{}.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L491" rel="noreferrer noopener" target="_blank">build.rs:491</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/LadybugDB/ladybug/archive/refs/heads/main.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L495" rel="noreferrer noopener" target="_blank">build.rs:495</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/LadybugDB/ladybug/archive/refs/tags/v{}.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs#L498" rel="noreferrer noopener" target="_blank">build.rs:498</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">14 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/connection.rs#L132" rel="noreferrer noopener" target="_blank">src/connection.rs:132</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/database.rs#L14" rel="noreferrer noopener" target="_blank">src/database.rs:14</a> <a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi/arrow.rs#L7" rel="noreferrer noopener" target="_blank">src/ffi/arrow.rs:7</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/ffi.rs#L17" rel="noreferrer noopener" target="_blank">src/ffi.rs:17</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/partition_routing.rs#L136" rel="noreferrer noopener" target="_blank">src/partition_routing.rs:136</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/lbug/0.21.2/code/src/query_result.rs#L14" rel="noreferrer noopener" target="_blank">src/query_result.rs:14</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">timed out</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>killed after the timeout</dd></div><div><dt>Run time</dt><dd>45 min 0 s</dd></div><div><dt>VM restore</dt><dd>71 ms</dd></div><div><dt>Payload</dt><dd>6514 files, 78.7 MiB</dd></div><div><dt>Files opened</dt><dd>594321</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2000</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 927 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">45 min 0 s</td>
+<td class="nowrap">9</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="7 similar processes, the first one shown">×7</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;span-locations&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=c83ce984471a4e48 -C extra-filename=-5cb179a647ef6e51 --out-dir /work/target/debug/build/proc-macro2-5cb179a647ef6e51 -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">182 ms</td>
+<td class="nowrap">691 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcnqOhzu/symbols.o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51.build_script_build.dfb9ac565abdb04-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51.7zrad1clk47dffwz5ub8n8yx5.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libr</td>
+<td class="nowrap muted">719 ms</td>
+<td class="nowrap">151 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOSlfcD.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcnqOhzu/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">726 ms</td>
+<td class="nowrap">143 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOSlfcD.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcnqOhzu/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">729 ms</td>
+<td class="nowrap">139 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">877 ms</td>
+<td class="nowrap">82 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">878 ms</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-97392f29eb377993/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">885 ms</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 608: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="27 similar processes, the first one shown">×27</span></td>
+<td class="mono args">--crate-name proc_macro2 --edition=2021 /cw/vendor/proc-macro2-1.0.107/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;span-locations&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=5d63f7a10747f6e2 -C extra-filename=-e838b6f4c830537c --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --extern unicode_ident=/work/target/debug/deps/libunicode_ident-76fddff3086055f2.rmeta</td>
+<td class="nowrap muted">972 ms</td>
+<td class="nowrap">538 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 679: /work/target/debug/build/scratch-df407e26e1b62d18/build-script-build">scratch</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 681: /work/target/debug/build/link-cplusplus-cfdad64c744bb3b3/build-script-build">link-cplusplus</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4.3 s</td>
+<td class="nowrap">84 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 682: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/17536620468948769995detect_compiler_family.c</td>
+<td class="nowrap muted">4.3 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 683: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/17536620468948769995detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 17536620468948769995detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">4.3 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 684: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">4.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 685: /usr/bin/c++">/usr/bin/c++</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check -c /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check.cpp</td>
+<td class="nowrap muted">4.4 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 686: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check.cpp -quiet -dumpdir /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/ -dumpbase flag_check.cpp -dumpbase-ext .cpp -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccQNGuBO.s</td>
+<td class="nowrap muted">4.4 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 687: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check /tmp/ccQNGuBO.s</td>
+<td class="nowrap muted">4.4 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 691: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/liblink-cplusplus.a /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/c16f17691ff6f04b-dummy.o</td>
+<td class="nowrap muted">4.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 771: /work/target/debug/build/cxx-72e6c006341a8974/build-script-build">cxx</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">1.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 772: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/cxx-b882469886ba4736/out/12576623689571525649detect_compiler_family.c</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 773: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/cxx-b882469886ba4736/out/12576623689571525649detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 12576623689571525649detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 774: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 775: /usr/bin/c++">/usr/bin/c++</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/cxx-b882469886ba4736/out/flag_check -c /work/target/debug/build/cxx-b882469886ba4736/out/flag_check.cpp</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 776: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/cxx-b882469886ba4736/out/flag_check.cpp -quiet -dumpdir /work/target/debug/build/cxx-b882469886ba4736/out/ -dumpbase flag_check.cpp -dumpbase-ext .cpp -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccXukkPt.s</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 777: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/cxx-b882469886ba4736/out/flag_check /tmp/ccXukkPt.s</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 781: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/cxx-b882469886ba4736/out/libcxxbridge1.a /work/target/debug/build/cxx-b882469886ba4736/out/c16f17691ff6f04b-cxx.o</td>
+<td class="nowrap muted">8.9 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 783: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">8.9 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 837: /work/target/debug/build/rust_decimal-0a343945ea56df31/build-script-build">rust_decimal</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.9 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1007: /work/target/debug/build/lbug-d67017e6973f78cf/build-script-build">lbug</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">44 min 41 s</td>
+<td class="nowrap">9</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1008: /usr/bin/sh">/usr/bin/sh</span></td>
+<td class="mono args">/cw/vendor/lbug-0.21.2/scripts/download_lbug.sh</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">100 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d3"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1009: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1010: /usr/bin/dirname">/usr/bin/dirname</span></td>
+<td class="mono args">/cw/vendor/lbug-0.21.2/scripts/download_lbug.sh</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d3"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1011: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1012: /usr/bin/bash">/usr/bin/bash</span></td>
+<td class="mono args">/cw/vendor/lbug-0.21.2/scripts/download-liblbug.sh</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">96 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d4"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1013: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1014: /usr/bin/dirname">/usr/bin/dirname</span></td>
+<td class="mono args">/cw/vendor/lbug-0.21.2/scripts/download-liblbug.sh</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d4"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1015: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1016: /usr/bin/uname">/usr/bin/uname</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-s</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1018: /usr/bin/mkdir">/usr/bin/mkdir</span></td>
+<td class="mono args">-p /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/lbug-prebuilt/latest-compat/lib</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1019: /usr/bin/mktemp">/usr/bin/mktemp</span></td>
+<td class="mono args">-d</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d4"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1020: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">79 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d5"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1021: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">57 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1022: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-sS https://api.github.com/repos/LadybugDB/ladybug/releases/latest</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">56 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1025: /usr/bin/cut">/usr/bin/cut</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c2-</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">55 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1023: /usr/bin/grep">/usr/bin/grep</span></td>
+<td class="mono args">-o &#34;tag_name&#34;: &#34;v\([^&#34;]*\)&#34;</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">56 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1027: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-fSL https://github.com/LadybugDB/ladybug/releases/download/v/liblbug-static-linux-x86_64-compat.tar.gz -o /tmp/tmp.K48MimuTUy/liblbug-static-linux-x86_64-compat.tar.gz</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1029: /usr/bin/tar">/usr/bin/tar</span></td>
+<td class="mono args">xzf /tmp/tmp.K48MimuTUy/liblbug-static-linux-x86_64-compat.tar.gz -C /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/lbug-prebuilt/latest-compat/lib</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d5"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1030: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1031: /usr/bin/rm">/usr/bin/rm</span></td>
+<td class="mono args">-rf /tmp/tmp.K48MimuTUy</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1032: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/5204488337160769563detect_compiler_family.c</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1033: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/5204488337160769563detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 5204488337160769563detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">18.3 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1034: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1035: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/7691594812067842581detect_compiler_family.c</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1036: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/7691594812067842581detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 7691594812067842581detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1037: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1038: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1039: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">/cw/vendor/lbug-0.21.2/lbug-src -B /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build -DBUILD_SHELL=OFF -DBUILD_SINGLE_FILE_HEADER=ON -DAUTO_UPDATE_GRAMMAR=OFF -DCMAKE_INSTALL_PREFIX=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out -DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w -DCMAKE_C_COMPILER=/usr/bin/cc -DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w -DCMAKE_CXX_COMPILER=/usr/bin/c++ -DCMAKE_ASM_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w -DCMAKE_ASM_COMPILER=/usr/bin/cc -DCMAKE_BUILD_TYPE=Debug</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">1.8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1040: /usr/bin/uname">/usr/bin/uname</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-r</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1042: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w CMakeCXXCompilerId.cpp</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">51 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1043: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE CMakeCXXCompilerId.cpp -quiet -dumpdir a- -dumpbase CMakeCXXCompilerId.cpp -dumpbase-ext .cpp -m64 -mtune=generic -march=x86-64 -w -ffunction-sections -fdata-sections -fPIC -foffload-options=-l_GCC_m -fasynchronous-unwind-tables -o /tmp/cc73bzSz.s</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1044: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W --64 -o /tmp/ccc2wxy8.o /tmp/cc73bzSz.s</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1045: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBgIZXI.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccc2wxy8.o -lstdc++</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">36 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d5"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1046: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBgIZXI.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccc2wxy8.o -lstdc++</td>
+<td class="nowrap muted">18.4 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1047: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-print-sysroot</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1048: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w CMakeCCompilerId.c</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">47 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1049: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu CMakeCCompilerId.c -quiet -dumpdir a- -dumpbase CMakeCCompilerId.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -w -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cck2XjlR.s</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">29 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1050: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W --64 -o /tmp/ccH1EAVo.o /tmp/cck2XjlR.s</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1051: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccNkYXPp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccH1EAVo.o -lgcc</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d5"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1052: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccNkYXPp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. /tmp/ccH1EAVo.o -lgcc</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1053: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-print-sysroot</td>
+<td class="nowrap muted">18.5 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1054: /usr/bin/ld">/usr/bin/ld</span> <span class="times" title="21 similar processes, the first one shown">×21</span></td>
+<td class="mono args">--help</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1055: /usr/bin/cmake">/usr/bin/cmake</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_360b8/fast</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">83 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1056: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile cmTC_360b8/fast</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">74 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1057: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f CMakeFiles/cmTC_360b8.dir/build.make CMakeFiles/cmTC_360b8.dir/build</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">72 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1058: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-5Z3PD6/CMakeFiles --progress-num=1 &#34;Building CXX object CMakeFiles/cmTC_360b8.dir/CMakeCXXCompilerABI.cpp.o&#34;</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1059: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-5Z3PD6/CMakeFiles --progress-num=1 Building CXX object CMakeFiles/cmTC_360b8.dir/CMakeCXXCompilerABI.cpp.o</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1060: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -o CMakeFiles/cmTC_360b8.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1061: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_360b8.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -m64 -mtune=generic -march=x86-64 -w -version -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc3X74hg.s</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1062: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-v -W --64 -o CMakeFiles/cmTC_360b8.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc3X74hg.s</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1065: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/cmTC_360b8.dir/link.txt --verbose=1</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1066: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -Wl,-v CMakeFiles/cmTC_360b8.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_360b8</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1067: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccp5jgEc.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_360b8 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1068: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccp5jgEc.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_360b8 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">18.6 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1074: /usr/bin/cmake">/usr/bin/cmake</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0e1f3/fast</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">72 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1075: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile cmTC_0e1f3/fast</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">63 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1076: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f CMakeFiles/cmTC_0e1f3.dir/build.make CMakeFiles/cmTC_0e1f3.dir/build</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">62 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1077: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-6goSvF/CMakeFiles --progress-num=1 &#34;Building C object CMakeFiles/cmTC_0e1f3.dir/CMakeCCompilerABI.c.o&#34;</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1078: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-6goSvF/CMakeFiles --progress-num=1 Building C object CMakeFiles/cmTC_0e1f3.dir/CMakeCCompilerABI.c.o</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1079: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -o CMakeFiles/cmTC_0e1f3.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1080: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_0e1f3.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -w -version -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccvcdvug.s</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1081: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-v -W --64 -o CMakeFiles/cmTC_0e1f3.dir/CMakeCCompilerABI.c.o /tmp/ccvcdvug.s</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1084: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/cmTC_0e1f3.dir/link.txt --verbose=1</td>
+<td class="nowrap muted">18.7 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1085: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -v -Wl,-v CMakeFiles/cmTC_0e1f3.dir/CMakeCCompilerABI.c.o -o cmTC_0e1f3</td>
+<td class="nowrap muted">18.8 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1086: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMnDk1f.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_0e1f3 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">18.8 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1087: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMnDk1f.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_0e1f3 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">18.8 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1110: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bb21f/fast</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1111: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile cmTC_bb21f/fast</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1112: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f CMakeFiles/cmTC_bb21f.dir/build.make CMakeFiles/cmTC_bb21f.dir/build</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1113: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-OWee52/CMakeFiles --progress-num=1 &#34;Building CXX object CMakeFiles/cmTC_bb21f.dir/CheckSymbolExists.cxx.o&#34;</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1114: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-OWee52/CMakeFiles --progress-num=1 Building CXX object CMakeFiles/cmTC_bb21f.dir/CheckSymbolExists.cxx.o</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1115: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DcmTC_bb21f_EXPORTS -ffunction-sections -fdata-sections -fPIC -m64 -w -std=gnu++20 -fPIE -o CMakeFiles/cmTC_bb21f.dir/CheckSymbolExists.cxx.o -c /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-OWee52/CheckSymbolExists.cxx</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1116: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE -D cmTC_bb21f_EXPORTS /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-OWee52/CheckSymbolExists.cxx -quiet -dumpdir CMakeFiles/cmTC_bb21f.dir/ -dumpbase CheckSymbolExists.cxx.cxx -dumpbase-ext .cxx -m64 -mtune=generic -march=x86-64 -w -std=gnu++20 -ffunction-sections -fdata-sections -fPIE -fasynchronous-unwind-tables -o /tmp/ccSvZCpF.s</td>
+<td class="nowrap muted">18.9 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1135: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_67dc2/fast</td>
+<td class="nowrap muted">19.0 s</td>
+<td class="nowrap">64 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1136: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile cmTC_67dc2/fast</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">54 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1137: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f CMakeFiles/cmTC_67dc2.dir/build.make CMakeFiles/cmTC_67dc2.dir/build</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">53 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1138: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-MATuoO/CMakeFiles --progress-num=1 &#34;Building C object CMakeFiles/cmTC_67dc2.dir/src.c.o&#34;</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1139: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-MATuoO/CMakeFiles --progress-num=1 Building C object CMakeFiles/cmTC_67dc2.dir/src.c.o</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1140: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-DBROTLI_EMSCRIPTEN -DcmTC_67dc2_EXPORTS -ffunction-sections -fdata-sections -fPIC -m64 -w -std=gnu11 -fPIE -o CMakeFiles/cmTC_67dc2.dir/src.c.o -c /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-MATuoO/src.c</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1141: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D BROTLI_EMSCRIPTEN -D cmTC_67dc2_EXPORTS /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/CMakeScratch/TryCompile-MATuoO/src.c -quiet -dumpdir CMakeFiles/cmTC_67dc2.dir/ -dumpbase src.c.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -w -std=gnu11 -ffunction-sections -fdata-sections -fPIE -fasynchronous-unwind-tables -o /tmp/ccGtglqV.s</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1142: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W --64 -o CMakeFiles/cmTC_67dc2.dir/src.c.o /tmp/ccGtglqV.s</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1145: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/cmTC_67dc2.dir/link.txt --verbose=1</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1146: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-ffunction-sections -fdata-sections -fPIC -m64 -w -Wl,--export-dynamic -rdynamic CMakeFiles/cmTC_67dc2.dir/src.c.o -o cmTC_67dc2</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1147: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxFNyDR.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_67dc2 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1148: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxFNyDR.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_67dc2 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1165: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="20 similar processes, the first one shown">×20</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">19.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1205: /usr/bin/python3">/usr/bin/python3</span> <span class="times" title="16 similar processes, the first one shown">×16</span></td>
+<td class="mono args">-c import sys; sys.stdout.write(&#39;.&#39;.join([str(x) for x in sys.version_info[:3]]))</td>
+<td class="nowrap muted">19.4 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1221: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">--build /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build --config Debug</td>
+<td class="nowrap muted">20.2 s</td>
+<td class="nowrap">44 min 39 s</td>
+<td class="nowrap">9</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1222: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-f Makefile -j1</td>
+<td class="nowrap muted">20.2 s</td>
+<td class="nowrap">44 min 39 s</td>
+<td class="nowrap">9</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1223: /usr/bin/cmake">/usr/bin/cmake</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-P /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles/VerifyGlobs.cmake</td>
+<td class="nowrap muted">20.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1226: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f CMakeFiles/Makefile2 all</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">44 min 39 s</td>
+<td class="nowrap">9</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1227: /usr/bin/gmake">/usr/bin/gmake</span> <span class="times" title="18 similar processes, the first one shown">×18</span></td>
+<td class="mono args">-s -f third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/build.make third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/depend</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1228: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build &#38;&#38; /usr/bin/cmake -E cmake_depends &#34;Unix Makefiles&#34; /cw/vendor/lbug-0.21.2/lbug-src /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_runtime /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/DependInfo.cmake &#34;--color=&#34;</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1229: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_depends Unix Makefiles /cw/vendor/lbug-0.21.2/lbug-src /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_runtime /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/DependInfo.cmake --color=</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1230: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/build.make third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/build</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">3 min 25 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1231: /bin/sh">/bin/sh</span> <span class="times" title="138 similar processes, the first one shown">×138</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building CXX object third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/src/ANTLRErrorListener.cpp.o&#34;</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1232: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building CXX object third_party/antlr4_runtime/CMakeFiles/antlr4_runtime.dir/src/ANTLRErrorListener.cpp.o</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1233: /bin/sh">/bin/sh</span> <span class="times" title="136 similar processes, the first one shown">×136</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_runtime &#38;&#38; /usr/bin/c++ -DANTLR4CPP_STATIC -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third…</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">1.5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1234: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DANTLR4CPP_STATIC -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbu</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">1.5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1235: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">1.5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1236: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">21.8 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2051: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_runtime &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/antlr4_runtime.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 45 s</td>
+<td class="nowrap">582 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2052: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/antlr4_runtime.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 45 s</td>
+<td class="nowrap">580 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2053: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libantlr4_runtime.a CMakeFiles/antlr4_runtime.dir/src/ANTLRErrorListener.cpp.o CMakeFiles/antlr4_runtime.dir/src/ANTLRErrorStrategy.cpp.o CMakeFiles/antlr4_runtime.dir/src/ANTLRFileStream.cpp.o CMakeFiles/antlr4_runtime.dir/src/ANTLRInputStream.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ActionTransition.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/AmbiguityInfo.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ArrayPredictionContext.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNConfig.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNConfigSet.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATN.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNDeserializationOptions.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNDeserializer.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNSimulator.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNState.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ATNStateType.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/AtomTransition.cpp.o CMakeFiles/antlr4_runtime.dir/src/atn/ContextSensitivity</td>
+<td class="nowrap muted">3 min 45 s</td>
+<td class="nowrap">279 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2054: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libantlr4_runtime.a</td>
+<td class="nowrap muted">3 min 45 s</td>
+<td class="nowrap">291 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2055: /bin/sh">/bin/sh</span> <span class="times" title="17 similar processes, the first one shown">×17</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 &#34;Built target antlr4_runtime&#34;</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2056: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 Built target antlr4_runtime</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2060: /usr/bin/gmake">/usr/bin/gmake</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-s -f third_party/antlr4_cypher/CMakeFiles/antlr4_cypher.dir/build.make third_party/antlr4_cypher/CMakeFiles/antlr4_cypher.dir/build</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">10.5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2061: /bin/sh">/bin/sh</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building CXX object third_party/antlr4_cypher/CMakeFiles/antlr4_cypher.dir/cypher_lexer.cpp.o&#34;</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2062: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building CXX object third_party/antlr4_cypher/CMakeFiles/antlr4_cypher.dir/cypher_lexer.cpp.o</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2063: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_cypher &#38;&#38; /usr/bin/c++ -DANTLR4CPP_STATIC -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_…</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">2.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2064: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DANTLR4CPP_STATIC -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbu</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">2.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2065: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">2.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2066: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 48 s</td>
+<td class="nowrap">56 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2077: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/antlr4_cypher &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/antlr4_cypher.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">131 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2078: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/antlr4_cypher.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">129 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2079: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libantlr4_cypher.a CMakeFiles/antlr4_cypher.dir/cypher_lexer.cpp.o CMakeFiles/antlr4_cypher.dir/cypher_parser.cpp.o</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">56 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2080: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libantlr4_cypher.a</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">64 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2086: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/brotli/CMakeFiles/brotlicommon.dir/build.make third_party/brotli/CMakeFiles/brotlicommon.dir/build</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">338 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2087: /bin/sh">/bin/sh</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building C object third_party/brotli/CMakeFiles/brotlicommon.dir/c/common/constants.c.o&#34;</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2088: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building C object third_party/brotli/CMakeFiles/brotlicommon.dir/c/common/constants.c.o</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2089: /bin/sh">/bin/sh</span> <span class="times" title="6 similar processes, the first one shown">×6</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/brotli &#38;&#38; /usr/bin/cc -DHAS_FDATASYNC -DOS_LINUX -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I…</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2090: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-DHAS_FDATASYNC -DOS_LINUX -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2091: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2092: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2127: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/brotli &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/brotlicommon.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2128: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/brotlicommon.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2129: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libbrotlicommon.a CMakeFiles/brotlicommon.dir/c/common/constants.c.o CMakeFiles/brotlicommon.dir/c/common/context.c.o CMakeFiles/brotlicommon.dir/c/common/dictionary.c.o CMakeFiles/brotlicommon.dir/c/common/platform.c.o CMakeFiles/brotlicommon.dir/c/common/shared_dictionary.c.o CMakeFiles/brotlicommon.dir/c/common/transform.c.o</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2130: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libbrotlicommon.a</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2136: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/brotli/CMakeFiles/brotlidec.dir/build.make third_party/brotli/CMakeFiles/brotlidec.dir/build</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">521 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2137: /bin/sh">/bin/sh</span> <span class="times" title="6 similar processes, the first one shown">×6</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building C object third_party/brotli/CMakeFiles/brotlidec.dir/c/dec/bit_reader.c.o&#34;</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2138: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building C object third_party/brotli/CMakeFiles/brotlidec.dir/c/dec/bit_reader.c.o</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2139: /bin/sh">/bin/sh</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/brotli &#38;&#38; /usr/bin/cc -DHAS_FDATASYNC -DOS_LINUX -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I…</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2140: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-DHAS_FDATASYNC -DOS_LINUX -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2141: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 56 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2142: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2165: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/brotli &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/brotlidec.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2166: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/brotlidec.dir/link.txt --verbose=</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2167: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libbrotlidec.a CMakeFiles/brotlidec.dir/c/dec/bit_reader.c.o CMakeFiles/brotlidec.dir/c/dec/decode.c.o CMakeFiles/brotlidec.dir/c/dec/huffman.c.o CMakeFiles/brotlidec.dir/c/dec/state.c.o</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2168: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libbrotlidec.a</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2174: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/brotli/CMakeFiles/brotlienc.dir/build.make third_party/brotli/CMakeFiles/brotlienc.dir/build</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">5.4 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2175: /bin/sh">/bin/sh</span> <span class="times" title="23 similar processes, the first one shown">×23</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building C object third_party/brotli/CMakeFiles/brotlienc.dir/c/enc/backward_references.c.o&#34;</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2176: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building C object third_party/brotli/CMakeFiles/brotlienc.dir/c/enc/backward_references.c.o</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2177: /bin/sh">/bin/sh</span> <span class="times" title="21 similar processes, the first one shown">×21</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/brotli &#38;&#38; /usr/bin/cc -DHAS_FDATASYNC -DOS_LINUX -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I…</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">897 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2178: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-DHAS_FDATASYNC -DOS_LINUX -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">897 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2179: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 57 s</td>
+<td class="nowrap">766 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2180: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">3 min 58 s</td>
+<td class="nowrap">124 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2305: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/brotli &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/brotlienc.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">45 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2306: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/brotlienc.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">45 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2307: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libbrotlienc.a CMakeFiles/brotlienc.dir/c/enc/backward_references.c.o CMakeFiles/brotlienc.dir/c/enc/backward_references_hq.c.o CMakeFiles/brotlienc.dir/c/enc/bit_cost.c.o CMakeFiles/brotlienc.dir/c/enc/block_splitter.c.o CMakeFiles/brotlienc.dir/c/enc/brotli_bit_stream.c.o CMakeFiles/brotlienc.dir/c/enc/cluster.c.o CMakeFiles/brotlienc.dir/c/enc/command.c.o CMakeFiles/brotlienc.dir/c/enc/compound_dictionary.c.o CMakeFiles/brotlienc.dir/c/enc/compress_fragment.c.o CMakeFiles/brotlienc.dir/c/enc/compress_fragment_two_pass.c.o CMakeFiles/brotlienc.dir/c/enc/dictionary_hash.c.o CMakeFiles/brotlienc.dir/c/enc/encode.c.o CMakeFiles/brotlienc.dir/c/enc/encoder_dict.c.o CMakeFiles/brotlienc.dir/c/enc/entropy_encode.c.o CMakeFiles/brotlienc.dir/c/enc/fast_log.c.o CMakeFiles/brotlienc.dir/c/enc/histogram.c.o CMakeFiles/brotlienc.dir/c/enc/literal_cost.c.o CMakeFiles/brotlienc.dir/c/enc/memory.c.o CMakeFiles/brotlienc.dir/c/enc/metablock.c.o CMakeFiles/brotlienc.dir/c/enc/static_dict.c.o CMakeFiles/brot</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2308: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libbrotlienc.a</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2314: /usr/bin/gmake">/usr/bin/gmake</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-s -f third_party/fastpfor/CMakeFiles/fastpfor.dir/build.make third_party/fastpfor/CMakeFiles/fastpfor.dir/build</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">9.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2315: /bin/sh">/bin/sh</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building CXX object third_party/fastpfor/CMakeFiles/fastpfor.dir/fastpfor/bitpacking.cpp.o&#34;</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2316: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building CXX object third_party/fastpfor/CMakeFiles/fastpfor.dir/fastpfor/bitpacking.cpp.o</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2317: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/fastpfor &#38;&#38; /usr/bin/c++ -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vend…</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">9.6 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2318: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/lbug-src/t</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">9.6 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2319: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 2 s</td>
+<td class="nowrap">8.4 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2320: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 11 s</td>
+<td class="nowrap">1.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2325: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/fastpfor &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/fastpfor.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 12 s</td>
+<td class="nowrap">125 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2326: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/fastpfor.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 12 s</td>
+<td class="nowrap">124 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2327: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libfastpfor.a CMakeFiles/fastpfor.dir/fastpfor/bitpacking.cpp.o</td>
+<td class="nowrap muted">4 min 12 s</td>
+<td class="nowrap">50 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2328: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libfastpfor.a</td>
+<td class="nowrap muted">4 min 12 s</td>
+<td class="nowrap">64 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2354: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/mbedtls/CMakeFiles/mbedtls.dir/build.make third_party/mbedtls/CMakeFiles/mbedtls.dir/build</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">1.6 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2355: /bin/sh">/bin/sh</span> <span class="times" title="26 similar processes, the first one shown">×26</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building CXX object third_party/mbedtls/CMakeFiles/mbedtls.dir/library/aes.cpp.o&#34;</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2356: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building CXX object third_party/mbedtls/CMakeFiles/mbedtls.dir/library/aes.cpp.o</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2357: /bin/sh">/bin/sh</span> <span class="times" title="24 similar processes, the first one shown">×24</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/mbedtls &#38;&#38; /usr/bin/c++ -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendo…</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">83 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2358: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/lbug-src/t</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">83 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2359: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">75 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2360: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 13 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2503: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/mbedtls &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/mbedtls.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 15 s</td>
+<td class="nowrap">27 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2504: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/mbedtls.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 15 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2505: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libmbedtls.a CMakeFiles/mbedtls.dir/library/aes.cpp.o CMakeFiles/mbedtls.dir/library/aria.cpp.o CMakeFiles/mbedtls.dir/library/asn1parse.cpp.o CMakeFiles/mbedtls.dir/library/base64.cpp.o CMakeFiles/mbedtls.dir/library/bignum.cpp.o CMakeFiles/mbedtls.dir/library/camellia.cpp.o CMakeFiles/mbedtls.dir/library/cipher.cpp.o CMakeFiles/mbedtls.dir/library/cipher_wrap.cpp.o CMakeFiles/mbedtls.dir/library/constant_time.cpp.o CMakeFiles/mbedtls.dir/library/entropy.cpp.o CMakeFiles/mbedtls.dir/library/entropy_poll.cpp.o CMakeFiles/mbedtls.dir/library/gcm.cpp.o CMakeFiles/mbedtls.dir/library/md.cpp.o CMakeFiles/mbedtls.dir/library/oid.cpp.o CMakeFiles/mbedtls.dir/library/pem.cpp.o CMakeFiles/mbedtls.dir/library/pk.cpp.o CMakeFiles/mbedtls.dir/library/pk_wrap.cpp.o CMakeFiles/mbedtls.dir/library/pkparse.cpp.o CMakeFiles/mbedtls.dir/library/platform_util.cpp.o CMakeFiles/mbedtls.dir/library/rsa.cpp.o CMakeFiles/mbedtls.dir/library/rsa_alt_helpers.cpp.o CMakeFiles/mbedtls.dir/library/sha1.cpp.o CMakeFiles/m</td>
+<td class="nowrap muted">4 min 15 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2506: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libmbedtls.a</td>
+<td class="nowrap muted">4 min 15 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2558: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/re2/CMakeFiles/re2.dir/build.make third_party/re2/CMakeFiles/re2.dir/build</td>
+<td class="nowrap muted">4 min 19 s</td>
+<td class="nowrap">14.4 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2559: /bin/sh">/bin/sh</span> <span class="times" title="24 similar processes, the first one shown">×24</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building CXX object third_party/re2/CMakeFiles/re2.dir/bitstate.cpp.o&#34;</td>
+<td class="nowrap muted">4 min 19 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2560: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building CXX object third_party/re2/CMakeFiles/re2.dir/bitstate.cpp.o</td>
+<td class="nowrap muted">4 min 19 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2561: /bin/sh">/bin/sh</span> <span class="times" title="22 similar processes, the first one shown">×22</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/re2 &#38;&#38; /usr/bin/c++ -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lb…</td>
+<td class="nowrap muted">4 min 19 s</td>
+<td class="nowrap">758 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2562: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/lbug-src/t</td>
+<td class="nowrap muted">4 min 19 s</td>
+<td class="nowrap">758 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2563: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 19 s</td>
+<td class="nowrap">723 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2564: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 20 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2695: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/re2 &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/re2.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">114 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2696: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/re2.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">113 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2697: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libre2.a CMakeFiles/re2.dir/bitstate.cpp.o CMakeFiles/re2.dir/compile.cpp.o CMakeFiles/re2.dir/dfa.cpp.o CMakeFiles/re2.dir/filtered_re2.cpp.o CMakeFiles/re2.dir/mimics_pcre.cpp.o CMakeFiles/re2.dir/nfa.cpp.o CMakeFiles/re2.dir/onepass.cpp.o CMakeFiles/re2.dir/parse.cpp.o CMakeFiles/re2.dir/perl_groups.cpp.o CMakeFiles/re2.dir/prefilter.cpp.o CMakeFiles/re2.dir/prefilter_tree.cpp.o CMakeFiles/re2.dir/prog.cpp.o CMakeFiles/re2.dir/re2.cpp.o CMakeFiles/re2.dir/regexp.cpp.o CMakeFiles/re2.dir/set.cpp.o CMakeFiles/re2.dir/simplify.cpp.o CMakeFiles/re2.dir/stringpiece.cpp.o CMakeFiles/re2.dir/tostring.cpp.o CMakeFiles/re2.dir/unicode_casefold.cpp.o CMakeFiles/re2.dir/unicode_groups.cpp.o CMakeFiles/re2.dir/rune.cpp.o CMakeFiles/re2.dir/strutil.cpp.o</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">51 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2698: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libre2.a</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">51 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2704: /usr/bin/gmake">/usr/bin/gmake</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-s -f third_party/roaring_bitmap/CMakeFiles/roaring_bitmap.dir/build.make third_party/roaring_bitmap/CMakeFiles/roaring_bitmap.dir/build</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">1.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2705: /bin/sh">/bin/sh</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building C object third_party/roaring_bitmap/CMakeFiles/roaring_bitmap.dir/roaring.c.o&#34;</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2706: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building C object third_party/roaring_bitmap/CMakeFiles/roaring_bitmap.dir/roaring.c.o</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2707: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/roaring_bitmap &#38;&#38; /usr/bin/cc -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw…</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">1.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2708: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/lbug-src/th</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">1.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2709: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 34 s</td>
+<td class="nowrap">1.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2710: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 36 s</td>
+<td class="nowrap">166 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2715: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/roaring_bitmap &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/roaring_bitmap.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 36 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2716: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/roaring_bitmap.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 36 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2717: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libroaring_bitmap.a CMakeFiles/roaring_bitmap.dir/roaring.c.o</td>
+<td class="nowrap muted">4 min 36 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2718: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libroaring_bitmap.a</td>
+<td class="nowrap muted">4 min 36 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2770: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/thrift/CMakeFiles/thrift.dir/build.make third_party/thrift/CMakeFiles/thrift.dir/build</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">1.8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2771: /bin/sh">/bin/sh</span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= &#34;Building CXX object third_party/thrift/CMakeFiles/thrift.dir/protocol/TProtocol.cpp.o&#34;</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2772: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num= Building CXX object third_party/thrift/CMakeFiles/thrift.dir/protocol/TProtocol.cpp.o</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2773: /bin/sh">/bin/sh</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/thrift &#38;&#38; /usr/bin/c++ -DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor…</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">648 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2774: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DHAS_FDATASYNC -D__64BIT__ -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/zstd/include -I/cw/vendor/lbug-0.21.2/lbug-src/t</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">647 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2775: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">625 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2776: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 38 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2793: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/thrift &#38;&#38; /usr/bin/cmake -E cmake_link_script CMakeFiles/thrift.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 40 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2794: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_link_script CMakeFiles/thrift.dir/link.txt --verbose=</td>
+<td class="nowrap muted">4 min 40 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2795: /usr/bin/ar">/usr/bin/ar</span></td>
+<td class="mono args">qc libthrift.a CMakeFiles/thrift.dir/protocol/TProtocol.cpp.o CMakeFiles/thrift.dir/transport/TTransportException.cpp.o CMakeFiles/thrift.dir/transport/TBufferTransports.cpp.o</td>
+<td class="nowrap muted">4 min 40 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2796: /usr/bin/ranlib">/usr/bin/ranlib</span></td>
+<td class="mono args">libthrift.a</td>
+<td class="nowrap muted">4 min 40 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2848: /usr/bin/gmake">/usr/bin/gmake</span></td>
+<td class="mono args">-s -f third_party/zstd/CMakeFiles/zstd.dir/build.make third_party/zstd/CMakeFiles/zstd.dir/build</td>
+<td class="nowrap muted">4 min 42 s</td>
+<td class="nowrap">6.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2849: /bin/sh">/bin/sh</span> <span class="times" title="13 similar processes, the first one shown">×13</span></td>
+<td class="mono args">-c /usr/bin/cmake -E cmake_echo_color &#34;--switch=&#34; --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num=98 &#34;Building CXX object third_party/zstd/CMakeFiles/zstd.dir/common/entropy_common.cpp.o&#34;</td>
+<td class="nowrap muted">4 min 42 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2850: /usr/bin/cmake">/usr/bin/cmake</span></td>
+<td class="mono args">-E cmake_echo_color --switch= --green --progress-dir=/work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/CMakeFiles --progress-num=98 Building CXX object third_party/zstd/CMakeFiles/zstd.dir/common/entropy_common.cpp.o</td>
+<td class="nowrap muted">4 min 42 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2851: /bin/sh">/bin/sh</span> <span class="times" title="12 similar processes, the first one shown">×12</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/zstd &#38;&#38; /usr/bin/c++ -DHAS_FDATASYNC -DZSTDERRORLIB_VISIBILITY=&#34;&#34; -DZSTDLIB_VISIBILITY=&#34;&#34; -DZSTD_DISABLE_ASM -D__64BIT__ -Dzstd -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedt…</td>
+<td class="nowrap muted">4 min 42 s</td>
+<td class="nowrap">93 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2852: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DHAS_FDATASYNC -DZSTDERRORLIB_VISIBILITY= -DZSTDLIB_VISIBILITY= -DZSTD_DISABLE_ASM -D__64BIT__ -Dzstd -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0</td>
+<td class="nowrap muted">4 min 42 s</td>
+<td class="nowrap">93 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2853: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 42 s</td>
+<td class="nowrap">85 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2854: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 43 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2923: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cd /work/target/debug/build/lbug-06dbec20a1f4a1c1/out/build/third_party/zstd &#38;&#38; /usr/bin/c++ -DHAS_FDATASYNC -DZSTDERRORLIB_VISIBILITY=&#34;&#34; -DZSTDLIB_VISIBILITY=&#34;&#34; -DZSTD_DISABLE_ASM -D__64BIT__ -Dzstd -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedt…</td>
+<td class="nowrap muted">4 min 44 s</td>
+<td class="nowrap">304 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2924: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-DHAS_FDATASYNC -DZSTDERRORLIB_VISIBILITY= -DZSTDLIB_VISIBILITY= -DZSTD_DISABLE_ASM -D__64BIT__ -Dzstd -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I/cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include -I/cw/vendor/lbug-0</td>
+<td class="nowrap muted">4 min 44 s</td>
+<td class="nowrap">304 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2925: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_cypher/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/antlr4_runtime/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/brotli/c/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/fast_float/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/mbedtls/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/parquet -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/snappy -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/thrift -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/miniz -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/yyjson/src -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pybind11/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/pyparse -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/re2/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/alp/include -I /cw/vendor/lbug-0.21.2/lbug-src/third_party/utf8proc/include</td>
+<td class="nowrap muted">4 min 44 s</td>
+<td class="nowrap">268 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<p class="muted">13109 more processes not listed</p>
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">4</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">api.github.com</code> <code class="chip">github.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI api.github.com, inside TLS: GET /repos/LadybugDB/ladybug/releases/latest, host api.github.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /LadybugDB/ladybug/releases/download/v/liblbug-static-linux-x86_64-compat.tar.gz, host github.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">7</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">18.2 s</td><td class="mono">/usr/bin/bash</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">18.3 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">18.3 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">18.3 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">18.3 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">18.3 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">18.3 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>3892</dd></div><div><dt>Directories</dt><dd>518</dd></div><div><dt>Size</dt><dd>2.4 GiB</dd></div><div><dt>Compiled units</dt><dd>55</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling syn v3.0.6
+   Compiling link-cplusplus v1.0.12
+   Compiling scratch v1.0.9
+   Compiling termcolor v1.4.1
+   Compiling cxxbridge-flags v1.0.202
+   Compiling unicode-width v0.2.2
+   Compiling codespan-reporting v0.13.1
+   Compiling cxx v1.0.202
+   Compiling cxx-build v1.0.202
+   Compiling cmake v0.1.58
+   Compiling rust_decimal v1.43.0
+   Compiling vcpkg v0.2.15
+   Compiling lbug v0.21.2
+   Compiling num-traits v0.2.19
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling cxxbridge-macro v1.0.202
+   Compiling time-core v0.1.9
+   Compiling foldhash v0.2.0
+   Compiling num-conv v0.2.2
+   Compiling itoa v1.0.18
+   Compiling powerfmt v0.2.0
+   Compiling deranged v0.5.8
+   Compiling arrayvec v0.7.8
+   Compiling memchr v2.8.3
+   Compiling serde_json v1.0.151
+   Compiling time v0.3.55
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-01 22:16 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-2372261</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 22:16 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-2372263</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 22:18 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-2445642-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 22:33 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-2445642-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 22:33 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-2372276</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 22:33 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-2445642-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 23:18 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-2445642-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 23:18 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-2372276</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 23:18 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-2372276</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,2301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: loctree 0.15.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>loctree <span class="version">0.15.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 162250</span>
+      <a class="muted" href="https://crates.io/crates/loctree/0.15.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="162250.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="162250.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (198 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">7</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">266</span></a>
+  <a href="#run-check">Run: check <span class="count bad">1</span></a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · loctree</div></td><td class="mono where"><a href="https://crates.io/crates/loctree/0.15.0/code/build.rs#L7" rel="noreferrer noopener" target="_blank">build.rs:7</a></td><td>medium severity process_spawn in build_script code (198 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · loctree</div></td><td class="mono where"><a href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/redact.rs#L113" rel="noreferrer noopener" target="_blank">src/aicx/redact.rs:113</a></td><td>medium severity credential_access in library code (6 places): path /Users/alice/.ssh/id_rsa ip 10.1.2.3</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · loctree</div></td><td class="mono where"><a href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L135" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:135</a></td><td>medium severity shell_command in library code (2 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:invisible_characters</span><div class="sub">static · loctree</div></td><td class="mono where"><a href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/assets/cytoscape.min.js#L32" rel="noreferrer noopener" target="_blank">src/analyzer/assets/cytoscape.min.js:32</a></td><td>medium severity yara:invisible_characters in library code: Zero width or invisible characters, which can hide identifiers or payloads</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · loctree</div></td><td class="mono where"><a href="https://crates.io/crates/loctree/0.15.0/code/completions/loct.bash#L2" rel="noreferrer noopener" target="_blank">completions/loct.bash:2</a></td><td>medium severity yara:persistence_locations in library code: Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · loctree</div></td><td class="mono where"><a href="https://crates.io/crates/loctree/0.15.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>1 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">environment_dumped</span><div class="sub">disk · libz-sys</div></td><td class="mono where">/work/.warm/upper/debug/build/libz-sys-ee7c0076e7dab38a/output</td><td>A build script wrote the whole environment, with the planted github_token_env, into its build directory.</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:invisible_characters</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">266</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">11</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">204</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">51</span></label>
+  <span class="muted">15 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">path /Users/alice/.ssh/id_rsa ip 10.1.2.3</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/redact.rs#L113" rel="noreferrer noopener" target="_blank">src/aicx/redact.rs:113</a> </span></li>
+
+<li><code class="evidence-text">/.ssh/id_rsa</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/redact.rs#L122" rel="noreferrer noopener" target="_blank">src/aicx/redact.rs:122</a> </span></li>
+
+<li><code class="evidence-text">.npmrc</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/fs_utils.rs#L649" rel="noreferrer noopener" target="_blank">src/fs_utils.rs:649</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/fs_utils.rs#L1855" rel="noreferrer noopener" target="_blank">src/fs_utils.rs:1855</a> </span></li>
+
+<li><code class="evidence-text">wrote /Users/alice/.ssh/id_rsa</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/pack.rs#L8426" rel="noreferrer noopener" target="_blank">src/pack.rs:8426</a> </span></li>
+
+<li><code class="evidence-text">token sk-test_abcdefghijklmnopqrstuvwxyz12 pem -----BEGIN RSA PRIVATE KEY----- MIIBOgIBAAJBAK8= -----END RSA PRIVATE KEY----- path /Users/alice/.ssh/id_rsa</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/pack.rs#L8446" rel="noreferrer noopener" target="_blank">src/pack.rs:8446</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/build.rs#L7" rel="noreferrer noopener" target="_blank">build.rs:7</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L135" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:135</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">SKIP agent_index_contract: {} unreachable (curl exit {code}); network availability is not this repo&#39;s contract</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/agent_index_contract.rs#L26" rel="noreferrer noopener" target="_blank">tests/agent_index_contract.rs:26</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match invisible_characters</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Zero width or invisible characters, which can hide identifiers or payloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/assets/cytoscape.min.js#L32" rel="noreferrer noopener" target="_blank">src/analyzer/assets/cytoscape.min.js:32</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/completions/loct.bash#L2" rel="noreferrer noopener" target="_blank">completions/loct.bash:2</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">140</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/mcp.rs#L85" rel="noreferrer noopener" target="_blank">src/aicx/mcp.rs:85</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/overlay.rs#L777" rel="noreferrer noopener" target="_blank">src/aicx/overlay.rs:777</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/overlay.rs#L1021" rel="noreferrer noopener" target="_blank">src/aicx/overlay.rs:1021</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/shell.rs#L71" rel="noreferrer noopener" target="_blank">src/aicx/shell.rs:71</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/shell.rs#L150" rel="noreferrer noopener" target="_blank">src/aicx/shell.rs:150</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/shell.rs#L205" rel="noreferrer noopener" target="_blank">src/aicx/shell.rs:205</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/aicx/shell.rs#L223" rel="noreferrer noopener" target="_blank">src/aicx/shell.rs:223</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dist.rs#L1371" rel="noreferrer noopener" target="_blank">src/analyzer/dist.rs:1371</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/indexstore/reader.rs#L79" rel="noreferrer noopener" target="_blank">src/analyzer/indexstore/reader.rs:79</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/occurrences.rs#L633" rel="noreferrer noopener" target="_blank">src/analyzer/occurrences.rs:633</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/occurrences.rs#L5442" rel="noreferrer noopener" target="_blank">src/analyzer/occurrences.rs:5442</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L148" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:148</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L227" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:227</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L304" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:304</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L310" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:310</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L316" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:316</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1220" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1220</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1240" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1240</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1269" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1269</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1300" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1300</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1321" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1321</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1341" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1341</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1359" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1359</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1381" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1381</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1408" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1408</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1428" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1428</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1456" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1456</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1485" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1485</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1507" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1507</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1532" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1532</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1556" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1556</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1574" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1574</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L1581" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:1581</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/analysis.rs#L145" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/analysis.rs:145</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/analysis.rs#L2925" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/analysis.rs:2925</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/analysis.rs#L2932" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/analysis.rs:2932</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/analysis.rs#L2939" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/analysis.rs:2939</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/analysis.rs#L3405" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/analysis.rs:3405</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/analysis.rs#L3455" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/analysis.rs:3455</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/context/scope.rs#L107" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/context/scope.rs:107</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/context/scope.rs#L123" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/context/scope.rs:123</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/context/scope.rs#L135" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/context/scope.rs:135</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/context/scope.rs#L168" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/context/scope.rs:168</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/context/scope.rs#L193" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/context/scope.rs:193</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/diff.rs#L791" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/diff.rs:791</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/diff.rs#L813" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/diff.rs:813</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/diff.rs#L818" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/diff.rs:818</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/diff.rs#L823" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/diff.rs:823</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/diff.rs#L830" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/diff.rs:830</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/diff.rs#L835" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/diff.rs:835</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/occurrences.rs#L1790" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/occurrences.rs:1790</a> <span class="muted">and 89 more</span></span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">57</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/agent_index_contract.rs#L18" rel="noreferrer noopener" target="_blank">tests/agent_index_contract.rs:18</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/anchors_cli.rs#L9" rel="noreferrer noopener" target="_blank">tests/anchors_cli.rs:9</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/anchors_cli.rs#L55" rel="noreferrer noopener" target="_blank">tests/anchors_cli.rs:55</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/cache_rss_bounds.rs#L310" rel="noreferrer noopener" target="_blank">tests/cache_rss_bounds.rs:310</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/cache_rss_bounds.rs#L323" rel="noreferrer noopener" target="_blank">tests/cache_rss_bounds.rs:323</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/context_overlay_cli.rs#L38" rel="noreferrer noopener" target="_blank">tests/context_overlay_cli.rs:38</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/context_perf_canary.rs#L68" rel="noreferrer noopener" target="_blank">tests/context_perf_canary.rs:68</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1162" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1162</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1169" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1169</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1174" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1174</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1182" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1182</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1187" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1187</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1199" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1199</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1204" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1204</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1634" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1634</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1639" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1639</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1644" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1644</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1652" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1652</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1657" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1657</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1665" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1665</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L1670" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:1670</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L2207" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:2207</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L6385" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:6385</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L6390" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:6390</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L6757" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:6757</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L6986" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:6986</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L6991" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:6991</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L6996" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:6996</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L7001" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:7001</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L7006" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:7006</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L8355" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:8355</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/include_ignored_override.rs#L29" rel="noreferrer noopener" target="_blank">tests/include_ignored_override.rs:29</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/namesake_suppression.rs#L32" rel="noreferrer noopener" target="_blank">tests/namesake_suppression.rs:32</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/role_root_audit.rs#L45" rel="noreferrer noopener" target="_blank">tests/role_root_audit.rs:45</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/role_root_audit.rs#L51" rel="noreferrer noopener" target="_blank">tests/role_root_audit.rs:51</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/scorecard_rg_parity.rs#L38" rel="noreferrer noopener" target="_blank">tests/scorecard_rg_parity.rs:38</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/semantic_acceptance.rs#L23" rel="noreferrer noopener" target="_blank">tests/semantic_acceptance.rs:23</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L79" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:79</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L121" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:121</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L156" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:156</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L185" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:185</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L255" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:255</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L315" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:315</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L338" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:338</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L372" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:372</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L413" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:413</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L455" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:455</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L481" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:481</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L495" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:495</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L565" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:565</a> <span class="muted">and 3 more</span></span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L8180" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:8180</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L8498" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:8498</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/scorecard_rg_parity.rs#L29" rel="noreferrer noopener" target="_blank">tests/scorecard_rg_parity.rs:29</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::cargo_bin</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/scorecard_rg_parity.rs#L30" rel="noreferrer noopener" target="_blank">tests/scorecard_rg_parity.rs:30</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L176" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:176</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L334" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:334</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L351" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:351</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L431" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:431</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L486" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:486</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L432" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:432</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">44</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">loctree://open?f=src%2Futils.ts&#38;l=10</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dead_parrots/mod.rs#L3192" rel="noreferrer noopener" target="_blank">src/analyzer/dead_parrots/mod.rs:3192</a> </span></li>
+
+<li><code class="evidence-text">loctree://open?f=src%2Ffile{}.ts&#38;l={}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dead_parrots/mod.rs#L3228" rel="noreferrer noopener" target="_blank">src/analyzer/dead_parrots/mod.rs:3228</a> </span></li>
+
+<li><code class="evidence-text">webpack:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dist.rs#L340" rel="noreferrer noopener" target="_blank">src/analyzer/dist.rs:340</a> </span></li>
+
+<li><code class="evidence-text">webpack://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dist.rs#L341" rel="noreferrer noopener" target="_blank">src/analyzer/dist.rs:341</a> </span></li>
+
+<li><code class="evidence-text">vite:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dist.rs#L342" rel="noreferrer noopener" target="_blank">src/analyzer/dist.rs:342</a> </span></li>
+
+<li><code class="evidence-text">vite://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dist.rs#L343" rel="noreferrer noopener" target="_blank">src/analyzer/dist.rs:343</a> </span></li>
+
+<li><code class="evidence-text">file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/dist.rs#L344" rel="noreferrer noopener" target="_blank">src/analyzer/dist.rs:344</a> </span></li>
+
+<li><code class="evidence-text">\u{a}services:\u{a}  api:\u{a}    image: foo\u{a}    environment:\u{a}      DATABASE_URL: postgres://localhost/x\u{a}      LOG_LEVEL: debug\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/docker_compose.rs#L233" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/docker_compose.rs:233</a> </span></li>
+
+<li><code class="evidence-text">\u{a}services:\u{a}  worker:\u{a}    image: x\u{a}    environment:\u{a}      - REDIS_URL=redis://r:6379\u{a}      - HOST_INHERITED\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/docker_compose.rs#L256" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/docker_compose.rs:256</a> </span></li>
+
+<li><code class="evidence-text">\u{a}env:\u{a}  DATABASE_URL: postgres://localhost/x\u{a}  LOG_LEVEL: info\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/helm.rs#L179" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/helm.rs:179</a> </span></li>
+
+<li><code class="evidence-text">\u{a}apiVersion: apps/v1\u{a}kind: Deployment\u{a}metadata:\u{a}  name: api\u{a}spec:\u{a}  template:\u{a}    spec:\u{a}      containers:\u{a}        - name: api\u{a}          env:\u{a}            - n…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/k8s.rs#L423" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/k8s.rs:423</a> </span></li>
+
+<li><code class="evidence-text">\u{a}apiVersion: v1\u{a}kind: ConfigMap\u{a}metadata:\u{a}  name: api-config\u{a}data:\u{a}  DATABASE_URL: postgres://x\u{a}  config.json: &#39;{}&#39;\u{a}  log-level: debug\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/k8s.rs#L461" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/k8s.rs:461</a> </span></li>
+
+<li><code class="evidence-text">DATABASE_URL=postgres://localhost\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/mod.rs#L845" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/mod.rs:845</a> </span></li>
+
+<li><code class="evidence-text">DATABASE_URL: postgres://localhost/x\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/env_truth/sops_marker.rs#L94" rel="noreferrer noopener" target="_blank">src/analyzer/env_truth/sops_marker.rs:94</a> </span></li>
+
+<li><code class="evidence-text">\u{a}&#60;script src=&#34;./external.js&#34;&#62;&#60;/script&#62;\u{a}&#60;script src=&#34;/absolute/path.js&#34;&#62;&#60;/script&#62;\u{a}&#60;script src=&#34;https://cdn.example.com/lib.js&#34;&#62;&#60;/script&#62;\u{a}        </code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/html_analyzer.rs#L299" rel="noreferrer noopener" target="_blank">src/analyzer/html_analyzer.rs:299</a> </span></li>
+
+<li><code class="evidence-text">https://cdn.example.com/lib.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/html_analyzer.rs#L311" rel="noreferrer noopener" target="_blank">src/analyzer/html_analyzer.rs:311</a> </span></li>
+
+<li><code class="evidence-text">loctree://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/mod.rs#L101" rel="noreferrer noopener" target="_blank">src/analyzer/mod.rs:101</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/mod.rs#L104" rel="noreferrer noopener" target="_blank">src/analyzer/mod.rs:104</a> </span></li>
+
+<li><code class="evidence-text">{}://open</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/mod.rs#L107" rel="noreferrer noopener" target="_blank">src/analyzer/mod.rs:107</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L181" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:181</a> </span></li>
+
+<li><code class="evidence-text">http://{}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L183" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:183</a> </span></li>
+
+<li><code class="evidence-text">jetbrains://idea/navigate/reference?path={}&#38;line={}&#38;column=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L263" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:263</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/open_server.rs#L289" rel="noreferrer noopener" target="_blank">src/analyzer/open_server.rs:289</a> </span></li>
+
+<li><code class="evidence-text">tauri://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L286" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:286</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L314" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:314</a> </span></li>
+
+<li><code class="evidence-text">sample://ok</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L594" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:594</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L596" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:596</a> </span></li>
+
+<li><code class="evidence-text">sample://ghost</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L610" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:610</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L652" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:652</a> </span></li>
+
+<li><code class="evidence-text">sample://racy</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L633" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:633</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L657" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:657</a> </span></li>
+
+<li><code class="evidence-text">tauri://focus</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L717" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:717</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L737" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:737</a> </span></li>
+
+<li><code class="evidence-text">tauri://window-created</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L906" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:906</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/pipelines.rs#L936" rel="noreferrer noopener" target="_blank">src/analyzer/pipelines.rs:936</a> </span></li>
+
+<li><code class="evidence-text">(?m)^\s*#\s*\[\s*(?:tauri::)?command([^\]]*)\](?:\s*(?://[^\n]*|/\*[\s\S]*?\*/))?(?:(?:\s|//[^\n]*|/\*[\s\S]*?\*/)*#\s*\[[^\]]*\](?:\s*(?://[^\n]*|/\*[\s\S]*?\*/))?)*(?:\s|//[^\n]*|/\*[\s\S]*?\*/)*(?:…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/regexes.rs#L20" rel="noreferrer noopener" target="_blank">src/analyzer/regexes.rs:20</a> </span></li>
+
+<li><code class="evidence-text">(?m)^\s*#\s*\[\s*(?:crate::)?(?:{})([^\]]*)\](?:\s*(?://[^\n]*|/\*[\s\S]*?\*/))?(?:(?:\s|//[^\n]*|/\*[\s\S]*?\*/)*#\s*\[[^\]]*\](?:\s*(?://[^\n]*|/\*[\s\S]*?\*/))?)*(?:\s|//[^\n]*|/\*[\s\S]*?\*/)*(?:p…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/regexes.rs#L46" rel="noreferrer noopener" target="_blank">src/analyzer/regexes.rs:46</a> </span></li>
+
+<li><code class="evidence-text">(?://|#)\s*nosemgrep(?:\s*:\s*([\w\-./:]+))?\s*$</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/analyzer/suppression_inventory.rs#L258" rel="noreferrer noopener" target="_blank">src/analyzer/suppression_inventory.rs:258</a> </span></li>
+
+<li><code class="evidence-text">[watch] starting loctree-mcp http companion on http://{}/ ({})</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/watch.rs#L483" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/watch.rs:483</a> </span></li>
+
+<li><code class="evidence-text">fetch:\u{a}\u{9}@curl https://example.org &#38;&#38; grep -sS pattern\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/semantic/make.rs#L1014" rel="noreferrer noopener" target="_blank">src/semantic/make.rs:1014</a> </span></li>
+
+<li><code class="evidence-text">\u{a}import os\u{a}\u{a}API_KEY = os.getenv(&#34;LIBRAXIS_API_KEY&#34;)\u{a}MODEL = os.getenv(&#34;STT_MODEL&#34;, &#34;default-stt&#34;)\u{a}\u{a}def runtime():\u{a}    db_url = os.environ[&#34;DATABASE_URL&#34;]\u{a}    cache = os…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/semantic/python.rs#L1526" rel="noreferrer noopener" target="_blank">src/semantic/python.rs:1526</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/Loctree/loctree.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/snapshot.rs#L7077" rel="noreferrer noopener" target="_blank">src/snapshot.rs:7077</a> <a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/snapshot.rs#L7111" rel="noreferrer noopener" target="_blank">src/snapshot.rs:7111</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/Loctree/loctree</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/snapshot.rs#L7081" rel="noreferrer noopener" target="_blank">src/snapshot.rs:7081</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://loct.io/api/agent/index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/agent_index_contract.rs#L9" rel="noreferrer noopener" target="_blank">tests/agent_index_contract.rs:9</a> </span></li>
+
+<li><code class="evidence-text">parse https://loct.io/api/agent/index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/agent_index_contract.rs#L40" rel="noreferrer noopener" target="_blank">tests/agent_index_contract.rs:40</a> </span></li>
+
+<li><code class="evidence-text">https://loct.io/api/agent/index.json must have a top-level &#39;commands&#39; object</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/agent_index_contract.rs#L100" rel="noreferrer noopener" target="_blank">tests/agent_index_contract.rs:100</a> </span></li>
+
+<li><code class="evidence-text">postgres://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/e2e_cli.rs#L5906" rel="noreferrer noopener" target="_blank">tests/e2e_cli.rs:5906</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/cli/dispatch/handlers/watch.rs#L410" rel="noreferrer noopener" target="_blank">src/cli/dispatch/handlers/watch.rs:410</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/src/test_env.rs#L20" rel="noreferrer noopener" target="_blank">src/test_env.rs:20</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/loctree/0.15.0/code/tests/watch_lock_cli.rs#L221" rel="noreferrer noopener" target="_blank">tests/watch_lock_cli.rs:221</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+<ul class="alerts"><li>Honeytoken github_token_env was copied into /work/.warm/upper/debug/build/libz-sys-ee7c0076e7dab38a/output</li></ul>
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>4 min 15 s</dd></div><div><dt>VM restore</dt><dd>57 ms</dd></div><div><dt>Payload</dt><dd>18917 files, 561.8 MiB</dd></div><div><dt>Files opened</dt><dd>119439</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1644</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1575 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">4 min 15 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="93 similar processes, the first one shown">×93</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;nightly&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;span-locations&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=fe4907d76c549570 -C extra-filename=-a4c916774abb6c8c --out-dir /work/target/debug/build/proc-macro2-a4c916774abb6c8c -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">527 ms</td>
+<td class="nowrap">718 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a4c916774abb6c8c/rustc77IidD/symbols.o /work/target/debug/build/proc-macro2-a4c916774abb6c8c/build_script_build-a4c916774abb6c8c.build_script_build.8784aed8cec01640-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a4c916774abb6c8c/build_script_build-a4c916774abb6c8c.5i45e9gjz759dzi6avqyweuwi.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">144 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVVEsw7.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a4c916774abb6c8c/build_script_build-a4c916774abb6c8c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a4c916774abb6c8c/rustc77IidD/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">138 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVVEsw7.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a4c916774abb6c8c/build_script_build-a4c916774abb6c8c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a4c916774abb6c8c/rustc77IidD/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">133 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-a4c916774abb6c8c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">86 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-7f2a496750823373/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 620: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 621: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 624: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="349 similar processes, the first one shown">×349</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">54 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 694: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 695: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">7.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 718: /work/target/debug/build/serde_core-9f3c05d252ac67ed/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">8.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 719: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">8.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 842: /work/target/debug/build/serde-4274e99183c60f18/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 843: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 886: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">40 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 887: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 891: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">20.3 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 950: /work/target/debug/build/rustversion-cd03e7da230c42f2/build-script-build">rustversion</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">22.3 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 951: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">22.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1069: /work/target/debug/build/libc-ca3b81bba335f01d/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.7 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1070: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">26.7 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1177: /work/target/debug/build/wasm-bindgen-shared-10e819234e766239/build-script-build">wasm-bindgen-shared</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">31.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1178: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">31.2 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1192: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">31.4 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1193: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">31.4 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1253: /work/target/debug/build/tree-sitter-language-790112298895c641/build-script-build">tree-sitter-language</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1313: /work/target/debug/build/wasm-bindgen-202f2a0c9ad3cc12/build-script-build">wasm-bindgen</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">39.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1364: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">41.4 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1365: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">41.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1407: /work/target/debug/build/icu_locale_fallback_data-b2bc99d84bbe9744/build-script-build">icu_locale_fallback_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1409: /work/target/debug/build/serde_core-040ff8da709058db/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1410: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1464: /work/target/debug/build/icu_segmenter_data-8a63c5357e100544/build-script-build">icu_segmenter_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1563: /work/target/debug/build/serde_json-e6611967f423fb56/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">56.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1580: /work/target/debug/build/num-traits-7797025afea6fb8e/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">56.5 s</td>
+<td class="nowrap">49 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1581: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">56.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1672: /work/target/debug/build/icu_properties_data-2ac38e22d8da263c/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">59.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1674: /work/target/debug/build/icu_normalizer_data-bc0711913bdbce2d/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">59.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1794: /work/target/debug/build/paste-486a5cb33bee7857/build-script-build">paste</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 2 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1795: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 2 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1798: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 2 s</td>
+<td class="nowrap">36 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1799: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 2 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1803: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1844: /work/target/debug/build/proc-macro2-diagnostics-700e7b4657aecf60/build-script-build">proc-macro2-diagnostics</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1845: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1938: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 17 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1961: /work/target/debug/build/serde_json-78e7a6372260adff/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 18 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1963: /work/target/debug/build/slotmap-173f9159f62ef9e0/build-script-build">slotmap</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 18 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1964: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">1 min 18 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2172: /work/target/debug/build/rstml-7a611aef0ed09f89/build-script-build">rstml</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2173: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2176: /work/target/debug/build/camino-ab4ea1d255d5fc40/build-script-build">camino</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2177: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2180: /work/target/debug/build/dragonbox_ecma-d4488f0b99b91c83/build-script-build">dragonbox_ecma</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2181: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2184: /work/target/debug/build/reactive_graph-c4414c636ac191c0/build-script-build">reactive_graph</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2185: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2188: /work/target/debug/build/server_fn_macro-9181acbaed40e9b8/build-script-build">server_fn_macro</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2189: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2346: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2347: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2581: /work/target/debug/build/prettyplease-8a830c1a2d28bfaf/build-script-build">prettyplease</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 37 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2593: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 37 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 37 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2602: /work/target/debug/build/ref-cast-bf0bf4803e95b6c6/build-script-build">ref-cast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 37 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2603: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 37 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2633: /work/target/debug/build/tachys-050ec23262904bd8/build-script-build">tachys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 38 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2634: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">1 min 38 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2983: /work/target/debug/build/inotify-sys-062c6e654218302a/build-script-build">inotify-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3047: /work/target/debug/build/server_fn-6216a1d285f2351e/build-script-build">server_fn</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 11 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3048: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">2 min 11 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3071: /work/target/debug/build/libz-sys-967b04cc93d1de30/build-script-build">libz-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">116 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3072: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--libs --cflags zlib</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3074: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/12834952647826564795detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3075: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/12834952647826564795detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 12834952647826564795detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3076: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3077: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/flag_check -c /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/flag_check.c</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3078: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/flag_check.c -quiet -dumpdir /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc3N8ka1.s</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3079: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/libz-sys-ee7c0076e7dab38a/out/flag_check /tmp/cc3N8ka1.s</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3080: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -Wall -Wextra src/smoke.c -g0 -o /dev/null -lz</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">51 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3081: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu src/smoke.c -quiet -dumpdir a- -dumpbase smoke.c -dumpbase-ext .c -mno-omit-leaf-frame-pointer -m64 -mtune=generic -march=x86-64 -g -gdwarf-4 -g0 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fno-omit-frame-pointer -fasynchronous-unwind-tables -o /tmp/ccXSI8CV.s</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3082: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /tmp/ccI2VN0T.o /tmp/ccXSI8CV.s</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3083: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccT8vghs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /dev/null /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3084: /usr/bin/ld">/usr/bin/ld</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccT8vghs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /dev/null /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../..</td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3337: /work/target/debug/build/libm-bf7234d1701b6a93/build-script-build">libm</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 26 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3344: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 26 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3345: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-de87e437a93e79e6/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">2 min 26 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3409: /work/target/debug/build/leptos_macro-9f90ea1d6bee42df/build-script-build">leptos_macro</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3410: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3422: /work/target/debug/build/tree-sitter-a04d144124f333a0/build-script-build">tree-sitter</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">1.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3423: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/8996231199315092296detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3424: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/8996231199315092296detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 8996231199315092296detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3425: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3426: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="7 similar processes, the first one shown">×7</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/flag_check -c /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/flag_check.c</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3427: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccHZ7x8J.s</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3428: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/flag_check /tmp/ccHZ7x8J.s</td>
+<td class="nowrap muted">2 min 29 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3447: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/libtree-sitter.a /work/target/debug/build/tree-sitter-dc0c0fcefe07d533/out/98490c8781b409d2-lib.o</td>
+<td class="nowrap muted">2 min 30 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3460: /work/target/debug/build/nix-e6c162c2ee7b3fd4/build-script-build">nix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 31 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3686: /work/target/debug/build/portable-atomic-df2adbef8625d15d/build-script-build">portable-atomic</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 37 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3687: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">2 min 37 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3727: /work/target/debug/build/getrandom-ff13900ae77c80ab/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 42 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3729: /work/target/debug/build/unicode-general-category-85ead19274f8d6ff/build-script-build">unicode-general-category</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 42 s</td>
+<td class="nowrap">367 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3741: /work/target/debug/build/tree-sitter-javascript-94057c42ca01d419/build-script-build">tree-sitter-javascript</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">491 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3742: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/11504801258282184606detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3743: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/11504801258282184606detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 11504801258282184606detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3744: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3745: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/flag_check -c /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/flag_check.c</td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3746: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc7eVRt2.s</td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3747: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/flag_check /tmp/cc7eVRt2.s</td>
+<td class="nowrap muted">2 min 43 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3758: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/libtree-sitter-javascript.a /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/ea708c7824d36062-parser.o /work/target/debug/build/tree-sitter-javascript-e887578667abcec1/out/ea708c7824d36062-scanner.o</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3761: /work/target/debug/build/tree-sitter-typescript-cbd85b5f03d17d7a/build-script-build">tree-sitter-typescript</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">2.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3762: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/617492306673536824detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3763: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/617492306673536824detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 617492306673536824detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3764: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3765: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="7 similar processes, the first one shown">×7</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/flag_check -c /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/flag_check.c</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3766: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc4veOJP.s</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3767: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/flag_check /tmp/cc4veOJP.s</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3787: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/libtree-sitter-typescript.a /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/a423c62b91dd93af-parser.o /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/a423c62b91dd93af-scanner.o /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/22f91614c58a9bd2-parser.o /work/target/debug/build/tree-sitter-typescript-be43c1f54ba87f60/out/22f91614c58a9bd2-scanner.o</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3790: /work/target/debug/build/blake3-c4814545d8333b77/build-script-build">blake3</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">187 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3791: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-E /work/target/debug/build/blake3-c680a7c20ed06bb7/out/6666471280971956244detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3792: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/blake3-c680a7c20ed06bb7/out/6666471280971956244detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 6666471280971956244detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3793: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3794: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mavx512f -o /work/target/debug/build/blake3-c680a7c20ed06bb7/out/flag_check -c /work/target/debug/build/blake3-c680a7c20ed06bb7/out/flag_check.c</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3795: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/blake3-c680a7c20ed06bb7/out/flag_check.c -quiet -dumpdir /work/target/debug/build/blake3-c680a7c20ed06bb7/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mavx512f -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccZzY50w.s</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3796: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/blake3-c680a7c20ed06bb7/out/flag_check /tmp/ccZzY50w.s</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3816: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/blake3-c680a7c20ed06bb7/out/libblake3_sse2_sse41_avx2_assembly.a /work/target/debug/build/blake3-c680a7c20ed06bb7/out/b8423798394d5395-blake3_sse2_x86-64_unix.o /work/target/debug/build/blake3-c680a7c20ed06bb7/out/b8423798394d5395-blake3_sse41_x86-64_unix.o /work/target/debug/build/blake3-c680a7c20ed06bb7/out/b8423798394d5395-blake3_avx2_x86-64_unix.o</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3830: /work/target/debug/build/tree-sitter-python-b25446e0c9b278e5/build-script-build">tree-sitter-python</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">488 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3831: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/15640388954502238312detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3832: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/15640388954502238312detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 15640388954502238312detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3833: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3834: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/flag_check -c /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/flag_check.c</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3835: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cccsZgfG.s</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3836: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/flag_check /tmp/cccsZgfG.s</td>
+<td class="nowrap muted">2 min 46 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3847: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/libtree-sitter-python.a /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/ea708c7824d36062-parser.o /work/target/debug/build/tree-sitter-python-50b3baa17728d070/out/ea708c7824d36062-scanner.o</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3850: /work/target/debug/build/leptos-541b58ed4174848c/build-script-build">leptos</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3851: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3864: /work/target/debug/build/libgit2-sys-8ac954ea8cc7ceea/build-script-build">libgit2-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">22.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3865: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/6114507997215662927detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3866: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/6114507997215662927detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 6114507997215662927detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3867: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3868: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="207 similar processes, the first one shown">×207</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/flag_check -c /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/flag_check.c</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3869: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/flag_check.c -quiet -dumpdir /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccxcAFH9.s</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3870: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/flag_check /tmp/ccxcAFH9.s</td>
+<td class="nowrap muted">2 min 47 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4490: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="6 similar processes, the first one shown">×6</span></td>
+<td class="mono args">cqD /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/libgit2.a /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-annotated_commit.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-apply.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-attr.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-attr_file.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-attrcache.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-blame.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-blame_git.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-blob.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-branch.o /work/target/debug/build/libgit2-sys-db0db3ccb518fc42/out/build/43a19b30e9e69d8f-buf.o /work/target/debug/build/libgit2</td>
+<td class="nowrap muted">3 min 9 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4702: /work/target/debug/build/aicx-090ade130333ca60/build-script-build">aicx</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 16 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4719: /work/target/debug/build/rmcp-a6a0cc2bc30170b8/build-script-build">rmcp</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4726: /work/target/debug/build/tree-sitter-cpp-431cbd2c6ad8f043/build-script-build">tree-sitter-cpp</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">2.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4727: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/1089159428941407495detect_compiler_family.c</td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4728: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/1089159428941407495detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 1089159428941407495detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4729: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4730: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/flag_check -c /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/flag_check.c</td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4731: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccpHPQ3A.s</td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4732: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/flag_check /tmp/ccpHPQ3A.s</td>
+<td class="nowrap muted">3 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4740: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/libtree-sitter-cpp.a /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/ea708c7824d36062-parser.o /work/target/debug/build/tree-sitter-cpp-39ba32686d066d87/out/ea708c7824d36062-scanner.o</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4743: /work/target/debug/build/tree-sitter-c-ee7e9567f5749c78/build-script-build">tree-sitter-c</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">689 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4744: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/10742778226058764714detect_compiler_family.c</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4745: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/10742778226058764714detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 10742778226058764714detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4746: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4747: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/flag_check -c /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/flag_check.c</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4748: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc5KKT4n.s</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4749: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/flag_check /tmp/cc5KKT4n.s</td>
+<td class="nowrap muted">3 min 20 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4753: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/libtree-sitter-c.a /work/target/debug/build/tree-sitter-c-adea809b1ae487a9/out/ea708c7824d36062-parser.o</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4756: /work/target/debug/build/tree-sitter-swift-2921c13da723e555/build-script-build">tree-sitter-swift</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">3.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4757: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/13613650600001021638detect_compiler_family.c</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4758: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/13613650600001021638detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 13613650600001021638detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4759: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4760: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/flag_check -c /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/flag_check.c</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4761: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccqnEaI2.s</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4762: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/flag_check /tmp/ccqnEaI2.s</td>
+<td class="nowrap muted">3 min 21 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4770: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/libtree-sitter-swift.a /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/ea708c7824d36062-parser.o /work/target/debug/build/tree-sitter-swift-d3f4226c5176c458/out/ea708c7824d36062-scanner.o</td>
+<td class="nowrap muted">3 min 24 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4773: /work/target/debug/build/tree-sitter-objc-3a8f257bfac2bfc2/build-script-build">tree-sitter-objc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">2.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4774: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/1019215267644912147detect_compiler_family.c</td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4775: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/1019215267644912147detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 1019215267644912147detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4776: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4777: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/flag_check -c /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/flag_check.c</td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4778: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc5v1wby.s</td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4779: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/flag_check /tmp/cc5v1wby.s</td>
+<td class="nowrap muted">3 min 25 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4783: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/libtree-sitter-objc.a /work/target/debug/build/tree-sitter-objc-d19a0918cecfde8f/out/ea708c7824d36062-parser.o</td>
+<td class="nowrap muted">3 min 27 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 5004: /work/target/debug/build/loctree-a8430cba2d9ff7fe/build-script-build">loctree</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 47 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 5005: "></span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 47 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>3529</dd></div><div><dt>Directories</dt><dd>705</dd></div><div><dt>Size</dt><dd>1.3 GiB</dd></div><div><dt>Compiled units</dt><dd>463</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling syn v3.0.9
+   Compiling libc v0.2.190
+   Compiling serde_core v1.0.229
+   Compiling syn v2.0.119
+   Compiling jobserver v0.1.35
+   Compiling serde_derive v1.0.229
+    Checking memchr v2.8.3
+   Compiling find-msvc-tools v0.1.14
+   Compiling shlex v2.0.1
+   Compiling cc v1.8.0
+   Compiling serde v1.0.229
+   Compiling synstructure v0.14.0
+   Compiling version_check v0.9.5
+   Compiling thiserror v2.0.21
+   Compiling zerofrom-derive v0.1.8
+   Compiling thiserror-impl v2.0.21
+   Compiling rustversion v1.0.23
+    Checking zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+    Checking stable_deref_trait v1.2.1
+    Checking yoke v0.8.3
+   Compiling zerovec-derive v0.11.6
+    Checking zerovec v0.11.8
+   Compiling displaydoc v0.2.7
+    Checking allocator-api2 v0.2.21
+    Checking hashbrown v0.17.1
+    Checking writeable v0.6.4
+    Checking once_cell v1.21.4
+    Checking tinystr v0.8.4
+    Checking litemap v0.8.3
+    Checking futures-core v0.3.34
+    Checking icu_locale_core v2.3.0
+    Checking potential_utf v0.1.6
+    Checking zerotrie v0.2.5
+   Compiling semver v1.0.28
+   Compiling rustc_version v0.4.1
+    Checking icu_provider v2.3.1
+    Checking futures-sink v0.3.34
+   Compiling wasm-bindgen-shared v0.2.129
+    Checking utf8_iter v1.0.4
+    Checking icu_collections v2.3.0
+   Compiling zmij v1.0.23
+    Checking futures-channel v0.3.34
+   Compiling futures-macro v0.3.34
+    Checking slab v0.4.12
+    Checking futures-io v0.3.34
+    Checking futures-task v0.3.34
+    Checking smallvec v1.16.3
+    Checking futures-util v0.3.34
+   Compiling tree-sitter-language v0.1.9
+   Compiling bumpalo v3.20.3
+   Compiling wasm-bindgen-macro-support v0.2.129
+   Compiling wasm-bindgen v0.2.129
+    Checking bitflags v2.13.2
+   Compiling wasm-bindgen-macro v0.2.129
+    Checking equivalent v1.0.3
+    Checking rustc-hash v2.1.3
+    Checking indexmap v2.14.2
+   Compiling generic-array v0.14.7
+    Checking js-sys v0.3.106
+    Checking unicode-segmentation v1.13.3
+    Checking percent-encoding v2.3.2
+   Compiling icu_locale_fallback_data v2.3.0
+   Compiling icu_segmenter_data v2.3.0
+   Compiling siphasher v1.0.4
+   Compiling autocfg v1.5.1
+   Compiling num-traits v0.2.19
+   Compiling phf_shared v0.13.1
+    Checking futures-executor v0.3.34
+    Checking aho-corasick v1.1.5
+   Compiling serde_json v1.0.154
+    Checking ryu v1.0.23
+    Checking unicode-width v0.2.2
+    Checking regex-syntax v0.8.11
+    Checking regex-automata v0.4.18
+   Compiling convert_case v0.11.0
+    Checking futures v0.3.34
+    Checking icu_locale_fallback v2.3.0
+    Checking bytes v1.12.1
+    Checking icu_segmenter v2.3.0
+    Checking wasm-bindgen-futures v0.4.79
+   Compiling icu_normalizer_data v2.3.0
+   Compiling icu_properties_data v2.3.0
+    Checking typenum v1.20.1
+    Checking smawk v0.3.3
+    Checking textwrap v0.16.4
+    Checking castaway v0.2.4
+   Compiling proc-macro2-diagnostics v0.11.0
+   Compiling oxc-miette-derive v2.7.1
+    Checking owo-colors v4.4.0
+   Compiling unicode-xid v0.2.6
+    Checking oxc_data_structures v0.128.0
+   Compiling anyhow v1.0.104
+    Checking or_poisoned v0.1.0
+   Compiling paste v1.0.15
+    Checking parking v2.2.1
+   Compiling fastrand v2.5.0
+   Compiling phf_generator v0.13.1
+    Checking event-listener v5.4.2
+    Checking oxc_allocator v0.128.0
+    Checking compact_str v0.9.1
+   Compiling const_format_proc_macros v0.2.34
+   Compiling proc-macro-utils v0.10.0
+    Checking oxc-miette v2.7.1
+   Compiling phf v0.13.1
+    Checking web-sys v0.3.106
+    Checking throw_error v0.3.1
+   Compiling slotmap v1.1.1
+   Compiling konst_macro_rules v0.2.19
+    Checking oxc_estree v0.128.0
+   Compiling getrandom v0.4.3
+    Checking oxc_str v0.128.0
+   Compiling konst v0.2.20
+   Compiling oxc_ast_macros v0.128.0
+    Checking icu_properties v2.3.0
+    Checking icu_normalizer v2.3.0
+    Checking event-listener-strategy v0.5.4
+   Compiling phf_macros v0.13.1
+   Compiling server_fn_macro v0.8.12
+   Compiling reactive_graph v0.2.16
+    Checking send_wrapper v0.6.0
+    Checking cow-utils v0.1.3
+   Compiling dragonbox_ecma v0.1.12
+   Compiling cfg-if v1.0.5
+   Compiling foldhash v0.2.0
+   Compiling camino v1.2.6
+   Compiling rstml v0.13.1
+   Compiling itoa v1.0.18
+    Checking either v1.19.0
+    Checking itertools v0.14.0
+    Checking async-lock v3.4.2
+    Checking idna_adapter v1.2.2
+    Checking oxc_span v0.128.0
+   Compiling const_format v0.2.36
+    Checking hydration_context v0.3.2
+    Checking any_spawner v0.3.0
+    Checking regex v1.13.1
+    Checking mio v1.2.4
+   Compiling derive-where v1.7.0
+    Checking nonmax v0.5.5
+   Compiling pkg-config v0.3.34
+    Checking base64 v0.22.1
+    Checking dyn-clone v1.0.20
+   Compiling thiserror v1.0.69
+    Checking guardian v1.3.0
+    Checking unicode-id-start v1.5.0
+   Compiling xxhash-rust v0.8.19
+    Checking oxc_index v4.1.0
+    Checking idna v1.1.0
+    Checking oxc_diagnostics v0.128.0
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling quote-use-macros v0.9.0
+   Compiling manyhow-macros v0.14.1
+   Compiling reactive_stores_macro v0.4.4
+    Checking form_urlencoded v1.2.2
+   Compiling tachys v0.2.19
+    Checking errno v0.3.14
+   Compiling pin-project-internal v1.1.13
+   Compiling thiserror-impl v1.0.69
+   Compiling async-trait v0.1.92
+   Compiling vcpkg v0.2.15
+   Compiling ref-cast v1.0.27
+    Checking winnow v1.0.4
+    Checking same-file v1.0.6
+   Compiling prettyplease v0.3.0
+    Checking walkdir v2.5.0
+    Checking toml_parser v1.1.5+spec-1.1.0
+   Compiling libz-sys v1.1.30
+    Checking pin-project v1.1.13
+    Checking signal-hook-registry v1.4.8
+    Checking url v2.5.8
+    Checking reactive_stores v0.4.4
+   Compiling manyhow v0.14.1
+   Compiling quote-use v0.9.0
+   Compiling digest v0.10.7
+    Checking oxc_regular_expression v0.128.0
+    Checking oxc_syntax v0.128.0
+    Checking either_of v0.1.9
+    Checking gloo-utils v0.2.0
+    Checking num-integer v0.1.47
+    Checking http v1.5.0
+   Compiling server_fn v0.8.13
+    Checking oco_ref v0.2.1
+    Checking toml_datetime v1.1.2+spec-1.1.0
+    Checking serde_spanned v1.1.2
+   Compiling ref-cast-impl v1.0.27
+   Compiling tokio-macros v2.7.2
+   Compiling serde_derive_internals v0.30.0
+   Compiling cfg_aliases v0.2.2
+    Checking erased v0.1.2
+    Checking drain_filter_polyfill v0.1.3
+    Checking next_tuple v0.1.0
+   Compiling inotify-sys v0.1.8
+    Checking iana-time-zone v0.1.65
+    Checking html-escape v0.2.15
+   Compiling cpufeatures v0.2.17
+    Checking const_str_slice_concat v0.1.0
+    Checking toml_writer v1.1.3+spec-1.1.0
+   Compiling collection_literals v1.0.3
+   Compiling ident_case v1.0.1
+   Compiling strsim v0.11.1
+   Compiling interpolator v0.5.0
+   Compiling attribute-derive-macro v0.11.0
+   Compiling darling_core v0.23.0
+    Checking toml v1.1.8+spec-1.1.0
+   Compiling sha2 v0.10.9
+    Checking chrono v0.4.45
+   Compiling nix v0.31.3
+   Compiling schemars_derive v1.2.3
+    Checking tokio v1.53.3
+    Checking gloo-net v0.6.0
+    Checking num-bigint v0.4.8
+    Checking oxc_ast v0.128.0
+   Compiling server_fn_macro_default v0.8.6
+   Compiling tree-sitter v0.25.10
+    Checking wasm-streams v0.5.0
+    Checking hybrid-array v0.4.15
+    Checking bstr v1.13.1
+    Checking serde_qs v0.15.0
+    Checking convert_case v0.6.0
+   Compiling leptos_macro v0.8.19
+    Checking tracing-core v0.1.36
+    Checking toml_datetime v0.6.11
+    Checking serde_spanned v0.6.9
+   Compiling typed-builder-macro v0.23.2
+   Compiling tracing-attributes v0.1.31
+    Checking const-str v1.1.0
+   Compiling base16 v0.2.1
+    Checking winnow v0.7.15
+    Checking pathdiff v0.2.3
+    Checking option-ext v0.2.0
+   Compiling rustix v1.1.5
+    Checking inventory v0.3.25
+   Compiling libm v0.2.16
+    Checking toml_write v0.1.2
+    Checking toml_edit v0.22.27
+    Checking dirs-sys v0.5.0
+    Checking config v0.15.27
+   Compiling leptos_hot_reload v0.8.7
+   Compiling wasm_split_macros v0.2.2
+    Checking tracing v0.1.44
+    Checking typed-builder v0.23.2
+   Compiling uuid v1.28.0
+    Checking schemars v1.2.3
+   Compiling darling_macro v0.23.0
+   Compiling attribute-derive v0.11.0
+   Compiling libgit2-sys v0.18.8+1.9.7
+    Checking codee v0.3.5
+   Compiling convert_case_extras v0.2.0
+   Compiling leptos v0.8.22
+   Compiling tree-sitter-python v0.25.0
+   Compiling blake3 v1.8.7
+   Compiling tree-sitter-typescript v0.23.2
+   Compiling tree-sitter-javascript v0.25.0
+    Checking cpufeatures v0.3.1
+    Checking linux-raw-sys v0.12.1
+    Checking tinyvec v1.13.3
+   Compiling unicode-general-category v1.1.0
+   Compiling getrandom v0.3.4
+    Checking async-once-cell v0.5.4
+    Checking jiff-core v0.1.1
+   Compiling portable-atomic v1.15.0
+    Checking typed-arena v2.0.2
+    Checking jaq-core v3.1.1
+    Checking jiff v0.2.38
+    Checking wasm_split_helpers v0.2.3
+    Checking unicode-normalization v0.1.25
+    Checking leptos_server v0.8.8
+   Compiling darling v0.23.0
+    Checking inotify v0.11.5
+    Checking leptos_config v0.8.10
+    Checking dirs v6.0.0
+    Checking toml v0.8.23
+    Checking crypto-common v0.2.2
+    Checking block-buffer v0.12.1
+    Checking oxc_ecmascript v0.128.0
+    Checking leptos_dom v0.8.8
+    Checking notify-types v2.1.0
+   Compiling tree-sitter-objc v3.0.2
+   Compiling tree-sitter-swift v0.7.4
+   Compiling tree-sitter-c v0.24.2
+   Compiling tree-sitter-cpp v0.23.4
+    Checking arrayvec v0.7.8
+    Checking const-oid v0.10.2
+    Checking regex-bites v0.1.6
+   Compiling rmcp v2.2.0
+    Checking streaming-iterator v0.1.9
+    Checking urlencoding v2.1.3
+    Checking self_cell v1.3.0
+    Checking unsafe-libyaml v0.2.11
+   Compiling aicx v0.10.0
+    Checking constant_time_eq v0.4.2
+    Checking serde_yaml v0.9.34+deprecated
+    Checking jaq-std v3.0.3
+    Checking digest v0.11.3
+    Checking notify v8.2.0
+    Checking aicx-parser v0.10.0
+    Checking process-wrap v9.1.1
+   Compiling rmcp-macros v2.2.0
+    Checking globset v0.4.20
+    Checking oxc_ast_visit v0.128.0
+    Checking tokio-util v0.7.20
+    Checking tokio-stream v0.1.19
+    Checking console v0.16.6
+    Checking powerfmt v0.2.1
+   Compiling loctree v0.15.0
+   Compiling seq-macro v0.3.6
+    Checking hifijson v0.5.0
+    Checking file-id v0.2.3
+    Checking foldhash v0.1.5
+    Checking deranged v0.5.9
+    Checking time-core v0.1.9
+    Checking unit-prefix v0.5.2
+    Checking num-conv v0.2.2
+    Checking shlex v1.3.0
+    Checking hex v0.4.3
+    Checking time v0.3.55
+    Checking indicatif v0.18.6
+    Checking tempfile v3.27.0
+    Checking jaq-json v2.0.3
+    Checking notify-debouncer-full v0.7.0
+    Checking oxc_parser v0.128.0
+    Checking oxc_semantic v0.128.0
+    Checking json-five v0.3.1
+    Checking loctree-ast v0.15.0
+    Checking git2 v0.20.4
+    Checking report-leptos v0.15.0
+    Checking sha2 v0.11.1
+    Checking fs4 v0.13.1
+    Checking colored v3.1.1
+    Checking heck v0.5.0
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4m 15s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-14 19:47 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-286769</td></tr>
+
+<tr><td class="muted nowrap">2026-10-14 19:47 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-286807</td></tr>
+
+<tr><td class="muted nowrap">2026-10-14 19:47 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-14 19:52 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-14 19:52 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-14 19:52 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

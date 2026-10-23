@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: rsconstruct 0.9.123</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>rsconstruct <span class="version">0.9.123</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 127078</span>
+      <a class="muted" href="https://crates.io/crates/rsconstruct/0.9.123" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="127078.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="127078.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (143 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">336</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · rsconstruct</div></td><td class="mono where"><a href="https://crates.io/crates/rsconstruct/0.9.123/code/build.rs#L25" rel="noreferrer noopener" target="_blank">build.rs:25</a></td><td>medium severity process_spawn in build_script code (143 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · rsconstruct</div></td><td class="mono where"><a href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/ijinja2.rs#L78" rel="noreferrer noopener" target="_blank">src/processor/generator/ijinja2.rs:78</a></td><td>medium severity environment_enumeration in library code: std::env::vars</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · rsconstruct</div></td><td class="mono where"><a href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L112" rel="noreferrer noopener" target="_blank">src/download.rs:112</a></td><td>medium severity secret_environment_variable in library code (20 places): GITHUB_TOKEN</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · rsconstruct</div></td><td class="mono where"><a href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/shell_name.rs#L17" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/shell_name.rs:17</a></td><td>medium severity shell_command in library code (14 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · rsconstruct</div></td><td class="mono where"><a href="https://crates.io/crates/rsconstruct/0.9.123/code/docs/src/commands.md#L823" rel="noreferrer noopener" target="_blank">docs/src/commands.md:823</a></td><td>medium severity yara:persistence_locations in library code (2 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · rsconstruct</div></td><td class="mono where"><a href="https://crates.io/crates/rsconstruct/0.9.123/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">336</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">40</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">143</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">153</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">20</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L112" rel="noreferrer noopener" target="_blank">src/download.rs:112</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L189" rel="noreferrer noopener" target="_blank">src/download.rs:189</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L215" rel="noreferrer noopener" target="_blank">src/download.rs:215</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L232" rel="noreferrer noopener" target="_blank">src/download.rs:232</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L233" rel="noreferrer noopener" target="_blank">src/download.rs:233</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L241" rel="noreferrer noopener" target="_blank">src/download.rs:241</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L245" rel="noreferrer noopener" target="_blank">src/download.rs:245</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2319" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2319</a> </span></li>
+
+<li><code class="evidence-text">GH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L112" rel="noreferrer noopener" target="_blank">src/download.rs:112</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L232" rel="noreferrer noopener" target="_blank">src/download.rs:232</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L236" rel="noreferrer noopener" target="_blank">src/download.rs:236</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L237" rel="noreferrer noopener" target="_blank">src/download.rs:237</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L241" rel="noreferrer noopener" target="_blank">src/download.rs:241</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L242" rel="noreferrer noopener" target="_blank">src/download.rs:242</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2317" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2317</a> </span></li>
+
+<li><code class="evidence-text">AWS_ACCESS_KEY_ID</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2297" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2297</a> </span></li>
+
+<li><code class="evidence-text">AWS_SECRET_ACCESS_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2298" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2298</a> </span></li>
+
+<li><code class="evidence-text">DOCKER_PASSWORD</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2308" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2308</a> </span></li>
+
+<li><code class="evidence-text">NPM_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2323" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2323</a> </span></li>
+
+<li><code class="evidence-text">OPENAI_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2329" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2329</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">14</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/shell_name.rs#L17" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/shell_name.rs:17</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/shell_name.rs#L18" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/shell_name.rs:18</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L2533" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:2533</a> </span></li>
+
+<li><code class="evidence-text">(?x:\u{a}\u{9}u_(?:char|short|int|long) |          # bsd\u{a}\u{9}u(?:nchar|short|int|long)            # sysv\u{a})</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/globals.rs#L204" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/globals.rs:204</a> </span></li>
+
+<li><code class="evidence-text">\.(h|c|rs|s|S|sh|dtsi|dts)$</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/lines.rs#L593" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/lines.rs:593</a> </span></li>
+
+<li><code class="evidence-text">\b($Declare)\s*(?!char\b|short\b|int\b|long\b)\s*($Ident)?\s*[=,;\[\)\(]</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/lines.rs#L1593" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/lines.rs:1593</a> </span></li>
+
+<li><code class="evidence-text">\b(const|volatile|void|char|short|int|long|float|double|signed|unsigned|schar|u?int8_t|u?int16_t|u?int32_t|u?int64_t)\s+(register|static|extern|typedef)\b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/cpplint/checks.rs#L276" rel="noreferrer noopener" target="_blank">src/engines/cpplint/checks.rs:276</a> </span></li>
+
+<li><code class="evidence-text">^(?:(char(16_t|32_t)?)|wchar_t|bool|short|int|long|signed|unsigned|float|double|(ptrdiff_t|size_t|max_align_t|nullptr_t)|(u?int(_fast|_least)?(8|16|32|64)_t)|(u?int(max|ptr)_t)|)$</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/cpplint/tables.rs#L439" rel="noreferrer noopener" target="_blank">src/engines/cpplint/tables.rs:439</a> </span></li>
+
+<li><code class="evidence-text">Avoid use of wget without progress bar. Use `wget --progress=dot:giga &#60;url&#62;`. Or consider using `-q` or `-nv` (shorthands for `--quiet` or `--no-verbose`).</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L1631" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:1631</a> </span></li>
+
+<li><code class="evidence-text">FROM alpine:3.20\u{a}RUN cd /tmp &#38;&#38; sudo apk add curl &#38;&#38; echo &#34;$(wget -q x | tee y)&#34; ; pip install a\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/tests.rs#L73" rel="noreferrer noopener" target="_blank">src/engines/hadolint/tests.rs:73</a> </span></li>
+
+<li><code class="evidence-text">&#39;time&#39; is undefined for pipelines. time single stage or bash -c instead.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/shellcheck/commands.rs#L958" rel="noreferrer noopener" target="_blank">src/engines/shellcheck/commands.rs:958</a> </span></li>
+
+<li><code class="evidence-text">HTTP cache unreachable for {} (curl exit {:?})</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L196" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:196</a> </span></li>
+
+<li><code class="evidence-text">HTTP cache unreachable for {url} (curl exit {:?})</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L252" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:252</a> </span></li>
+
+<li><code class="evidence-text">chmod +x {final_tmp}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L842" rel="noreferrer noopener" target="_blank">src/tools.rs:842</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/build.rs#L25" rel="noreferrer noopener" target="_blank">build.rs:25</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/build.rs#L42" rel="noreferrer noopener" target="_blank">build.rs:42</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/build.rs#L66" rel="noreferrer noopener" target="_blank">build.rs:66</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/docs/src/commands.md#L823" rel="noreferrer noopener" target="_blank">docs/src/commands.md:823</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/docs/src/completions.md#L20" rel="noreferrer noopener" target="_blank">docs/src/completions.md:20</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/ijinja2.rs#L78" rel="noreferrer noopener" target="_blank">src/processor/generator/ijinja2.rs:78</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">111</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/cpp.rs#L106" rel="noreferrer noopener" target="_blank">src/analyzers/cpp.rs:106</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/mod.rs#L143" rel="noreferrer noopener" target="_blank">src/analyzers/mod.rs:143</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/mod.rs#L206" rel="noreferrer noopener" target="_blank">src/analyzers/mod.rs:206</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/tera.rs#L405" rel="noreferrer noopener" target="_blank">src/analyzers/tera.rs:405</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/clean.rs#L146" rel="noreferrer noopener" target="_blank">src/builder/clean.rs:146</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/clean.rs#L193" rel="noreferrer noopener" target="_blank">src/builder/clean.rs:193</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/doctor.rs#L376" rel="noreferrer noopener" target="_blank">src/builder/doctor.rs:376</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/doctor.rs#L383" rel="noreferrer noopener" target="_blank">src/builder/doctor.rs:383</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/graph.rs#L78" rel="noreferrer noopener" target="_blank">src/builder/graph.rs:78</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/graph.rs#L96" rel="noreferrer noopener" target="_blank">src/builder/graph.rs:96</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/graph.rs#L237" rel="noreferrer noopener" target="_blank">src/builder/graph.rs:237</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/tools.rs#L32" rel="noreferrer noopener" target="_blank">src/builder/tools.rs:32</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/tools.rs#L48" rel="noreferrer noopener" target="_blank">src/builder/tools.rs:48</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/tools.rs#L100" rel="noreferrer noopener" target="_blank">src/builder/tools.rs:100</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/tools.rs#L110" rel="noreferrer noopener" target="_blank">src/builder/tools.rs:110</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/tests.rs#L61" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/tests.rs:61</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/tests.rs#L324" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/tests.rs:324</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/tests.rs#L422" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/tests.rs:422</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkpatch/tests.rs#L521" rel="noreferrer noopener" target="_blank">src/engines/checkpatch/tests.rs:521</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkstyle/tests.rs#L210" rel="noreferrer noopener" target="_blank">src/engines/checkstyle/tests.rs:210</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkstyle/tests.rs#L225" rel="noreferrer noopener" target="_blank">src/engines/checkstyle/tests.rs:225</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/perlcritic/tests.rs#L287" rel="noreferrer noopener" target="_blank">src/engines/perlcritic/tests.rs:287</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/perlcritic/tests.rs#L303" rel="noreferrer noopener" target="_blank">src/engines/perlcritic/tests.rs:303</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/shellcheck/tests.rs#L118" rel="noreferrer noopener" target="_blank">src/engines/shellcheck/tests.rs:118</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/shellcheck/tests.rs#L128" rel="noreferrer noopener" target="_blank">src/engines/shellcheck/tests.rs:128</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/aspell.rs#L83" rel="noreferrer noopener" target="_blank">src/processor/checker/aspell.rs:83</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/clang_tidy.rs#L34" rel="noreferrer noopener" target="_blank">src/processor/checker/clang_tidy.rs:34</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/clippy.rs#L56" rel="noreferrer noopener" target="_blank">src/processor/checker/clippy.rs:56</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/make.rs#L39" rel="noreferrer noopener" target="_blank">src/processor/checker/make.rs:39</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/markdownlint.rs#L67" rel="noreferrer noopener" target="_blank">src/processor/checker/markdownlint.rs:67</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/mdl.rs#L117" rel="noreferrer noopener" target="_blank">src/processor/checker/mdl.rs:117</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/cargo.rs#L66" rel="noreferrer noopener" target="_blank">src/processor/creator/cargo.rs:66</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/cc.rs#L210" rel="noreferrer noopener" target="_blank">src/processor/creator/cc.rs:210</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/cc.rs#L233" rel="noreferrer noopener" target="_blank">src/processor/creator/cc.rs:233</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/cc.rs#L270" rel="noreferrer noopener" target="_blank">src/processor/creator/cc.rs:270</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/cc.rs#L307" rel="noreferrer noopener" target="_blank">src/processor/creator/cc.rs:307</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/cc.rs#L344" rel="noreferrer noopener" target="_blank">src/processor/creator/cc.rs:344</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/gem.rs#L73" rel="noreferrer noopener" target="_blank">src/processor/creator/gem.rs:73</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/generic.rs#L142" rel="noreferrer noopener" target="_blank">src/processor/creator/generic.rs:142</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/jekyll.rs#L32" rel="noreferrer noopener" target="_blank">src/processor/creator/jekyll.rs:32</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/linux_module.rs#L96" rel="noreferrer noopener" target="_blank">src/processor/creator/linux_module.rs:96</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/linux_module.rs#L157" rel="noreferrer noopener" target="_blank">src/processor/creator/linux_module.rs:157</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/linux_module.rs#L197" rel="noreferrer noopener" target="_blank">src/processor/creator/linux_module.rs:197</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/mdbook.rs#L48" rel="noreferrer noopener" target="_blank">src/processor/creator/mdbook.rs:48</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/npm.rs#L48" rel="noreferrer noopener" target="_blank">src/processor/creator/npm.rs:48</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/pip.rs#L34" rel="noreferrer noopener" target="_blank">src/processor/creator/pip.rs:34</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/creator/sphinx.rs#L52" rel="noreferrer noopener" target="_blank">src/processor/creator/sphinx.rs:52</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/explicit/generic.rs#L140" rel="noreferrer noopener" target="_blank">src/processor/explicit/generic.rs:140</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/a2x.rs#L22" rel="noreferrer noopener" target="_blank">src/processor/generator/a2x.rs:22</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/cc_single_file.rs#L262" rel="noreferrer noopener" target="_blank">src/processor/generator/cc_single_file.rs:262</a> <span class="muted">and 47 more</span></span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L123" rel="noreferrer noopener" target="_blank">src/download.rs:123</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/cc_single_file.rs#L528" rel="noreferrer noopener" target="_blank">src/processor/generator/cc_single_file.rs:528</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mass_generator/generic.rs#L117" rel="noreferrer noopener" target="_blank">src/processor/mass_generator/generic.rs:117</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mass_generator/generic.rs#L323" rel="noreferrer noopener" target="_blank">src/processor/mass_generator/generic.rs:323</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mass_generator/generic.rs#L340" rel="noreferrer noopener" target="_blank">src/processor/mass_generator/generic.rs:340</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L114" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:114</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L125" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:125</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L156" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:156</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L295" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:295</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L302" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:302</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L311" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:311</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L324" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:324</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L694" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:694</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/mod.rs#L190" rel="noreferrer noopener" target="_blank">src/processor/mod.rs:190</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">29</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/common/mod.rs#L20" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:20</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/common/mod.rs#L61" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:61</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/icheckpatch.rs#L66" rel="noreferrer noopener" target="_blank">tests/processor/checker/icheckpatch.rs:66</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/icheckstyle.rs#L237" rel="noreferrer noopener" target="_blank">tests/processor/checker/icheckstyle.rs:237</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/iperlcritic.rs#L230" rel="noreferrer noopener" target="_blank">tests/processor/checker/iperlcritic.rs:230</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/ishellcheck.rs#L159" rel="noreferrer noopener" target="_blank">tests/processor/checker/ishellcheck.rs:159</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/creator/cc.rs#L164" rel="noreferrer noopener" target="_blank">tests/processor/creator/cc.rs:164</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L339" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:339</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L389" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:389</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L438" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:438</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L485" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:485</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L532" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:532</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L583" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:583</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L634" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:634</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L681" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:681</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L735" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:735</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L810" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:810</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L862" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:862</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L906" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:906</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L1016" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:1016</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L1160" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:1160</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L1168" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:1168</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L1282" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:1282</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/cc_single_file.rs#L1298" rel="noreferrer noopener" target="_blank">tests/processor/generator/cc_single_file.rs:1298</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tera.rs#L611" rel="noreferrer noopener" target="_blank">tests/processor/generator/tera.rs:611</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tera.rs#L677" rel="noreferrer noopener" target="_blank">tests/processor/generator/tera.rs:677</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tera.rs#L682" rel="noreferrer noopener" target="_blank">tests/processor/generator/tera.rs:682</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/mass_generator/zola.rs#L235" rel="noreferrer noopener" target="_blank">tests/processor/mass_generator/zola.rs:235</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/common/mod.rs#L59" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:59</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::get</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L719" rel="noreferrer noopener" target="_blank">src/tools.rs:719</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/webcache.rs#L114" rel="noreferrer noopener" target="_blank">src/webcache.rs:114</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">124</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/markdown.rs#L58" rel="noreferrer noopener" target="_blank">src/analyzers/markdown.rs:58</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/sass.rs#L199" rel="noreferrer noopener" target="_blank">src/analyzers/sass.rs:199</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L778" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:778</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/marp_images.rs#L42" rel="noreferrer noopener" target="_blank">src/processor/checker/marp_images.rs:42</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/terms.rs#L435" rel="noreferrer noopener" target="_blank">src/processor/checker/terms.rs:435</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L66" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:66</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/markdown.rs#L59" rel="noreferrer noopener" target="_blank">src/analyzers/markdown.rs:59</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/sass.rs#L200" rel="noreferrer noopener" target="_blank">src/analyzers/sass.rs:200</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L778" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:778</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/marp_images.rs#L43" rel="noreferrer noopener" target="_blank">src/processor/checker/marp_images.rs:43</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/terms.rs#L435" rel="noreferrer noopener" target="_blank">src/processor/checker/terms.rs:435</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L66" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:66</a> </span></li>
+
+<li><code class="evidence-text">ftp://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/markdown.rs#L60" rel="noreferrer noopener" target="_blank">src/analyzers/markdown.rs:60</a> </span></li>
+
+<li><code class="evidence-text">\u{a}@use &#34;sass:math&#34;;\u{a}@use &#34;vars&#34; as v;\u{a}@use &#39;theme&#39; with ($accent: &#34;red&#34;, $font: &#39;x&#39;);\u{a}@forward &#34;mixins&#34; show button;\u{a}@import &#34;a&#34;, &#39;b&#39;;\u{a}@import &#34;plain.css&#34;;\u{a}@import url(remot…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/sass.rs#L376" rel="noreferrer noopener" target="_blank">src/analyzers/sass.rs:376</a> </span></li>
+
+<li><code class="evidence-text">$u: &#34;http://x&#34;;\u{a}@use &#34;kept&#34;;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/analyzers/sass.rs#L401" rel="noreferrer noopener" target="_blank">src/analyzers/sass.rs:401</a> </span></li>
+
+<li><code class="evidence-text">&#60;!DOCTYPE html&#62;\u{a}&#60;html&#62;\u{a}&#60;head&#62;\u{a}    &#60;meta charset=&#34;UTF-8&#34;&#62;\u{a}    &#60;title&#62;RSConstruct Tools Graph&#60;/title&#62;\u{a}    &#60;script src=&#34;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&#34;&#62;&#60;/scr…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/builder/tools.rs#L1247" rel="noreferrer noopener" target="_blank">src/builder/tools.rs:1247</a> </span></li>
+
+<li><code class="evidence-text">\u{a}version = 1\u{a}requires-python = &#34;&#62;=3.14&#34;\u{a}\u{a}[[package]]\u{a}name = &#34;demo&#34;\u{a}version = &#34;0.1.0&#34;\u{a}source = { editable = &#34;.&#34; }\u{a}\u{a}[[package]]\u{a}name = &#34;flask&#34;\u{a}version = &#34;3.1.…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/config/tests.rs#L1236" rel="noreferrer noopener" target="_blank">src/config/tests.rs:1236</a> </span></li>
+
+<li><code class="evidence-text">\u{a}version = 1\u{a}\u{a}[[package]]\u{a}name = &#34;somelib&#34;\u{a}version = &#34;1.0.0&#34;\u{a}source = { git = &#34;https://example.com/somelib.git&#34; }\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/config/tests.rs#L1267" rel="noreferrer noopener" target="_blank">src/config/tests.rs:1267</a> </span></li>
+
+<li><code class="evidence-text">\u{a}version = 1\u{a}\u{a}[[package]]\u{a}name = &#34;demo&#34;\u{a}version = &#34;0.1.0&#34;\u{a}source = { virtual = &#34;.&#34; }\u{a}\u{a}[[package]]\u{a}name = &#34;flask&#34;\u{a}version = &#34;3.1.0&#34;\u{a}source = { registry = &#34;ht…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/config/tests.rs#L1294" rel="noreferrer noopener" target="_blank">src/config/tests.rs:1294</a> </span></li>
+
+<li><code class="evidence-text"># This file was autogenerated by uv.\u{a}-e .\u{a}flask==3.1.0\u{a}pywin32==312 ; sys_platform == &#39;win32&#39;\u{a}\u{a}--index-url https://pypi.org/simple\u{a}werkzeug==3.1.3\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/config/tests.rs#L1391" rel="noreferrer noopener" target="_blank">src/config/tests.rs:1391</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L79" rel="noreferrer noopener" target="_blank">src/download.rs:79</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/x.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L168" rel="noreferrer noopener" target="_blank">src/download.rs:168</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L177" rel="noreferrer noopener" target="_blank">src/download.rs:177</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L179" rel="noreferrer noopener" target="_blank">src/download.rs:179</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L212" rel="noreferrer noopener" target="_blank">src/download.rs:212</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L255" rel="noreferrer noopener" target="_blank">src/download.rs:255</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L188" rel="noreferrer noopener" target="_blank">src/download.rs:188</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/biomejs/biome/releases/latest/download/biome-linux-x64</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/download.rs#L213" rel="noreferrer noopener" target="_blank">src/download.rs:213</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L955" rel="noreferrer noopener" target="_blank">src/tools.rs:955</a> </span></li>
+
+<li><code class="evidence-text">{} is potentially untrusted. avoid using it directly in inline scripts. instead, pass it through an environment variable. see https://docs.github.com/en/actions/reference/security/secure-use#good-prac…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/expr/insecure.rs#L235" rel="noreferrer noopener" target="_blank">src/engines/actionlint/expr/insecure.rs:235</a> </span></li>
+
+<li><code class="evidence-text">object filter extracts potentially untrusted properties {}. avoid using the value directly in inline scripts. instead, pass the value through an environment variable. see https://docs.github.com/en/ac…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/expr/insecure.rs#L243" rel="noreferrer noopener" target="_blank">src/engines/actionlint/expr/insecure.rs:243</a> </span></li>
+
+<li><code class="evidence-text">context {} is not allowed here. {notes}. see https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability for more details</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/expr/sema.rs#L461" rel="noreferrer noopener" target="_blank">src/engines/actionlint/expr/sema.rs:461</a> </span></li>
+
+<li><code class="evidence-text">calling function {} is not allowed here. {} is only available in {}. see https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability for more details</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/expr/sema.rs#L478" rel="noreferrer noopener" target="_blank">src/engines/actionlint/expr/sema.rs:478</a> </span></li>
+
+<li><code class="evidence-text">configuration variable name {} must not start with the GITHUB_ prefix (case insensitive). note: see the convention at https://docs.github.com/en/actions/learn-github-actions/variables#naming-conventio…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/expr/sema.rs#L593" rel="noreferrer noopener" target="_blank">src/engines/actionlint/expr/sema.rs:593</a> </span></li>
+
+<li><code class="evidence-text">configuration variable name {} can only contain alphabets, decimal numbers, and &#39;_&#39;. note: see the convention at https://docs.github.com/en/actions/learn-github-actions/variables#naming-conventions-fo…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/expr/sema.rs#L606" rel="noreferrer noopener" target="_blank">src/engines/actionlint/expr/sema.rs:606</a> </span></li>
+
+<li><code class="evidence-text">docker://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/parse.rs#L1421" rel="noreferrer noopener" target="_blank">src/engines/actionlint/parse.rs:1421</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L288" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:288</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L603" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:603</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L604" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:604</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L806" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:806</a> </span></li>
+
+<li><code class="evidence-text">invalid runner name {} at runs.using in {} action defined at {}. valid runners are &#34;composite&#34;, &#34;docker&#34;, &#34;node20&#34;, and &#34;node24&#34;. see https://docs.github.com/en/actions/creating-actions/metadata-synta…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L585" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:585</a> </span></li>
+
+<li><code class="evidence-text">incorrect icon name {} at branding.icon in metadata of {} action at {}. see the official document to know the exhaustive list of supported icons: https://docs.github.com/en/actions/creating-actions/me…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L657" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:657</a> </span></li>
+
+<li><code class="evidence-text">incorrect color {} at branding.icon in metadata of {} action at {}. see the official document to know the exhaustive list of supported colors: https://docs.github.com/en/actions/creating-actions/metad…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/action.rs#L670" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/action.rs:670</a> </span></li>
+
+<li><code class="evidence-text">workflow command {} was deprecated. use `{a}` instead: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/deprecated_commands.rs#L54" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/deprecated_commands.rs:54</a> </span></li>
+
+<li><code class="evidence-text">unknown Webhook event {}. see https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#webhook-events for list of all Webhook event names</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/events.rs#L321" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/events.rs:321</a> </span></li>
+
+<li><code class="evidence-text">maximum number of inputs for &#34;workflow_dispatch&#34; event is 25 but {} inputs are provided. see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/events.rs#L534" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/events.rs:534</a> </span></li>
+
+<li><code class="evidence-text">{}. note: filter pattern syntax is explained at https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/glob.rs#L342" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/glob.rs:342</a> </span></li>
+
+<li><code class="evidence-text">reusable workflow call {} at &#34;uses&#34; is not following the format &#34;owner/repo/path/to/workflow.yml@ref&#34; nor &#34;./path/to/workflow.yml&#34;. see https://docs.github.com/en/actions/learn-github-actions/reusing-…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/rules/workflow_call.rs#L181" rel="noreferrer noopener" target="_blank">src/engines/actionlint/rules/workflow_call.rs:181</a> </span></li>
+
+<li><code class="evidence-text">2:3: unknown Webhook event &#34;pussh&#34;. see https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#webhook-events for list of all Webhook event names [events]</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/actionlint/tests.rs#L113" rel="noreferrer noopener" target="_blank">src/engines/actionlint/tests.rs:113</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34;?&#62;\u{a}&#60;!DOCTYPE module PUBLIC &#34;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&#34; &#34;https://checkstyle.org/dtds/configuration_1_3.dtd&#34;&#62;\u{a}&#60;module name=&#34;Checker&#34;&#62;\u{a}{checker_pr…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/checkstyle/tests.rs#L347" rel="noreferrer noopener" target="_blank">src/engines/checkstyle/tests.rs:347</a> </span></li>
+
+<li><code class="evidence-text">\s*//.*http(s?)://\S*$</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/cpplint/checks.rs#L1592" rel="noreferrer noopener" target="_blank">src/engines/cpplint/checks.rs:1592</a> </span></li>
+
+<li><code class="evidence-text">Do not use unnamed namespaces in header files.  See https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Namespaces for more information.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/cpplint/language.rs#L358" rel="noreferrer noopener" target="_blank">src/engines/cpplint/language.rs:358</a> </span></li>
+
+<li><code class="evidence-text">git://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L673" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:673</a> </span></li>
+
+<li><code class="evidence-text">git+ssh://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L673" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:673</a> </span></li>
+
+<li><code class="evidence-text">git+http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L673" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:673</a> </span></li>
+
+<li><code class="evidence-text">git+https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/hadolint/rules.rs#L673" rel="noreferrer noopener" target="_blank">src/engines/hadolint/rules.rs:673</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[elm]\u{a}&#34;svg&#34; = 1\u{a}&#34;svg &#62; title&#34; = 1\u{a}&#34;svg &#62; path&#34; = [1, 3]\u{a}&#34;rect&#34; = false\u{a}&#34;*&#34; = false\u{a}\u{a}[[attr]]\u{a}&#34;rule::selector&#34; = &#34;svg&#34;\u{a}&#34;rule::whitelist&#34; = true\u{a}&#34;rule::order…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/svglint/tests.rs#L30" rel="noreferrer noopener" target="_blank">src/engines/svglint/tests.rs:30</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;&#62;&#60;path d=&#34;M1 1&#34;/&#62;&#60;/svg&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/svglint/tests.rs#L68" rel="noreferrer noopener" target="_blank">src/engines/svglint/tests.rs:68</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; role=&#34;img&#34;&#62;\u{a}  &#60;title&#62;t&#60;/title&#62;\u{a}  &#60;path d=&#34;M1 1L2 2z&#34; fill=&#34;green&#34;/&#62;\u{a}  &#60;rect width=&#34;1&#34; height=&#34;1&#34;/&#62;\u{a}  &#60;path d=&#34;X&#34; fill=&#34;red&#34; …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/svglint/tests.rs#L75" rel="noreferrer noopener" target="_blank">src/engines/svglint/tests.rs:75</a> </span></li>
+
+<li><code class="evidence-text">\u{a}\u{a}&#60;svg viewBox=&#34;0 0 24 24&#34; role=&#34;img&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&#62;\u{a}&#60;title&#62;t&#60;/title&#62;&#60;path d=&#34;M1 1&#34; fill=&#34;red&#34; bogus=&#34;1&#34;/&#62;\u{a}&#60;title&#62;u&#60;/title&#62;&#60;/svg&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/svglint/tests.rs#L147" rel="noreferrer noopener" target="_blank">src/engines/svglint/tests.rs:147</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/1999/xhtml</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/clean.rs#L657" rel="noreferrer noopener" target="_blank">src/engines/tidy/clean.rs:657</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/clean.rs#L660" rel="noreferrer noopener" target="_blank">src/engines/tidy/clean.rs:660</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/parser.rs#L21" rel="noreferrer noopener" target="_blank">src/engines/tidy/parser.rs:21</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/REC-html40/strict.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L622" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:622</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/REC-html40/loose.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L629" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:629</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/REC-html40/frameset.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L636" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:636</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/html4/strict.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L643" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:643</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/html4/loose.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L650" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:650</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/html4/frameset.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L657" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:657</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L664" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:664</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L671" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:671</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L678" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:678</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L685" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:685</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/tidy/tables.rs#L692" rel="noreferrer noopener" target="_blank">src/engines/tidy/tables.rs:692</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/XML/1998/namespace</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/parser.rs#L18" rel="noreferrer noopener" target="_blank">src/engines/xmllint/parser.rs:18</a> </span></li>
+
+<li><code class="evidence-text">&#60;a xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;nope.xsd&#34;/&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L41" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:41</a> </span></li>
+
+<li><code class="evidence-text">&#60;!DOCTYPE a SYSTEM &#34;http://example.invalid/a.dtd&#34;&#62;&#60;a&#62;&#38;nbsp;&#60;/a&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L88" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:88</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;\u{a}&#60;xsd:schema xmlns:xsd=&#34;http://www.w3.org/2001/XMLSchema&#34;\u{a}    targetNamespace=&#34;urn:keynote&#34; xmlns:tns=&#34;urn:keynote&#34; elementFormDefault=&#34;qualified&#34;&#62;\u{a}  …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L355" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:355</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;\u{a}  &#60;xs:simpleType name=&#34;Color&#34;&#62;\u{a}    &#60;xs:restriction base=&#34;xs:string&#34;&#62;&#60;xs:pattern value=&#34;#[0-9a-f]{6}&#34;/&#62;&#60;/xs:restriction&#62;\u{a}  &#60;/xs:simpl…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L596" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:596</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;\u{a}  &#60;xs:group name=&#34;g&#34;&#62;&#60;xs:sequence/&#62;&#60;/xs:group&#62;\u{a}&#60;/xs:schema&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L681" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:681</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;&#60;xs:element/&#62;&#60;/xs:schema&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L694" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:694</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;\u{a}  &#60;xs:include schemaLocation=&#34;types.xsd&#34;/&#62;\u{a}  &#60;xs:element name=&#34;n&#34; type=&#34;Small&#34;/&#62;\u{a}&#60;/xs:schema&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L706" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:706</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;\u{a}  &#60;xs:simpleType name=&#34;Small&#34;&#62;\u{a}    &#60;xs:restriction base=&#34;xs:int&#34;&#62;&#60;xs:maxInclusive value=&#34;9&#34;/&#62;&#60;/xs:restriction&#62;\u{a}  &#60;/xs:simpleType&#62;…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/tests.rs#L714" rel="noreferrer noopener" target="_blank">src/engines/xmllint/tests.rs:714</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/2001/XMLSchema</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/xsd.rs#L23" rel="noreferrer noopener" target="_blank">src/engines/xmllint/xsd.rs:23</a> </span></li>
+
+<li><code class="evidence-text">http://www.w3.org/2001/XMLSchema-instance</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/xmllint/xsd.rs#L24" rel="noreferrer noopener" target="_blank">src/engines/xmllint/xsd.rs:24</a> </span></li>
+
+<li><code class="evidence-text">this:\u{a}  is:\u{a}    - a:\u{a}        http://localhost/very/very/very/very/very/very/very/very/long/url\u{a}\u{a}# this comment is too long,\u{a}# but hard to split:\u{a}# http://localhost/another/…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L617" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:617</a> </span></li>
+
+<li><code class="evidence-text">- foobar: http://localhost/very/very/very/very/very/very/very/very/long/url\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L631" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:631</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L641" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:641</a> </span></li>
+
+<li><code class="evidence-text">this:\u{a}  is:\u{a}    - a:\u{a}        http://localhost/very/very/very/very/very/very/very/very/long/url\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L649" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:649</a> </span></li>
+
+<li><code class="evidence-text">  quoted-strings:\u{a}    required: false\u{a}    extra-required: [&#39;^http://&#39;, &#39;^ftp://&#39;]\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L723" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:723</a> </span></li>
+
+<li><code class="evidence-text">- localhost\u{a}- &#34;localhost&#34;\u{a}- &#34;http://localhost&#34;\u{a}- &#34;ftp://localhost&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L728" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:728</a> </span></li>
+
+<li><code class="evidence-text">- http://localhost\u{a}- ftp://localhost\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L733" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:733</a> </span></li>
+
+<li><code class="evidence-text">  quoted-strings:\u{a}    required: only-when-needed\u{a}    extra-allowed: [&#39;^http://&#39;, &#39;^ftp://&#39;]\u{a}    extra-required: [QUOTED]\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L738" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:738</a> </span></li>
+
+<li><code class="evidence-text">- localhost\u{a}- &#34;http://localhost&#34;\u{a}- &#34;ftp://localhost&#34;\u{a}- &#34;this is a string that needs to be QUOTED&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/engines/yamllint/tests.rs#L743" rel="noreferrer noopener" target="_blank">src/engines/yamllint/tests.rs:743</a> </span></li>
+
+<li><code class="evidence-text">&#60;!DOCTYPE html&#62;\u{a}&#60;html&#62;\u{a}&#60;head&#62;\u{a}    &#60;meta charset=&#34;UTF-8&#34;&#62;\u{a}    &#60;title&#62;RSConstruct Build Graph&#60;/title&#62;\u{a}    &#60;script src=&#34;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&#34;&#62;&#60;/scr…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/graph_render.rs#L305" rel="noreferrer noopener" target="_blank">src/graph_render.rs:305</a> </span></li>
+
+<li><code class="evidence-text">file://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/object_store/mod.rs#L257" rel="noreferrer noopener" target="_blank">src/object_store/mod.rs:257</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/chromium.rs#L23" rel="noreferrer noopener" target="_blank">src/processor/generator/chromium.rs:23</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L407" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:407</a> </span></li>
+
+<li><code class="evidence-text">|https?://[^\s)&#62;&#34;&#34;]+</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/checker/zspell.rs#L179" rel="noreferrer noopener" target="_blank">src/processor/checker/zspell.rs:179</a> </span></li>
+
+<li><code class="evidence-text">url: https://example.com/path\u{a}time: 10:30</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/tags.rs#L2086" rel="noreferrer noopener" target="_blank">src/processor/generator/tags.rs:2086</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/tags.rs#L2088" rel="noreferrer noopener" target="_blank">src/processor/generator/tags.rs:2088</a> </span></li>
+
+<li><code class="evidence-text">s3://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L64" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:64</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L86" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:86</a> </span></li>
+
+<li><code class="evidence-text">file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L68" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:68</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L280" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:280</a> </span></li>
+
+<li><code class="evidence-text">Unsupported remote cache URL: {url}. Supported schemes: s3://, http://, https://, file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L72" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:72</a> </span></li>
+
+<li><code class="evidence-text">s3://{}/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L113" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:113</a> </span></li>
+
+<li><code class="evidence-text">Invalid file:// URL</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L280" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:280</a> </span></li>
+
+<li><code class="evidence-text">s3://my-bucket/cache/prefix</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L427" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:427</a> </span></li>
+
+<li><code class="evidence-text">s3://bucket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/remote_cache.rs#L435" rel="noreferrer noopener" target="_blank">src/remote_cache.rs:435</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/repos/{repo}/releases/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L704" rel="noreferrer noopener" target="_blank">src/tools.rs:704</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/oxc-project/oxc/releases/download/oxlint_v1.86.0/oxlint-x86_64-unknown-linux-gnu.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L899" rel="noreferrer noopener" target="_blank">src/tools.rs:899</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/rvben/rumdl/releases/download/v0.2.66/rumdl-v0.2.66-x86_64-unknown-linux-gnu.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L906" rel="noreferrer noopener" target="_blank">src/tools.rs:906</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/getzola/zola/releases/download/v0.23.3/zola-v0.23.3-x86_64-unknown-linux-gnu.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L916" rel="noreferrer noopener" target="_blank">src/tools.rs:916</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/tamasfe/taplo/releases/latest/download/taplo-linux-x86_64.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L921" rel="noreferrer noopener" target="_blank">src/tools.rs:921</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L930" rel="noreferrer noopener" target="_blank">src/tools.rs:930</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/Kampfkarren/selene/releases/download/0.32.0/selene-0.32.0-linux.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L941" rel="noreferrer noopener" target="_blank">src/tools.rs:941</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L946" rel="noreferrer noopener" target="_blank">src/tools.rs:946</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/torvalds/linux/e5f92606156a6a823992294d214c285b49cd72e9/scripts/checkpatch.pl</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L972" rel="noreferrer noopener" target="_blank">src/tools.rs:972</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/jgraph/drawio-desktop/releases/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L980" rel="noreferrer noopener" target="_blank">src/tools.rs:980</a> </span></li>
+
+<li><code class="evidence-text">https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L993" rel="noreferrer noopener" target="_blank">src/tools.rs:993</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L996" rel="noreferrer noopener" target="_blank">src/tools.rs:996</a> </span></li>
+
+<li><code class="evidence-text">cargo-deny v0.20.2:\u{a}    cargo-deny\u{a}ripgrep v14.1.0:\u{a}    rg\u{a}uv v0.9.0 (https://github.com/astral-sh/uv#abcdef12):\u{a}    uv\u{a}    uvx\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/tools.rs#L2033" rel="noreferrer noopener" target="_blank">src/tools.rs:2033</a> </span></li>
+
+<li><code class="evidence-text">http://example.invalid/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/webcache.rs#L269" rel="noreferrer noopener" target="_blank">src/webcache.rs:269</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">24</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34;?&#62;\u{a}&#60;!DOCTYPE module PUBLIC &#34;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&#34; &#34;https://checkstyle.org/dtds/configuration_1_3.dtd&#34;&#62;\u{a}&#60;module name=&#34;Checker&#34;&#62;\u{a}  &#60;module n…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/icheckstyle.rs#L9" rel="noreferrer noopener" target="_blank">tests/processor/checker/icheckstyle.rs:9</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; role=&#34;img&#34; viewBox=&#34;0 0 24 24&#34;&#62;\u{a}  &#60;title&#62;t&#60;/title&#62;\u{a}  &#60;path d=&#34;M1 1&#34; fill=&#34;red&#34;/&#62;\u{a}&#60;/svg&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/isvglint.rs#L47" rel="noreferrer noopener" target="_blank">tests/processor/checker/isvglint.rs:47</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;&#62;\u{a}  &#60;rect width=&#34;1&#34; height=&#34;1&#34;/&#62;\u{a}&#60;/svg&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/isvglint.rs#L71" rel="noreferrer noopener" target="_blank">tests/processor/checker/isvglint.rs:71</a> </span></li>
+
+<li><code class="evidence-text">[processor.checker.isvglint]\u{a}src_dirs = [&#34;img&#34;]\u{a}[[processor.checker.isvglint.attr]]\u{a}&#34;rule::selector&#34; = &#34;svg&#34;\u{a}&#34;rule::whitelist&#34; = true\u{a}xmlns = &#34;http://www.w3.org/2000/svg&#34;\u{a}viewB…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/isvglint.rs#L88" rel="noreferrer noopener" target="_blank">tests/processor/checker/isvglint.rs:88</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24&#34; width=&#34;24&#34;/&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/isvglint.rs#L89" rel="noreferrer noopener" target="_blank">tests/processor/checker/isvglint.rs:89</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;&#62;&#60;g&#62;&#60;/svg&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/ixmllint.rs#L62" rel="noreferrer noopener" target="_blank">tests/processor/checker/ixmllint.rs:62</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;\u{a}  &#60;xs:element name=&#34;a&#34;&#62;\u{a}    &#60;xs:complexType&#62;\u{a}      &#60;xs:sequence&#62;\u{a}        &#60;xs:element name=&#34;b&#34; type=&#34;xs:int&#34; maxOccurs=&#34;unbounded…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/ixmllint.rs#L121" rel="noreferrer noopener" target="_blank">tests/processor/checker/ixmllint.rs:121</a> </span></li>
+
+<li><code class="evidence-text">&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&#62;\u{a}  &#60;xs:attributeGroup name=&#34;g&#34;/&#62;\u{a}&#60;/xs:schema&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/ixmllint.rs#L169" rel="noreferrer noopener" target="_blank">tests/processor/checker/ixmllint.rs:169</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/test_schema.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/iyamlschema.rs#L6" rel="noreferrer noopener" target="_blank">tests/processor/checker/iyamlschema.rs:6</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}    &#34;$schema&#34;: &#34;http://json-schema.org/draft-07/schema#&#34;,\u{a}    &#34;type&#34;: &#34;object&#34;,\u{a}    &#34;properties&#34;: {\u{a}        &#34;name&#34;: { &#34;type&#34;: &#34;string&#34; },\u{a}        &#34;age&#34;: { &#34;type&#34;: &#34;integer&#34; }…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/iyamlschema.rs#L11" rel="noreferrer noopener" target="_blank">tests/processor/checker/iyamlschema.rs:11</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}        &#34;$schema&#34;: &#34;http://json-schema.org/draft-07/schema#&#34;,\u{a}        &#34;type&#34;: &#34;object&#34;,\u{a}        &#34;properties&#34;: {\u{a}            &#34;name&#34;: { &#34;type&#34;: &#34;string&#34; },\u{a}            &#34;age&#34;: { &#34;ty…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/iyamlschema.rs#L122" rel="noreferrer noopener" target="_blank">tests/processor/checker/iyamlschema.rs:122</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/wrong_order_schema.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/iyamlschema.rs#L132" rel="noreferrer noopener" target="_blank">tests/processor/checker/iyamlschema.rs:132</a> </span></li>
+
+<li><code class="evidence-text">source &#39;https://rubygems.org&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/mdl.rs#L89" rel="noreferrer noopener" target="_blank">tests/processor/checker/mdl.rs:89</a> </span></li>
+
+<li><code class="evidence-text"># Doc\u{a}\u{a}* [Bash Manual](https://www.gnu.org/software/bash/manual/)\u{a}* [Manual](https://stedolan.github.io/jq/manual/)\u{a}* https://example.com/bash/jq/index.html\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/terms.rs#L328" rel="noreferrer noopener" target="_blank">tests/processor/checker/terms.rs:328</a> </span></li>
+
+<li><code class="evidence-text"># Doc\u{a}\u{a}See [manual](https://www.gnu.org/software/bash/manual/) for bash usage.\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/checker/terms.rs#L359" rel="noreferrer noopener" target="_blank">tests/processor/checker/terms.rs:359</a> </span></li>
+
+<li><code class="evidence-text">source &#39;https://rubygems.org&#39;\u{a}gem &#39;rake&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/creator/gem.rs#L23" rel="noreferrer noopener" target="_blank">tests/processor/creator/gem.rs:23</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/creator/gem.rs#L60" rel="noreferrer noopener" target="_blank">tests/processor/creator/gem.rs:60</a> </span></li>
+
+<li><code class="evidence-text">---\u{a}url: https://example.com/path\u{a}time: 10:30\u{a}tags:\u{a}  - tools:web\u{a}---\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tags.rs#L461" rel="noreferrer noopener" target="_blank">tests/processor/generator/tags.rs:461</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/path\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tags.rs#L465" rel="noreferrer noopener" target="_blank">tests/processor/generator/tags.rs:465</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tags.rs#L476" rel="noreferrer noopener" target="_blank">tests/processor/generator/tags.rs:476</a> </span></li>
+
+<li><code class="evidence-text">url:https://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/generator/tags.rs#L491" rel="noreferrer noopener" target="_blank">tests/processor/generator/tags.rs:491</a> </span></li>
+
+<li><code class="evidence-text">base_url = &#34;https://example.org&#34;\u{a}default_language = &#34;en&#34;\u{a}title = &#34;Fixture&#34;\u{a}compile_sass = true\u{a}build_search_index = true\u{a}generate_feeds = true\u{a}taxonomies = [{ name = &#34;tags&#34;, fe…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/processor/mass_generator/zola.rs#L12" rel="noreferrer noopener" target="_blank">tests/processor/mass_generator/zola.rs:12</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;10&#34; height=&#34;10&#34;&#62;&#60;rect width=&#34;10&#34; height=&#34;10&#34; fill=&#34;red&#34;/&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/tests_mod/build.rs#L1451" rel="noreferrer noopener" target="_blank">tests/tests_mod/build.rs:1451</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;10&#34; height=&#34;10&#34;&#62;&#60;rect width=&#34;10&#34; height=&#34;10&#34; fill=&#34;blue&#34;/&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/tests/tests_mod/build.rs#L1503" rel="noreferrer noopener" target="_blank">tests/tests_mod/build.rs:1503</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/platform.rs#L15" rel="noreferrer noopener" target="_blank">src/platform.rs:15</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/lua/lua_processor.rs#L24" rel="noreferrer noopener" target="_blank">src/processor/lua/lua_processor.rs:24</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/processor/generator/tera.rs#L37" rel="noreferrer noopener" target="_blank">src/processor/generator/tera.rs:37</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/registries/analyzer.rs#L29" rel="noreferrer noopener" target="_blank">src/registries/analyzer.rs:29</a> <a class="place" href="https://crates.io/crates/rsconstruct/0.9.123/code/src/registries/processor.rs#L85" rel="noreferrer noopener" target="_blank">src/registries/processor.rs:85</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>679 ms</dd></div><div><dt>VM restore</dt><dd>63 ms</dd></div><div><dt>Payload</dt><dd>17880 files, 416.9 MiB</dd></div><div><dt>Files opened</dt><dd>981</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">669 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">425 ms</td>
+<td class="nowrap">223 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.60s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-11 01:49 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 01:49 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 01:49 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 01:49 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 01:49 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-11 01:49 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

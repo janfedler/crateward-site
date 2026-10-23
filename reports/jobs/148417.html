@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: rubash 1.4.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>rubash <span class="version">1.4.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 148417</span>
+      <a class="muted" href="https://crates.io/crates/rubash/1.4.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="148417.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="148417.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (26 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">104</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · rubash</div></td><td class="mono where"><a href="https://crates.io/crates/rubash/1.4.0/code/build.rs#L31" rel="noreferrer noopener" target="_blank">build.rs:31</a></td><td>medium severity process_spawn in build_script code (26 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · rubash</div></td><td class="mono where"><a href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/command.rs#L216" rel="noreferrer noopener" target="_blank">src/builtins/command.rs:216</a></td><td>medium severity environment_enumeration in library code (11 places): std::env::vars</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · rubash</div></td><td class="mono where"><a href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1915" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1915</a></td><td>medium severity shell_command in library code (3 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:windows_api</span><div class="sub">static · rubash</div></td><td class="mono where"><a href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1170" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1170</a></td><td>medium severity windows_api in library code (2 places): CreateProcessW</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · rubash</div></td><td class="mono where"><a href="https://crates.io/crates/rubash/1.4.0/code/CHANGELOG.md#L17" rel="noreferrer noopener" target="_blank">CHANGELOG.md:17</a></td><td>medium severity yara:persistence_locations in library code (6 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · rubash</div></td><td class="mono where"><a href="https://crates.io/crates/rubash/1.4.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> <code class="chip">static:windows_api</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">104</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">20</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">51</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">33</span></label>
+  <span class="muted">14 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/command.rs#L216" rel="noreferrer noopener" target="_blank">src/builtins/command.rs:216</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/pwd.rs#L38" rel="noreferrer noopener" target="_blank">src/builtins/pwd.rs:38</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/command_substitution.rs#L1563" rel="noreferrer noopener" target="_blank">src/executor/command_substitution.rs:1563</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/compound_exec.rs#L345" rel="noreferrer noopener" target="_blank">src/executor/compound_exec.rs:345</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/env_helpers.rs#L15" rel="noreferrer noopener" target="_blank">src/executor/env_helpers.rs:15</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/init.rs#L53" rel="noreferrer noopener" target="_blank">src/executor/init.rs:53</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/init.rs#L59" rel="noreferrer noopener" target="_blank">src/executor/init.rs:59</a> </span></li>
+
+<li><code class="evidence-text">env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/external_finish.rs#L583" rel="noreferrer noopener" target="_blank">src/executor/external_finish.rs:583</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/CHANGELOG.md#L17" rel="noreferrer noopener" target="_blank">CHANGELOG.md:17</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/docs/audit/findings/wt98b-goldtri-triage-results.json#L77" rel="noreferrer noopener" target="_blank">docs/audit/findings/wt98b-goldtri-triage-results.json:77</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/docs/audit/findings/wt98b-goldtri.md#L99" rel="noreferrer noopener" target="_blank">docs/audit/findings/wt98b-goldtri.md:99</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/docs/release-notes-1.4.0-draft.md#L15" rel="noreferrer noopener" target="_blank">docs/release-notes-1.4.0-draft.md:15</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/invocation.rs#L317" rel="noreferrer noopener" target="_blank">src/invocation.rs:317</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1915" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1915</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1927" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1927</a> </span></li>
+
+<li><code class="evidence-text">rubash-powershell-bin</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L3646" rel="noreferrer noopener" target="_blank">src/executor/path.rs:3646</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">windows_api</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">CreateProcessW</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1170" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1170</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1346" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1346</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/build.rs#L31" rel="noreferrer noopener" target="_blank">build.rs:31</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/main.rs#L1416" rel="noreferrer noopener" target="_blank">src/main.rs:1416</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">25</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/kill.rs#L926" rel="noreferrer noopener" target="_blank">src/builtins/kill.rs:926</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/kill.rs#L1005" rel="noreferrer noopener" target="_blank">src/builtins/kill.rs:1005</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/stty.rs#L113" rel="noreferrer noopener" target="_blank">src/builtins/stty.rs:113</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/stty.rs#L131" rel="noreferrer noopener" target="_blank">src/builtins/stty.rs:131</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/console_readline.rs#L369" rel="noreferrer noopener" target="_blank">src/console_readline.rs:369</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/command_substitution_pipelines.rs#L133" rel="noreferrer noopener" target="_blank">src/executor/command_substitution_pipelines.rs:133</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/external_file_builtins.rs#L1305" rel="noreferrer noopener" target="_blank">src/executor/external_file_builtins.rs:1305</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/identity.rs#L332" rel="noreferrer noopener" target="_blank">src/executor/identity.rs:332</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/shell_options.rs#L1634" rel="noreferrer noopener" target="_blank">src/executor/shell_options.rs:1634</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/support_names.rs#L190" rel="noreferrer noopener" target="_blank">src/executor/support_names.rs:190</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/support_names.rs#L246" rel="noreferrer noopener" target="_blank">src/executor/support_names.rs:246</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L50" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:50</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L494" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:494</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L674" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:674</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L687" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:687</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L711" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:711</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L745" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:745</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L803" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:803</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L956" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:956</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1065" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1065</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1168" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1168</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1417" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1417</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L1464" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:1464</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/script_driver.rs#L2727" rel="noreferrer noopener" target="_blank">src/script_driver.rs:2727</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/script_driver.rs#L2770" rel="noreferrer noopener" target="_blank">src/script_driver.rs:2770</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">24</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/exec.rs#L388" rel="noreferrer noopener" target="_blank">src/builtins/exec.rs:388</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/exec.rs#L445" rel="noreferrer noopener" target="_blank">src/builtins/exec.rs:445</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/compound_exec.rs#L2201" rel="noreferrer noopener" target="_blank">src/executor/compound_exec.rs:2201</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/dev_fd_operands.rs#L105" rel="noreferrer noopener" target="_blank">src/executor/dev_fd_operands.rs:105</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L744" rel="noreferrer noopener" target="_blank">src/executor/path.rs:744</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L776" rel="noreferrer noopener" target="_blank">src/executor/path.rs:776</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L802" rel="noreferrer noopener" target="_blank">src/executor/path.rs:802</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L854" rel="noreferrer noopener" target="_blank">src/executor/path.rs:854</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1044" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1044</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1965" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1965</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L2028" rel="noreferrer noopener" target="_blank">src/executor/path.rs:2028</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/compound_exec.rs#L1832" rel="noreferrer noopener" target="_blank">src/executor/compound_exec.rs:1832</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/compound_exec.rs#L1837" rel="noreferrer noopener" target="_blank">src/executor/compound_exec.rs:1837</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/job_builtins.rs#L1918" rel="noreferrer noopener" target="_blank">src/executor/job_builtins.rs:1918</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L950" rel="noreferrer noopener" target="_blank">src/executor/path.rs:950</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L963" rel="noreferrer noopener" target="_blank">src/executor/path.rs:963</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L987" rel="noreferrer noopener" target="_blank">src/executor/path.rs:987</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1049" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1049</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1055" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1055</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L1407" rel="noreferrer noopener" target="_blank">src/executor/path.rs:1407</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L2881" rel="noreferrer noopener" target="_blank">src/executor/path.rs:2881</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/pipeline_exec.rs#L1399" rel="noreferrer noopener" target="_blank">src/executor/pipeline_exec.rs:1399</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/wait_status.rs#L43" rel="noreferrer noopener" target="_blank">src/executor/wait_status.rs:43</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/unix.rs#L487" rel="noreferrer noopener" target="_blank">src/fd/unix.rs:487</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/bin/bash.rs#L42" rel="noreferrer noopener" target="_blank">src/bin/bash.rs:42</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">24</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">42 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/kill.rs#L586" rel="noreferrer noopener" target="_blank">src/builtins/kill.rs:586</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/printf/zone.rs#L288" rel="noreferrer noopener" target="_blank">src/builtins/printf/zone.rs:288</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/test_tests.rs#L12" rel="noreferrer noopener" target="_blank">src/builtins/test_tests.rs:12</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/command_substitution_pipelines.rs#L113" rel="noreferrer noopener" target="_blank">src/executor/command_substitution_pipelines.rs:113</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/dev_fd_operands.rs#L113" rel="noreferrer noopener" target="_blank">src/executor/dev_fd_operands.rs:113</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/external_file_builtins.rs#L1337" rel="noreferrer noopener" target="_blank">src/executor/external_file_builtins.rs:1337</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/external_inner.rs#L896" rel="noreferrer noopener" target="_blank">src/executor/external_inner.rs:896</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/pipeline_exec.rs#L45" rel="noreferrer noopener" target="_blank">src/executor/pipeline_exec.rs:45</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/stty.rs#L119" rel="noreferrer noopener" target="_blank">src/builtins/stty.rs:119</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/test.rs#L831" rel="noreferrer noopener" target="_blank">src/builtins/test.rs:831</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/ulimit.rs#L204" rel="noreferrer noopener" target="_blank">src/builtins/ulimit.rs:204</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/console_readline.rs#L197" rel="noreferrer noopener" target="_blank">src/console_readline.rs:197</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/support_names.rs#L147" rel="noreferrer noopener" target="_blank">src/executor/support_names.rs:147</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/locale.rs#L141" rel="noreferrer noopener" target="_blank">src/locale.rs:141</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/token_str.rs#L129" rel="noreferrer noopener" target="_blank">src/token_str.rs:129</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/identity.rs#L123" rel="noreferrer noopener" target="_blank">src/executor/identity.rs:123</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/parameter_case.rs#L27" rel="noreferrer noopener" target="_blank">src/executor/parameter_case.rs:27</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/shell_options.rs#L75" rel="noreferrer noopener" target="_blank">src/executor/shell_options.rs:75</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/expand/tilde/tilde.rs#L97" rel="noreferrer noopener" target="_blank">src/expand/tilde/tilde.rs:97</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L670" rel="noreferrer noopener" target="_blank">src/executor/path.rs:670</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/script_driver.rs#L2735" rel="noreferrer noopener" target="_blank">src/script_driver.rs:2735</a> </span></li>
+
+<li><code class="evidence-text">39 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/unix.rs#L25" rel="noreferrer noopener" target="_blank">src/fd/unix.rs:25</a> </span></li>
+
+<li><code class="evidence-text">72 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/fd/windows_impl.rs#L153" rel="noreferrer noopener" target="_blank">src/fd/windows_impl.rs:153</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/proc_vfs.rs#L93" rel="noreferrer noopener" target="_blank">src/proc_vfs.rs:93</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">env::vars, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/external_finish.rs#L584" rel="noreferrer noopener" target="_blank">src/executor/external_finish.rs:584</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/external_finish.rs#L626" rel="noreferrer noopener" target="_blank">src/executor/external_finish.rs:626</a> <a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/public_accessors.rs#L1492" rel="noreferrer noopener" target="_blank">src/executor/public_accessors.rs:1492</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">    License GPLv3+: GNU GPL version 3 or later &#60;http://gnu.org/licenses/gpl.html&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/help.rs#L395" rel="noreferrer noopener" target="_blank">src/builtins/help.rs:395</a> </span></li>
+
+<li><code class="evidence-text">{tool} (GNU coreutils) 9.4\u{a}Copyright (C) 2023 Free Software Foundation, Inc.\u{a}License GPLv3+: GNU GPL version 3 or later &#60;https://gnu.org/licenses/gpl.html&#62;.\u{a}This is free software: you are …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/builtins/uname.rs#L303" rel="noreferrer noopener" target="_blank">src/builtins/uname.rs:303</a> </span></li>
+
+<li><code class="evidence-text">C://Windows//System32</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/executor/path.rs#L3880" rel="noreferrer noopener" target="_blank">src/executor/path.rs:3880</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">License GPLv3+: GNU GPL version 3 or later &#60;http://gnu.org/licenses/gpl.html&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/main.rs#L746" rel="noreferrer noopener" target="_blank">src/main.rs:746</a> </span></li>
+
+<li><code class="evidence-text">bash home page: &#60;http://www.gnu.org/software/bash&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/main.rs#L881" rel="noreferrer noopener" target="_blank">src/main.rs:881</a> </span></li>
+
+<li><code class="evidence-text">General help using GNU software: &#60;http://www.gnu.org/gethelp/&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/rubash/1.4.0/code/src/main.rs#L882" rel="noreferrer noopener" target="_blank">src/main.rs:882</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>17.2 s</dd></div><div><dt>VM restore</dt><dd>61 ms</dd></div><div><dt>Payload</dt><dd>1526 files, 37.7 MiB</dd></div><div><dt>Files opened</dt><dd>1873</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">30</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 25 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">17.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/libc-0.2.190/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --allow=unused_qualifications --warn=clippy::unnecessary_semicolon --allow=clippy::unnecessary_cast --warn=clippy::ptr_as_ptr --allow=clippy::non_minimal_cfg --allow=clippy::missing_safety_doc --warn=clippy::map_unwrap_or --warn=clippy::manual_assert --allow=clippy::identity_op --warn=clippy::explicit_iter_loop --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;align&#34;, &#34;const-extern-fn&#34;, &#34;default&#34;, &#34;extra_traits&#34;, &#34;rustc-dep-of-std&#34;, &#34;rustc-std-workspace-core&#34;, &#34;std&#34;, &#34;use_std&#34;)) -C metadata=cc8fbcc4ffcedc67</td>
+<td class="nowrap muted">129 ms</td>
+<td class="nowrap">800 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/libc-d6090283aeec6873/rustchyOLFu/symbols.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.0.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.1.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.2.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.build_script_build.478463c381baa231-cgu.3.rcgu.o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873.duv7zwsm27ecgad8ejp2yfjq7.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rus</td>
+<td class="nowrap muted">774 ms</td>
+<td class="nowrap">151 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 590: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc72xaPX.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/libc-d6090283aeec6873/rustchyOLFu/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../li</td>
+<td class="nowrap muted">782 ms</td>
+<td class="nowrap">143 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 591: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc72xaPX.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/libc-d6090283aeec6873/build_script_build-d6090283aeec6873 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/libc-d6090283aeec6873/rustchyOLFu/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">785 ms</td>
+<td class="nowrap">139 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 594: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">934 ms</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">935 ms</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 598: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="12 similar processes, the first one shown">×12</span></td>
+<td class="mono args">--crate-name libc --edition=2021 /cw/vendor/libc-0.2.190/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --allow=unused_qualifications --warn=clippy::unnecessary_semicolon --allow=clippy::unnecessary_cast --warn=clippy::ptr_as_ptr --allow=clippy::non_minimal_cfg --allow=clippy::missing_safety_doc --warn=clippy::map_unwrap_or --warn=clippy::manual_assert --allow=clippy::identity_op --warn=clippy::explicit_iter_loop --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;align&#34;, &#34;const-extern-fn&#34;, &#34;default&#34;, &#34;extra_traits&#34;, &#34;rustc-dep-of-std&#34;, &#34;rustc-std-workspace-core&#34;, &#34;std&#34;, &#34;use_std&#34;))</td>
+<td class="nowrap muted">944 ms</td>
+<td class="nowrap">852 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 635: /work/target/debug/build/signal-hook-112904c118828de3/build-script-build">signal-hook</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4.0 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 659: /work/target/debug/build/rubash-dc6d8672cf5c3eb9/build-script-build">rubash</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 660: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.6 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>126</dd></div><div><dt>Directories</dt><dd>46</dd></div><div><dt>Size</dt><dd>46.9 MiB</dd></div><div><dt>Compiled units</dt><dd>12</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling libc v0.2.190
+    Checking memchr v2.8.3
+    Checking aho-corasick v1.1.5
+    Checking errno v0.3.14
+    Checking regex-syntax v0.8.11
+   Compiling signal-hook v0.3.18
+    Checking regex-automata v0.4.18
+    Checking signal-hook-registry v1.4.8
+   Compiling rubash v1.4.0
+    Checking regex v1.13.1
+    Checking os_pipe v1.2.3
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 17.14s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-13 11:38 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 11:38 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:15 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:15 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:15 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 12:15 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

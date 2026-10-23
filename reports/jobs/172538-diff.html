@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: sipnab 0.5.220 to 0.5.221</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>sipnab <span class="version">0.5.220 → 0.5.221</span></h1>
+    <p class="meta">
+      <span class="badge">changes</span>
+      <a href="172538.html">0.5.221 report</a>
+      <a href="164068.html">0.5.220 report</a>
+      <a class="muted" href="https://diff.rs/sipnab/0.5.220/0.5.221/" rel="noreferrer noopener" target="_blank">source diff on diff.rs</a>
+    </p>
+    <p class="headline">Evidence: 0 changed. Static findings: 24 new, 1 gone. Run check: 0 changed.</p>
+  </div>
+  <div class="versus">
+    <div class="verdict was tone-low"><div class="score">19</div> <div class="level">low</div></div>
+    <span class="arrow" aria-label="became">→</span>
+    <div class="verdict tone-low"><div class="score">19</div> <div class="level">low</div></div>
+  </div>
+</div>
+
+
+
+<nav class="toc" aria-label="Sections">
+  <a href="#evidence">Evidence <span class="count">0</span></a>
+  <a href="#package">Package</a>
+  <a href="#findings">Static findings <span class="count bad">25</span></a>
+  <a href="#run-check">Run: check <span class="count">0</span></a>
+  <a href="#behavior">Behavior <span class="count">0</span></a>
+</nav>
+
+<h2 id="evidence">Evidence</h2>
+<p class="tally">0 changed, 6 the same.</p>
+
+
+<h2 id="package">Package</h2>
+
+<dl class="facts">
+<div class=""><dt>Build script</dt><dd>no change</dd></div><div class=""><dt>Proc macro</dt><dd>no change</dd></div><div class=""><dt>links</dt><dd>no change</dd></div><div class=""><dt>New dependencies</dt><dd>none</dd></div>
+</dl>
+
+
+<h2 id="findings">Static findings</h2>
+<p class="tally">24 new, 1 gone, 445 the same. Code that only moved counts as the same.</p>
+
+<h4>New in 0.5.221</h4>
+<div class="findings added">
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_fetch.rs#L2247" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:2247</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/output/live_rtp.rs#L211" rel="noreferrer noopener" target="_blank">src/output/live_rtp.rs:211</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/output/live_rtp.rs#L229" rel="noreferrer noopener" target="_blank">src/output/live_rtp.rs:229</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">21</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">url {url:?} is not https://, and draft-ietf-vcon-vcon-core-04 section 2.4.1 says &#34;HTTPS MUST be used for retrieval&#34;; nothing was fetched</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L334" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:334</a> </span></li>
+
+<li><code class="evidence-text">https://a/b.wav</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L384" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:384</a> </span></li>
+
+<li><code class="evidence-text">https://m/calls/ab-c_1.wav.jwe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L412" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:412</a> </span></li>
+
+<li><code class="evidence-text">https://m/calls/a.wav?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L415" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:415</a> </span></li>
+
+<li><code class="evidence-text">https://m/calls/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L417" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:417</a> </span></li>
+
+<li><code class="evidence-text">https://m/..</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L418" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:418</a> </span></li>
+
+<li><code class="evidence-text">https://m/.hidden</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L419" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:419</a> </span></li>
+
+<li><code class="evidence-text">https://m/a%2F..%2Fb</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_audio_fetch.rs#L420" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:420</a> </span></li>
+
+<li><code class="evidence-text">kind = &#34;conserver&#34;\u{a}url = &#34;http://127.0.0.1:9&#34;\u{a}auth_file = {:?}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_fetch.rs#L1975" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1975</a> </span></li>
+
+<li><code class="evidence-text">url = &#34;http://127.0.0.1:9/v/{uuid}&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_fetch.rs#L1984" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1984</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_fetch.rs#L2249" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:2249</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L852" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:852</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example:8443/scitt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1133" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1133</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example:8443/scitt/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1135" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1135</a> </span></li>
+
+<li><code class="evidence-text">https://TS.example:8443/entries/1?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1136" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1136</a> </span></li>
+
+<li><code class="evidence-text">http://ts.example/scitt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1143" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1143</a> </span></li>
+
+<li><code class="evidence-text">http://ts.example:80/e/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1145" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1145</a> </span></li>
+
+<li><code class="evidence-text">http://ts.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1149" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1149</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1150" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1150</a> </span></li>
+
+<li><code class="evidence-text">https://other.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1151" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1151</a> </span></li>
+
+<li><code class="evidence-text">ftp://ts.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.221/code/src/app/vcon_scitt.rs#L1154" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1154</a> </span></li>
+
+</ul>
+</details>
+</div>
+
+
+<h4>Gone since 0.5.220</h4>
+<details class="more"><summary>1 findings</summary>
+<div class="findings removed">
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.220/code/src/rtpengine/bencode.rs#L574" rel="noreferrer noopener" target="_blank">src/rtpengine/bencode.rs:574</a> </span></li>
+
+</ul>
+</details>
+</div>
+</details>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head"><h2>Run: check</h2></div>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">0 new, 0 gone, 1 the same</span></h3>
+<p class="muted">The same processes ran.</p>
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0 changed, 0 the same</span></h3>
+<p class="muted">No change.</p>
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0 changed, 0 the same</span></h3>
+<p class="muted">No change.</p>
+</div>
+</section>
+
+
+<h2 id="behavior">Behavior</h2>
+<p class="tally">0 new, 0 gone, 5 the same.</p>
+<div class="behavior">
+
+
+</div>
+
+</main>
+</body>
+</html>

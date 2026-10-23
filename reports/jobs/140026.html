@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: day-cli 0.5.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>day-cli <span class="version">0.5.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 140026</span>
+      <a class="muted" href="https://crates.io/crates/day-cli/0.5.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="140026.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="140026.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (241 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">456</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · day-cli</div></td><td class="mono where"><a href="https://crates.io/crates/day-cli/0.5.1/code/build.rs#L17" rel="noreferrer noopener" target="_blank">build.rs:17</a></td><td>medium severity process_spawn in build_script code (241 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · day-cli</div></td><td class="mono where"><a href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L221" rel="noreferrer noopener" target="_blank">src/ops.rs:221</a></td><td>medium severity environment_enumeration in library code: std::env::vars_os</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · day-cli</div></td><td class="mono where"><a href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/android.rs#L306" rel="noreferrer noopener" target="_blank">src/pack/android.rs:306</a></td><td>medium severity included_binary in library code (4 places): resources/day-dev.keystore (2778 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · day-cli</div></td><td class="mono where"><a href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L216" rel="noreferrer noopener" target="_blank">src/ohos.rs:216</a></td><td>medium severity obfuscated_data in library code: oemmode=rd buildvariant=eng developer_mode=1 console=ttyS0,115200 sn=0023456789 init=/bin/init hardware=virt root=/dev/ram0 rw ip=dhcp ohos.boot.hardware=virt ohos.required_mount.system=/dev/block/vdb…</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · day-cli</div></td><td class="mono where"><a href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L423" rel="noreferrer noopener" target="_blank">src/diagnose.rs:423</a></td><td>medium severity shell_command in library code (8 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · day-cli</div></td><td class="mono where"><a href="https://crates.io/crates/day-cli/0.5.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:included_binary</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">456</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">15</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">275</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">166</span></label>
+  <span class="muted">11 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L423" rel="noreferrer noopener" target="_blank">src/diagnose.rs:423</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L675" rel="noreferrer noopener" target="_blank">src/doctor.rs:675</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/msix.rs#L511" rel="noreferrer noopener" target="_blank">src/pack/msix.rs:511</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L513" rel="noreferrer noopener" target="_blank">src/script_report.rs:513</a> </span></li>
+
+<li><code class="evidence-text">full|long|medium|short|none</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/lint.rs#L1839" rel="noreferrer noopener" target="_blank">src/lint.rs:1839</a> </span></li>
+
+<li><code class="evidence-text">linuxdeploy not found — it is what bundles the toolkit into the AppImage.\u{a}  Download it (and the plugin for your toolkit) from https://github.com/linuxdeploy/linuxdeploy/releases, chmod +x, and …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/appimage.rs#L45" rel="noreferrer noopener" target="_blank">src/pack/appimage.rs:45</a> </span></li>
+
+<li><code class="evidence-text">chmod +x {}: {e}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/linux.rs#L223" rel="noreferrer noopener" target="_blank">src/pack/linux.rs:223</a> </span></li>
+
+<li><code class="evidence-text">powershell: {e}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/msix.rs#L514" rel="noreferrer noopener" target="_blank">src/pack/msix.rs:514</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">resources/day-dev.keystore (2778 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/android.rs#L306" rel="noreferrer noopener" target="_blank">src/pack/android.rs:306</a> </span></li>
+
+<li><code class="evidence-text">resources/icons/day-icon-48.png (2023 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/resources/mod.rs#L333" rel="noreferrer noopener" target="_blank">src/resources/mod.rs:333</a> </span></li>
+
+<li><code class="evidence-text">resources/icons/day-icon-64.png (2775 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/resources/mod.rs#L334" rel="noreferrer noopener" target="_blank">src/resources/mod.rs:334</a> </span></li>
+
+<li><code class="evidence-text">resources/icons/day-icon-128.png (6051 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/resources/mod.rs#L337" rel="noreferrer noopener" target="_blank">src/resources/mod.rs:337</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L221" rel="noreferrer noopener" target="_blank">src/ops.rs:221</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">oemmode=rd buildvariant=eng developer_mode=1 console=ttyS0,115200 sn=0023456789 init=/bin/init hardware=virt root=/dev/ram0 rw ip=dhcp ohos.boot.hardware=virt ohos.required_mount.system=/dev/block/vdb…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L216" rel="noreferrer noopener" target="_blank">src/ohos.rs:216</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/build.rs#L17" rel="noreferrer noopener" target="_blank">build.rs:17</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">237</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/bridge.rs#L308" rel="noreferrer noopener" target="_blank">src/bridge.rs:308</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1019" rel="noreferrer noopener" target="_blank">src/devices.rs:1019</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2404" rel="noreferrer noopener" target="_blank">src/devices.rs:2404</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2404" rel="noreferrer noopener" target="_blank">src/devices.rs:2404</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/flavor.rs#L369" rel="noreferrer noopener" target="_blank">src/flavor.rs:369</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L43" rel="noreferrer noopener" target="_blank">src/mobile.rs:43</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L59" rel="noreferrer noopener" target="_blank">src/mobile.rs:59</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L70" rel="noreferrer noopener" target="_blank">src/mobile.rs:70</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L166" rel="noreferrer noopener" target="_blank">src/mobile.rs:166</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L681" rel="noreferrer noopener" target="_blank">src/mobile.rs:681</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L2217" rel="noreferrer noopener" target="_blank">src/mobile.rs:2217</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L647" rel="noreferrer noopener" target="_blank">src/ohos.rs:647</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L727" rel="noreferrer noopener" target="_blank">src/ohos.rs:727</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L843" rel="noreferrer noopener" target="_blank">src/ohos.rs:843</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L1890" rel="noreferrer noopener" target="_blank">src/ohos.rs:1890</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L268" rel="noreferrer noopener" target="_blank">src/ops.rs:268</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L318" rel="noreferrer noopener" target="_blank">src/ops.rs:318</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L339" rel="noreferrer noopener" target="_blank">src/ops.rs:339</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L396" rel="noreferrer noopener" target="_blank">src/ops.rs:396</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L499" rel="noreferrer noopener" target="_blank">src/ops.rs:499</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L574" rel="noreferrer noopener" target="_blank">src/ops.rs:574</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L578" rel="noreferrer noopener" target="_blank">src/ops.rs:578</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L799" rel="noreferrer noopener" target="_blank">src/ops.rs:799</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/mod.rs#L393" rel="noreferrer noopener" target="_blank">src/pack/mod.rs:393</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1313" rel="noreferrer noopener" target="_blank">src/patch.rs:1313</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L221" rel="noreferrer noopener" target="_blank">src/script.rs:221</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L438" rel="noreferrer noopener" target="_blank">src/script_report.rs:438</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L465" rel="noreferrer noopener" target="_blank">src/script_report.rs:465</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/bridge.rs#L420" rel="noreferrer noopener" target="_blank">src/bridge.rs:420</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/bump.rs#L375" rel="noreferrer noopener" target="_blank">src/bump.rs:375</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/bump.rs#L416" rel="noreferrer noopener" target="_blank">src/bump.rs:416</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/bump.rs#L433" rel="noreferrer noopener" target="_blank">src/bump.rs:433</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/bump.rs#L444" rel="noreferrer noopener" target="_blank">src/bump.rs:444</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L262" rel="noreferrer noopener" target="_blank">src/devices.rs:262</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L332" rel="noreferrer noopener" target="_blank">src/devices.rs:332</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L356" rel="noreferrer noopener" target="_blank">src/devices.rs:356</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L434" rel="noreferrer noopener" target="_blank">src/devices.rs:434</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L621" rel="noreferrer noopener" target="_blank">src/devices.rs:621</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L634" rel="noreferrer noopener" target="_blank">src/devices.rs:634</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L638" rel="noreferrer noopener" target="_blank">src/devices.rs:638</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L671" rel="noreferrer noopener" target="_blank">src/devices.rs:671</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L696" rel="noreferrer noopener" target="_blank">src/devices.rs:696</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L927" rel="noreferrer noopener" target="_blank">src/devices.rs:927</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L971" rel="noreferrer noopener" target="_blank">src/devices.rs:971</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1122" rel="noreferrer noopener" target="_blank">src/devices.rs:1122</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1152" rel="noreferrer noopener" target="_blank">src/devices.rs:1152</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1173" rel="noreferrer noopener" target="_blank">src/devices.rs:1173</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1194" rel="noreferrer noopener" target="_blank">src/devices.rs:1194</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1287" rel="noreferrer noopener" target="_blank">src/devices.rs:1287</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1580" rel="noreferrer noopener" target="_blank">src/devices.rs:1580</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1615" rel="noreferrer noopener" target="_blank">src/devices.rs:1615</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1689" rel="noreferrer noopener" target="_blank">src/devices.rs:1689</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1839" rel="noreferrer noopener" target="_blank">src/devices.rs:1839</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L1873" rel="noreferrer noopener" target="_blank">src/devices.rs:1873</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2172" rel="noreferrer noopener" target="_blank">src/devices.rs:2172</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2249" rel="noreferrer noopener" target="_blank">src/devices.rs:2249</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2309" rel="noreferrer noopener" target="_blank">src/devices.rs:2309</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2361" rel="noreferrer noopener" target="_blank">src/devices.rs:2361</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L2369" rel="noreferrer noopener" target="_blank">src/devices.rs:2369</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L220" rel="noreferrer noopener" target="_blank">src/diagnose.rs:220</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L319" rel="noreferrer noopener" target="_blank">src/diagnose.rs:319</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L345" rel="noreferrer noopener" target="_blank">src/diagnose.rs:345</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L423" rel="noreferrer noopener" target="_blank">src/diagnose.rs:423</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L537" rel="noreferrer noopener" target="_blank">src/diagnose.rs:537</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/diagnose.rs#L559" rel="noreferrer noopener" target="_blank">src/diagnose.rs:559</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L90" rel="noreferrer noopener" target="_blank">src/doctor.rs:90</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L105" rel="noreferrer noopener" target="_blank">src/doctor.rs:105</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L120" rel="noreferrer noopener" target="_blank">src/doctor.rs:120</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L145" rel="noreferrer noopener" target="_blank">src/doctor.rs:145</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor_verify.rs#L285" rel="noreferrer noopener" target="_blank">src/doctor_verify.rs:285</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor_verify.rs#L318" rel="noreferrer noopener" target="_blank">src/doctor_verify.rs:318</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor_verify.rs#L797" rel="noreferrer noopener" target="_blank">src/doctor_verify.rs:797</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L309" rel="noreferrer noopener" target="_blank">src/git.rs:309</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L336" rel="noreferrer noopener" target="_blank">src/git.rs:336</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L585" rel="noreferrer noopener" target="_blank">src/git.rs:585</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L866" rel="noreferrer noopener" target="_blank">src/git.rs:866</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mcp.rs#L135" rel="noreferrer noopener" target="_blank">src/mcp.rs:135</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L189" rel="noreferrer noopener" target="_blank">src/mobile.rs:189</a> <span class="muted">and 159 more</span></span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">34</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ohos.rs#L426" rel="noreferrer noopener" target="_blank">src/ohos.rs:426</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L1779" rel="noreferrer noopener" target="_blank">src/script.rs:1779</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L1855" rel="noreferrer noopener" target="_blank">src/script.rs:1855</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L1956" rel="noreferrer noopener" target="_blank">src/script.rs:1956</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L2055" rel="noreferrer noopener" target="_blank">src/script.rs:2055</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L2150" rel="noreferrer noopener" target="_blank">src/script.rs:2150</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L689" rel="noreferrer noopener" target="_blank">src/script_report.rs:689</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L740" rel="noreferrer noopener" target="_blank">src/script_report.rs:740</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L766" rel="noreferrer noopener" target="_blank">src/script_report.rs:766</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L743" rel="noreferrer noopener" target="_blank">src/web.rs:743</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L831" rel="noreferrer noopener" target="_blank">src/web.rs:831</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L999" rel="noreferrer noopener" target="_blank">src/web.rs:999</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L260" rel="noreferrer noopener" target="_blank">src/script.rs:260</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L359" rel="noreferrer noopener" target="_blank">src/script.rs:359</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L760" rel="noreferrer noopener" target="_blank">src/script.rs:760</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L335" rel="noreferrer noopener" target="_blank">src/script_report.rs:335</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L341" rel="noreferrer noopener" target="_blank">src/script_report.rs:341</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L868" rel="noreferrer noopener" target="_blank">src/web.rs:868</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L968" rel="noreferrer noopener" target="_blank">src/web.rs:968</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L970" rel="noreferrer noopener" target="_blank">src/web.rs:970</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L1046" rel="noreferrer noopener" target="_blank">src/web.rs:1046</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L1076" rel="noreferrer noopener" target="_blank">src/web.rs:1076</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L1145" rel="noreferrer noopener" target="_blank">src/web.rs:1145</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L1159" rel="noreferrer noopener" target="_blank">src/web.rs:1159</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L362" rel="noreferrer noopener" target="_blank">src/script.rs:362</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script.rs#L793" rel="noreferrer noopener" target="_blank">src/script.rs:793</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L690" rel="noreferrer noopener" target="_blank">src/script_report.rs:690</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L741" rel="noreferrer noopener" target="_blank">src/script_report.rs:741</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/script_report.rs#L767" rel="noreferrer noopener" target="_blank">src/script_report.rs:767</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L1265" rel="noreferrer noopener" target="_blank">src/web.rs:1265</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/sessions.rs#L87" rel="noreferrer noopener" target="_blank">src/sessions.rs:87</a> </span></li>
+
+<li><code class="evidence-text">ureq::get</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L1708" rel="noreferrer noopener" target="_blank">src/store.rs:1708</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L1736" rel="noreferrer noopener" target="_blank">src/store.rs:1736</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/update.rs#L89" rel="noreferrer noopener" target="_blank">src/update.rs:89</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/tests/android_identity.rs#L90" rel="noreferrer noopener" target="_blank">tests/android_identity.rs:90</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/tests/layering.rs#L45" rel="noreferrer noopener" target="_blank">tests/layering.rs:45</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/tests/mcp_stdio.rs#L108" rel="noreferrer noopener" target="_blank">tests/mcp_stdio.rs:108</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">160</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/daybrite/Day-Rise.git@main</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/cli.rs#L3331" rel="noreferrer noopener" target="_blank">src/cli.rs:3331</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/cli.rs#L3343" rel="noreferrer noopener" target="_blank">src/cli.rs:3343</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L679" rel="noreferrer noopener" target="_blank">src/git.rs:679</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L769" rel="noreferrer noopener" target="_blank">src/git.rs:769</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L831" rel="noreferrer noopener" target="_blank">src/git.rs:831</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day.git@experimental-nav</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/cli.rs#L3357" rel="noreferrer noopener" target="_blank">src/cli.rs:3357</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day.git@main</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/cli.rs#L3408" rel="noreferrer noopener" target="_blank">src/cli.rs:3408</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/cli.rs#L3422" rel="noreferrer noopener" target="_blank">src/cli.rs:3422</a> </span></li>
+
+<li><code class="evidence-text">devices://manage/select?id={udid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/devices.rs#L641" rel="noreferrer noopener" target="_blank">src/devices.rs:641</a> </span></li>
+
+<li><code class="evidence-text">install Rust via https://rustup.rs (rustup) or `brew install rust`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L263" rel="noreferrer noopener" target="_blank">src/doctor.rs:263</a> </span></li>
+
+<li><code class="evidence-text">Install the Rust toolchain from https://rustup.rs, or `brew install rust`. Cross-\u{a}compiled targets (iOS/Android/OpenHarmony) additionally need the rustup-managed\u{a}toolchain — Homebrew&#39;s rustc…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L275" rel="noreferrer noopener" target="_blank">src/doctor.rs:275</a> </span></li>
+
+<li><code class="evidence-text">install the Windows App SDK {} runtime (or newer 2.x): https://learn.microsoft.com/windows/apps/windows-app-sdk/downloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor.rs#L656" rel="noreferrer noopener" target="_blank">src/doctor.rs:656</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/doctor_verify.rs#L41" rel="noreferrer noopener" target="_blank">src/doctor_verify.rs:41</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L34" rel="noreferrer noopener" target="_blank">src/new.rs:34</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L53" rel="noreferrer noopener" target="_blank">src/patch.rs:53</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1602" rel="noreferrer noopener" target="_blank">src/patch.rs:1602</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1773" rel="noreferrer noopener" target="_blank">src/patch.rs:1773</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1778" rel="noreferrer noopener" target="_blank">src/patch.rs:1778</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;\u{a}&#60;mime-info xmlns=&#34;http://www.freedesktop.org/standards/shared-mime-info&#34;&#62;\u{a}{body}&#60;/mime-info&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/documents.rs#L458" rel="noreferrer noopener" target="_blank">src/documents.rs:458</a> </span></li>
+
+<li><code class="evidence-text">&#60;Package xmlns:uap2=&#34;http://schemas.microsoft.com/appx/manifest/uap/windows10/2&#34; xmlns:uap3=&#34;http://schemas.microsoft.com/appx/manifest/uap/windows10/3&#34; IgnorableNamespaces=&#34;uap uap2 uap3 rescap&#34; </code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/documents.rs#L477" rel="noreferrer noopener" target="_blank">src/documents.rs:477</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L90" rel="noreferrer noopener" target="_blank">src/git.rs:90</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L113" rel="noreferrer noopener" target="_blank">src/git.rs:113</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L194" rel="noreferrer noopener" target="_blank">src/git.rs:194</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/lint.rs#L735" rel="noreferrer noopener" target="_blank">src/lint.rs:735</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/screenshot.rs#L651" rel="noreferrer noopener" target="_blank">src/screenshot.rs:651</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/Day-Rise.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L680" rel="noreferrer noopener" target="_blank">src/git.rs:680</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L689" rel="noreferrer noopener" target="_blank">src/git.rs:689</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L696" rel="noreferrer noopener" target="_blank">src/git.rs:696</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L697" rel="noreferrer noopener" target="_blank">src/git.rs:697</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L833" rel="noreferrer noopener" target="_blank">src/git.rs:833</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/Day-Rise.git#v1.2.0</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L688" rel="noreferrer noopener" target="_blank">src/git.rs:688</a> </span></li>
+
+<li><code class="evidence-text">https://user@example.com/owner/repo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L718" rel="noreferrer noopener" target="_blank">src/git.rs:718</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L719" rel="noreferrer noopener" target="_blank">src/git.rs:719</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/o/r.git@feature/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L728" rel="noreferrer noopener" target="_blank">src/git.rs:728</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L802" rel="noreferrer noopener" target="_blank">src/git.rs:802</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/o/r.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L729" rel="noreferrer noopener" target="_blank">src/git.rs:729</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/o/r.git@</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L736" rel="noreferrer noopener" target="_blank">src/git.rs:736</a> </span></li>
+
+<li><code class="evidence-text">https://GitHub.com/daybrite/Day-Rise.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L782" rel="noreferrer noopener" target="_blank">src/git.rs:782</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/Day-Rise</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L790" rel="noreferrer noopener" target="_blank">src/git.rs:790</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/../../etc</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L813" rel="noreferrer noopener" target="_blank">src/git.rs:813</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/o/r</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L817" rel="noreferrer noopener" target="_blank">src/git.rs:817</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L1152" rel="noreferrer noopener" target="_blank">src/git.rs:1152</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L1161" rel="noreferrer noopener" target="_blank">src/git.rs:1161</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L1192" rel="noreferrer noopener" target="_blank">src/git.rs:1192</a> </span></li>
+
+<li><code class="evidence-text">https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L825" rel="noreferrer noopener" target="_blank">src/git.rs:825</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L826" rel="noreferrer noopener" target="_blank">src/git.rs:826</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/someone/else.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/git.rs#L1098" rel="noreferrer noopener" target="_blank">src/git.rs:1098</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&#62;\u{a}&#60;!-- Adaptive launcher icon (API 26+): motif inside the 66dp safe zone on the 108dp canvas;\u{a}     the launcher applies its own mask/shape. Generated by `d…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1091" rel="noreferrer noopener" target="_blank">src/icon.rs:1091</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 1024 1024&#34;&#62;&#60;defs&#62;&#60;clipPath id=&#34;day-squircle&#34;&#62;&#60;rect x=&#34;{MAC_INSET}&#34; y=&#34;{MAC_INSET}&#34; width=&#34;{MAC_ART}&#34; height=&#34;{MAC_ART}&#34; rx=&#34;{MAC_RADIUS}&#34;/&#62;&#60;/clipPa…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1319" rel="noreferrer noopener" target="_blank">src/icon.rs:1319</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 {ADAPTIVE_PX} {ADAPTIVE_PX}&#34;&#62;&#60;g transform=&#34;translate({tx} {ty}) scale({s})&#34;&#62;{inner}&#60;/g&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1361" rel="noreferrer noopener" target="_blank">src/icon.rs:1361</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1424" rel="noreferrer noopener" target="_blank">src/icon.rs:1424</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 {ADAPTIVE_PX} {ADAPTIVE_PX}&#34;&#62;&#60;svg width=&#34;{ADAPTIVE_PX}&#34; height=&#34;{ADAPTIVE_PX}&#34; viewBox=&#34;{vb}&#34; preserveAspectRatio=&#34;xMidYMid slice&#34;&#62;{inner}&#60;/svg&#62;&#60;/s…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1396" rel="noreferrer noopener" target="_blank">src/icon.rs:1396</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 100 100&#34;&#62;&#60;defs&#62;&#60;linearGradient id=&#34;g&#34;/&#62;&#60;/defs&#62;&#60;rect id=&#34;day:background&#34; width=&#34;100&#34; height=&#34;100&#34; fill=&#34;#123456&#34;/&#62;&#60;g id=&#34;day:foreground&#34;&#62;&#60;circle cx=…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1835" rel="noreferrer noopener" target="_blank">src/icon.rs:1835</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 100 100&#34;&#62;&#60;rect id=&#34;day:background&#34; width=&#34;100&#34; height=&#34;100&#34; fill=&#34;#123456&#34;/&#62;&#60;g id=&#34;day:foreground&#34;&#62;&#60;circle cx=&#34;50&#34; cy=&#34;50&#34; r=&#34;20&#34; fill=&#34;#fff&#34;/&#62;&#60;/g&#62;…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1881" rel="noreferrer noopener" target="_blank">src/icon.rs:1881</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 120 120&#34; width=&#34;1024&#34; height=&#34;1024&#34;&#62;&#60;rect id=&#34;day:background&#34; width=&#34;120&#34; height=&#34;120&#34; fill=&#34;#123456&#34;/&#62;&#60;g id=&#34;day:foreground&#34;&#62;&#60;circle cx=&#34;60&#34; cy=&#34;6…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1910" rel="noreferrer noopener" target="_blank">src/icon.rs:1910</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 100 100&#34;&#62;&#60;rect id=&#34;day:background&#34; width=&#34;100&#34; height=&#34;100&#34; fill=&#34;#123456&#34;/&#62;&#60;g id=&#34;day:foreground&#34;&#62;&#60;rect x=&#34;30&#34; y=&#34;30&#34; width=&#34;40&#34; height=&#34;40&#34; fill=…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1948" rel="noreferrer noopener" target="_blank">src/icon.rs:1948</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;64px&#34; height=&#34;32&#34;&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/icon.rs#L1973" rel="noreferrer noopener" target="_blank">src/icon.rs:1973</a> </span></li>
+
+<li><code class="evidence-text">host = &#34;https://example.test/app&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/localize.rs#L789" rel="noreferrer noopener" target="_blank">src/localize.rs:789</a> </span></li>
+
+<li><code class="evidence-text">https://apps.apple.com/app/id{id}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/meta.rs#L229" rel="noreferrer noopener" target="_blank">src/meta.rs:229</a> </span></li>
+
+<li><code class="evidence-text">https://play.google.com/store/apps/details?id={id}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/meta.rs#L237" rel="noreferrer noopener" target="_blank">src/meta.rs:237</a> </span></li>
+
+<li><code class="evidence-text">&#60;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&#62;&#60;path d=&#34;M4 4h16v16H4z&#34;/&#62;&#60;/svg&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L3590" rel="noreferrer noopener" target="_blank">src/mobile.rs:3590</a> </span></li>
+
+<li><code class="evidence-text">inside an existing repository, so none was initialized and no workflow was written; one at that repository&#39;s root builds this project with `project-path: {}` (https://github.com/daybrite/actions)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L1157" rel="noreferrer noopener" target="_blank">src/new.rs:1157</a> </span></li>
+
+<li><code class="evidence-text"># __TITLE__\u{a}\u{a}A one-page app that shows [`__CRATE__`](..). It depends on the piece by path\u{a}(`__CRATE__ = { path = &#34;..&#34; }`), so it always builds the code beside it.\u{a}\u{a}## Run it\u{a}…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3262" rel="noreferrer noopener" target="_blank">src/new.rs:3262</a> </span></li>
+
+<li><code class="evidence-text">//! __TITLE__: one page that shows `__CRATE__`, driven by `dayscript/demo.yaml`.\u{a}\u{a}use day::prelude::*;\u{a}\u{a}// Entry point for the mobile hosts; a desktop build enters through src/main.rs.…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3279" rel="noreferrer noopener" target="_blank">src/new.rs:3279</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3314" rel="noreferrer noopener" target="_blank">src/new.rs:3314</a> </span></li>
+
+<li><code class="evidence-text"># __TITLE__ UI strings (https://daybrite.dev/docs/localization).\u{a}\u{a}app_title = __TITLE__\u{a}demo_text = Hello\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3355" rel="noreferrer noopener" target="_blank">src/new.rs:3355</a> </span></li>
+
+<li><code class="evidence-text"># __TITLE__ UI strings (https://daybrite.dev/docs/localization).\u{a}\u{a}app_title = __TITLE__\u{a}demo_placeholder = Type here\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3361" rel="noreferrer noopener" target="_blank">src/new.rs:3361</a> </span></li>
+
+<li><code class="evidence-text"># The demo&#39;s walkthrough (https://daybrite.dev/docs/dayscript) and the piece&#39;s on-device test:\u{a}#\u{a}#     day launch -t __FIRST_TARGET__ --script dayscript/demo.yaml\u{a}flow:\u{a}  - wait_for: {…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3367" rel="noreferrer noopener" target="_blank">src/new.rs:3367</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3377" rel="noreferrer noopener" target="_blank">src/new.rs:3377</a> </span></li>
+
+<li><code class="evidence-text">day = { git = &#34;https://github.com/daybrite/day.git&#34; }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3809" rel="noreferrer noopener" target="_blank">src/new.rs:3809</a> </span></li>
+
+<li><code class="evidence-text">day = { git = &#34;https://github.com/daybrite/day.git&#34;, tag = &#34;v0.2.0&#34; }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3813" rel="noreferrer noopener" target="_blank">src/new.rs:3813</a> </span></li>
+
+<li><code class="evidence-text">day = { git = &#34;https://github.com/daybrite/day.git&#34;, branch = &#34;main&#34; }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3817" rel="noreferrer noopener" target="_blank">src/new.rs:3817</a> </span></li>
+
+<li><code class="evidence-text">day = { git = &#34;https://github.com/daybrite/day.git&#34;, rev = &#34;a1b2c3d4&#34; }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3821" rel="noreferrer noopener" target="_blank">src/new.rs:3821</a> </span></li>
+
+<li><code class="evidence-text">day-gtk = { git = &#34;https://github.com/daybrite/day.git&#34;, branch = &#34;main&#34;, optional = true }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/new.rs#L3828" rel="noreferrer noopener" target="_blank">src/new.rs:3828</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&#62;\u{a}&#60;assembly manifestVersion=&#34;1.0&#34; xmlns=&#34;urn:schemas-microsoft-com:asm.v1&#34;&#62;\u{a}  &#60;compatibility xmlns=&#34;urn:schemas-microsoft-com:compatibility.v1&#34;&#62;\u{a}    &#60;a…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L907" rel="noreferrer noopener" target="_blank">src/ops.rs:907</a> </span></li>
+
+<li><code class="evidence-text">linuxdeploy not found — it is what bundles the toolkit into the AppImage.\u{a}  Download it (and the plugin for your toolkit) from https://github.com/linuxdeploy/linuxdeploy/releases, chmod +x, and …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/appimage.rs#L45" rel="noreferrer noopener" target="_blank">src/pack/appimage.rs:45</a> </span></li>
+
+<li><code class="evidence-text">{tool} not found — install flatpak + flatpak-builder and add the flathub remote:\u{a}  flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/flatpak.rs#L38" rel="noreferrer noopener" target="_blank">src/pack/flatpak.rs:38</a> </span></li>
+
+<li><code class="evidence-text">--runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/flatpak.rs#L131" rel="noreferrer noopener" target="_blank">src/pack/flatpak.rs:131</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;\u{a}&#60;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&#62;\u{a}&#60;plist version=&#34;1.0&#34;&#62;&#60;dict&#62;\u{a}  &#60;key&#62;method&#60;/key…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/ios.rs#L312" rel="noreferrer noopener" target="_blank">src/pack/ios.rs:312</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&#62;\u{a}&#60;Package xmlns=&#34;http://schemas.microsoft.com/appx/manifest/foundation/windows10&#34;\u{a}         xmlns:uap=&#34;http://schemas.microsoft.com/appx/manifest/uap/windo…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/msix.rs#L305" rel="noreferrer noopener" target="_blank">src/pack/msix.rs:305</a> </span></li>
+
+<li><code class="evidence-text">http://timestamp.acs.microsoft.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/msix.rs#L420" rel="noreferrer noopener" target="_blank">src/pack/msix.rs:420</a> </span></li>
+
+<li><code class="evidence-text">http://timestamp.digicert.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/msix.rs#L421" rel="noreferrer noopener" target="_blank">src/pack/msix.rs:421</a> </span></li>
+
+<li><code class="evidence-text">{}: cannot tell which git URL this checkout stands for — set `repository = &#34;https://…&#34;` in its [package] (or [workspace.package]) to the URL apps depend on</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L387" rel="noreferrer noopener" target="_blank">src/patch.rs:387</a> </span></li>
+
+<li><code class="evidence-text">--git {arg}: not a git URL — pass the fork like https://github.com/acme/day.git@&#60;branch&#62; (for a checkout on disk use --local)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L846" rel="noreferrer noopener" target="_blank">src/patch.rs:846</a> </span></li>
+
+<li><code class="evidence-text">--day-src {arg}: not a directory, and not a git URL — pass a path to a day checkout, or a URL like https://github.com/daybrite/day.git@&#60;branch&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1092" rel="noreferrer noopener" target="_blank">src/patch.rs:1092</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[package]\u{a}name = &#34;app&#34;\u{a}version = &#34;0.1.0&#34;\u{a}\u{a}[dependencies]\u{a}day = { git = &#34;https://github.com/daybrite/day.git&#34; }\u{a}day-build = { git = &#34;https://github.com/daybrite/day.git&#34; }…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1470" rel="noreferrer noopener" target="_blank">src/patch.rs:1470</a> </span></li>
+
+<li><code class="evidence-text">[patch.&#34;https://github.com/daybrite/day.git&#34;]</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1490" rel="noreferrer noopener" target="_blank">src/patch.rs:1490</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1573" rel="noreferrer noopener" target="_blank">src/patch.rs:1573</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[package]\u{a}name = &#34;app&#34;\u{a}version = &#34;0.1.0&#34;\u{a}\u{a}[dependencies]\u{a}day = { git = &#34;https://github.com/daybrite/day.git&#34; }\u{a}day-piece-lottie = { git = &#34;https://github.com/daybrite/day-…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1510" rel="noreferrer noopener" target="_blank">src/patch.rs:1510</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day-piece-lottie</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1524" rel="noreferrer noopener" target="_blank">src/patch.rs:1524</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1682" rel="noreferrer noopener" target="_blank">src/patch.rs:1682</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1688" rel="noreferrer noopener" target="_blank">src/patch.rs:1688</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1870" rel="noreferrer noopener" target="_blank">src/patch.rs:1870</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1920" rel="noreferrer noopener" target="_blank">src/patch.rs:1920</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day-piece-lottie.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1528" rel="noreferrer noopener" target="_blank">src/patch.rs:1528</a> </span></li>
+
+<li><code class="evidence-text">[patch.&#34;https://github.com/daybrite/day.git&#34;]\u{a}day = { path =</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1533" rel="noreferrer noopener" target="_blank">src/patch.rs:1533</a> </span></li>
+
+<li><code class="evidence-text">[patch.&#34;https://github.com/daybrite/day-piece-lottie.git&#34;]\u{a}day-piece-lottie = { path =</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1538" rel="noreferrer noopener" target="_blank">src/patch.rs:1538</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[package]\u{a}name = &#34;app&#34;\u{a}version = &#34;0.1.0&#34;\u{a}\u{a}[dependencies]\u{a}day = { git = &#34;https://github.com/daybrite/day.git&#34; }\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1554" rel="noreferrer noopener" target="_blank">src/patch.rs:1554</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1937" rel="noreferrer noopener" target="_blank">src/patch.rs:1937</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/day.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1566" rel="noreferrer noopener" target="_blank">src/patch.rs:1566</a> </span></li>
+
+<li><code class="evidence-text">day = { git = &#34;https://github.com/acme/day.git&#34;, branch = &#34;acme&#34; }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1578" rel="noreferrer noopener" target="_blank">src/patch.rs:1578</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1601" rel="noreferrer noopener" target="_blank">src/patch.rs:1601</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1848" rel="noreferrer noopener" target="_blank">src/patch.rs:1848</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1859" rel="noreferrer noopener" target="_blank">src/patch.rs:1859</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1911" rel="noreferrer noopener" target="_blank">src/patch.rs:1911</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L845" rel="noreferrer noopener" target="_blank">src/provenance.rs:845</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/daybrite/day/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1603" rel="noreferrer noopener" target="_blank">src/patch.rs:1603</a> </span></li>
+
+<li><code class="evidence-text">git+https://github.com/daybrite/day.git?branch=main#abcdef</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1605" rel="noreferrer noopener" target="_blank">src/patch.rs:1605</a> </span></li>
+
+<li><code class="evidence-text">https://GitHub.com/daybrite/day</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1608" rel="noreferrer noopener" target="_blank">src/patch.rs:1608</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[package]\u{a}name = &#34;app&#34;\u{a}version = &#34;0.1.0&#34;\u{a}\u{a}[dependencies]\u{a}day = { git = &#34;https://github.com/daybrite/day.git&#34; }\u{a}day-part-http = { git = &#34;https://github.com/daybrite/day.git…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1651" rel="noreferrer noopener" target="_blank">src/patch.rs:1651</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1893" rel="noreferrer noopener" target="_blank">src/patch.rs:1893</a> </span></li>
+
+<li><code class="evidence-text">version = 4\u{a}\u{a}[[package]]\u{a}name = &#34;day&#34;\u{a}version = &#34;0.4.10&#34;\u{a}source = &#34;git+https://github.com/daybrite/day.git#9996c0743ca8390a5c6f09eb1631caee55fd2a52&#34;\u{a}\u{a}[[package]]\u{a}name =…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1738" rel="noreferrer noopener" target="_blank">src/patch.rs:1738</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/nobody/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1782" rel="noreferrer noopener" target="_blank">src/patch.rs:1782</a> </span></li>
+
+<li><code class="evidence-text">git+https://github.com/daybrite/day.git#1234</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1843" rel="noreferrer noopener" target="_blank">src/patch.rs:1843</a> </span></li>
+
+<li><code class="evidence-text">git+https://github.com/daybrite/day-piece-lottie.git#9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1865" rel="noreferrer noopener" target="_blank">src/patch.rs:1865</a> </span></li>
+
+<li><code class="evidence-text">registry+https://github.com/rust-lang/crates.io-index</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/patch.rs#L1876" rel="noreferrer noopener" target="_blank">src/patch.rs:1876</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&#62;\u{a}&#60;!-- Generated by `day build` from Day.toml [permissions] and [package.metadata.day.*] contributions. Do not edit. --&#62;\u{a}&#60;manifest xmlns:android=&#34;http://sc…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pieces.rs#L1054" rel="noreferrer noopener" target="_blank">src/pieces.rs:1054</a> </span></li>
+
+<li><code class="evidence-text">https://fixture.invalid/maven</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pieces.rs#L2582" rel="noreferrer noopener" target="_blank">src/pieces.rs:2582</a> </span></li>
+
+<li><code class="evidence-text">swift = [&#34;platform/ios/swift&#34;]\u{a}swift-packages = [{ url = &#34;https://github.com/airbnb/lottie-ios&#34;, from = &#34;4.5.0&#34;, products = [&#34;Lottie&#34;] }]\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pieces.rs#L2716" rel="noreferrer noopener" target="_blank">src/pieces.rs:2716</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/airbnb/lottie-ios</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pieces.rs#L2792" rel="noreferrer noopener" target="_blank">src/pieces.rs:2792</a> </span></li>
+
+<li><code class="evidence-text">.package(url: &#34;https://github.com/airbnb/lottie-ios&#34;, from: &#34;4.5.0&#34;),</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pieces.rs#L2807" rel="noreferrer noopener" target="_blank">src/pieces.rs:2807</a> </span></li>
+
+<li><code class="evidence-text">app://menus</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/plist.rs#L634" rel="noreferrer noopener" target="_blank">src/plist.rs:634</a> </span></li>
+
+<li><code class="evidence-text">https://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L152" rel="noreferrer noopener" target="_blank">src/provenance.rs:152</a> </span></li>
+
+<li><code class="evidence-text">https://developer.apple.com/download/all/?q=Xcode — install, then sudo xcode-select -s /Applications/Xcode_&#60;version&#62;.app</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L257" rel="noreferrer noopener" target="_blank">src/provenance.rs:257</a> </span></li>
+
+<li><code class="evidence-text">https://gradle.org/releases/ (or the project&#39;s ./gradlew wrapper)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L270" rel="noreferrer noopener" target="_blank">src/provenance.rs:270</a> </span></li>
+
+<li><code class="evidence-text">sdkmanager &#39;ndk;&#60;version&#62;&#39; — https://developer.android.com/ndk/downloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L280" rel="noreferrer noopener" target="_blank">src/provenance.rs:280</a> </span></li>
+
+<li><code class="evidence-text">https://gitee.com/openharmony/docs — see docs/harmonyos.md for the layout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L288" rel="noreferrer noopener" target="_blank">src/provenance.rs:288</a> </span></li>
+
+<li><code class="evidence-text">https://visualstudio.microsoft.com/downloads/ (Desktop development with C++)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/provenance.rs#L305" rel="noreferrer noopener" target="_blank">src/provenance.rs:305</a> </span></li>
+
+<li><code class="evidence-text">install Xcode from https://developer.apple.com/download/all/?q=Xcode, then run sudo xcode-select -s /Applications/Xcode.app</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/rebuild.rs#L481" rel="noreferrer noopener" target="_blank">src/rebuild.rs:481</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid/repo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/rebuild.rs#L2066" rel="noreferrer noopener" target="_blank">src/rebuild.rs:2066</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/rebuild.rs#L2075" rel="noreferrer noopener" target="_blank">src/rebuild.rs:2075</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/rebuild.rs#L2340" rel="noreferrer noopener" target="_blank">src/rebuild.rs:2340</a> </span></li>
+
+<li><code class="evidence-text">{}://{h}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/screenshot.rs#L654" rel="noreferrer noopener" target="_blank">src/screenshot.rs:654</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L187" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:187</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L275" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:275</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L381" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:381</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&#62;\u{a}&#60;!-- Generated by `day build` from Day.toml [[shortcuts]]. Do not edit. --&#62;\u{a}&#60;shortcuts xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;&#62;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L261" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:261</a> </span></li>
+
+<li><code class="evidence-text">{s}://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L559" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:559</a> </span></li>
+
+<li><code class="evidence-text">dayshowcase://menus</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L655" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:655</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}  &#34;shortcuts&#34;: [\u{a}    {\u{a}      &#34;label&#34;: &#34;$string:day_shortcut_0&#34;,\u{a}      &#34;shortcutId&#34;: &#34;day_shortcut_0&#34;,\u{a}      &#34;wants&#34;: [\u{a}        {\u{a}          &#34;abilityName&#34;: &#34;EntryAbility&#34;,…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L673" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:673</a> </span></li>
+
+<li><code class="evidence-text">Exec=notes --day-open-url &#34;notes://notes/new?pinned=1&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/shortcuts.rs#L743" rel="noreferrer noopener" target="_blank">src/shortcuts.rs:743</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L1698" rel="noreferrer noopener" target="_blank">src/store.rs:1698</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/template.rs#L104" rel="noreferrer noopener" target="_blank">src/template.rs:104</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L1698" rel="noreferrer noopener" target="_blank">src/store.rs:1698</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L2902" rel="noreferrer noopener" target="_blank">src/store.rs:2902</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/template.rs#L105" rel="noreferrer noopener" target="_blank">src/template.rs:105</a> </span></li>
+
+<li><code class="evidence-text">{place}: must be an https:// URL</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L2905" rel="noreferrer noopener" target="_blank">src/store.rs:2905</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/privacy</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L3005" rel="noreferrer noopener" target="_blank">src/store.rs:3005</a> </span></li>
+
+<li><code class="evidence-text"># The store listing (https://daybrite.dev/docs/store): everything the App Store, Google\u{a}# Play and the app&#39;s website show, in one file. [storefront.submission-info] is shared\u{a}# by every store;…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L3140" rel="noreferrer noopener" target="_blank">src/store.rs:3140</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[storefront.submission-info]\u{a}copyright = &#34;2026 Example&#34;\u{a}contact-email = &#34;support@example.com&#34;\u{a}review-notes = &#34;&#34;&#34;\u{a}Line one.\u{a}\u{a}Line three, after a blank.\u{a}&#34;&#34;&#34;\u{a}\u{a}[st…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L4626" rel="noreferrer noopener" target="_blank">src/store.rs:4626</a> </span></li>
+
+<li><code class="evidence-text">\u{a}storefront:\u{a}  submission-info:\u{a}    copyright: &#34;2026 Example&#34;\u{a}    contact-email: support@example.com\u{a}    review-notes: |\u{a}      Line one.\u{a}\u{a}      Line three, after a blan…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L4697" rel="noreferrer noopener" target="_blank">src/store.rs:4697</a> </span></li>
+
+<li><code class="evidence-text">https://x/p</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L5606" rel="noreferrer noopener" target="_blank">src/store.rs:5606</a> </span></li>
+
+<li><code class="evidence-text">[storefront.metadata]\u{a}name = &#34;Example&#34;\u{a}subtitle = &#34;TODO: 30 characters&#34;\u{a}description-ref = &#34;store/text/description.txt&#34;\u{a}keywords = [&#34;a&#34;]\u{a}support-url = &#34;http://x&#34;\u{a}[storefront.and…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L5760" rel="noreferrer noopener" target="_blank">src/store.rs:5760</a> </span></li>
+
+<li><code class="evidence-text">[storefront.metadata]\u{a}name = &#34;Example&#34;\u{a}description = &#34;x&#34;\u{a}privacy-url = &#34;https://x/p&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L5919" rel="noreferrer noopener" target="_blank">src/store.rs:5919</a> </span></li>
+
+<li><code class="evidence-text">[storefront.submission-info]\u{a}copyrite = &#34;x&#34;\u{a}[storefront.metadata]\u{a}name = &#34;Example&#34;\u{a}title = &#34;x&#34;\u{a}description = &#34;d&#34;\u{a}privacy-url = &#34;https://x/p&#34;\u{a}[storefront.metadata.fr]\u{a}ke…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/store.rs#L5983" rel="noreferrer noopener" target="_blank">src/store.rs:5983</a> </span></li>
+
+<li><code class="evidence-text">ssh://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/template.rs#L107" rel="noreferrer noopener" target="_blank">src/template.rs:107</a> </span></li>
+
+<li><code class="evidence-text">{SUN}Create an app:{SUN:#}  {SKY_BOLD}day new app{SKY_BOLD:#}\u{a}{SUN}Command help:{SUN:#}   {SKY_BOLD}day help{SKY_BOLD:#} {SKY}&#60;COMMAND&#62;{SKY:#}\u{a}\u{a}Docs: https://daybrite.dev/docs/cli/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/term.rs#L62" rel="noreferrer noopener" target="_blank">src/term.rs:62</a> </span></li>
+
+<li><code class="evidence-text">https://crates.io/api/v1/crates/day-cli</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/update.rs#L89" rel="noreferrer noopener" target="_blank">src/update.rs:89</a> </span></li>
+
+<li><code class="evidence-text">&#60;Package xmlns:uap3=&#34;http://schemas.microsoft.com/appx/manifest/uap/windows10/3&#34; </code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/url_handlers.rs#L90" rel="noreferrer noopener" target="_blank">src/url_handlers.rs:90</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/web.rs#L780" rel="noreferrer noopener" target="_blank">src/web.rs:780</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/mobile.rs#L3467" rel="noreferrer noopener" target="_blank">src/mobile.rs:3467</a> <a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/appimage.rs#L254" rel="noreferrer noopener" target="_blank">src/pack/appimage.rs:254</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/ops.rs#L228" rel="noreferrer noopener" target="_blank">src/ops.rs:228</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/mod.rs#L634" rel="noreferrer noopener" target="_blank">src/pack/mod.rs:634</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/pack/settings.rs#L153" rel="noreferrer noopener" target="_blank">src/pack/settings.rs:153</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-cli/0.5.1/code/src/signals.rs#L178" rel="noreferrer noopener" target="_blank">src/signals.rs:178</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>512 ms</dd></div><div><dt>VM restore</dt><dd>63 ms</dd></div><div><dt>Payload</dt><dd>12200 files, 285.8 MiB</dd></div><div><dt>Files opened</dt><dd>507</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">497 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">263 ms</td>
+<td class="nowrap">208 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.44s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-12 14:12 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-12 14:12 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-12 14:12 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-12 14:12 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-12 14:12 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-12 14:12 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

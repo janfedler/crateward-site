@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: hidane 0.5.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>hidane <span class="version">0.5.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 149822</span>
+      <a class="muted" href="https://crates.io/crates/hidane/0.5.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="149822.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="149822.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="149822-diff.html">Compare with 0.5.0</a>
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (17 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">109</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · hidane</div></td><td class="mono where"><a href="https://crates.io/crates/hidane/0.5.1/code/build.rs#L53" rel="noreferrer noopener" target="_blank">build.rs:53</a></td><td>medium severity process_spawn in build_script code (17 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · hidane</div></td><td class="mono where"><a href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/machine.rs#L15" rel="noreferrer noopener" target="_blank">src/diagnostic/machine.rs:15</a></td><td>medium severity environment_enumeration in library code: std::env::vars_os</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · hidane</div></td><td class="mono where"><a href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/mod.rs#L566" rel="noreferrer noopener" target="_blank">src/diagnostic/mod.rs:566</a></td><td>medium severity secret_environment_variable in library code (4 places): GOOGLE_APPLICATION_CREDENTIALS</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · hidane</div></td><td class="mono where"><a href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1476" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1476</a></td><td>medium severity shell_command in library code (4 places): curl -H &#39;authorization: bearer {}&#39;</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:sandbox_evasion</span><div class="sub">static · hidane</div></td><td class="mono where"><a href="https://crates.io/crates/hidane/0.5.1/code/src/bench/system.rs#L454" rel="noreferrer noopener" target="_blank">src/bench/system.rs:454</a></td><td>medium severity yara:sandbox_evasion in library code: Checks for virtual machines, sandboxes or debuggers</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · hidane</div></td><td class="mono where"><a href="https://crates.io/crates/hidane/0.5.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:sandbox_evasion</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">109</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">11</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">33</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">65</span></label>
+  <span class="muted">10 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GOOGLE_APPLICATION_CREDENTIALS</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/mod.rs#L566" rel="noreferrer noopener" target="_blank">src/diagnostic/mod.rs:566</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/mod.rs#L856" rel="noreferrer noopener" target="_blank">src/diagnostic/mod.rs:856</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1505" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1505</a> </span></li>
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1492" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1492</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">curl -H &#39;authorization: bearer {}&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1476" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1476</a> </span></li>
+
+<li><code class="evidence-text">curl -H &#39;authorization: &#60;redacted&#62;&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1477" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1477</a> </span></li>
+
+<li><code class="evidence-text">jobs:\u{a}  a:\u{a}    runs-on: ubuntu-latest\u{a}    steps:\u{a}      - uses: actions/setup-java@v4\u{a}        with:\u{a}          java-version: 21\u{a}      - run: npx firebase emulators:exec &#39;npm …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/project/ci.rs#L1090" rel="noreferrer noopener" target="_blank">src/project/ci.rs:1090</a> </span></li>
+
+<li><code class="evidence-text">npm run test:emu -- --watch\u{a}npm --prefix functions test\u{a}yarn workspace api test\u{a}pnpm -r test\u{a}turbo run build test\u{a}./scripts/ci.sh\u{a}bash -e scripts/x.sh\u{a}bash -c &#39;firebase emu…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/project/shell.rs#L1156" rel="noreferrer noopener" target="_blank">src/project/shell.rs:1156</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/machine.rs#L15" rel="noreferrer noopener" target="_blank">src/diagnostic/machine.rs:15</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/build.rs#L53" rel="noreferrer noopener" target="_blank">build.rs:53</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match sandbox_evasion</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Checks for virtual machines, sandboxes or debuggers</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/system.rs#L454" rel="noreferrer noopener" target="_blank">src/bench/system.rs:454</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">16</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/system.rs#L911" rel="noreferrer noopener" target="_blank">src/bench/system.rs:911</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L181" rel="noreferrer noopener" target="_blank">src/bench/target.rs:181</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L151" rel="noreferrer noopener" target="_blank">src/bench/target.rs:151</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L479" rel="noreferrer noopener" target="_blank">src/lib.rs:479</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L496" rel="noreferrer noopener" target="_blank">src/lib.rs:496</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L552" rel="noreferrer noopener" target="_blank">src/lib.rs:552</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/websocket.rs#L50" rel="noreferrer noopener" target="_blank">src/websocket.rs:50</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/websocket.rs#L58" rel="noreferrer noopener" target="_blank">src/websocket.rs:58</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L482" rel="noreferrer noopener" target="_blank">src/lib.rs:482</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L485" rel="noreferrer noopener" target="_blank">src/lib.rs:485</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L490" rel="noreferrer noopener" target="_blank">src/lib.rs:490</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L507" rel="noreferrer noopener" target="_blank">src/lib.rs:507</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/lib.rs#L552" rel="noreferrer noopener" target="_blank">src/lib.rs:552</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/websocket.rs#L74" rel="noreferrer noopener" target="_blank">src/websocket.rs:74</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/triggers/delivery.rs#L329" rel="noreferrer noopener" target="_blank">src/triggers/delivery.rs:329</a> </span></li>
+
+<li><code class="evidence-text">hyper::client::conn::http1::handshake</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/triggers/delivery.rs#L338" rel="noreferrer noopener" target="_blank">src/triggers/delivery.rs:338</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">16</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/scenarios.rs#L765" rel="noreferrer noopener" target="_blank">src/bench/scenarios.rs:765</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/scenarios.rs#L833" rel="noreferrer noopener" target="_blank">src/bench/scenarios.rs:833</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/scenarios.rs#L839" rel="noreferrer noopener" target="_blank">src/bench/scenarios.rs:839</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/system.rs#L29" rel="noreferrer noopener" target="_blank">src/bench/system.rs:29</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/system.rs#L437" rel="noreferrer noopener" target="_blank">src/bench/system.rs:437</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L55" rel="noreferrer noopener" target="_blank">src/bench/target.rs:55</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L85" rel="noreferrer noopener" target="_blank">src/bench/target.rs:85</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L119" rel="noreferrer noopener" target="_blank">src/bench/target.rs:119</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L259" rel="noreferrer noopener" target="_blank">src/bench/target.rs:259</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/target.rs#L346" rel="noreferrer noopener" target="_blank">src/bench/target.rs:346</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/machine.rs#L110" rel="noreferrer noopener" target="_blank">src/diagnostic/machine.rs:110</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/launch.rs#L154" rel="noreferrer noopener" target="_blank">src/launch.rs:154</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/launch.rs#L199" rel="noreferrer noopener" target="_blank">src/launch.rs:199</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/launch.rs#L208" rel="noreferrer noopener" target="_blank">src/launch.rs:208</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/migrate/apply.rs#L135" rel="noreferrer noopener" target="_blank">src/migrate/apply.rs:135</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/launch.rs#L267" rel="noreferrer noopener" target="_blank">src/launch.rs:267</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">64</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/client.rs#L45" rel="noreferrer noopener" target="_blank">src/bench/client.rs:45</a> </span></li>
+
+<li><code class="evidence-text">https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v1.22.0.jar</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/config.rs#L13" rel="noreferrer noopener" target="_blank">src/bench/config.rs:13</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/hidane-dev/hidane/blob/main/bench/README.md</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/bench/savings.rs#L20" rel="noreferrer noopener" target="_blank">src/bench/savings.rs:20</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/hidane-dev/hidane/issues</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/cli.rs#L15" rel="noreferrer noopener" target="_blank">src/cli.rs:15</a> </span></li>
+
+<li><code class="evidence-text">hidane {}\u{a}License: MIT OR Apache-2.0\u{a}Source: https://github.com/hidane-dev/hidane\u{a}\u{a}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/cli.rs#L266" rel="noreferrer noopener" target="_blank">src/cli.rs:266</a> </span></li>
+
+<li><code class="evidence-text">http://10.20.30.41:9199</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/mod.rs#L860" rel="noreferrer noopener" target="_blank">src/diagnostic/mod.rs:860</a> </span></li>
+
+<li><code class="evidence-text">| `STORAGE_EMULATOR_HOST` | `http://&#60;host&#62;:9199` |</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/mod.rs#L959" rel="noreferrer noopener" target="_blank">src/diagnostic/mod.rs:959</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L502" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:502</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L695" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:695</a> </span></li>
+
+<li><code class="evidence-text">file://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1086" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1086</a> </span></li>
+
+<li><code class="evidence-text">https://user:hunter2@example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1346" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1346</a> </span></li>
+
+<li><code class="evidence-text">https://&#60;credentials&#62;@example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1347" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1347</a> </span></li>
+
+<li><code class="evidence-text">clone https://ghtoken123@github.com/org/repo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1350" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1350</a> </span></li>
+
+<li><code class="evidence-text">clone https://&#60;credentials&#62;@github.com/org/repo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1351" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1351</a> </span></li>
+
+<li><code class="evidence-text">postgres://app:p%40ss@db.internal:5432/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1354" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1354</a> </span></li>
+
+<li><code class="evidence-text">postgres://&#60;credentials&#62;@db.internal:5432/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1355" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1355</a> </span></li>
+
+<li><code class="evidence-text">redis://:secretpw@cache:6379</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1358" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1358</a> </span></li>
+
+<li><code class="evidence-text">redis://&#60;credentials&#62;@cache:6379</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1359" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1359</a> </span></li>
+
+<li><code class="evidence-text">git+ssh://git@github.com/org/repo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1363" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1363</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1364" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1364</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/@someone</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1367" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1367</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1368" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1368</a> </span></li>
+
+<li><code class="evidence-text">(see https://user:pw@example.com).</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1371" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1371</a> </span></li>
+
+<li><code class="evidence-text">(see https://&#60;credentials&#62;@example.com).</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1372" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1372</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/api?alt=json&#38;access_token=abc123&#38;page=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1386" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1386</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/api?alt=json&#38;access_token=&#60;redacted&#62;&#38;page=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1387" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1387</a> </span></li>
+
+<li><code class="evidence-text">https://storage.googleapis.com/b/o?X-Goog-Credential=sa%2F2026&#38;X-Goog-Signature=0f1e#frag</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1391" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1391</a> </span></li>
+
+<li><code class="evidence-text">https://storage.googleapis.com/b/o?X-Goog-Credential=&#60;redacted&#62;&#38;X-Goog-Signature=&#60;redacted&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1392" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1392</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/a?page=2#top</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1395" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1395</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1396" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1396</a> </span></li>
+
+<li><code class="evidence-text">https://firestore.googleapis.com/v1/x?key={key}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1399" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1399</a> </span></li>
+
+<li><code class="evidence-text">https://firestore.googleapis.com/v1/x?key=&#60;redacted&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1400" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1400</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/cb?code=4%2F0Ab&#38;state=xyz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1403" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1403</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/cb?code=&#60;redacted&#62;&#38;state=xyz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1404" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1404</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/?token=&#38;key=$KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1408" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1408</a> <a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1409" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1409</a> </span></li>
+
+<li><code class="evidence-text">https://acme-prod.web.app/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1676" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1676</a> </span></li>
+
+<li><code class="evidence-text">https://&#60;project-id-1&#62;.web.app/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1677" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1677</a> </span></li>
+
+<li><code class="evidence-text">gs://acme-prod.appspot.com/a.png</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1680" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1680</a> </span></li>
+
+<li><code class="evidence-text">gs://&#60;project-id-1&#62;.appspot.com/a.png</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1681" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1681</a> </span></li>
+
+<li><code class="evidence-text">https://acme-prod-default-rtdb.firebaseio.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1684" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1684</a> </span></li>
+
+<li><code class="evidence-text">https://&#60;project-id-1&#62;-default-rtdb.firebaseio.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1685" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1685</a> </span></li>
+
+<li><code class="evidence-text">https://us-central1-acme-prod.cloudfunctions.net/api</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1696" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1696</a> </span></li>
+
+<li><code class="evidence-text">https://&#60;project-id&#62;.cloudfunctions.net/api</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1697" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1697</a> </span></li>
+
+<li><code class="evidence-text">https://api-x7k2-uc.a.run.app</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1700" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1700</a> </span></li>
+
+<li><code class="evidence-text">https://&#60;project-id&#62;.run.app</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1701" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1701</a> </span></li>
+
+<li><code class="evidence-text">file:///Users/alice/x.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1749" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1749</a> </span></li>
+
+<li><code class="evidence-text">file://&#60;home&#62;/x.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1749" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1749</a> </span></li>
+
+<li><code class="evidence-text">http://10.0.0.2:9199</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1867" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1867</a> </span></li>
+
+<li><code class="evidence-text">http://&#60;host&#62;:9199</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1867" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1867</a> </span></li>
+
+<li><code class="evidence-text">http://u:p@localhost:9199/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1869" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1869</a> </span></li>
+
+<li><code class="evidence-text">http://&#60;credentials&#62;@localhost:9199/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1870" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1870</a> </span></li>
+
+<li><code class="evidence-text">http://FIRESTORE.corp.example/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1882" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1882</a> </span></li>
+
+<li><code class="evidence-text">http://&#60;host&#62;/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1882" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1882</a> </span></li>
+
+<li><code class="evidence-text">--project acme-x https://u:p@h.example/?token=t {} alice@example.com /Users/alice/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1990" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1990</a> </span></li>
+
+<li><code class="evidence-text">eyJ.eyJ. projects/ --project= https:// @ : = \</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/diagnostic/redact.rs#L1996" rel="noreferrer noopener" target="_blank">src/diagnostic/redact.rs:1996</a> </span></li>
+
+<li><code class="evidence-text">ExecutePipeline is not implemented yet (https://github.com/hidane-dev/hidane/issues/80)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/firestore/mod.rs#L1144" rel="noreferrer noopener" target="_blank">src/firestore/mod.rs:1144</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/hidane-dev/hidane/blob/main/docs/testcontainers.md</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/gcloud.rs#L40" rel="noreferrer noopener" target="_blank">src/gcloud.rs:40</a> </span></li>
+
+<li><code class="evidence-text">hidane&#39;s compiler gives the official emulator&#39;s errors; if the official emulator accepts this file, please report it (https://github.com/hidane-dev/hidane/issues)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/project/mod.rs#L403" rel="noreferrer noopener" target="_blank">src/project/mod.rs:403</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/hidane-dev/hidane/issues/80; docs/parity-exceptions.md (ExecutePipeline)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/project/verified.rs#L128" rel="noreferrer noopener" target="_blank">src/project/verified.rs:128</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/hidane-dev/hidane/issues/81; docs/parity-exceptions.md</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/project/verified.rs#L130" rel="noreferrer noopener" target="_blank">src/project/verified.rs:130</a> </span></li>
+
+<li><code class="evidence-text">WARNING: a second run would still change {}; please report it (https://github.com/hidane-dev/hidane/issues).</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/project_cli.rs#L280" rel="noreferrer noopener" target="_blank">src/project_cli.rs:280</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/googleapis/google-cloudevents/blob/main/proto/google/events/cloud/firestore/v1/data.proto</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/triggers/delivery.rs#L53" rel="noreferrer noopener" target="_blank">src/triggers/delivery.rs:53</a> </span></li>
+
+<li><code class="evidence-text">Unsuccessful HTTP response when publishing {version}event for {}: {} {reason}\u{a}POST http://{host}{path}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/triggers/delivery.rs#L237" rel="noreferrer noopener" target="_blank">src/triggers/delivery.rs:237</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">API endpoint: http://{host}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/hidane/0.5.1/code/src/main.rs#L233" rel="noreferrer noopener" target="_blank">src/main.rs:233</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>1 min 53 s</dd></div><div><dt>VM restore</dt><dd>136 ms</dd></div><div><dt>Payload</dt><dd>7467 files, 102.7 MiB</dd></div><div><dt>Files opened</dt><dd>19379</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">294</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 275 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">1 min 53 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="28 similar processes, the first one shown">×28</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">390 ms</td>
+<td class="nowrap">868 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcHAgG9T/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">148 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxuJGLa.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcHAgG9T/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">141 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxuJGLa.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcHAgG9T/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">136 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">107 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">48 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 608: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="143 similar processes, the first one shown">×143</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">58 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 628: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.5 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 629: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 718: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 719: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">11.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 734: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.9 s</td>
+<td class="nowrap">36 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 735: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-53d53971fb3aec2e/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">11.9 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 739: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">12.0 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 997: /work/target/debug/build/serde_core-dd6ffe6bc2e2b2b4/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 998: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">34.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1043: /work/target/debug/build/httparse-cb36d18ca8c369e1/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">36.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1044: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">36.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1154: /work/target/debug/build/libc-2cba348de47b0aec/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">46.4 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1155: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">46.4 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1245: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1247: /work/target/debug/build/pulldown-cmark-d2199a33034d84c5/build-script-build">pulldown-cmark</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1249: /work/target/debug/build/prettyplease-1f6cfc3cb6fe24c3/build-script-build">prettyplease</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1251: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.3 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1252: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-0f4e2900de2476d1/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">49.3 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1385: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">54.3 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1386: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-3612222dcefb6f57/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">54.3 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1390: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">54.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1829: /work/target/debug/build/num-traits-8f76fc38ea2a0840/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 26 s</td>
+<td class="nowrap">46 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1830: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 26 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1874: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1875: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1974: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 34 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1975: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 34 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1993: /work/target/debug/build/hidane-proto-9bb58f4b186ba382/build-script-build">hidane-proto</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 36 s</td>
+<td class="nowrap">291 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2027: /work/target/debug/build/serde_json-78e7a6372260adff/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 39 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2098: /work/target/debug/build/hidane-78b3f2f9727585b8/build-script-build">hidane</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 44 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1230</dd></div><div><dt>Directories</dt><dd>262</dd></div><div><dt>Size</dt><dd>519.4 MiB</dd></div><div><dt>Compiled units</dt><dd>205</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v2.0.119
+   Compiling syn v3.0.9
+    Checking bytes v1.12.1
+   Compiling libc v0.2.190
+   Compiling anyhow v1.0.104
+   Compiling either v1.19.0
+   Compiling itertools v0.14.0
+    Checking futures-core v0.3.34
+   Compiling memchr v2.8.3
+   Compiling prost-derive v0.14.4
+    Checking errno v0.3.14
+    Checking signal-hook-registry v1.4.8
+   Compiling aho-corasick v1.1.5
+    Checking mio v1.2.4
+    Checking socket2 v0.6.5
+   Compiling tokio-macros v2.7.2
+    Checking hashbrown v0.17.1
+    Checking equivalent v1.0.2
+   Compiling regex-syntax v0.8.11
+   Compiling regex-automata v0.4.18
+    Checking indexmap v2.14.2
+    Checking tokio v1.53.2
+    Checking http v1.5.0
+    Checking once_cell v1.21.4
+    Checking tracing-core v0.1.36
+   Compiling tracing-attributes v0.1.31
+    Checking futures-sink v0.3.34
+   Compiling serde_core v1.0.229
+    Checking slab v0.4.12
+   Compiling cfg-if v1.0.5
+    Checking tokio-util v0.7.20
+    Checking tracing v0.1.44
+    Checking http-body v1.1.0
+   Compiling httparse v1.10.1
+   Compiling prost v0.14.4
+    Checking atomic-waker v1.1.2
+   Compiling bitflags v2.13.2
+    Checking tower-service v0.3.3
+   Compiling fnv v1.0.7
+    Checking try-lock v0.2.5
+    Checking futures-task v0.3.34
+    Checking futures-util v0.3.34
+    Checking h2 v0.4.20
+    Checking want v0.3.2
+   Compiling logos-codegen v0.16.1
+   Compiling prost-types v0.14.4
+    Checking futures-channel v0.3.34
+   Compiling rustix v1.1.5
+    Checking httpdate v1.0.3
+   Compiling prettyplease v0.2.37
+   Compiling pulldown-cmark v0.13.4
+   Compiling getrandom v0.4.3
+    Checking smallvec v1.16.3
+    Checking hyper v1.12.0
+   Compiling logos-derive v0.16.1
+   Compiling miette-derive v7.6.0
+    Checking tower-layer v0.3.3
+   Compiling unicode-width v0.1.14
+    Checking sync_wrapper v1.0.2
+   Compiling heck v0.5.0
+   Compiling linux-raw-sys v0.12.1
+   Compiling unicase v2.10.0
+   Compiling foldhash v0.1.5
+    Checking typenum v1.20.1
+   Compiling thiserror v2.0.21
+    Checking hybrid-array v0.4.15
+   Compiling hashbrown v0.15.5
+   Compiling miette v7.6.0
+   Compiling logos v0.16.1
+    Checking hyper-util v0.1.21
+    Checking http-body-util v0.1.5
+   Compiling thiserror-impl v2.0.21
+   Compiling fastrand v2.5.0
+   Compiling fixedbitset v0.5.7
+    Checking mime v0.3.17
+   Compiling tempfile v3.27.0
+    Checking axum-core v0.5.6
+   Compiling petgraph v0.8.3
+   Compiling pulldown-cmark-to-cmark v22.0.3
+    Checking tower v0.5.3
+   Compiling regex v1.13.1
+   Compiling pin-project-internal v1.1.13
+    Checking base64 v0.22.1
+   Compiling autocfg v1.5.1
+    Checking percent-encoding v2.3.2
+    Checking matchit v0.8.4
+   Compiling multimap v0.10.1
+   Compiling log v0.4.34
+   Compiling prost-build v0.14.4
+    Checking axum v0.8.9
+   Compiling num-traits v0.2.19
+    Checking pin-project v1.1.13
+   Compiling protox-parse v0.10.0
+    Checking hyper-timeout v0.5.2
+   Compiling tonic-build v0.14.6
+   Compiling prost-reflect v0.16.5
+    Checking block-buffer v0.12.1
+    Checking crypto-common v0.2.2
+    Checking tokio-stream v0.1.19
+   Compiling async-trait v0.1.92
+    Checking tonic v0.14.6
+    Checking digest v0.11.3
+   Compiling protox v0.10.0
+   Compiling tonic-prost-build v0.14.6
+   Compiling serde v1.0.229
+    Checking utf8parse v0.2.2
+    Checking anstyle-parse v1.0.0
+   Compiling hidane-proto v0.5.1
+    Checking tonic-prost v0.14.6
+   Compiling serde_derive v1.0.229
+    Checking colorchoice v1.0.5
+    Checking anstyle-query v1.1.5
+    Checking cpufeatures v0.3.1
+    Checking anstyle v1.0.14
+    Checking is_terminal_polyfill v1.70.2
+   Compiling zmij v1.0.23
+    Checking anstream v1.0.0
+    Checking ordered-float v2.10.1
+   Compiling serde_json v1.0.154
+    Checking clap_lex v1.1.1
+    Checking strsim v0.11.1
+    Checking clap_builder v4.6.7
+    Checking serde-value v0.7.0
+    Checking sha2 v0.11.1
+    Checking md-5 v0.11.0
+   Compiling clap_derive v4.6.7
+    Checking foldhash v0.2.0
+   Compiling hidane v0.5.1
+    Checking clap v4.6.7
+    Checking hidane-rules v0.5.1
+    Checking hidane-core v0.5.1
+    Checking sha1 v0.11.0
+    Checking tonic-reflection v0.14.6
+    Checking base64 v0.23.1
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 53s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-13 14:58 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-115572</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 14:58 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-115607</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 19:23 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-289279-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 19:25 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-289279-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 19:25 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-289309</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 19:25 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-289309</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>
