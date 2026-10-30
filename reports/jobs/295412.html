@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: vizier 0.13.4</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>vizier <span class="version">0.13.4</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 295412</span>
+      <a class="muted" href="https://crates.io/crates/vizier/0.13.4" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="295412.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="295412.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (8 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">807</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · vizier</div></td><td class="mono where"><a href="https://crates.io/crates/vizier/0.13.4/code/build.rs#L14" rel="noreferrer noopener" target="_blank">build.rs:14</a></td><td>medium severity process_spawn in build_script code (8 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · vizier</div></td><td class="mono where"><a href="https://crates.io/crates/vizier/0.13.4/code/src/stt/whisper.rs#L373" rel="noreferrer noopener" target="_blank">src/stt/whisper.rs:373</a></td><td>medium severity included_binary in library code: src/stt/fixtures/tone.webm (4691 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · vizier</div></td><td class="mono where"><a href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L491" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:491</a></td><td>medium severity obfuscated_data in library code: large byte string literal</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · vizier</div></td><td class="mono where"><a href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L747" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:747</a></td><td>medium severity secret_environment_variable in library code (4 places): GITHUB_TOKEN</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:invisible_characters</span><div class="sub">static · vizier</div></td><td class="mono where"><a href="https://crates.io/crates/vizier/0.13.4/code/webui/build/client/assets/Tab-B8UKab4A.js#L204" rel="noreferrer noopener" target="_blank">webui/build/client/assets/Tab-B8UKab4A.js:204</a></td><td>medium severity yara:invisible_characters in library code: Zero width or invisible characters, which can hide identifiers or payloads</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · vizier</div></td><td class="mono where"><a href="https://crates.io/crates/vizier/0.13.4/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">static:included_binary</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:included_binary</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:yara:invisible_characters</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">807</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">8</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">666</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">133</span></label>
+  <span class="muted">10 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L747" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:747</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/storage_tests.rs#L379" rel="noreferrer noopener" target="_blank">src/encryption/storage_tests.rs:379</a> </span></li>
+
+<li><code class="evidence-text">OPENAI_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_keys.rs#L43" rel="noreferrer noopener" target="_blank">src/provider_keys.rs:43</a> </span></li>
+
+<li><code class="evidence-text">ANTHROPIC_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_keys.rs#L44" rel="noreferrer noopener" target="_blank">src/provider_keys.rs:44</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">src/stt/fixtures/tone.webm (4691 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/whisper.rs#L373" rel="noreferrer noopener" target="_blank">src/stt/whisper.rs:373</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">large byte string literal</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L491" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:491</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/build.rs#L14" rel="noreferrer noopener" target="_blank">build.rs:14</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match invisible_characters</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Zero width or invisible characters, which can hide identifiers or payloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/webui/build/client/assets/Tab-B8UKab4A.js#L204" rel="noreferrer noopener" target="_blank">webui/build/client/assets/Tab-B8UKab4A.js:204</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">658</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/brave_search/mod.rs#L111" rel="noreferrer noopener" target="_blank">src/agents/tools/brave_search/mod.rs:111</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/http_client/mod.rs#L56" rel="noreferrer noopener" target="_blank">src/agents/tools/http_client/mod.rs:56</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L20" rel="noreferrer noopener" target="_blank">src/llm/http.rs:20</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/golden_tests.rs#L117" rel="noreferrer noopener" target="_blank">src/llm/media/golden_tests.rs:117</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L518" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:518</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L92" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:92</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L190" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:190</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L210" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:210</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L220" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:220</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L250" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:250</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L262" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:262</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/elevenlabs.rs#L24" rel="noreferrer noopener" target="_blank">src/stt/elevenlabs.rs:24</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/elevenlabs.rs#L16" rel="noreferrer noopener" target="_blank">src/tts/elevenlabs.rs:16</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/utils/ollama.rs#L21" rel="noreferrer noopener" target="_blank">src/utils/ollama.rs:21</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::OK</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/brave_search/mod.rs#L125" rel="noreferrer noopener" target="_blank">src/agents/tools/brave_search/mod.rs:125</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L184" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:184</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L243" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:243</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L309" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:309</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L354" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:354</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L399" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:399</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/conversations.rs#L235" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/conversations.rs:235</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L113" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:113</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L114" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:114</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L170" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:170</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L237" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:237</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L245" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:245</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L261" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:261</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L293" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:293</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L86" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:86</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L122" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:122</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L155" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:155</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L191" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:191</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L224" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:224</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L260" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:260</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L100" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:100</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L185" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:185</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L223" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:223</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L261" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:261</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L376" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:376</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L434" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:434</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L255" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:255</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L268" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:268</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L361" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:361</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L481" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:481</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L626" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:626</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L122" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:122</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L154" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:154</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L215" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:215</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L273" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:273</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L306" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:306</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L413" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:413</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L512" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:512</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L533" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:533</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L583" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:583</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L643" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:643</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L695" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:695</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L845" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:845</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L873" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:873</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L942" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:942</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L1035" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:1035</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L1038" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:1038</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L1044" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:1044</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L1095" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:1095</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L327" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:327</a> <span class="muted">and 84 more</span></span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::UNAUTHORIZED</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/brave_search/mod.rs#L128" rel="noreferrer noopener" target="_blank">src/agents/tools/brave_search/mod.rs:128</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::FORBIDDEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/brave_search/mod.rs#L129" rel="noreferrer noopener" target="_blank">src/agents/tools/brave_search/mod.rs:129</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L164" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:164</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L169" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:169</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L222" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:222</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L227" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:227</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L271" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:271</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L338" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:338</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L343" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:343</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L385" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:385</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/conversations.rs#L151" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/conversations.rs:151</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L108" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:108</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L146" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:146</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L198" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:198</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L81" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:81</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L117" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:117</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L150" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:150</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L186" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:186</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L219" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:219</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L255" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:255</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L82" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:82</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L129" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:129</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L215" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:215</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L253" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:253</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L300" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:300</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L74" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:74</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L233" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:233</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L323" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:323</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L744" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:744</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L814" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:814</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L817" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:817</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L868" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:868</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1095" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1095</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1140" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1140</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1263" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1263</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L163" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:163</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L77" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:77</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L112" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:112</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L144" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:144</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L181" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:181</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L217" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:217</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L266" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:266</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L319" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:319</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L368" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:368</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L413" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:413</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L471" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:471</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L533" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:533</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L573" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:573</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L90" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:90</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L122" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:122</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/fetch/mod.rs#L42" rel="noreferrer noopener" target="_blank">src/agents/tools/fetch/mod.rs:42</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L14" rel="noreferrer noopener" target="_blank">src/llm/http.rs:14</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/whisper.rs#L76" rel="noreferrer noopener" target="_blank">src/stt/whisper.rs:76</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/kokoro.rs#L149" rel="noreferrer noopener" target="_blank">src/tts/kokoro.rs:149</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/kokoro.rs#L240" rel="noreferrer noopener" target="_blank">src/tts/kokoro.rs:240</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::from_bytes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/http_client/mod.rs#L53" rel="noreferrer noopener" target="_blank">src/agents/tools/http_client/mod.rs:53</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url::parse</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L405" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:405</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L318" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:318</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L116" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:116</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L259" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:259</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L246" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:246</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/telemetry.rs#L229" rel="noreferrer noopener" target="_blank">src/llm/telemetry.rs:229</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L117" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:117</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/media.rs#L531" rel="noreferrer noopener" target="_blank">src/catalogue/media.rs:531</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/dependencies.rs#L53" rel="noreferrer noopener" target="_blank">src/dependencies.rs:53</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L114" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:114</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L122" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:122</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L127" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:127</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/dialect/ollama.rs#L215" rel="noreferrer noopener" target="_blank">src/llm/dialect/ollama.rs:215</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L13" rel="noreferrer noopener" target="_blank">src/llm/http.rs:13</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/openai_shaped.rs#L26" rel="noreferrer noopener" target="_blank">src/llm/media/openai_shaped.rs:26</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/mod.rs#L39" rel="noreferrer noopener" target="_blank">src/llm/mod.rs:39</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/mod.rs#L57" rel="noreferrer noopener" target="_blank">src/llm/mod.rs:57</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/model.rs#L54" rel="noreferrer noopener" target="_blank">src/llm/model.rs:54</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/model.rs#L58" rel="noreferrer noopener" target="_blank">src/llm/model.rs:58</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L115" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:115</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L406" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:406</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/setup.rs#L354" rel="noreferrer noopener" target="_blank">src/setup.rs:354</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/elevenlabs.rs#L8" rel="noreferrer noopener" target="_blank">src/tts/elevenlabs.rs:8</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/kokoro.rs#L202" rel="noreferrer noopener" target="_blank">src/tts/kokoro.rs:202</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/media.rs#L538" rel="noreferrer noopener" target="_blank">src/catalogue/media.rs:538</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L50" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:50</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L176" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:176</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L331" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:331</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT_ENCODING</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L226" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:226</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::IF_NONE_MATCH</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L228" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:228</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_ENCODING</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L256" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:256</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ETAG</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L261" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:261</a> </span></li>
+
+<li><code class="evidence-text">reqwest::get</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/discord/mod.rs#L890" rel="noreferrer noopener" target="_blank">src/channels/discord/mod.rs:890</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/telegram/mod.rs#L265" rel="noreferrer noopener" target="_blank">src/channels/telegram/mod.rs:265</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/telegram/mod.rs#L291" rel="noreferrer noopener" target="_blank">src/channels/telegram/mod.rs:291</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/file_manager/mod.rs#L102" rel="noreferrer noopener" target="_blank">src/file_manager/mod.rs:102</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::NOT_FOUND</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L159" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:159</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L185" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:185</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L218" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:218</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L266" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:266</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L333" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:333</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L355" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:355</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L380" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:380</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L396" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:396</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/conversations.rs#L152" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/conversations.rs:152</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L103" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:103</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L141" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:141</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L194" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:194</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L205" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:205</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L238" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:238</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L259" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:259</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L76" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:76</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L87" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:87</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L112" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:112</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L145" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:145</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L156" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:156</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L181" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:181</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L214" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:214</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L225" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:225</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L250" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:250</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L77" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:77</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L124" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:124</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L210" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:210</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L248" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:248</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L262" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:262</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L301" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:301</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L154" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:154</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L354" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:354</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L66" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:66</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L155" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:155</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L220" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:220</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L260" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:260</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L265" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:265</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L274" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:274</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L224" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:224</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L245" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:245</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L249" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:249</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L586" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:586</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L706" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:706</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L1032" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:1032</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L1041" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:1041</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L394" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:394</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L739" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:739</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L808" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:808</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L864" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:864</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L893" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:893</a> <span class="muted">and 53 more</span></span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::INTERNAL_SERVER_ERROR</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L160" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:160</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L219" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:219</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L234" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:234</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L267" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:267</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L293" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:293</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L334" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:334</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L356" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:356</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/channel.rs#L381" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/channel.rs:381</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/conversations.rs#L153" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/conversations.rs:153</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/conversations.rs#L164" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/conversations.rs:164</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L104" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:104</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L115" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:115</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L142" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:142</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L173" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:173</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L195" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:195</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L209" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:209</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L239" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:239</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L262" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:262</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L77" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:77</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L113" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:113</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L123" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:123</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L146" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:146</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L182" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:182</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L192" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:192</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L215" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:215</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L251" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:251</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/documents.rs#L261" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/documents.rs:261</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L78" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:78</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L101" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:101</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L125" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:125</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L211" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:211</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L224" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:224</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L249" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:249</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L263" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:263</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L302" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:302</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L155" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:155</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L70" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:70</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L125" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:125</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L156" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:156</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L221" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:221</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L261" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:261</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L229" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:229</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L253" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:253</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L316" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:316</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L319" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:319</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L377" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:377</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L424" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:424</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L515" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:515</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L518" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:518</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L535" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:535</a> <span class="muted">and 99 more</span></span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::BAD_REQUEST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/conversations.rs#L157" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/conversations.rs:157</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L207" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:207</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L87" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:87</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L264" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:264</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L243" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:243</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L251" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:251</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L909" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:909</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L925" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:925</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L601" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:601</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L660" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:660</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L688" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:688</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L730" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:730</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L770" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:770</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L838" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:838</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L884" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:884</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L936" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:936</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L956" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:956</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1037" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1037</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1045" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1045</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L281" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:281</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L418" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:418</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L476" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:476</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L159" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:159</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L181" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:181</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L626" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:626</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L649" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:649</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/notifications.rs#L85" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/notifications.rs:85</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/notifications.rs#L90" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/notifications.rs:90</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/notifications.rs#L168" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/notifications.rs:168</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/notifications.rs#L443" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/notifications.rs:443</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/notifications.rs#L455" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/notifications.rs:455</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L237" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:237</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L242" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:242</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L247" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:247</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L273" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:273</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L305" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:305</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L310" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:310</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L405" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:405</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L148" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:148</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L229" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:229</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L245" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:245</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L269" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:269</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L390" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:390</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L396" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:396</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L428" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:428</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L436" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:436</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L545" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:545</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/page.rs#L173" rel="noreferrer noopener" target="_blank">src/channels/http/models/page.rs:173</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::CONFLICT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L155" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:155</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L157" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:157</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L424" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:424</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/jobs.rs#L218" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/jobs.rs:218</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L241" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:241</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L247" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:247</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L704" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:704</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L882" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:882</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L191" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:191</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L678" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:678</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L104" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:104</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L364" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:364</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L260" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:260</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L337" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:337</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L339" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:339</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/skills.rs#L73" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/skills.rs:73</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/skills.rs#L75" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/skills.rs:75</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L191" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:191</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/core.rs#L203" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/core.rs:203</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/dream.rs#L297" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/dream.rs:297</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L219" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:219</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L238" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:238</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L207" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:207</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L216" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:216</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L560" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:560</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L61" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:61</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L74" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:74</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L86" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:86</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L271" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:271</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L220" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:220</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/utils.rs#L32" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/utils.rs:32</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L5" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:5</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L15" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:15</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L24" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:24</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L34" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:34</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L36" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:36</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L42" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:42</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/models/response.rs#L44" rel="noreferrer noopener" target="_blank">src/channels/http/models/response.rs:44</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::CREATED</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L337" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:337</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/memory.rs#L365" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/memory.rs:365</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L686" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:686</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L209" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:209</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L500" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:500</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/skills.rs#L166" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/skills.rs:166</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/task.rs#L438" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/task.rs:438</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/skills.rs#L105" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/skills.rs:105</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/skills.rs#L264" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/skills.rs:264</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::GONE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L416" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:416</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::UNPROCESSABLE_ENTITY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/integrations.rs#L603" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/integrations.rs:603</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L584" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:584</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L592" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:592</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L218" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:218</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L507" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:507</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/secrets.rs#L508" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/secrets.rs:508</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L91" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:91</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/integrations.rs#L132" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/integrations.rs:132</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::ACCEPTED</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L892" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:892</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::SERVICE_UNAVAILABLE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L895" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:895</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1180" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1180</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1213" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1213</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::REQUEST_TIMEOUT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/agents/mod.rs#L1354" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/agents/mod.rs:1354</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::BAD_GATEWAY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L194" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:194</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/catalogue.rs#L681" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/catalogue.rs:681</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L384" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:384</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::from_u16</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/usage.rs#L173" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/usage.rs:173</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L33" rel="noreferrer noopener" target="_blank">src/llm/error.rs:33</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::GET</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L43" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:43</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::POST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L44" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:44</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PUT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L45" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:45</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PATCH</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L46" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:46</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::DELETE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L47" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:47</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::OPTIONS</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L48" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:48</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::AUTHORIZATION</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L50" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:50</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L181" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:181</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_TYPE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L50" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:50</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/webui/mod.rs#L12" rel="noreferrer noopener" target="_blank">src/channels/http/webui/mod.rs:12</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/webui/mod.rs#L26" rel="noreferrer noopener" target="_blank">src/channels/http/webui/mod.rs:26</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/huggingface.rs#L61" rel="noreferrer noopener" target="_blank">src/llm/media/huggingface.rs:61</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/openai_shaped.rs#L240" rel="noreferrer noopener" target="_blank">src/llm/media/openai_shaped.rs:240</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/mod.rs#L87" rel="noreferrer noopener" target="_blank">src/channels/http/mod.rs:87</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/golden_tests.rs#L90" rel="noreferrer noopener" target="_blank">src/llm/media/golden_tests.rs:90</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L71" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:71</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/command/mod.rs#L34" rel="noreferrer noopener" target="_blank">src/command/mod.rs:34</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/command/mod.rs#L69" rel="noreferrer noopener" target="_blank">src/command/mod.rs:69</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/command/mod.rs#L103" rel="noreferrer noopener" target="_blank">src/command/mod.rs:103</a> </span></li>
+
+<li><code class="evidence-text">reqwest::RequestBuilder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L29" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:29</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L31" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:31</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L78" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:78</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L80" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:80</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L205" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:205</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L207" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:207</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L324" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:324</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L326" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:326</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L48" rel="noreferrer noopener" target="_blank">src/llm/http.rs:48</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L88" rel="noreferrer noopener" target="_blank">src/llm/http.rs:88</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L95" rel="noreferrer noopener" target="_blank">src/llm/http.rs:95</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/openai_shaped.rs#L33" rel="noreferrer noopener" target="_blank">src/llm/media/openai_shaped.rs:33</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/model.rs#L79" rel="noreferrer noopener" target="_blank">src/llm/model.rs:79</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/model.rs#L79" rel="noreferrer noopener" target="_blank">src/llm/model.rs:79</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::USER_AGENT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L179" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:179</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L214" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:214</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L330" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:330</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L68" rel="noreferrer noopener" target="_blank">src/llm/error.rs:68</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue::from_static</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L91" rel="noreferrer noopener" target="_blank">src/llm/error.rs:91</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L95" rel="noreferrer noopener" target="_blank">src/llm/error.rs:95</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L107" rel="noreferrer noopener" target="_blank">src/llm/error.rs:107</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L113" rel="noreferrer noopener" target="_blank">src/llm/error.rs:113</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L114" rel="noreferrer noopener" target="_blank">src/llm/error.rs:114</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue::from_str</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/error.rs#L104" rel="noreferrer noopener" target="_blank">src/llm/error.rs:104</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderMap</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L27" rel="noreferrer noopener" target="_blank">src/llm/http.rs:27</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::RETRY_AFTER</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L71" rel="noreferrer noopener" target="_blank">src/llm/http.rs:71</a> </span></li>
+
+<li><code class="evidence-text">reqwest::multipart::Form</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L96" rel="noreferrer noopener" target="_blank">src/llm/http.rs:96</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L101" rel="noreferrer noopener" target="_blank">src/llm/http.rs:101</a> </span></li>
+
+<li><code class="evidence-text">reqwest::multipart::Form::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/openai_shaped.rs#L59" rel="noreferrer noopener" target="_blank">src/llm/media/openai_shaped.rs:59</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/elevenlabs.rs#L31" rel="noreferrer noopener" target="_blank">src/stt/elevenlabs.rs:31</a> </span></li>
+
+<li><code class="evidence-text">reqwest::multipart::Part::bytes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/openai_shaped.rs#L63" rel="noreferrer noopener" target="_blank">src/llm/media/openai_shaped.rs:63</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/elevenlabs.rs#L26" rel="noreferrer noopener" target="_blank">src/stt/elevenlabs.rs:26</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L146" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:146</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/mcp/mod.rs#L376" rel="noreferrer noopener" target="_blank">src/agents/mcp/mod.rs:376</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/shell/local/mod.rs#L24" rel="noreferrer noopener" target="_blank">src/agents/shell/local/mod.rs:24</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/skill/execute_skill_resource.rs#L87" rel="noreferrer noopener" target="_blank">src/agents/tools/skill/execute_skill_resource.rs:87</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L11" rel="noreferrer noopener" target="_blank">src/skill/install.rs:11</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L83" rel="noreferrer noopener" target="_blank">src/skill/install.rs:83</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L96" rel="noreferrer noopener" target="_blank">src/skill/install.rs:96</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L151" rel="noreferrer noopener" target="_blank">src/skill/install.rs:151</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">130</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text"># BOOT.md - Operating Doctrine\u{a}\u{a}You are {name}, {description}, running on [Vizier](https://vizier.rs) v{version}.\u{a}\u{a}## Time\u{a}\u{a}The `# Context` block in each message gives the syst…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/agent/system_prompt/boot.rs#L3" rel="noreferrer noopener" target="_blank">src/agents/agent/system_prompt/boot.rs:3</a> </span></li>
+
+<li><code class="evidence-text">https://api.search.brave.com/res/v1/web/search</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/agents/tools/brave_search/mod.rs#L76" rel="noreferrer noopener" target="_blank">src/agents/tools/brave_search/mod.rs:76</a> </span></li>
+
+<li><code class="evidence-text">https://chatgpt.com/backend-api/codex</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/builtin.rs#L32" rel="noreferrer noopener" target="_blank">src/catalogue/builtin.rs:32</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:11434</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/builtin.rs#L45" rel="noreferrer noopener" target="_blank">src/catalogue/builtin.rs:45</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L37" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:37</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L614" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:614</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/builtin.rs#L54" rel="noreferrer noopener" target="_blank">src/catalogue/builtin.rs:54</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9998/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/builtin.rs#L72" rel="noreferrer noopener" target="_blank">src/catalogue/builtin.rs:72</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L510" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:510</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L619" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:619</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_keys.rs#L190" rel="noreferrer noopener" target="_blank">src/provider_keys.rs:190</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_keys.rs#L193" rel="noreferrer noopener" target="_blank">src/provider_keys.rs:193</a> </span></li>
+
+<li><code class="evidence-text">https://api.voyageai.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/builtin.rs#L90" rel="noreferrer noopener" target="_blank">src/catalogue/builtin.rs:90</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L34" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:34</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L386" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:386</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L492" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:492</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L25" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:25</a> </span></li>
+
+<li><code class="evidence-text">https://api.anthropic.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L387" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:387</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/dialect/anthropic.rs#L297" rel="noreferrer noopener" target="_blank">src/llm/dialect/anthropic.rs:297</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L571" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:571</a> </span></li>
+
+<li><code class="evidence-text">https://generativelanguage.googleapis.com/v1beta</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L388" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:388</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L28" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:28</a> </span></li>
+
+<li><code class="evidence-text">https://api.groq.com/openai/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L389" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:389</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L26" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:26</a> </span></li>
+
+<li><code class="evidence-text">https://api.mistral.ai/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L390" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:390</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L27" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:27</a> </span></li>
+
+<li><code class="evidence-text">https://api.x.ai/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L391" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:391</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L31" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:31</a> </span></li>
+
+<li><code class="evidence-text">https://api.together.xyz/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L392" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:392</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L33" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:33</a> </span></li>
+
+<li><code class="evidence-text">https://api.perplexity.ai</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L393" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:393</a> </span></li>
+
+<li><code class="evidence-text">https://api.cerebras.ai/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L394" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:394</a> </span></li>
+
+<li><code class="evidence-text">https://api.deepinfra.com/v1/openai</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L395" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:395</a> </span></li>
+
+<li><code class="evidence-text">https://api.cohere.ai/compatibility/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L396" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:396</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}      &#34;acme&#34;: {&#34;id&#34;: &#34;acme&#34;, &#34;name&#34;: &#34;Acme&#34;, &#34;env&#34;: [&#34;ACME_API_KEY&#34;], &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;,\u{a}               &#34;api&#34;: &#34;https://api.acme.test/v1&#34;, &#34;unknown_field&#34;: 1,\u{a}          …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L420" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:420</a> </span></li>
+
+<li><code class="evidence-text">https://api.acme.test/anthropic/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L467" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:467</a> </span></li>
+
+<li><code class="evidence-text">https://api.acme.test/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/data.rs#L472" rel="noreferrer noopener" target="_blank">src/catalogue/data.rs:472</a> </span></li>
+
+<li><code class="evidence-text">https://openrouter.ai/api/v1/models?output_modalities=speech</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/media.rs#L69" rel="noreferrer noopener" target="_blank">src/catalogue/media.rs:69</a> </span></li>
+
+<li><code class="evidence-text">https://openrouter.ai/api/v1/models?output_modalities=transcription</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/media.rs#L70" rel="noreferrer noopener" target="_blank">src/catalogue/media.rs:70</a> </span></li>
+
+<li><code class="evidence-text">https://openrouter.ai/api/v1/images/models</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/media.rs#L71" rel="noreferrer noopener" target="_blank">src/catalogue/media.rs:71</a> </span></li>
+
+<li><code class="evidence-text">http://x/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/mod.rs#L294" rel="noreferrer noopener" target="_blank">src/catalogue/mod.rs:294</a> </span></li>
+
+<li><code class="evidence-text">{}://{}/logos/{id}.svg</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L319" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:319</a> </span></li>
+
+<li><code class="evidence-text">{&#34;a&#34;: {&#34;id&#34;: &#34;a&#34;, &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;, &#34;api&#34;: &#34;https://a&#34;}, &#34;b&#34;: {&#34;id&#34;: &#34;b&#34;, &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;, &#34;api&#34;: &#34;https://b&#34;}, &#34;c&#34;: {&#34;id&#34;: &#34;c&#34;, &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L400" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:400</a> </span></li>
+
+<li><code class="evidence-text">{&#34;b&#34;: {&#34;id&#34;: &#34;b&#34;, &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;, &#34;api&#34;: &#34;https://b&#34;}}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L405" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:405</a> </span></li>
+
+<li><code class="evidence-text">{&#34;a&#34;: {&#34;id&#34;: &#34;a&#34;, &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;, &#34;api&#34;: &#34;https://a&#34;}, &#34;c&#34;: {&#34;id&#34;: &#34;c&#34;, &#34;npm&#34;: &#34;@ai-sdk/openai-compatible&#34;, &#34;api&#34;: &#34;https://c&#34;}}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/refresh.rs#L407" rel="noreferrer noopener" target="_blank">src/catalogue/refresh.rs:407</a> </span></li>
+
+<li><code class="evidence-text">https://models.dev/api.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/catalogue/seed.rs#L36" rel="noreferrer noopener" target="_blank">src/catalogue/seed.rs:36</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/config/mod.rs#L118" rel="noreferrer noopener" target="_blank">src/config/mod.rs:118</a> </span></li>
+
+<li><code class="evidence-text">http://h/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L484" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:484</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L501" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:501</a> </span></li>
+
+<li><code class="evidence-text">http://h/v1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/custom.rs#L494" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/custom.rs:494</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:19998/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L517" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:517</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L523" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:523</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L527" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:527</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/http/api/v1/providers/mod.rs#L530" rel="noreferrer noopener" target="_blank">src/channels/http/api/v1/providers/mod.rs:530</a> </span></li>
+
+<li><code class="evidence-text">https://api.telegram.org/file/bot{}/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/telegram/mod.rs#L262" rel="noreferrer noopener" target="_blank">src/channels/telegram/mod.rs:262</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/channels/telegram/mod.rs#L284" rel="noreferrer noopener" target="_blank">src/channels/telegram/mod.rs:284</a> </span></li>
+
+<li><code class="evidence-text">\u{a}### Onboarding complete!\u{a}\u{a}Configuration saved to `{}`\u{a}\u{a}| | |\u{a}|---|---|\u{a}| **Start server** | `vizier run` |\u{a}| **WebUI** | `http://localhost:{}` |\u{a}\u{a}Open the WebU…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/cli/onboard.rs#L115" rel="noreferrer noopener" target="_blank">src/cli/onboard.rs:115</a> </span></li>
+
+<li><code class="evidence-text">https://endpoint.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L503" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:503</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L627" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:627</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/storage_tests.rs#L354" rel="noreferrer noopener" target="_blank">src/encryption/storage_tests.rs:354</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/provider.rs#L182" rel="noreferrer noopener" target="_blank">src/storage/sqlite/provider.rs:182</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/provider.rs#L186" rel="noreferrer noopener" target="_blank">src/storage/sqlite/provider.rs:186</a> </span></li>
+
+<li><code class="evidence-text">https://base.example/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L504" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:504</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L631" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:631</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/provider.rs#L181" rel="noreferrer noopener" target="_blank">src/storage/sqlite/provider.rs:181</a> </span></li>
+
+<li><code class="evidence-text">https://acme.invalid/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/fields.rs#L519" rel="noreferrer noopener" target="_blank">src/encryption/fields.rs:519</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/storage_tests.rs#L417" rel="noreferrer noopener" target="_blank">src/encryption/storage_tests.rs:417</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/provider.rs#L209" rel="noreferrer noopener" target="_blank">src/storage/sqlite/provider.rs:209</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/provider.rs#L224" rel="noreferrer noopener" target="_blank">src/storage/sqlite/provider.rs:224</a> </span></li>
+
+<li><code class="evidence-text">\u{a}            INSERT INTO agent_secret (agent_id, name, value, created_at, updated_at, updated_by)\u{a}            VALUES (&#39;dp-a&#39;, &#39;AGENT_TOKEN&#39;, &#39;agent-token-abc123&#39;, &#39;now&#39;, &#39;now&#39;, &#39;&#34;admin&#34;&#39;);…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/encryption/migrate.rs#L345" rel="noreferrer noopener" target="_blank">src/encryption/migrate.rs:345</a> </span></li>
+
+<li><code class="evidence-text">https://api.githubcopilot.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L95" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:95</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/copilot_internal/v2/token</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L96" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:96</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L254" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:254</a> </span></li>
+
+<li><code class="evidence-text">https://{proxy_ep}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L257" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:257</a> </span></li>
+
+<li><code class="evidence-text">https://{api_host}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L277" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:277</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com/auth</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L347" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:347</a> </span></li>
+
+<li><code class="evidence-text">https://api.individual.githubcopilot.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L369" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:369</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L376" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:376</a> </span></li>
+
+<li><code class="evidence-text">tid=1;proxy-ep=https://proxy.individual.githubcopilot.com;exp=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L373" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:373</a> </span></li>
+
+<li><code class="evidence-text">tid=1;proxy-ep=http://proxy.individual.githubcopilot.com;exp=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L381" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:381</a> </span></li>
+
+<li><code class="evidence-text">tid=1;proxy-ep=https://evil.example.com;exp=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L386" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:386</a> </span></li>
+
+<li><code class="evidence-text">tid=1;proxy-ep=https://proxy.individual.githubcopilot.com/base;exp=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/auth.rs#L391" rel="noreferrer noopener" target="_blank">src/llm/auth.rs:391</a> </span></li>
+
+<li><code class="evidence-text">https://api.anthropic.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/dialect/anthropic.rs#L433" rel="noreferrer noopener" target="_blank">src/llm/dialect/anthropic.rs:433</a> </span></li>
+
+<li><code class="evidence-text">https://x/v1beta/models?key=AIzaSECRET&#38;alt=json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L170" rel="noreferrer noopener" target="_blank">src/llm/http.rs:170</a> </span></li>
+
+<li><code class="evidence-text">https://x/v1beta/models?key=[redacted]&#38;alt=json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/http.rs#L171" rel="noreferrer noopener" target="_blank">src/llm/http.rs:171</a> </span></li>
+
+<li><code class="evidence-text">https://api.cohere.ai/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/cohere.rs#L10" rel="noreferrer noopener" target="_blank">src/llm/media/cohere.rs:10</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/golden_tests.rs#L91" rel="noreferrer noopener" target="_blank">src/llm/media/golden_tests.rs:91</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L72" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:72</a> </span></li>
+
+<li><code class="evidence-text">https://router.huggingface.co/hf-inference/models</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/huggingface.rs#L12" rel="noreferrer noopener" target="_blank">src/llm/media/huggingface.rs:12</a> </span></li>
+
+<li><code class="evidence-text">https://api.hyperbolic.xyz/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/hyperbolic.rs#L12" rel="noreferrer noopener" target="_blank">src/llm/media/hyperbolic.rs:12</a> </span></li>
+
+<li><code class="evidence-text">https://openrouter.ai/api/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/media/mod.rs#L30" rel="noreferrer noopener" target="_blank">src/llm/media/mod.rs:30</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L77" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:77</a> </span></li>
+
+<li><code class="evidence-text">https://${AZURE_RESOURCE_NAME}.openai.azure.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L256" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:256</a> </span></li>
+
+<li><code class="evidence-text">https://r.test/anthropic/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L581" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:581</a> </span></li>
+
+<li><code class="evidence-text">https://myres.openai.azure.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L589" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:589</a> </span></li>
+
+<li><code class="evidence-text">https://myres.openai.azure.com/openai/deployments/gpt-4o</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L593" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:593</a> </span></li>
+
+<li><code class="evidence-text">https://${X}.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L595" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:595</a> </span></li>
+
+<li><code class="evidence-text">https://abc.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L595" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:595</a> </span></li>
+
+<li><code class="evidence-text">https://${VZT_SURELY_UNSET}.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L596" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:596</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8080/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L616" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:616</a> </span></li>
+
+<li><code class="evidence-text">http://configured.test/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L621" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:621</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L625" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:625</a> </span></li>
+
+<li><code class="evidence-text">http://env.test/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L639" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:639</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L646" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:646</a> </span></li>
+
+<li><code class="evidence-text">http://10.0.0.5/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L657" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:657</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/transport_tests.rs#L149" rel="noreferrer noopener" target="_blank">src/llm/transport_tests.rs:149</a> </span></li>
+
+<li><code class="evidence-text">https://opencode.ai/zen/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L39" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:39</a> </span></li>
+
+<li><code class="evidence-text">https://opencode.ai/zen/go/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L40" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:40</a> </span></li>
+
+<li><code class="evidence-text">https://api.moonshot.ai/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L41" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:41</a> </span></li>
+
+<li><code class="evidence-text">https://api.z.ai/api/paas/v4</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L42" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:42</a> </span></li>
+
+<li><code class="evidence-text">https://api.minimax.io/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L43" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:43</a> </span></li>
+
+<li><code class="evidence-text">http://gpu:11434</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L495" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:495</a> </span></li>
+
+<li><code class="evidence-text">https://r.openai.azure.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L497" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:497</a> </span></li>
+
+<li><code class="evidence-text">https://proxy.example/go/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L501" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:501</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:18080/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_migration.rs#L504" rel="noreferrer noopener" target="_blank">src/provider_migration.rs:504</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/vizier-lab/vizier.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L8" rel="noreferrer noopener" target="_blank">src/skill/install.rs:8</a> </span></li>
+
+<li><code class="evidence-text">git is not working properly. Please install git: https://git-scm.com/downloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L17" rel="noreferrer noopener" target="_blank">src/skill/install.rs:17</a> </span></li>
+
+<li><code class="evidence-text">git is required for skill installation. Install git: https://git-scm.com/downloads</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L22" rel="noreferrer noopener" target="_blank">src/skill/install.rs:22</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L28" rel="noreferrer noopener" target="_blank">src/skill/install.rs:28</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L31" rel="noreferrer noopener" target="_blank">src/skill/install.rs:31</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L28" rel="noreferrer noopener" target="_blank">src/skill/install.rs:28</a> <a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L31" rel="noreferrer noopener" target="_blank">src/skill/install.rs:31</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{}.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/install.rs#L34" rel="noreferrer noopener" target="_blank">src/skill/install.rs:34</a> </span></li>
+
+<li><code class="evidence-text">https://a/b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/skill/invocation.rs#L174" rel="noreferrer noopener" target="_blank">src/skill/invocation.rs:174</a> </span></li>
+
+<li><code class="evidence-text">see [screenshot](notes.png) and [site](https://example.com/page) and [mail](mailto:a@b.com)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/memory_bundle.rs#L2574" rel="noreferrer noopener" target="_blank">src/storage/memory_bundle.rs:2574</a> </span></li>
+
+<li><code class="evidence-text">http://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/integration.rs#L613" rel="noreferrer noopener" target="_blank">src/storage/sqlite/integration.rs:613</a> </span></li>
+
+<li><code class="evidence-text">https://api.elevenlabs.io/v1/speech-to-text</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/elevenlabs.rs#L40" rel="noreferrer noopener" target="_blank">src/stt/elevenlabs.rs:40</a> </span></li>
+
+<li><code class="evidence-text">https://huggingface.co/ggerganov/whisper.cpp/resolve/main</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/stt/whisper.rs#L12" rel="noreferrer noopener" target="_blank">src/stt/whisper.rs:12</a> </span></li>
+
+<li><code class="evidence-text">https://api.elevenlabs.io/v1/text-to-speech/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/elevenlabs.rs#L27" rel="noreferrer noopener" target="_blank">src/tts/elevenlabs.rs:27</a> </span></li>
+
+<li><code class="evidence-text">https://huggingface.co/{}/resolve/main/{file}?download=true</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/tts/kokoro.rs#L134" rel="noreferrer noopener" target="_blank">src/tts/kokoro.rs:134</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/llm/resolve.rs#L639" rel="noreferrer noopener" target="_blank">src/llm/resolve.rs:639</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/provider_keys.rs#L165" rel="noreferrer noopener" target="_blank">src/provider_keys.rs:165</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/vizier/0.13.4/code/src/storage/sqlite/mod.rs#L174" rel="noreferrer noopener" target="_blank">src/storage/sqlite/mod.rs:174</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>694 ms</dd></div><div><dt>VM restore</dt><dd>66 ms</dd></div><div><dt>Payload</dt><dd>45749 files, 941.5 MiB</dd></div><div><dt>Missing packages</dt><dd>kanaria 0.2.0</dd></div><div><dt>Files opened</dt><dd>1934</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.</p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">679 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>6</dd></div><div><dt>Directories</dt><dd>12</dd></div><div><dt>Size</dt><dd>624 B</dd></div><div><dt>Compiled units</dt><dd>0</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>error: no matching package named `kanaria` found
+location searched: directory source `/cw/vendor` (which is replacing registry `crates-io`)
+required by package `lindera v2.3.4`
+    ... which satisfies dependency `lindera = &#34;^2.3.4&#34;` (locked to 2.3.4) of package `any-tts v0.2.0`
+    ... which satisfies dependency `any-tts = &#34;^0.2.0&#34;` (locked to 0.2.0) of package `vizier v0.13.4`
+    ... which satisfies dependency `target = &#34;=0.13.4&#34;` (locked to 0.13.4) of package `crateward-probe v0.0.0 (/cw/probe)`
+note: offline mode (via `--offline`) can sometimes cause surprising resolution failures
+help: if this error is too confusing you may wish to retry without `--offline`
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-28 02:40 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 02:40 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 02:40 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 02:40 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 02:40 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 02:40 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

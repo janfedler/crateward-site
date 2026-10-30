@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: anr 0.2.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>anr <span class="version">0.2.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 239536</span>
+      <a class="muted" href="https://crates.io/crates/anr/0.2.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="239536.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="239536.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">A build script was added since 0.1.1.</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">52</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">3</span></a>
+  <a href="#findings">Static findings <span class="count">7</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">build_script_added</span><div class="sub">diff · anr</div></td><td class="mono where"></td><td>A build script was added since 0.1.1.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">disk_outside_build</span><div class="sub">disk</div></td><td class="mono where">/work/home/.cargo/anr</td><td>The build left /work/home/.cargo/anr (dir) and 2 entries below it.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · anr</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:network_access</span><div class="sub">static · anr</div></td><td class="mono where"><a href="https://crates.io/crates/anr/0.2.0/code/build.rs#L107" rel="noreferrer noopener" target="_blank">build.rs:107</a></td><td>medium severity network_access in build_script code (5 places): ureq::Agent::new_with_config</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · anr</div></td><td class="mono where">disk:outside</td><td>New since the previous version: disk:outside.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · anr</div></td><td class="mono where">net:github.com</td><td>New since the previous version: net:github.com.</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · anr</div></td><td class="mono where"><a href="https://crates.io/crates/anr/0.2.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · anr</div></td><td class="mono where"><a href="https://crates.io/crates/anr/0.2.0/code/build.rs#L71" rel="noreferrer noopener" target="_blank">build.rs:71</a></td><td>low severity url_literal in build_script code: https://github.com/lona-cn/anr/releases/download/model-dfn3-fe5eb64fa2e4/dfn3.onnx</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">disk:outside</code> <code class="chip new">net:github.com</code> <code class="chip new">static:network_access</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">disk:outside</code> <code class="chip">net:github.com</code> <code class="chip">static:network_access</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">7</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">5</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">2</span></label>
+  <span class="muted">3 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ureq::Agent::new_with_config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs#L107" rel="noreferrer noopener" target="_blank">build.rs:107</a> </span></li>
+
+<li><code class="evidence-text">ureq::Agent::config_builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs#L108" rel="noreferrer noopener" target="_blank">build.rs:108</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::TlsConfig::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs#L112" rel="noreferrer noopener" target="_blank">build.rs:112</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::TlsProvider::NativeTls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs#L113" rel="noreferrer noopener" target="_blank">build.rs:113</a> </span></li>
+
+<li><code class="evidence-text">ureq::tls::RootCerts::PlatformVerifier</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs#L114" rel="noreferrer noopener" target="_blank">build.rs:114</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/lona-cn/anr/releases/download/model-dfn3-fe5eb64fa2e4/dfn3.onnx</code>
+<span class="places"><a class="place" href="https://crates.io/crates/anr/0.2.0/code/build.rs#L71" rel="noreferrer noopener" target="_blank">build.rs:71</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>24.6 s</dd></div><div><dt>VM restore</dt><dd>96 ms</dd></div><div><dt>Payload</dt><dd>5109 files, 74.0 MiB</dd></div><div><dt>Files opened</dt><dd>6982</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">125</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 111 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">24.5 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="48 similar processes, the first one shown">×48</span></td>
+<td class="mono args">--crate-name shlex --edition=2018 /cw/vendor/shlex-2.0.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --warn=unexpected_cfgs --check-cfg cfg(manual_codegen_check) --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;std&#34;)) -C metadata=7dd39689d418aa66 -C extra-filename=-69c11c7589f0c135 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints</td>
+<td class="nowrap muted">194 ms</td>
+<td class="nowrap">505 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 634: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="12 similar processes, the first one shown">×12</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">2.7 s</td>
+<td class="nowrap">227 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 641: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcR22oro/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">2.8 s</td>
+<td class="nowrap">114 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 642: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxkIuvN.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcR22oro/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">2.8 s</td>
+<td class="nowrap">108 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 643: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxkIuvN.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcR22oro/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">2.8 s</td>
+<td class="nowrap">105 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 674: /work/target/debug/build/libc-24a0c765ebd7d3cb/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3.6 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 675: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">3.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 691: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">79 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 692: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 694: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">3.9 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 760: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 761: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">4.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 764: /work/target/debug/build/openssl-sys-57bc1ff303964c89/build-script-main">openssl-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4.9 s</td>
+<td class="nowrap">41 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 765: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--libs --cflags openssl</td>
+<td class="nowrap muted">4.9 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 767: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/openssl-sys-4f01a56c8cfd6c12/out/15200604335624963823detect_compiler_family.c</td>
+<td class="nowrap muted">4.9 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 768: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/openssl-sys-4f01a56c8cfd6c12/out/15200604335624963823detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 15200604335624963823detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">4.9 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 769: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">4.9 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 797: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">6.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 798: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">6.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 889: /work/target/debug/build/httparse-ff8e02b0c1a970cf/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.6 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 890: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">10.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 893: /work/target/debug/build/openssl-5b0637e9b4e9865b/build-script-build">openssl</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 993: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.5 s</td>
+<td class="nowrap">39 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 994: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-0f4e2900de2476d1/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">12.5 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1015: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1017: /work/target/debug/build/native-tls-239cf5bc1b23cd9a/build-script-build">native-tls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1273: /work/target/debug/build/anr-2c6c90700dc927d6/build-script-build">anr</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">24.5 s</td>
+<td class="nowrap">47 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">github.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /lona-cn/anr/releases/download/model-dfn3-fe5eb64fa2e4/dfn3.onnx, host github.com, agent ureq/3.5.0</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">24.5 s</td><td class="mono">/work/target/debug/build/anr-2c6c90700dc927d6/build-script-build</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">24.5 s</td><td class="mono">/work/target/debug/build/anr-2c6c90700dc927d6/build-script-build</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">24.5 s</td><td class="mono">/work/target/debug/build/anr-2c6c90700dc927d6/build-script-build</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">3</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>491</dd></div><div><dt>Directories</dt><dd>126</dd></div><div><dt>Size</dt><dd>217.1 MiB</dd></div><div><dt>Compiled units</dt><dd>97</dd></div>
+</dl>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Why</th><th>Path</th><th>Kind</th><th>Size</th><th>Mode</th></tr></thead>
+<tbody>
+<tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cargo/anr</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr><tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cargo/anr/models</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr><tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cargo/anr/models/dfn3-fe5eb64fa2e4</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.15
+   Compiling cc v1.9.0
+   Compiling vcpkg v0.2.15
+   Compiling proc-macro2 v1.0.107
+   Compiling pkg-config v0.3.34
+   Compiling libc v0.2.191
+   Compiling openssl-sys v0.9.117
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling cfg-if v1.0.5
+   Compiling bitflags v2.13.2
+   Compiling typenum v1.20.1
+   Compiling syn v2.0.119
+   Compiling foreign-types-shared v0.1.1
+   Compiling openssl v0.10.81
+   Compiling zeroize v1.9.1
+   Compiling httparse v1.10.1
+   Compiling foreign-types v0.3.2
+   Compiling openssl-macros v0.1.1
+   Compiling bytes v1.12.1
+   Compiling base64ct v1.8.3
+   Compiling native-tls v0.2.18
+   Compiling getrandom v0.4.3
+   Compiling itoa v1.0.18
+   Compiling log v0.4.34
+   Compiling rustix v1.1.5
+   Compiling http v1.5.0
+   Compiling pem-rfc7468 v1.0.0
+   Compiling rustls-pki-types v1.15.1
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling base64 v0.23.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling openssl-probe v0.2.1
+   Compiling ureq-proto v0.6.5
+   Compiling digest v0.10.7
+   Compiling webpki-root-certs v1.0.10
+   Compiling der v0.8.2
+   Compiling percent-encoding v2.3.2
+   Compiling cpufeatures v0.2.17
+   Compiling utf8-zero v0.8.1
+   Compiling once_cell v1.21.4
+   Compiling fastrand v2.5.0
+   Compiling tempfile v3.27.0
+   Compiling ureq v3.5.0
+   Compiling sha2 v0.10.9
+   Compiling anr v0.2.0
+warning: anr@0.2.0: Downloading DFN3 model from https://github.com/lona-cn/anr/releases/download/model-dfn3-fe5eb64fa2e4/dfn3.onnx
+error: failed to run custom build command for `anr v0.2.0`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/anr-2c6c90700dc927d6/build-script-build` (exit status: 1)
+  --- stdout
+  cargo:rerun-if-env-changed=ANR_MODEL_PATH
+  cargo:rerun-if-env-changed=DOCS_RS
+  cargo:rerun-if-env-changed=CARGO_HOME
+  cargo:rerun-if-env-changed=HOME
+  cargo:rerun-if-env-changed=USERPROFILE
+  cargo:rerun-if-env-changed=CARGO_NET_OFFLINE
+  cargo:warning=Downloading DFN3 model from https://github.com/lona-cn/anr/releases/download/model-dfn3-fe5eb64fa2e4/dfn3.onnx
+
+  --- stderr
+  Error: &#34;failed to download DFN3 from https://github.com/lona-cn/anr/releases/download/model-dfn3-fe5eb64fa2e4/dfn3.onnx: http status: 404; set ANR_MODEL_PATH to use a local model&#34;
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-22 14:39 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:39 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:40 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:40 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:40 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:41 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:42 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:42 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-22 14:42 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'">
+<title>About Crateward</title>
+<meta name="description" content="Crateward finds malicious Rust crates by running their build code in an offline Firecracker microVM with eBPF tracing and honeytokens.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crateward">
+<meta property="og:title" content="About Crateward">
+<meta property="og:description" content="Watches every new crates.io release. Build scripts run in an offline microVM with eBPF tracing and honeytokens.">
+<meta property="og:url" content="https://crateward.com/about/">
+<meta property="og:image" content="https://crateward.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crateward's report of a malicious crate: the build ran a dropped program from /tmp.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<main>
+<h1 class="display">About Crateward</h1>
+<p><a href="../">Back to the numbers</a></p>
+
+<p>Crateward is a supply chain scanner for crates.io. It looks at every new
+crate version for signs of malicious behavior, such as a build script that
+reads credentials or talks to the network, and reports what it finds to the
+people who can act on it.</p>
+
+<h2>How a version is analyzed</h2>
+<p>Every version gets a static analysis of its files. A version whose build
+runs its own code (a build script, a procedural macro, or such a
+dependency) is also built with <code>cargo check</code> inside a Firecracker
+microVM. The VM has no internet: a fake one answers and records every
+attempt. Planted fake credentials show whether the build reads them. Nothing
+the build does leaves the VM except the record. A verdict names the reasons
+and says what the analysis covered. A low risk level is not a claim that a
+version is safe.</p>
+
+<h2>What is published</h2>
+<p>This site shows aggregate numbers only. Crateward never publishes a
+finding about a crate before it was reported and handled: malicious crates
+go to the crates.io team, and vulnerabilities to the crate's maintainers
+first. A finding appears here after that, with its timeline.</p>
+
+<h2>Contact</h2>
+<p>security@janfedler.de, for reports about Crateward itself, for a
+version you believe was flagged by mistake, and for anything about the
+requests it makes. False positives are treated as bugs.</p>
+</main>
+</body>
+</html>

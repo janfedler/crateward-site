@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: day-piece-webview 0.4.4</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>day-piece-webview <span class="version">0.4.4</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 280438</span>
+      <a class="muted" href="https://crates.io/crates/day-piece-webview/0.4.4" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="280438.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="280438.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity downloader_pattern in build_script code: https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/{VERSION} at build.rs:176 with std::process::Command::new at build.rs:191</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">50</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">2</span></a>
+  <a href="#findings">Static findings <span class="count">58</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · day-piece-webview</div></td><td class="mono where"><a href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a></td><td>high severity downloader_pattern in build_script code: https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/{VERSION} at build.rs:176 with std::process::Command::new at build.rs:191</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">build_script_added</span><div class="sub">diff · day-piece-webview</div></td><td class="mono where"></td><td>A build script was added since 0.0.1.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · day-piece-webview</div></td><td class="mono where"><a href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a></td><td>New since 0.0.1: downloader_pattern</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>3 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · day-piece-webview</div></td><td class="mono where"><a href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · day-piece-webview</div></td><td class="mono where"><a href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L191" rel="noreferrer noopener" target="_blank">build.rs:191</a></td><td>medium severity process_spawn in build_script code (3 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · day-piece-webview</div></td><td class="mono where"><a href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a></td><td>low severity url_literal in build_script code (35 places): https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/{VERSION}</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">static:downloader_pattern</code> <code class="chip new">static:process_spawn</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">58</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">9</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">45</span></label>
+  <span class="muted">9 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/{VERSION} at build.rs:176 with std::process::Command::new at build.rs:191</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L191" rel="noreferrer noopener" target="_blank">build.rs:191</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L205" rel="noreferrer noopener" target="_blank">build.rs:205</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L213" rel="noreferrer noopener" target="_blank">build.rs:213</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-gtk-macos.rs#L14" rel="noreferrer noopener" target="_blank">src/lib-gtk-macos.rs:14</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-qt.rs#L17" rel="noreferrer noopener" target="_blank">src/lib-qt.rs:17</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-xaml.rs#L18" rel="noreferrer noopener" target="_blank">src/lib-xaml.rs:18</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources_arkui.rs#L13" rel="noreferrer noopener" target="_blank">src/resources_arkui.rs:13</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/tests/linux/gl-context.rs#L11" rel="noreferrer noopener" target="_blank">tests/linux/gl-context.rs:11</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/tests/linux/gl-context.rs#L17" rel="noreferrer noopener" target="_blank">tests/linux/gl-context.rs:17</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/tests/linux/gl-context.rs#L39" rel="noreferrer noopener" target="_blank">tests/linux/gl-context.rs:39</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/{VERSION}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">34</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">file:///android_asset/{}/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-android.rs#L81" rel="noreferrer noopener" target="_blank">src/lib-android.rs:81</a> </span></li>
+
+<li><code class="evidence-text">file:///android_asset/{}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-android.rs#L82" rel="noreferrer noopener" target="_blank">src/lib-android.rs:82</a> </span></li>
+
+<li><code class="evidence-text">file://{}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-gtk.rs#L268" rel="noreferrer noopener" target="_blank">src/lib-gtk.rs:268</a> </span></li>
+
+<li><code class="evidence-text">(() =&#62; {\u{a}  const click = e =&#62; {\u{a}    const a = e.composedPath().find(n =&#62; n?.tagName === &#39;A&#39; &#38;&#38; n.href);\u{a}    if (!a || !(e.metaKey || e.ctrlKey || e.button === 1)) return;\u{a}    e.prevent…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L951" rel="noreferrer noopener" target="_blank">src/lib.rs:951</a> </span></li>
+
+<li><code class="evidence-text">https://news.example.com/story</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1582" rel="noreferrer noopener" target="_blank">src/lib.rs:1582</a> </span></li>
+
+<li><code class="evidence-text">https://news.example.co.uk/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1586" rel="noreferrer noopener" target="_blank">src/lib.rs:1586</a> </span></li>
+
+<li><code class="evidence-text">https://project.github.io/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1590" rel="noreferrer noopener" target="_blank">src/lib.rs:1590</a> </span></li>
+
+<li><code class="evidence-text">https://unrelated.test/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1594" rel="noreferrer noopener" target="_blank">src/lib.rs:1594</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1598" rel="noreferrer noopener" target="_blank">src/lib.rs:1598</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1606" rel="noreferrer noopener" target="_blank">src/lib.rs:1606</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1610" rel="noreferrer noopener" target="_blank">src/lib.rs:1610</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1602" rel="noreferrer noopener" target="_blank">src/lib.rs:1602</a> </span></li>
+
+<li><code class="evidence-text">https://news.example.com/account/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1617" rel="noreferrer noopener" target="_blank">src/lib.rs:1617</a> </span></li>
+
+<li><code class="evidence-text">http://news.example.com/account</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1623" rel="noreferrer noopener" target="_blank">src/lib.rs:1623</a> </span></li>
+
+<li><code class="evidence-text">https://evil-example.com/account</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1629" rel="noreferrer noopener" target="_blank">src/lib.rs:1629</a> </span></li>
+
+<li><code class="evidence-text">https://news.example.com/accounting</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1635" rel="noreferrer noopener" target="_blank">src/lib.rs:1635</a> </span></li>
+
+<li><code class="evidence-text">https://news.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1641" rel="noreferrer noopener" target="_blank">src/lib.rs:1641</a> </span></li>
+
+<li><code class="evidence-text">file:///account</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1647" rel="noreferrer noopener" target="_blank">src/lib.rs:1647</a> </span></li>
+
+<li><code class="evidence-text">https://EXAMPLE.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1653" rel="noreferrer noopener" target="_blank">src/lib.rs:1653</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/fixture.html</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1776" rel="noreferrer noopener" target="_blank">src/lib.rs:1776</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/story</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1779" rel="noreferrer noopener" target="_blank">src/lib.rs:1779</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1786" rel="noreferrer noopener" target="_blank">src/lib.rs:1786</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1793" rel="noreferrer noopener" target="_blank">src/lib.rs:1793</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/fixture.html#note</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1800" rel="noreferrer noopener" target="_blank">src/lib.rs:1800</a> </span></li>
+
+<li><code class="evidence-text">file:///tmp/next.html</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1807" rel="noreferrer noopener" target="_blank">src/lib.rs:1807</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/frame</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1814" rel="noreferrer noopener" target="_blank">src/lib.rs:1814</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/story?a=1#x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1821" rel="noreferrer noopener" target="_blank">src/lib.rs:1821</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/story?a=2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib.rs#L1822" rel="noreferrer noopener" target="_blank">src/lib.rs:1822</a> </span></li>
+
+<li><code class="evidence-text">day-resource://p{}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources.rs#L100" rel="noreferrer noopener" target="_blank">src/resources.rs:100</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources.rs#L106" rel="noreferrer noopener" target="_blank">src/resources.rs:106</a> </span></li>
+
+<li><code class="evidence-text">http://day-resource.p{}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources.rs#L102" rel="noreferrer noopener" target="_blank">src/resources.rs:102</a> </span></li>
+
+<li><code class="evidence-text">https://day-resource.invalid/{}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources.rs#L104" rel="noreferrer noopener" target="_blank">src/resources.rs:104</a> </span></li>
+
+<li><code class="evidence-text">https://elsewhere.invalid/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources.rs#L553" rel="noreferrer noopener" target="_blank">src/resources.rs:553</a> </span></li>
+
+<li><code class="evidence-text">https://day-resource.invalid/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources_arkui.rs#L84" rel="noreferrer noopener" target="_blank">src/resources_arkui.rs:84</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">10</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/browser.rs#L182" rel="noreferrer noopener" target="_blank">src/browser.rs:182</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-gtk-macos.rs#L60" rel="noreferrer noopener" target="_blank">src/lib-gtk-macos.rs:60</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/storage_apple.rs#L11" rel="noreferrer noopener" target="_blank">src/storage_apple.rs:11</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-qt.rs#L52" rel="noreferrer noopener" target="_blank">src/lib-qt.rs:52</a> <a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-xaml.rs#L56" rel="noreferrer noopener" target="_blank">src/lib-xaml.rs:56</a> </span></li>
+
+<li><code class="evidence-text">14 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/lib-uikit.rs#L174" rel="noreferrer noopener" target="_blank">src/lib-uikit.rs:174</a> </span></li>
+
+<li><code class="evidence-text">16 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/macos_web.rs#L186" rel="noreferrer noopener" target="_blank">src/macos_web.rs:186</a> </span></li>
+
+<li><code class="evidence-text">15 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources.rs#L286" rel="noreferrer noopener" target="_blank">src/resources.rs:286</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources_apple.rs#L64" rel="noreferrer noopener" target="_blank">src/resources_apple.rs:64</a> </span></li>
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/src/resources_arkui.rs#L61" rel="noreferrer noopener" target="_blank">src/resources_arkui.rs:61</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/day-piece-webview/0.4.4/code/tests/linux/gl-context.rs#L72" rel="noreferrer noopener" target="_blank">tests/linux/gl-context.rs:72</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>1 min 25 s</dd></div><div><dt>VM restore</dt><dd>76 ms</dd></div><div><dt>Payload</dt><dd>4860 files, 132.4 MiB</dd></div><div><dt>Files opened</dt><dd>17644</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">290</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 263 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">1 min 25 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="34 similar processes, the first one shown">×34</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">246 ms</td>
+<td class="nowrap">684 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc0F1AVY/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">754 ms</td>
+<td class="nowrap">173 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5DcZYf.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc0F1AVY/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">776 ms</td>
+<td class="nowrap">151 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5DcZYf.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc0F1AVY/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">784 ms</td>
+<td class="nowrap">142 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">934 ms</td>
+<td class="nowrap">80 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">936 ms</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">943 ms</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 607: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="111 similar processes, the first one shown">×111</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">58 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 627: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 628: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 891: /work/target/debug/build/icu_locale_fallback_data-bf7b11583620403f/build-script-build">icu_locale_fallback_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 949: /work/target/debug/build/icu_properties_data-489780b4c65588d7/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 951: /work/target/debug/build/libm-bf7234d1701b6a93/build-script-build">libm</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 986: /work/target/debug/build/icu_normalizer_data-f722c08713ba03b8/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 988: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.3 s</td>
+<td class="nowrap">29 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 989: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">13.3 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 993: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">13.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1146: /work/target/debug/build/serde_core-8877f57c32423562/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1147: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">19.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1150: /work/target/debug/build/icu_calendar_data-7a454c57e94be495/build-script-build">icu_calendar_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1257: /work/target/debug/build/icu_decimal_data-b9f21aba81cc01cc/build-script-build">icu_decimal_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1259: /work/target/debug/build/libc-24a0c765ebd7d3cb/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.6 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1260: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">20.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1263: /work/target/debug/build/icu_plurals_data-b6cf8c91603f810d/build-script-build">icu_plurals_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1265: /work/target/debug/build/icu_time_data-e8a4de2b49f7ef47/build-script-build">icu_time_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1374: /work/target/debug/build/icu_collator_data-3201c284a17dd513/build-script-build">icu_collator_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">24.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1384: /work/target/debug/build/icu_segmenter_data-9b5fa3fbc2ce80dd/build-script-build">icu_segmenter_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">24.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1386: /work/target/debug/build/icu_casemap_data-1963aed6fc320792/build-script-build">icu_casemap_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">24.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1404: /work/target/debug/build/icu_datetime_data-7a8ce2b4b0e6d346/build-script-build">icu_datetime_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1438: /work/target/debug/build/slotmap-173f9159f62ef9e0/build-script-build">slotmap</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">27.2 s</td>
+<td class="nowrap">40 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1439: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">27.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1478: /work/target/debug/build/linkme-impl-32f6cf61a3b7c220/build-script-build">linkme-impl</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">28.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1479: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">28.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1694: /work/target/debug/build/serde_core-304eefece1a1291c/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">33.4 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1695: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">33.4 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1736: /work/target/debug/build/linkme-1c1c59d35db915d6/build-script-build">linkme</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.8 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1746: /work/target/debug/build/day-localization-0026bfc6e50a657b/build-script-build">day-localization</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.9 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1928: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">51.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1929: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">51.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2068: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">58.4 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2069: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">58.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2072: /work/target/debug/build/serde_json-8bdb9b394c8b5974/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">58.4 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2246: /work/target/debug/build/day-piece-webview-954c066aaf9d3095/build-script-build">day-piece-webview</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 20 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1189</dd></div><div><dt>Directories</dt><dd>269</dd></div><div><dt>Size</dt><dd>762.8 MiB</dd></div><div><dt>Compiled units</dt><dd>230</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v3.0.9
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling stable_deref_trait v1.2.1
+   Compiling yoke v0.8.4
+   Compiling displaydoc v0.2.7
+   Compiling zerovec-derive v0.11.7
+   Compiling zerovec v0.11.9
+   Compiling tinystr v0.8.5
+   Compiling either v1.19.0
+   Compiling writeable v0.6.4
+   Compiling litemap v0.8.3
+   Compiling icu_locale_core v2.4.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling icu_provider v2.4.0
+   Compiling smallvec v1.16.4
+   Compiling icu_locale_fallback_data v2.4.0
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.4.0
+   Compiling libm v0.2.16
+   Compiling icu_properties_data v2.4.0
+   Compiling icu_locale_fallback v2.4.0
+   Compiling thiserror v2.0.21
+   Compiling icu_normalizer_data v2.4.0
+   Compiling thiserror-impl v2.0.21
+   Compiling memchr v2.8.3
+   Compiling icu_properties v2.4.0
+   Compiling core_maths v0.1.1
+   Compiling unic-langid-impl v0.9.6
+   Compiling write16 v1.0.0
+   Compiling icu_calendar_data v2.4.0
+   Compiling serde_core v1.0.229
+   Compiling utf16_iter v1.0.5
+   Compiling icu_normalizer v2.4.0
+   Compiling unic-langid v0.9.6
+   Compiling fluent-syntax v0.12.0
+   Compiling ryu v1.0.23
+   Compiling icu_time_data v2.4.0
+   Compiling icu_plurals_data v2.4.0
+   Compiling libc v0.2.191
+   Compiling day-fonts v0.6.1
+   Compiling icu_decimal_data v2.4.0
+   Compiling version_check v0.9.5
+   Compiling slotmap v1.1.1
+   Compiling fixed_decimal v0.7.3
+   Compiling calendrical_calculations v0.2.4
+   Compiling icu_datetime_data v2.4.0
+   Compiling ixdtf v0.6.7
+   Compiling icu_casemap_data v2.4.0
+   Compiling icu_segmenter_data v2.4.0
+   Compiling rustc-hash v2.1.3
+   Compiling icu_collator_data v2.4.0
+   Compiling log v0.4.34
+   Compiling type-map v0.5.1
+   Compiling icu_calendar v2.4.0
+   Compiling linkme-impl v0.3.37
+   Compiling winnow v1.0.4
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling icu_decimal v2.4.0
+   Compiling memmap2 v0.9.12
+   Compiling icu_plurals v2.4.0
+   Compiling icu_time v2.4.0
+   Compiling intl-memoizer v0.5.3
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling serde_spanned v1.1.2
+   Compiling fluent-langneg v0.13.1
+   Compiling intl_pluralrules v7.0.2
+   Compiling icu_pattern v0.5.1
+   Compiling day-geometry v0.6.1
+   Compiling self_cell v1.3.0
+   Compiling find-msvc-tools v0.1.15
+   Compiling day-localization v0.6.1
+   Compiling utf8parse v0.2.2
+   Compiling linkme v0.3.37
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling shlex v2.0.1
+   Compiling cc v1.10.0
+   Compiling toml v1.1.8+spec-1.1.0
+   Compiling anstyle-parse v1.0.0
+   Compiling fluent-bundle v0.16.0
+   Compiling day-spec v0.6.1
+   Compiling icu_datetime v2.4.0
+   Compiling icu_collator v2.4.0
+   Compiling icu_segmenter v2.4.0
+   Compiling icu_casemap v2.4.0
+   Compiling day-reactive v0.6.1
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstyle v1.0.14
+   Compiling anstyle-query v1.1.5
+   Compiling day-async v0.6.1
+   Compiling colorchoice v1.0.5
+   Compiling zmij v1.0.23
+   Compiling anstream v1.0.0
+   Compiling day-build v0.6.1
+   Compiling idna_adapter v1.2.2
+   Compiling day-macros v0.6.1
+   Compiling percent-encoding v2.3.2
+   Compiling day-toolchain v0.6.1
+   Compiling serde_json v1.0.154
+   Compiling serde v1.0.229
+   Compiling day-piece-webview v0.4.4
+   Compiling form_urlencoded v1.2.2
+   Compiling idna v1.1.0
+   Compiling day-core v0.6.1
+   Compiling serde_derive v1.0.229
+   Compiling itoa v1.0.18
+   Compiling psl-types v2.0.11
+   Compiling psl v2.1.245
+   Compiling day-pieces v0.6.1
+   Compiling url v2.5.8
+   Compiling day-bridge v0.6.1
+   Compiling crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 25s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-26 18:28 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:28 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:33 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:34 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:34 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:34 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:36 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:36 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 18:36 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

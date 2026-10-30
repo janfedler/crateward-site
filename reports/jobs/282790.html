@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: volant 0.1.0-alpha.13</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>volant <span class="version">0.1.0-alpha.13</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 282790</span>
+      <a class="muted" href="https://crates.io/crates/volant/0.1.0-alpha.13" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="282790.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="282790.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (228 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">323</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · volant</div></td><td class="mono where"><a href="https://crates.io/crates/volant/0.1.0-alpha.13/code/build.rs#L12" rel="noreferrer noopener" target="_blank">build.rs:12</a></td><td>medium severity process_spawn in build_script code (228 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · volant</div></td><td class="mono where"><a href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/action_plugins/fetch/tests.rs#L898" rel="noreferrer noopener" target="_blank">src/action_plugins/fetch/tests.rs:898</a></td><td>medium severity credential_access in library code (5 places): ~/.kube/config</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · volant</div></td><td class="mono where"><a href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L58" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:58</a></td><td>medium severity environment_enumeration in library code (8 places): std::env::vars_os</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · volant</div></td><td class="mono where"><a href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm.rs#L128" rel="noreferrer noopener" target="_blank">src/transport/ssm.rs:128</a></td><td>medium severity secret_environment_variable in library code (4 places): AWS_ACCESS_KEY_ID</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · volant</div></td><td class="mono where"><a href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/tests.rs#L193" rel="noreferrer noopener" target="_blank">src/python/tests.rs:193</a></td><td>medium severity shell_command in library code (7 places): #!powershell\u{a}</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · volant</div></td><td class="mono where"><a href="https://crates.io/crates/volant/0.1.0-alpha.13/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">static:secret_environment_variable</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:environment_enumeration</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">323</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">19</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">232</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">72</span></label>
+  <span class="muted">16 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">~/.kube/config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/action_plugins/fetch/tests.rs#L898" rel="noreferrer noopener" target="_blank">src/action_plugins/fetch/tests.rs:898</a> </span></li>
+
+<li><code class="evidence-text">.kube/config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/action_plugins/fetch/tests.rs#L898" rel="noreferrer noopener" target="_blank">src/action_plugins/fetch/tests.rs:898</a> </span></li>
+
+<li><code class="evidence-text">id_ed25519</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/union_cache/tests.rs#L560" rel="noreferrer noopener" target="_blank">src/union_cache/tests.rs:560</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/union_cache/tests.rs#L580" rel="noreferrer noopener" target="_blank">src/union_cache/tests.rs:580</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">AWS_ACCESS_KEY_ID</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm.rs#L128" rel="noreferrer noopener" target="_blank">src/transport/ssm.rs:128</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm/tests.rs#L62" rel="noreferrer noopener" target="_blank">src/transport/ssm/tests.rs:62</a> </span></li>
+
+<li><code class="evidence-text">AWS_SECRET_ACCESS_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm.rs#L133" rel="noreferrer noopener" target="_blank">src/transport/ssm.rs:133</a> </span></li>
+
+<li><code class="evidence-text">AWS_SESSION_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm.rs#L138" rel="noreferrer noopener" target="_blank">src/transport/ssm.rs:138</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">#!powershell\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/tests.rs#L193" rel="noreferrer noopener" target="_blank">src/python/tests.rs:193</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/tests.rs#L194" rel="noreferrer noopener" target="_blank">src/python/tests.rs:194</a> </span></li>
+
+<li><code class="evidence-text">/bin/sh -c {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/su.rs#L108" rel="noreferrer noopener" target="_blank">src/transport/escalation/su.rs:108</a> </span></li>
+
+<li><code class="evidence-text">exec &#39;su&#39; &#39;root&#39; -c &#39;/bin/sh -c &#39;\&#39;&#39;stty raw -echo -iexten || exit 1; echo MARK-42; uname -m&#39;\&#39;&#39;&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L178" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:178</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">printf %s &#34;$1&#34; | base64 -d</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/compare.rs#L466" rel="noreferrer noopener" target="_blank">tests/common/compare.rs:466</a> </span></li>
+
+<li><code class="evidence-text">base64 -d refused {encoded}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/compare.rs#L470" rel="noreferrer noopener" target="_blank">tests/common/compare.rs:470</a> </span></li>
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/parity.rs#L161" rel="noreferrer noopener" target="_blank">tests/parity.rs:161</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L58" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:58</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/union_cache/key.rs#L92" rel="noreferrer noopener" target="_blank">src/union_cache/key.rs:92</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">{}/.kube/config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/kubectl_e2e.rs#L125" rel="noreferrer noopener" target="_blank">tests/kubectl_e2e.rs:125</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/build.rs#L12" rel="noreferrer noopener" target="_blank">build.rs:12</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">158</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/adhoc_cli.rs#L25" rel="noreferrer noopener" target="_blank">tests/adhoc_cli.rs:25</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/agent_frames.rs#L57" rel="noreferrer noopener" target="_blank">tests/agent_frames.rs:57</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/askpass.rs#L15" rel="noreferrer noopener" target="_blank">tests/askpass.rs:15</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/askpass.rs#L96" rel="noreferrer noopener" target="_blank">tests/askpass.rs:96</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/askpass.rs#L169" rel="noreferrer noopener" target="_blank">tests/askpass.rs:169</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/askpass.rs#L222" rel="noreferrer noopener" target="_blank">tests/askpass.rs:222</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/askpass.rs#L256" rel="noreferrer noopener" target="_blank">tests/askpass.rs:256</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/aws_ssm_e2e.rs#L36" rel="noreferrer noopener" target="_blank">tests/aws_ssm_e2e.rs:36</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L19" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:19</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L41" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:41</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L62" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:62</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L93" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:93</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L103" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:103</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L108" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:108</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L123" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:123</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L244" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:244</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/chroot_e2e.rs#L19" rel="noreferrer noopener" target="_blank">tests/chroot_e2e.rs:19</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/chroot_e2e.rs#L50" rel="noreferrer noopener" target="_blank">tests/chroot_e2e.rs:50</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/collections.rs#L64" rel="noreferrer noopener" target="_blank">tests/common/collections.rs:64</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/compare.rs#L465" rel="noreferrer noopener" target="_blank">tests/common/compare.rs:465</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/compare.rs#L613" rel="noreferrer noopener" target="_blank">tests/common/compare.rs:613</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/process.rs#L90" rel="noreferrer noopener" target="_blank">tests/common/process.rs:90</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/python.rs#L39" rel="noreferrer noopener" target="_blank">tests/common/python.rs:39</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/python.rs#L56" rel="noreferrer noopener" target="_blank">tests/common/python.rs:56</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/compat_record.rs#L26" rel="noreferrer noopener" target="_blank">tests/compat_record.rs:26</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/compat_record.rs#L88" rel="noreferrer noopener" target="_blank">tests/compat_record.rs:88</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L57" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:57</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L61" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:61</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L92" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:92</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L115" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:115</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L125" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:125</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L133" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:133</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L199" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:199</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L341" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:341</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L457" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:457</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/doc.rs#L28" rel="noreferrer noopener" target="_blank">tests/doc.rs:28</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/doc.rs#L72" rel="noreferrer noopener" target="_blank">tests/doc.rs:72</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/doc.rs#L108" rel="noreferrer noopener" target="_blank">tests/doc.rs:108</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/docker_e2e.rs#L47" rel="noreferrer noopener" target="_blank">tests/docker_e2e.rs:47</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/docker_e2e.rs#L68" rel="noreferrer noopener" target="_blank">tests/docker_e2e.rs:68</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/docker_e2e.rs#L78" rel="noreferrer noopener" target="_blank">tests/docker_e2e.rs:78</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/docker_e2e.rs#L102" rel="noreferrer noopener" target="_blank">tests/docker_e2e.rs:102</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/docker_e2e.rs#L158" rel="noreferrer noopener" target="_blank">tests/docker_e2e.rs:158</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/exec_transport.rs#L159" rel="noreferrer noopener" target="_blank">tests/exec_transport.rs:159</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/exec_transport.rs#L311" rel="noreferrer noopener" target="_blank">tests/exec_transport.rs:311</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/facts.rs#L91" rel="noreferrer noopener" target="_blank">tests/facts.rs:91</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/facts.rs#L125" rel="noreferrer noopener" target="_blank">tests/facts.rs:125</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/facts.rs#L371" rel="noreferrer noopener" target="_blank">tests/facts.rs:371</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/fetch_dest.rs#L88" rel="noreferrer noopener" target="_blank">tests/fetch_dest.rs:88</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/fetch_dest.rs#L322" rel="noreferrer noopener" target="_blank">tests/fetch_dest.rs:322</a> <span class="muted">and 88 more</span></span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/aws_ssm_e2e.rs#L35" rel="noreferrer noopener" target="_blank">tests/aws_ssm_e2e.rs:35</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/buildah_e2e.rs#L61" rel="noreferrer noopener" target="_blank">tests/buildah_e2e.rs:61</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/process.rs#L12" rel="noreferrer noopener" target="_blank">tests/common/process.rs:12</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/process.rs#L19" rel="noreferrer noopener" target="_blank">tests/common/process.rs:19</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/compat_record.rs#L25" rel="noreferrer noopener" target="_blank">tests/compat_record.rs:25</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/compat_record.rs#L40" rel="noreferrer noopener" target="_blank">tests/compat_record.rs:40</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L20" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:20</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L24" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:24</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/docker_e2e.rs#L88" rel="noreferrer noopener" target="_blank">tests/docker_e2e.rs:88</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/fetch_dest.rs#L107" rel="noreferrer noopener" target="_blank">tests/fetch_dest.rs:107</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/kubectl_e2e.rs#L97" rel="noreferrer noopener" target="_blank">tests/kubectl_e2e.rs:97</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/lxd_e2e.rs#L98" rel="noreferrer noopener" target="_blank">tests/lxd_e2e.rs:98</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/playbook_cli.rs#L8002" rel="noreferrer noopener" target="_blank">tests/playbook_cli.rs:8002</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/podman_e2e.rs#L104" rel="noreferrer noopener" target="_blank">tests/podman_e2e.rs:104</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/ssh_e2e.rs#L2146" rel="noreferrer noopener" target="_blank">tests/ssh_e2e.rs:2146</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/ssh_e2e.rs#L3000" rel="noreferrer noopener" target="_blank">tests/ssh_e2e.rs:3000</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/tools_cli.rs#L17" rel="noreferrer noopener" target="_blank">tests/tools_cli.rs:17</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/tools_cli.rs#L30" rel="noreferrer noopener" target="_blank">tests/tools_cli.rs:30</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/vault_cli.rs#L43" rel="noreferrer noopener" target="_blank">tests/vault_cli.rs:43</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/local_transport.rs#L315" rel="noreferrer noopener" target="_blank">tests/local_transport.rs:315</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">69</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/agent/mod.rs#L147" rel="noreferrer noopener" target="_blank">src/agent/mod.rs:147</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/agent/tests.rs#L125" rel="noreferrer noopener" target="_blank">src/agent/tests.rs:125</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/agent/tests.rs#L212" rel="noreferrer noopener" target="_blank">src/agent/tests.rs:212</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/agent/tests.rs#L236" rel="noreferrer noopener" target="_blank">src/agent/tests.rs:236</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/bootstrap.rs#L275" rel="noreferrer noopener" target="_blank">src/transport/bootstrap.rs:275</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/choose.rs#L312" rel="noreferrer noopener" target="_blank">src/transport/choose.rs:312</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/control.rs#L251" rel="noreferrer noopener" target="_blank">src/transport/control.rs:251</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/copy.rs#L105" rel="noreferrer noopener" target="_blank">src/transport/copy.rs:105</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/copy.rs#L243" rel="noreferrer noopener" target="_blank">src/transport/copy.rs:243</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/local_su.rs#L49" rel="noreferrer noopener" target="_blank">src/transport/escalation/local_su.rs:49</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/probe.rs#L48" rel="noreferrer noopener" target="_blank">src/transport/escalation/probe.rs:48</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/exec.rs#L202" rel="noreferrer noopener" target="_blank">src/transport/exec.rs:202</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/exec.rs#L219" rel="noreferrer noopener" target="_blank">src/transport/exec.rs:219</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/fused.rs#L71" rel="noreferrer noopener" target="_blank">src/transport/fused.rs:71</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/session.rs#L126" rel="noreferrer noopener" target="_blank">src/transport/session.rs:126</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/session.rs#L180" rel="noreferrer noopener" target="_blank">src/transport/session.rs:180</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/session.rs#L302" rel="noreferrer noopener" target="_blank">src/transport/session.rs:302</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm.rs#L196" rel="noreferrer noopener" target="_blank">src/transport/ssm.rs:196</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm/tests.rs#L110" rel="noreferrer noopener" target="_blank">src/transport/ssm/tests.rs:110</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm/tests.rs#L154" rel="noreferrer noopener" target="_blank">src/transport/ssm/tests.rs:154</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/askpass/tests.rs#L101" rel="noreferrer noopener" target="_blank">src/askpass/tests.rs:101</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/console/help.rs#L181" rel="noreferrer noopener" target="_blank">src/cli/console/help.rs:181</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/passwords.rs#L21" rel="noreferrer noopener" target="_blank">src/cli/passwords.rs:21</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/git.rs#L205" rel="noreferrer noopener" target="_blank">src/cli/pull/git.rs:205</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/steps.rs#L268" rel="noreferrer noopener" target="_blank">src/cli/pull/steps.rs:268</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/vault.rs#L478" rel="noreferrer noopener" target="_blank">src/cli/vault.rs:478</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/vault_edit.rs#L188" rel="noreferrer noopener" target="_blank">src/cli/vault_edit.rs:188</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/version.rs#L97" rel="noreferrer noopener" target="_blank">src/cli/version.rs:97</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/executor/run/tests.rs#L4406" rel="noreferrer noopener" target="_blank">src/executor/run/tests.rs:4406</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/inventory/script.rs#L173" rel="noreferrer noopener" target="_blank">src/inventory/script.rs:173</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/prompt.rs#L313" rel="noreferrer noopener" target="_blank">src/prompt.rs:313</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/builder.rs#L84" rel="noreferrer noopener" target="_blank">src/python/builder.rs:84</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/tests.rs#L879" rel="noreferrer noopener" target="_blank">src/python/tests.rs:879</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/tests.rs#L896" rel="noreferrer noopener" target="_blank">src/python/tests.rs:896</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/python/tests.rs#L915" rel="noreferrer noopener" target="_blank">src/python/tests.rs:915</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/fetch.rs#L78" rel="noreferrer noopener" target="_blank">src/runtime/fetch.rs:78</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/fetch.rs#L90" rel="noreferrer noopener" target="_blank">src/runtime/fetch.rs:90</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/fetch.rs#L146" rel="noreferrer noopener" target="_blank">src/runtime/fetch.rs:146</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/install.rs#L122" rel="noreferrer noopener" target="_blank">src/runtime/install.rs:122</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/mod.rs#L83" rel="noreferrer noopener" target="_blank">src/runtime/mod.rs:83</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/pack.rs#L30" rel="noreferrer noopener" target="_blank">src/runtime/pack.rs:30</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/pack.rs#L138" rel="noreferrer noopener" target="_blank">src/runtime/pack.rs:138</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/resolve.rs#L236" rel="noreferrer noopener" target="_blank">src/runtime/resolve.rs:236</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L66" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:66</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/template/lookups/mod.rs#L288" rel="noreferrer noopener" target="_blank">src/template/lookups/mod.rs:288</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L98" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:98</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L100" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:100</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L118" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:118</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L175" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:175</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L193" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:193</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L511" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:511</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L605" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:605</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tar.rs#L47" rel="noreferrer noopener" target="_blank">src/transport/tar.rs:47</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L637" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:637</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L781" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:781</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L807" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:807</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L846" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:846</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L857" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:857</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/vault/load.rs#L116" rel="noreferrer noopener" target="_blank">src/vault/load.rs:116</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/steps.rs#L266" rel="noreferrer noopener" target="_blank">src/cli/pull/steps.rs:266</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/steps.rs#L286" rel="noreferrer noopener" target="_blank">src/cli/pull/steps.rs:286</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/steps.rs#L293" rel="noreferrer noopener" target="_blank">src/cli/pull/steps.rs:293</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/fetch.rs#L102" rel="noreferrer noopener" target="_blank">src/runtime/fetch.rs:102</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/install.rs#L121" rel="noreferrer noopener" target="_blank">src/runtime/install.rs:121</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L54" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:54</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L140" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:140</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L166" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:166</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm.rs#L188" rel="noreferrer noopener" target="_blank">src/transport/ssm.rs:188</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm/tests.rs#L109" rel="noreferrer noopener" target="_blank">src/transport/ssm/tests.rs:109</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::unix::pipe::Receiver</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/local_su.rs#L147" rel="noreferrer noopener" target="_blank">src/transport/escalation/local_su.rs:147</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::unix::pipe::Sender</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/local_su.rs#L163" rel="noreferrer noopener" target="_blank">src/transport/escalation/local_su.rs:163</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::unix::pipe::Receiver::from_owned_fd_unchecked</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/local_su.rs#L166" rel="noreferrer noopener" target="_blank">src/transport/escalation/local_su.rs:166</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::unix::pipe::Sender::from_owned_fd_unchecked</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/local_su.rs#L167" rel="noreferrer noopener" target="_blank">src/transport/escalation/local_su.rs:167</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">30</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/agent/embedded.rs#L186" rel="noreferrer noopener" target="_blank">src/agent/embedded.rs:186</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/askpass.rs#L141" rel="noreferrer noopener" target="_blank">src/askpass.rs:141</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/console/session.rs#L278" rel="noreferrer noopener" target="_blank">src/cli/console/session.rs:278</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/vault.rs#L381" rel="noreferrer noopener" target="_blank">src/cli/vault.rs:381</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/vault_string.rs#L53" rel="noreferrer noopener" target="_blank">src/cli/vault_string.rs:53</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/install.rs#L369" rel="noreferrer noopener" target="_blank">src/runtime/install.rs:369</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/buildah/tests.rs#L14" rel="noreferrer noopener" target="_blank">src/transport/buildah/tests.rs:14</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/chroot.rs#L118" rel="noreferrer noopener" target="_blank">src/transport/chroot.rs:118</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/chroot/tests.rs#L67" rel="noreferrer noopener" target="_blank">src/transport/chroot/tests.rs:67</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/lxd/tests.rs#L17" rel="noreferrer noopener" target="_blank">src/transport/lxd/tests.rs:17</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/podman/tests.rs#L38" rel="noreferrer noopener" target="_blank">src/transport/podman/tests.rs:38</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/union_cache/entry.rs#L76" rel="noreferrer noopener" target="_blank">src/union_cache/entry.rs:76</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/union_cache/sweep.rs#L63" rel="noreferrer noopener" target="_blank">src/union_cache/sweep.rs:63</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/union_cache/tests.rs#L777" rel="noreferrer noopener" target="_blank">src/union_cache/tests.rs:777</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/agent/embedded/tests.rs#L81" rel="noreferrer noopener" target="_blank">src/agent/embedded/tests.rs:81</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/control.rs#L135" rel="noreferrer noopener" target="_blank">src/transport/control.rs:135</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/kubectl/tests.rs#L22" rel="noreferrer noopener" target="_blank">src/transport/kubectl/tests.rs:22</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/ssm/tests.rs#L19" rel="noreferrer noopener" target="_blank">src/transport/ssm/tests.rs:19</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/names.rs#L36" rel="noreferrer noopener" target="_blank">src/cli/pull/names.rs:36</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/executor/run/tests.rs#L4335" rel="noreferrer noopener" target="_blank">src/executor/run/tests.rs:4335</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/escalation/local_su.rs#L116" rel="noreferrer noopener" target="_blank">src/transport/escalation/local_su.rs:116</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/signals.rs#L44" rel="noreferrer noopener" target="_blank">src/cli/signals.rs:44</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tool.rs#L119" rel="noreferrer noopener" target="_blank">src/runtime/tool.rs:119</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/template/clock.rs#L194" rel="noreferrer noopener" target="_blank">src/template/clock.rs:194</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/agent_dir/tests.rs#L161" rel="noreferrer noopener" target="_blank">src/transport/agent_dir/tests.rs:161</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/docker/tests.rs#L106" rel="noreferrer noopener" target="_blank">src/transport/docker/tests.rs:106</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/tests.rs#L83" rel="noreferrer noopener" target="_blank">src/cli/tests.rs:83</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/vault_edit.rs#L55" rel="noreferrer noopener" target="_blank">src/cli/vault_edit.rs:55</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/tests.rs#L802" rel="noreferrer noopener" target="_blank">src/transport/tests.rs:802</a> </span></li>
+
+<li><code class="evidence-text">31 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/config/tests.rs#L121" rel="noreferrer noopener" target="_blank">src/config/tests.rs:121</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">20</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">file://{expanded}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/cli/pull/git.rs#L132" rel="noreferrer noopener" target="_blank">src/cli/pull/git.rs:132</a> </span></li>
+
+<li><code class="evidence-text">Ansible is being run in a world writable directory ({}), ignoring it as an ansible.cfg source. For more information see https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-w…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/config/locate.rs#L90" rel="noreferrer noopener" target="_blank">src/config/locate.rs:90</a> </span></li>
+
+<li><code class="evidence-text">Ansible is being run in a world writable directory (/tmp/x), ignoring it as an ansible.cfg source. For more information see https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/config/tests.rs#L640" rel="noreferrer noopener" target="_blank">src/config/tests.rs:640</a> </span></li>
+
+<li><code class="evidence-text">[docker_connection]\u{a}extra_cli_args = --host tcp://h\u{a}privileged = yes\u{a}working_dir = /srv\u{a}timeout = 30\u{a}[chroot_connection]\u{a}exe = /usr/sbin/chroot\u{a}disable_root_check = true…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/config/tests.rs#L872" rel="noreferrer noopener" target="_blank">src/config/tests.rs:872</a> </span></li>
+
+<li><code class="evidence-text">--host tcp://h</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/config/tests.rs#L878" rel="noreferrer noopener" target="_blank">src/config/tests.rs:878</a> </span></li>
+
+<li><code class="evidence-text">See https://docs.ansible.com/ansible-core/2.19/reference_appendices/interpreter_discovery.html for more information.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/executor/run/interpreter.rs#L112" rel="noreferrer noopener" target="_blank">src/executor/run/interpreter.rs:112</a> </span></li>
+
+<li><code class="evidence-text">- name: Set same timezone on every Server\u{a}  community.general.timezone:\u{a}    name: &#34;{{ system_timezone }}&#34;\u{a}  when: (system_timezone is defined) and (system_timezone != &#34;Your/Timezone&#34;)\u{a}…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/facts_read/tests.rs#L200" rel="noreferrer noopener" target="_blank">src/facts_read/tests.rs:200</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/fetch.rs#L75" rel="noreferrer noopener" target="_blank">src/runtime/fetch.rs:75</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/manifest.rs#L158" rel="noreferrer noopener" target="_blank">src/runtime/manifest.rs:158</a> </span></li>
+
+<li><code class="evidence-text">\u{a}python = &#34;3.13.16&#34;\u{a}python-release = &#34;20261013&#34;\u{a}ansible-core = &#34;2.19.12&#34;\u{a}\u{a}[platform.x86_64-unknown-linux-gnu.python]\u{a}url = &#34;https://example.invalid/python.tar.gz&#34;\u{a}sha256 = …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tests.rs#L73" rel="noreferrer noopener" target="_blank">src/runtime/tests.rs:73</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tests.rs#L153" rel="noreferrer noopener" target="_blank">src/runtime/tests.rs:153</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tests.rs#L187" rel="noreferrer noopener" target="_blank">src/runtime/tests.rs:187</a> </span></li>
+
+<li><code class="evidence-text">file:///etc/hostname</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/runtime/tests.rs#L193" rel="noreferrer noopener" target="_blank">src/runtime/tests.rs:193</a> </span></li>
+
+<li><code class="evidence-text">{{ hs | map(&#39;extract&#39;, hv, &#39;ip&#39;) | map(&#39;regex_replace&#39;, &#39;^(.*)$&#39;, &#39;https://\1:6443&#39;) | join(&#39;,&#39;) }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/template/tests.rs#L698" rel="noreferrer noopener" target="_blank">src/template/tests.rs:698</a> </span></li>
+
+<li><code class="evidence-text">--host unix:///cfg</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/docker/tests.rs#L112" rel="noreferrer noopener" target="_blank">src/transport/docker/tests.rs:112</a> </span></li>
+
+<li><code class="evidence-text">unix:///cfg</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/docker/tests.rs#L127" rel="noreferrer noopener" target="_blank">src/transport/docker/tests.rs:127</a> </span></li>
+
+<li><code class="evidence-text">https://b:6443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/kubectl/tests.rs#L87" rel="noreferrer noopener" target="_blank">src/transport/kubectl/tests.rs:87</a> </span></li>
+
+<li><code class="evidence-text">https://h:6443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/kubectl/tests.rs#L121" rel="noreferrer noopener" target="_blank">src/transport/kubectl/tests.rs:121</a> </span></li>
+
+<li><code class="evidence-text">https://s:6443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/kubectl/tests.rs#L122" rel="noreferrer noopener" target="_blank">src/transport/kubectl/tests.rs:122</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/src/transport/kubectl/tests.rs#L133" rel="noreferrer noopener" target="_blank">src/transport/kubectl/tests.rs:133</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">11</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/askpass.rs#L99" rel="noreferrer noopener" target="_blank">tests/askpass.rs:99</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/process.rs#L85" rel="noreferrer noopener" target="_blank">tests/common/process.rs:85</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/ssh_e2e.rs#L2232" rel="noreferrer noopener" target="_blank">tests/ssh_e2e.rs:2232</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/common/compare.rs#L114" rel="noreferrer noopener" target="_blank">tests/common/compare.rs:114</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/reference_modules.rs#L439" rel="noreferrer noopener" target="_blank">tests/reference_modules.rs:439</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L273" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:273</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/exec_transport.rs#L75" rel="noreferrer noopener" target="_blank">tests/exec_transport.rs:75</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/playbook_cli.rs#L2673" rel="noreferrer noopener" target="_blank">tests/playbook_cli.rs:2673</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/reference.rs#L64" rel="noreferrer noopener" target="_blank">tests/reference.rs:64</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/local_transport.rs#L451" rel="noreferrer noopener" target="_blank">tests/local_transport.rs:451</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/vault_cli.rs#L376" rel="noreferrer noopener" target="_blank">tests/vault_cli.rs:376</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">environment_enumeration</span> <span class="context">test</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/fetch_dest.rs#L108" rel="noreferrer noopener" target="_blank">tests/fetch_dest.rs:108</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/host_named_paths.rs#L373" rel="noreferrer noopener" target="_blank">tests/host_named_paths.rs:373</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/host_named_paths.rs#L618" rel="noreferrer noopener" target="_blank">tests/host_named_paths.rs:618</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/reference.rs#L623" rel="noreferrer noopener" target="_blank">tests/reference.rs:623</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/reference_modules.rs#L93" rel="noreferrer noopener" target="_blank">tests/reference_modules.rs:93</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/reference_modules.rs#L193" rel="noreferrer noopener" target="_blank">tests/reference_modules.rs:193</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">file://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/console_pull.rs#L409" rel="noreferrer noopener" target="_blank">tests/console_pull.rs:409</a> </span></li>
+
+<li><code class="evidence-text">[WARNING]: Ansible is being run in a world writable directory ({}), ignoring it as an ansible.cfg source. For more information see https://docs.ansible.com/ansible/devel/reference_appendices/config.ht…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/playbook_cli.rs#L1076" rel="noreferrer noopener" target="_blank">tests/playbook_cli.rs:1076</a> </span></li>
+
+<li><code class="evidence-text">- hosts: localhost\u{a}  gather_facts: false\u{a}  tasks:\u{a}    - name: Probe task\u{a}      debug:\u{a}        msg: &#34;{{ item }}&#34;\u{a}      with_url: [&#34;file://{{ playbook_dir }}/task-with_url.yml&#34;]…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/playbook_cli.rs#L3798" rel="noreferrer noopener" target="_blank">tests/playbook_cli.rs:3798</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/lorica-labs/volant/issues/920</code>
+<span class="places"><a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/shadow_golden.rs#L19" rel="noreferrer noopener" target="_blank">tests/shadow_golden.rs:19</a> <a class="place" href="https://crates.io/crates/volant/0.1.0-alpha.13/code/tests/shadow_golden.rs#L23" rel="noreferrer noopener" target="_blank">tests/shadow_golden.rs:23</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>53.2 s</dd></div><div><dt>VM restore</dt><dd>122 ms</dd></div><div><dt>Payload</dt><dd>6611 files, 93.9 MiB</dd></div><div><dt>Files opened</dt><dd>13063</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">270</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 251 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">53.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="21 similar processes, the first one shown">×21</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">236 ms</td>
+<td class="nowrap">667 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcsMPinh/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">752 ms</td>
+<td class="nowrap">148 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccomCMMm.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcsMPinh/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">760 ms</td>
+<td class="nowrap">140 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccomCMMm.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcsMPinh/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">763 ms</td>
+<td class="nowrap">135 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">907 ms</td>
+<td class="nowrap">87 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">909 ms</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">918 ms</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 607: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="97 similar processes, the first one shown">×97</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">994 ms</td>
+<td class="nowrap">53 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 627: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 628: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 695: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 696: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">5.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 719: /work/target/debug/build/libc-bc7a117b66a22265/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.9 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 720: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">5.9 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 804: /work/target/debug/build/serde_core-040ff8da709058db/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.8 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 805: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">9.8 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 868: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 869: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">12.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 952: /work/target/debug/build/thiserror-dd27eb9efca5329a/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.6 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 953: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-8658b25ef1050b90/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">15.6 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 957: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">15.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 974: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.8 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 975: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">15.8 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 983: /work/target/debug/build/num-traits-8b0695b2147503b3/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">16.2 s</td>
+<td class="nowrap">45 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 984: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">16.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1100: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.8 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1101: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-de87e437a93e79e6/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">17.8 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1110: /work/target/debug/build/serde_json-355445b7157e67b2/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.9 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1117: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1129: /work/target/debug/build/libmimalloc-sys-3d2f94517e79f0e7/build-script-build">libmimalloc-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.1 s</td>
+<td class="nowrap">1.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1130: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/17075829251264716349detect_compiler_family.c</td>
+<td class="nowrap muted">18.1 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1131: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/17075829251264716349detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 17075829251264716349detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">18.1 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1132: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1133: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/flag_check -c /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/flag_check.c</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1134: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/flag_check.c -quiet -dumpdir /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccCvlSXT.s</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1135: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/flag_check /tmp/ccCvlSXT.s</td>
+<td class="nowrap muted">18.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1142: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/libmimalloc.a /work/target/debug/build/libmimalloc-sys-b40cca4be9764b8a/out/93acce08ba6f4ffe-static.o</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1155: /work/target/debug/build/nix-0f49a19405db3aea/build-script-build">nix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1270: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.9 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1271: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">26.9 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1275: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">27.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1314: /work/target/debug/build/blake3-1d5a06db49da8db5/build-script-build">blake3</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">187 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1315: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-E /work/target/debug/build/blake3-277e813a768a8383/out/15362578913507466582detect_compiler_family.c</td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1316: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/blake3-277e813a768a8383/out/15362578913507466582detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 15362578913507466582detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1317: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1318: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mavx512f -o /work/target/debug/build/blake3-277e813a768a8383/out/flag_check -c /work/target/debug/build/blake3-277e813a768a8383/out/flag_check.c</td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1319: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/blake3-277e813a768a8383/out/flag_check.c -quiet -dumpdir /work/target/debug/build/blake3-277e813a768a8383/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mavx512f -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccx74sFR.s</td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1320: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/blake3-277e813a768a8383/out/flag_check /tmp/ccx74sFR.s</td>
+<td class="nowrap muted">29.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1339: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/blake3-277e813a768a8383/out/libblake3_sse2_sse41_avx2_assembly.a /work/target/debug/build/blake3-277e813a768a8383/out/0af7afa8371890fd-blake3_sse2_x86-64_unix.o /work/target/debug/build/blake3-277e813a768a8383/out/0af7afa8371890fd-blake3_sse41_x86-64_unix.o /work/target/debug/build/blake3-277e813a768a8383/out/0af7afa8371890fd-blake3_avx2_x86-64_unix.o</td>
+<td class="nowrap muted">29.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1510: /work/target/debug/build/volant-945011b25afd617e/build-script-build">volant</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 1511: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.3 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>869</dd></div><div><dt>Directories</dt><dd>205</dd></div><div><dt>Size</dt><dd>280.3 MiB</dd></div><div><dt>Compiled units</dt><dd>112</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v3.0.9
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+    Checking typenum v1.20.1
+   Compiling libc v0.2.191
+    Checking foldhash v0.2.0
+    Checking cfg-if v1.0.5
+    Checking hashbrown v0.17.1
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.15
+   Compiling cc v1.10.0
+    Checking crypto-common v0.1.7
+   Compiling serde_core v1.0.229
+    Checking memchr v2.8.3
+    Checking equivalent v1.0.3
+    Checking indexmap v2.14.2
+   Compiling serde v1.0.229
+    Checking utf8parse v0.2.2
+   Compiling autocfg v1.5.1
+   Compiling num-traits v0.2.19
+    Checking block-buffer v0.10.4
+   Compiling serde_derive v1.0.229
+    Checking bitflags v2.13.2
+   Compiling zmij v1.0.23
+   Compiling cfg_aliases v0.2.2
+   Compiling thiserror v2.0.21
+    Checking subtle v2.6.1
+    Checking digest v0.10.7
+   Compiling nix v0.31.3
+    Checking anstyle-parse v1.0.0
+   Compiling libmimalloc-sys v0.1.49
+    Checking inout v0.1.4
+   Compiling thiserror-impl v2.0.21
+    Checking is_terminal_polyfill v1.70.2
+    Checking anstyle-query v1.1.5
+   Compiling getrandom v0.4.3
+    Checking anstyle v1.0.14
+    Checking colorchoice v1.0.5
+   Compiling serde_json v1.0.154
+   Compiling rustix v1.1.5
+    Checking anstream v1.0.0
+    Checking cipher v0.4.4
+    Checking aho-corasick v1.1.5
+   Compiling blake3 v1.8.7
+    Checking errno v0.3.14
+    Checking linux-raw-sys v0.12.1
+    Checking adler2 v2.0.1
+   Compiling heck v0.5.0
+   Compiling anyhow v1.0.104
+    Checking clap_lex v1.1.1
+    Checking itoa v1.0.18
+    Checking regex-syntax v0.8.11
+    Checking arraydeque v0.5.1
+    Checking cpufeatures v0.2.17
+    Checking strsim v0.11.1
+    Checking winnow v1.0.4
+    Checking toml_parser v1.1.5+spec-1.1.0
+    Checking clap_builder v4.6.7
+    Checking saphyr-parser v0.2.2
+    Checking regex-automata v0.4.18
+   Compiling clap_derive v4.6.7
+    Checking miniz_oxide v0.9.1
+    Checking signal-hook-registry v1.4.8
+    Checking ordered-float v5.5.1
+    Checking minijinja v3.0.1
+    Checking hmac v0.12.1
+    Checking hashlink v0.12.2
+    Checking encoding_rs v0.8.35
+    Checking mio v1.2.4
+    Checking socket2 v0.6.5
+   Compiling tokio-macros v2.7.2
+    Checking once_cell v1.21.4
+    Checking arrayvec v0.7.8
+   Compiling volant v0.1.0-alpha.13
+    Checking unicode-width v0.2.2
+    Checking sha1_smol v1.0.1
+    Checking toml_datetime v1.1.2+spec-1.1.0
+    Checking unicode-segmentation v1.13.3
+    Checking constant_time_eq v0.4.2
+    Checking pin-project-lite v0.2.17
+    Checking cpufeatures v0.3.1
+    Checking fastrand v2.5.0
+    Checking tokio v1.54.1
+    Checking tempfile v3.27.0
+    Checking rustyline v19.0.0
+    Checking toml_edit v0.25.17+spec-1.1.0
+    Checking volant-protocol v0.1.0-alpha.13
+    Checking saphyr v0.2.2
+    Checking pbkdf2 v0.12.2
+    Checking minijinja-contrib v3.0.1
+    Checking mimalloc v0.1.52
+    Checking clap v4.6.7
+    Checking regex v1.13.1
+    Checking sha2 v0.10.9
+    Checking aes v0.8.4
+    Checking ctr v0.9.2
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 53.15s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-26 23:28 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 23:28 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 23:29 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 23:30 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 23:30 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-26 23:30 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: eryx 0.12.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>eryx <span class="version">0.12.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 289746</span>
+      <a class="muted" href="https://crates.io/crates/eryx/0.12.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="289746.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="289746.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="289746-diff.html">Compare with 0.12.0</a>
+    </p>
+    <p class="headline">high severity yara:reverse_shell in test code: Reverse shell idioms</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">66</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:yara:reverse_shell</span><div class="sub">static · eryx</div></td><td class="mono where"><a href="https://crates.io/crates/eryx/0.12.1/code/tests/socket_bypass_security.rs#L254" rel="noreferrer noopener" target="_blank">tests/socket_bypass_security.rs:254</a></td><td>high severity yara:reverse_shell in test code: Reverse shell idioms</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · eryx</div></td><td class="mono where"><a href="https://crates.io/crates/eryx/0.12.1/code/tests/vfs_bypass_security.rs#L336" rel="noreferrer noopener" target="_blank">tests/vfs_bypass_security.rs:336</a></td><td>medium severity credential_access in test code: \u{a}import os\u{a}\u{a}# Attack: Try to access absolute paths outside the sandbox\u{a}dangerous_paths = [\u{a}    &#39;/etc/passwd&#39;,\u{a}    &#39;/etc/shadow&#39;,\u{a}    &#39;/proc/self/environ&#39;,\u{a}    &#39;/proc/1/…</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · eryx</div></td><td class="mono where"><a href="https://crates.io/crates/eryx/0.12.1/code/src/embedded_stdlib.rs#L35" rel="noreferrer noopener" target="_blank">src/embedded_stdlib.rs:35</a></td><td>medium severity included_binary in library code: python-stdlib.tar.zst (2995481 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · eryx</div></td><td class="mono where"><a href="https://crates.io/crates/eryx/0.12.1/code/examples/memory_bench.rs#L216" rel="noreferrer noopener" target="_blank">examples/memory_bench.rs:216</a></td><td>medium severity shell_command in binary code (4 places):   curl -sL https://github.com/dicej/wasi-wheels/releases/download/v0.0.2/numpy-wasi.tar.gz -o /tmp/numpy-wasi.tar.gz</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · eryx</div></td><td class="mono where"><a href="https://crates.io/crates/eryx/0.12.1/code/tests/vfs_bypass_security.rs#L1512" rel="noreferrer noopener" target="_blank">tests/vfs_bypass_security.rs:1512</a></td><td>medium severity yara:persistence_locations in test code: Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · eryx</div></td><td class="mono where"><a href="https://crates.io/crates/eryx/0.12.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:included_binary</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> <code class="chip">static:yara:reverse_shell</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">66</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">7</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">23</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">35</span></label>
+  <span class="muted">14 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">yara_match reverse_shell</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Reverse shell idioms</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/socket_bypass_security.rs#L254" rel="noreferrer noopener" target="_blank">tests/socket_bypass_security.rs:254</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">binary</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">  curl -sL https://github.com/dicej/wasi-wheels/releases/download/v0.0.2/numpy-wasi.tar.gz -o /tmp/numpy-wasi.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/memory_bench.rs#L216" rel="noreferrer noopener" target="_blank">examples/memory_bench.rs:216</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/numpy_native.rs#L66" rel="noreferrer noopener" target="_blank">examples/numpy_native.rs:66</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/numpy_preinit.rs#L71" rel="noreferrer noopener" target="_blank">examples/numpy_preinit.rs:71</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/package_loading.rs#L39" rel="noreferrer noopener" target="_blank">examples/package_loading.rs:39</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">\u{a}import os\u{a}\u{a}# Attack: Try to access absolute paths outside the sandbox\u{a}dangerous_paths = [\u{a}    &#39;/etc/passwd&#39;,\u{a}    &#39;/etc/shadow&#39;,\u{a}    &#39;/proc/self/environ&#39;,\u{a}    &#39;/proc/1/…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/vfs_bypass_security.rs#L336" rel="noreferrer noopener" target="_blank">tests/vfs_bypass_security.rs:336</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">python-stdlib.tar.zst (2995481 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/embedded_stdlib.rs#L35" rel="noreferrer noopener" target="_blank">src/embedded_stdlib.rs:35</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/vfs_bypass_security.rs#L1512" rel="noreferrer noopener" target="_blank">tests/vfs_bypass_security.rs:1512</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">13</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L766" rel="noreferrer noopener" target="_blank">src/net.rs:766</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L767" rel="noreferrer noopener" target="_blank">src/net.rs:767</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::lookup_host</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L1085" rel="noreferrer noopener" target="_blank">src/net.rs:1085</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L1154" rel="noreferrer noopener" target="_blank">src/net.rs:1154</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2520" rel="noreferrer noopener" target="_blank">src/net.rs:2520</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2551" rel="noreferrer noopener" target="_blank">src/net.rs:2551</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2518" rel="noreferrer noopener" target="_blank">src/net.rs:2518</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2549" rel="noreferrer noopener" target="_blank">src/net.rs:2549</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2750" rel="noreferrer noopener" target="_blank">src/net.rs:2750</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2865" rel="noreferrer noopener" target="_blank">src/net.rs:2865</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2902" rel="noreferrer noopener" target="_blank">src/net.rs:2902</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2933" rel="noreferrer noopener" target="_blank">src/net.rs:2933</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L3012" rel="noreferrer noopener" target="_blank">src/net.rs:3012</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">9</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/guest_runtime_fixes.rs#L264" rel="noreferrer noopener" target="_blank">tests/guest_runtime_fixes.rs:264</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/guest_runtime_fixes.rs#L298" rel="noreferrer noopener" target="_blank">tests/guest_runtime_fixes.rs:298</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/net_session_correctness.rs#L19" rel="noreferrer noopener" target="_blank">tests/net_session_correctness.rs:19</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/secrets_exfiltration_security.rs#L37" rel="noreferrer noopener" target="_blank">tests/secrets_exfiltration_security.rs:37</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/secrets_integration_test.rs#L31" rel="noreferrer noopener" target="_blank">tests/secrets_integration_test.rs:31</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/tls_hostname_binding.rs#L10" rel="noreferrer noopener" target="_blank">tests/tls_hostname_binding.rs:10</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/tls_networking.rs#L54" rel="noreferrer noopener" target="_blank">tests/tls_networking.rs:54</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/tls_networking.rs#L813" rel="noreferrer noopener" target="_blank">tests/tls_networking.rs:813</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/tls_networking.rs#L1163" rel="noreferrer noopener" target="_blank">tests/tls_networking.rs:1163</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">17</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/callback_setup_cache.rs#L33" rel="noreferrer noopener" target="_blank">tests/callback_setup_cache.rs:33</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/core-sandbox-pool.rs#L154" rel="noreferrer noopener" target="_blank">tests/core-sandbox-pool.rs:154</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/error_handling.rs#L43" rel="noreferrer noopener" target="_blank">tests/error_handling.rs:43</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/fuel_limits.rs#L30" rel="noreferrer noopener" target="_blank">tests/fuel_limits.rs:30</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/guest_runtime_fixes.rs#L227" rel="noreferrer noopener" target="_blank">tests/guest_runtime_fixes.rs:227</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/pool_capacity.rs#L19" rel="noreferrer noopener" target="_blank">tests/pool_capacity.rs:19</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/pool_release.rs#L17" rel="noreferrer noopener" target="_blank">tests/pool_release.rs:17</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/pooling_native_extensions.rs#L32" rel="noreferrer noopener" target="_blank">tests/pooling_native_extensions.rs:32</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/preinit.rs#L174" rel="noreferrer noopener" target="_blank">tests/preinit.rs:174</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/session_abandoned_callback.rs#L167" rel="noreferrer noopener" target="_blank">tests/session_abandoned_callback.rs:167</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/session_and_stream_limits.rs#L18" rel="noreferrer noopener" target="_blank">tests/session_and_stream_limits.rs:18</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/session_limits.rs#L23" rel="noreferrer noopener" target="_blank">tests/session_limits.rs:23</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/session_state_persistence.rs#L74" rel="noreferrer noopener" target="_blank">tests/session_state_persistence.rs:74</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/vfs_correctness.rs#L20" rel="noreferrer noopener" target="_blank">tests/vfs_correctness.rs:20</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/vfs_volumes.rs#L18" rel="noreferrer noopener" target="_blank">tests/vfs_volumes.rs:18</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/warm_instances.rs#L238" rel="noreferrer noopener" target="_blank">tests/warm_instances.rs:238</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/cpu_feature_portability.rs#L64" rel="noreferrer noopener" target="_blank">tests/cpu_feature_portability.rs:64</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">binary</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/benches/execution.rs#L242" rel="noreferrer noopener" target="_blank">benches/execution.rs:242</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/jinja2_sandbox.rs#L103" rel="noreferrer noopener" target="_blank">examples/jinja2_sandbox.rs:103</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/memory_bench.rs#L350" rel="noreferrer noopener" target="_blank">examples/memory_bench.rs:350</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/numpy_preinit.rs#L161" rel="noreferrer noopener" target="_blank">examples/numpy_preinit.rs:161</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/precompile.rs#L174" rel="noreferrer noopener" target="_blank">examples/precompile.rs:174</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/session_bench.rs#L71" rel="noreferrer noopener" target="_blank">examples/session_bench.rs:71</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/numpy_native.rs#L106" rel="noreferrer noopener" target="_blank">examples/numpy_native.rs:106</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">  curl -sL https://github.com/dicej/wasi-wheels/releases/download/v0.0.2/numpy-wasi.tar.gz -o /tmp/numpy-wasi.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/memory_bench.rs#L216" rel="noreferrer noopener" target="_blank">examples/memory_bench.rs:216</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/numpy_native.rs#L66" rel="noreferrer noopener" target="_blank">examples/numpy_native.rs:66</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/numpy_preinit.rs#L71" rel="noreferrer noopener" target="_blank">examples/numpy_preinit.rs:71</a> <a class="place" href="https://crates.io/crates/eryx/0.12.1/code/examples/package_loading.rs#L39" rel="noreferrer noopener" target="_blank">examples/package_loading.rs:39</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L1597" rel="noreferrer noopener" target="_blank">src/net.rs:1597</a> </span></li>
+
+<li><code class="evidence-text">GET https://api.example.com:443/x HTTP/1.1\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/net.rs#L2975" rel="noreferrer noopener" target="_blank">src/net.rs:2975</a> </span></li>
+
+<li><code class="evidence-text">{&#34;url&#34;: &#34;https://example.com&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/wasm.rs#L3637" rel="noreferrer noopener" target="_blank">src/wasm.rs:3637</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/sandbox.rs#L980" rel="noreferrer noopener" target="_blank">src/sandbox.rs:980</a> </span></li>
+
+<li><code class="evidence-text">15 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/src/wasm.rs#L2240" rel="noreferrer noopener" target="_blank">src/wasm.rs:2240</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">\u{a}try:\u{a}    import subprocess\u{a}\u{a}    # Try to use curl/wget via subprocess\u{a}    try:\u{a}        result = subprocess.run([&#34;curl&#34;, &#34;http://example.com&#34;], capture_output=True, timeout=5)…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/socket_bypass_security.rs#L295" rel="noreferrer noopener" target="_blank">tests/socket_bypass_security.rs:295</a> </span></li>
+
+<li><code class="evidence-text">\u{a}# Attack: urllib/http.client are high-level but use socket internally\u{a}try:\u{a}    import urllib.request\u{a}\u{a}    # This should use socket internally - does it bypass our shim?\u{a}    tr…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/eryx/0.12.1/code/tests/socket_bypass_security.rs#L1073" rel="noreferrer noopener" target="_blank">tests/socket_bypass_security.rs:1073</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>388 ms</dd></div><div><dt>VM restore</dt><dd>55 ms</dd></div><div><dt>Payload</dt><dd>20094 files, 423.2 MiB</dd></div><div><dt>Files opened</dt><dd>652</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.</p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">380 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>7</dd></div><div><dt>Directories</dt><dd>12</dd></div><div><dt>Size</dt><dd>56.6 KiB</dd></div><div><dt>Compiled units</dt><dd>0</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>error: rustc 1.98.1 is not supported by the following packages:
+  eryx@0.12.1 requires rustc 1.99.1
+  eryx@0.12.1 requires rustc 1.99.1
+  eryx@0.12.1 requires rustc 1.99.1
+Either upgrade rustc or select compatible dependency versions with
+`cargo update &#60;name&#62;@&#60;current-ver&#62; --precise &#60;compatible-ver&#62;`
+where `&#60;compatible-ver&#62;` is the latest version supporting rustc 1.98.1
+
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-27 15:28 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 15:28 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 15:28 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 15:28 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 15:28 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 15:28 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

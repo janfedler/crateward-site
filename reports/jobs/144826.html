@@ -1,0 +1,2027 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: boxlite 0.10.6</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>boxlite <span class="version">0.10.6</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 144826</span>
+      <a class="muted" href="https://crates.io/crates/boxlite/0.10.6" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="144826.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="144826.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity environment_enumeration in build_script code: std::env::vars</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">45</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">9</span></a>
+  <a href="#behavior">Behavior <span class="count">7</span></a>
+  <a href="#findings">Static findings <span class="count">378</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L227" rel="noreferrer noopener" target="_blank">build.rs:227</a></td><td>high severity environment_enumeration in build_script code: std::env::vars</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · boxlite</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · boxlite</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>6 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L606" rel="noreferrer noopener" target="_blank">build.rs:606</a></td><td>high severity downloader_pattern in build_script code: https://github.com/boxlite-ai/boxlite/releases/download/v{version}/boxlite-runtime-v{version}-{target}.tar.gz at build.rs:606 with std::process::Command::new at build.rs:501</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L501" rel="noreferrer noopener" target="_blank">build.rs:501</a></td><td>medium severity process_spawn in build_script code (76 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L507" rel="noreferrer noopener" target="_blank">build.rs:507</a></td><td>high severity shell_command in build_script code (3 places): curl failed: {}</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L606" rel="noreferrer noopener" target="_blank">build.rs:606</a></td><td>low severity url_literal in build_script code (95 places): https://github.com/boxlite-ai/boxlite/releases/download/v{version}/boxlite-runtime-v{version}-{target}.tar.gz</td></tr>
+
+<tr><td class="signal"><span class="word">static:yara:sandbox_evasion</span><div class="sub">static · boxlite</div></td><td class="mono where"><a href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/aarch64-unknown-linux-gnu.json#L436" rel="noreferrer noopener" target="_blank">resources/seccomp/aarch64-unknown-linux-gnu.json:436</a></td><td>medium severity yara:sandbox_evasion in library code (17 places): Checks for virtual machines, sandboxes or debuggers</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">net:github.com</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:environment_enumeration</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:sandbox_evasion</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">378</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">22</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">219</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">134</span></label>
+  <span class="muted">19 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/boxlite-ai/boxlite/releases/download/v{version}/boxlite-runtime-v{version}-{target}.tar.gz at build.rs:606 with std::process::Command::new at build.rs:501</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L606" rel="noreferrer noopener" target="_blank">build.rs:606</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">environment_enumeration</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L227" rel="noreferrer noopener" target="_blank">build.rs:227</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">curl failed: {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L507" rel="noreferrer noopener" target="_blank">build.rs:507</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match sandbox_evasion</span> <span class="context">library</span> <span class="count">17</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Checks for virtual machines, sandboxes or debuggers</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/aarch64-unknown-linux-gnu.json#L436" rel="noreferrer noopener" target="_blank">resources/seccomp/aarch64-unknown-linux-gnu.json:436</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/aarch64-unknown-linux-musl.json#L436" rel="noreferrer noopener" target="_blank">resources/seccomp/aarch64-unknown-linux-musl.json:436</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/x86_64-unknown-linux-gnu.json#L436" rel="noreferrer noopener" target="_blank">resources/seccomp/x86_64-unknown-linux-gnu.json:436</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/x86_64-unknown-linux-gnu.original.json#L388" rel="noreferrer noopener" target="_blank">resources/seccomp/x86_64-unknown-linux-gnu.original.json:388</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/x86_64-unknown-linux-musl.json#L436" rel="noreferrer noopener" target="_blank">resources/seccomp/x86_64-unknown-linux-musl.json:436</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/resources/seccomp/x86_64-unknown-linux-musl.original.json#L388" rel="noreferrer noopener" target="_blank">resources/seccomp/x86_64-unknown-linux-musl.original.json:388</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/THREAT_MODEL.md#L322" rel="noreferrer noopener" target="_blank">src/jailer/THREAT_MODEL.md:322</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/cgroup.rs#L75" rel="noreferrer noopener" target="_blank">src/jailer/cgroup.rs:75</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/mod.rs#L4" rel="noreferrer noopener" target="_blank">src/jailer/mod.rs:4</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/seccomp.rs#L30" rel="noreferrer noopener" target="_blank">src/jailer/seccomp.rs:30</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/shim_copy.rs#L1" rel="noreferrer noopener" target="_blank">src/jailer/shim_copy.rs:1</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/config.rs#L120" rel="noreferrer noopener" target="_blank">src/net/gvproxy/config.rs:120</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rootfs/guest.rs#L33" rel="noreferrer noopener" target="_blank">src/rootfs/guest.rs:33</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/advanced_options.rs#L677" rel="noreferrer noopener" target="_blank">src/runtime/advanced_options.rs:677</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/shim.rs#L268" rel="noreferrer noopener" target="_blank">src/vmm/controller/shim.rs:268</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/mod.rs#L76" rel="noreferrer noopener" target="_blank">src/vmm/mod.rs:76</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/registry.rs#L96" rel="noreferrer noopener" target="_blank">src/vmm/registry.rs:96</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L501" rel="noreferrer noopener" target="_blank">build.rs:501</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L517" rel="noreferrer noopener" target="_blank">build.rs:517</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L1107" rel="noreferrer noopener" target="_blank">build.rs:1107</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">wget -O- --timeout=5 {url} 2&#62;&#38;1; printf &#39;\nEXIT:%s\n&#39; $?</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L238" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:238</a> </span></li>
+
+<li><code class="evidence-text">wget -q -O /dev/null --timeout=3 http://1.1.1.1/ 2&#62;&#38;1; echo EXIT:$?</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/security_enforcement.rs#L383" rel="noreferrer noopener" target="_blank">tests/security_enforcement.rs:383</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">131</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/landlock.rs#L517" rel="noreferrer noopener" target="_blank">src/jailer/landlock.rs:517</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L1420" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:1420</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L58" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:58</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L929" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:929</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/portal/interfaces/container.rs#L382" rel="noreferrer noopener" target="_blank">src/portal/interfaces/container.rs:382</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/landlock.rs#L521" rel="noreferrer noopener" target="_blank">src/jailer/landlock.rs:521</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/landlock.rs#L537" rel="noreferrer noopener" target="_blank">src/jailer/landlock.rs:537</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/box_impl.rs#L1794" rel="noreferrer noopener" target="_blank">src/litebox/box_impl.rs:1794</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L499" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:499</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L764" rel="noreferrer noopener" target="_blank">src/rest/client.rs:764</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L798" rel="noreferrer noopener" target="_blank">src/rest/client.rs:798</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L833" rel="noreferrer noopener" target="_blank">src/rest/client.rs:833</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L907" rel="noreferrer noopener" target="_blank">src/rest/client.rs:907</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L956" rel="noreferrer noopener" target="_blank">src/rest/client.rs:956</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1078" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1078</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1158" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1158</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1581" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1581</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1610" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1610</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1650" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1650</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1692" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1692</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1756" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1756</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1799" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1799</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1863" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1863</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1900" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1900</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1973" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1973</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2033" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2033</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2092" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2092</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2169" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2169</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2241" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2241</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2302" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2302</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2348" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2348</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2405" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2405</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2472" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2472</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2573" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2573</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L417" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:417</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/init/tasks/guest_connect.rs#L142" rel="noreferrer noopener" target="_blank">src/litebox/init/tasks/guest_connect.rs:142</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L529" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:529</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L1017" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:1017</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/ssh_tests.rs#L213" rel="noreferrer noopener" target="_blank">src/litebox/ssh_tests.rs:213</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/ssh_tests.rs#L632" rel="noreferrer noopener" target="_blank">src/litebox/ssh_tests.rs:632</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L692" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:692</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L708" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:708</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L920" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:920</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L998" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:998</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L1395" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:1395</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L1452" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:1452</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/init/tasks/guest_connect.rs#L324" rel="noreferrer noopener" target="_blank">src/litebox/init/tasks/guest_connect.rs:324</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/init/tasks/guest_connect.rs#L388" rel="noreferrer noopener" target="_blank">src/litebox/init/tasks/guest_connect.rs:388</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L116" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:116</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L452" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:452</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/portal/connection.rs#L69" rel="noreferrer noopener" target="_blank">src/portal/connection.rs:69</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L75" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:75</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L603" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:603</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L763" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:763</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L720" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:720</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L750" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:750</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/mod.rs#L258" rel="noreferrer noopener" target="_blank">src/net/mod.rs:258</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/mod.rs#L277" rel="noreferrer noopener" target="_blank">src/net/mod.rs:277</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::into_split</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L77" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:77</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::from_std</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L324" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:324</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L1131" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:1131</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L488" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:488</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L690" rel="noreferrer noopener" target="_blank">src/rest/client.rs:690</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1512" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1512</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L2525" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:2525</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L490" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:490</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L603" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:603</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L67" rel="noreferrer noopener" target="_blank">src/rest/client.rs:67</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1367" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1367</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1434" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1434</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1453" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1453</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::pair</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L716" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:716</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L733" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:733</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L769" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:769</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L1082" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:1082</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L1117" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:1117</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L1239" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:1239</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/mod.rs#L737" rel="noreferrer noopener" target="_blank">src/net/mod.rs:737</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L795" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:795</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L873" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:873</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L909" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:909</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L915" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:915</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L924" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:924</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L952" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:952</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L51" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:51</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L52" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:52</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L59" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:59</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L1007" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:1007</a> </span></li>
+
+<li><code class="evidence-text">hyper::client::conn::http1::handshake</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L125" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:125</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L413" rel="noreferrer noopener" target="_blank">src/rest/client.rs:413</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::legacy::connect::HttpConnector</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L58" rel="noreferrer noopener" target="_blank">src/rest/client.rs:58</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L78" rel="noreferrer noopener" target="_blank">src/rest/client.rs:78</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L99" rel="noreferrer noopener" target="_blank">src/rest/client.rs:99</a> </span></li>
+
+<li><code class="evidence-text">reqwest::RequestBuilder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L177" rel="noreferrer noopener" target="_blank">src/rest/client.rs:177</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L177" rel="noreferrer noopener" target="_blank">src/rest/client.rs:177</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L192" rel="noreferrer noopener" target="_blank">src/rest/client.rs:192</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L227" rel="noreferrer noopener" target="_blank">src/rest/client.rs:227</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L255" rel="noreferrer noopener" target="_blank">src/rest/client.rs:255</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L471" rel="noreferrer noopener" target="_blank">src/rest/client.rs:471</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L242" rel="noreferrer noopener" target="_blank">src/rest/client.rs:242</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L28" rel="noreferrer noopener" target="_blank">src/rest/error.rs:28</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L48" rel="noreferrer noopener" target="_blank">src/rest/error.rs:48</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L111" rel="noreferrer noopener" target="_blank">src/rest/error.rs:111</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L166" rel="noreferrer noopener" target="_blank">src/rest/error.rs:166</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L180" rel="noreferrer noopener" target="_blank">src/rest/error.rs:180</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Response</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L243" rel="noreferrer noopener" target="_blank">src/rest/client.rs:243</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1144" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1144</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_LENGTH</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L256" rel="noreferrer noopener" target="_blank">src/rest/client.rs:256</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L754" rel="noreferrer noopener" target="_blank">src/rest/client.rs:754</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L461" rel="noreferrer noopener" target="_blank">src/rest/client.rs:461</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L589" rel="noreferrer noopener" target="_blank">src/rest/client.rs:589</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::BAD_GATEWAY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1196" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1196</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::from_u16</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L301" rel="noreferrer noopener" target="_blank">src/rest/error.rs:301</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L406" rel="noreferrer noopener" target="_blank">src/rest/error.rs:406</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L485" rel="noreferrer noopener" target="_blank">src/rest/error.rs:485</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L576" rel="noreferrer noopener" target="_blank">src/rest/error.rs:576</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::BAD_REQUEST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L335" rel="noreferrer noopener" target="_blank">src/rest/error.rs:335</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L522" rel="noreferrer noopener" target="_blank">src/rest/error.rs:522</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::TOO_MANY_REQUESTS</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L345" rel="noreferrer noopener" target="_blank">src/rest/error.rs:345</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::IM_A_TEAPOT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L360" rel="noreferrer noopener" target="_blank">src/rest/error.rs:360</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::SERVICE_UNAVAILABLE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L377" rel="noreferrer noopener" target="_blank">src/rest/error.rs:377</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L548" rel="noreferrer noopener" target="_blank">src/rest/error.rs:548</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::INTERNAL_SERVER_ERROR</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L422" rel="noreferrer noopener" target="_blank">src/rest/error.rs:422</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::UNAUTHORIZED</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L431" rel="noreferrer noopener" target="_blank">src/rest/error.rs:431</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::FORBIDDEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L433" rel="noreferrer noopener" target="_blank">src/rest/error.rs:433</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::NOT_FOUND</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L440" rel="noreferrer noopener" target="_blank">src/rest/error.rs:440</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L594" rel="noreferrer noopener" target="_blank">src/rest/error.rs:594</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::CONFLICT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/error.rs#L504" rel="noreferrer noopener" target="_blank">src/rest/error.rs:504</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Body::wrap_stream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L343" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:343</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PUT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L353" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:353</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::GET</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L381" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:381</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">65</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/db/boxes.rs#L322" rel="noreferrer noopener" target="_blank">src/db/boxes.rs:322</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L408" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:408</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L555" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:555</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L615" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:615</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L868" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:868</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L892" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:892</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L963" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:963</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L1445" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:1445</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/qcow2.rs#L153" rel="noreferrer noopener" target="_blank">src/disk/qcow2.rs:153</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/qcow2.rs#L775" rel="noreferrer noopener" target="_blank">src/disk/qcow2.rs:775</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L54" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:54</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L133" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:133</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L288" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:288</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L483" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:483</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/mod.rs#L496" rel="noreferrer noopener" target="_blank">src/jailer/mod.rs:496</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/mod.rs#L939" rel="noreferrer noopener" target="_blank">src/jailer/mod.rs:939</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L153" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:153</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L161" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:161</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L175" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:175</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L246" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:246</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L278" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:278</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/bwrap.rs#L208" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/bwrap.rs:208</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/bwrap.rs#L251" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/bwrap.rs:251</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/composite.rs#L236" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/composite.rs:236</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/composite.rs#L253" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/composite.rs:253</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/composite.rs#L274" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/composite.rs:274</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/landlock.rs#L109" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/landlock.rs:109</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L122" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:122</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L1092" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:1092</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L1161" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:1161</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L1282" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:1282</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/box_impl.rs#L2090" rel="noreferrer noopener" target="_blank">src/litebox/box_impl.rs:2090</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/box_impl.rs#L2169" rel="noreferrer noopener" target="_blank">src/litebox/box_impl.rs:2169</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rootfs/guest.rs#L187" rel="noreferrer noopener" target="_blank">src/rootfs/guest.rs:187</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rootfs/guest.rs#L1224" rel="noreferrer noopener" target="_blank">src/rootfs/guest.rs:1224</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rootfs/operations.rs#L64" rel="noreferrer noopener" target="_blank">src/rootfs/operations.rs:64</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rootfs/operations.rs#L101" rel="noreferrer noopener" target="_blank">src/rootfs/operations.rs:101</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/rt_impl.rs#L2218" rel="noreferrer noopener" target="_blank">src/runtime/rt_impl.rs:2218</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/rt_impl.rs#L2237" rel="noreferrer noopener" target="_blank">src/runtime/rt_impl.rs:2237</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/rt_impl.rs#L2754" rel="noreferrer noopener" target="_blank">src/runtime/rt_impl.rs:2754</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/system_check.rs#L345" rel="noreferrer noopener" target="_blank">src/system_check.rs:345</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/process.rs#L412" rel="noreferrer noopener" target="_blank">src/util/process.rs:412</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/spawn.rs#L349" rel="noreferrer noopener" target="_blank">src/vmm/controller/spawn.rs:349</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/spawn.rs#L402" rel="noreferrer noopener" target="_blank">src/vmm/controller/spawn.rs:402</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/watchdog.rs#L233" rel="noreferrer noopener" target="_blank">src/vmm/controller/watchdog.rs:233</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L478" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:478</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L534" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:534</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/command.rs#L157" rel="noreferrer noopener" target="_blank">src/jailer/command.rs:157</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/mod.rs#L165" rel="noreferrer noopener" target="_blank">src/jailer/mod.rs:165</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/mod.rs#L431" rel="noreferrer noopener" target="_blank">src/jailer/mod.rs:431</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L67" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:67</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/bwrap.rs#L62" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/bwrap.rs:62</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/composite.rs#L64" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/composite.rs:64</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/composite.rs#L168" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/composite.rs:168</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/landlock.rs#L38" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/landlock.rs:38</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/mod.rs#L80" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/mod.rs:80</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/mod.rs#L211" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/mod.rs:211</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L110" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:110</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/mod.rs#L97" rel="noreferrer noopener" target="_blank">src/util/mod.rs:97</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/spawn.rs#L185" rel="noreferrer noopener" target="_blank">src/vmm/controller/spawn.rs:185</a> </span></li>
+
+<li><code class="evidence-text">libc::fork</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/common/fd.rs#L90" rel="noreferrer noopener" target="_blank">src/jailer/common/fd.rs:90</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/seccomp.rs#L480" rel="noreferrer noopener" target="_blank">src/jailer/seccomp.rs:480</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/init/tasks/guest_connect.rs#L558" rel="noreferrer noopener" target="_blank">src/litebox/init/tasks/guest_connect.rs:558</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/process.rs#L322" rel="noreferrer noopener" target="_blank">src/util/process.rs:322</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::from</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/mod.rs#L942" rel="noreferrer noopener" target="_blank">src/jailer/mod.rs:942</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">9</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::UnixStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L331" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:331</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L532" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:532</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L544" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:544</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/gvproxy_backend.rs#L204" rel="noreferrer noopener" target="_blank">tests/gvproxy_backend.rs:204</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L355" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:355</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L395" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:395</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L258" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:258</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L309" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:309</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L332" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:332</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L339" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:339</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L361" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:361</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L479" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:479</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L354" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:354</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L362" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:362</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/health_check.rs#L121" rel="noreferrer noopener" target="_blank">tests/health_check.rs:121</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/run_main_command.rs#L314" rel="noreferrer noopener" target="_blank">tests/run_main_command.rs:314</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/sigstop_quiesce.rs#L104" rel="noreferrer noopener" target="_blank">tests/sigstop_quiesce.rs:104</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/system_check.rs#L162" rel="noreferrer noopener" target="_blank">src/system_check.rs:162</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/system_check.rs#L255" rel="noreferrer noopener" target="_blank">src/system_check.rs:255</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/mod.rs#L27" rel="noreferrer noopener" target="_blank">src/util/mod.rs:27</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://github.com/boxlite-ai/boxlite/releases/download/v{version}/boxlite-runtime-v{version}-{target}.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L606" rel="noreferrer noopener" target="_blank">build.rs:606</a> </span></li>
+
+<li><code class="evidence-text">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;\u{a}&#60;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&#62;\u{a}&#60;plist version=&#34;1.0&#34;&#62;\u{a}&#60;dict&#62;\u{a}    &#60;key&#62;com.…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L1077" rel="noreferrer noopener" target="_blank">build.rs:1077</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">77</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/images/store.rs#L1094" rel="noreferrer noopener" target="_blank">src/images/store.rs:1094</a> </span></li>
+
+<li><code class="evidence-text">http://registry.local:5000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/images/store.rs#L1261" rel="noreferrer noopener" target="_blank">src/images/store.rs:1261</a> </span></li>
+
+<li><code class="evidence-text">https://evil.example.com/blob</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/images/store.rs#L1553" rel="noreferrer noopener" target="_blank">src/images/store.rs:1553</a> </span></li>
+
+<li><code class="evidence-text">\u{a}  See: https://boxlite.dev/docs/faq#sandbox-userns</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/bwrap.rs#L255" rel="noreferrer noopener" target="_blank">src/jailer/bwrap.rs:255</a> </span></li>
+
+<li><code class="evidence-text">vsock://2:2695</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/command.rs#L34" rel="noreferrer noopener" target="_blank">src/jailer/command.rs:34</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/command.rs#L42" rel="noreferrer noopener" target="_blank">src/jailer/command.rs:42</a> </span></li>
+
+<li><code class="evidence-text">http://{address}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/box_impl.rs#L1810" rel="noreferrer noopener" target="_blank">src/litebox/box_impl.rs:1810</a> </span></li>
+
+<li><code class="evidence-text">tcp://{address}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L35" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:35</a> </span></li>
+
+<li><code class="evidence-text">https://3000-box.proxy.example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L717" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:717</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L719" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:719</a> </span></li>
+
+<li><code class="evidence-text">tcp://[::1]:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/network.rs#L1051" rel="noreferrer noopener" target="_blank">src/litebox/network.rs:1051</a> </span></li>
+
+<li><code class="evidence-text">tcp://192.168.127.2:80</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/services.rs#L1042" rel="noreferrer noopener" target="_blank">src/net/gvproxy/services.rs:1042</a> </span></li>
+
+<li><code class="evidence-text">http://[::]:50051</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/portal/connection.rs#L64" rel="noreferrer noopener" target="_blank">src/portal/connection.rs:64</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/portal/connection.rs#L80" rel="noreferrer noopener" target="_blank">src/portal/connection.rs:80</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/litebox.rs#L1389" rel="noreferrer noopener" target="_blank">src/rest/litebox.rs:1389</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/portal/interfaces/container.rs#L397" rel="noreferrer noopener" target="_blank">src/portal/interfaces/container.rs:397</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L356" rel="noreferrer noopener" target="_blank">src/rest/client.rs:356</a> </span></li>
+
+<li><code class="evidence-text">wss://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L357" rel="noreferrer noopener" target="_blank">src/rest/client.rs:357</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L358" rel="noreferrer noopener" target="_blank">src/rest/client.rs:358</a> </span></li>
+
+<li><code class="evidence-text">ws://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L359" rel="noreferrer noopener" target="_blank">src/rest/client.rs:359</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L739" rel="noreferrer noopener" target="_blank">src/rest/client.rs:739</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1151" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1151</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L450" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:450</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L471" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:471</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L598" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:598</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L620" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:620</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L646" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:646</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L672" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:672</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L695" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:695</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L721" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:721</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L744" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:744</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L767" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:767</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L783" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:783</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L803" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:803</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L832" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:832</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L857" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:857</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L877" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:877</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L901" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:901</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L923" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:923</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L745" rel="noreferrer noopener" target="_blank">src/rest/client.rs:745</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1243" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1243</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1254" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1254</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1266" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1266</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1281" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1281</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1294" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1294</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/options.rs#L139" rel="noreferrer noopener" target="_blank">src/rest/options.rs:139</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/options.rs#L140" rel="noreferrer noopener" target="_blank">src/rest/options.rs:140</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/options.rs#L147" rel="noreferrer noopener" target="_blank">src/rest/options.rs:147</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/options.rs#L156" rel="noreferrer noopener" target="_blank">src/rest/options.rs:156</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/options.rs#L162" rel="noreferrer noopener" target="_blank">src/rest/options.rs:162</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/options.rs#L169" rel="noreferrer noopener" target="_blank">src/rest/options.rs:169</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L775" rel="noreferrer noopener" target="_blank">src/rest/client.rs:775</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L809" rel="noreferrer noopener" target="_blank">src/rest/client.rs:809</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L855" rel="noreferrer noopener" target="_blank">src/rest/client.rs:855</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L857" rel="noreferrer noopener" target="_blank">src/rest/client.rs:857</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L923" rel="noreferrer noopener" target="_blank">src/rest/client.rs:923</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L926" rel="noreferrer noopener" target="_blank">src/rest/client.rs:926</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L972" rel="noreferrer noopener" target="_blank">src/rest/client.rs:972</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L974" rel="noreferrer noopener" target="_blank">src/rest/client.rs:974</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1110" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1110</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1185" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1185</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L496" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:496</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L515" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:515</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L543" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:543</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L559" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:559</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/runtime.rs#L575" rel="noreferrer noopener" target="_blank">src/rest/runtime.rs:575</a> </span></li>
+
+<li><code class="evidence-text">{&#34;uri&#34;:&#34;http://127.0.0.1:9/tunnel&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1095" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1095</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9/tunnel</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1113" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1113</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/v1/acme/boxes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1247" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1247</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/v1/boxes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1258" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1258</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1270" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1270</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/v1/us-east/team-42/boxes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1285" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1285</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/v1/me</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rest/client.rs#L1298" rel="noreferrer noopener" target="_blank">src/rest/client.rs:1298</a> </span></li>
+
+<li><code class="evidence-text">KVM smoke test failed: vCPU exit reason {exit_reason} (expected {expected})\u{a}\u{a}/dev/kvm exists but cannot execute guest code (host kernel: {kernel}).\u{a}\u{a}Suggestions:\u{a}- Ensure nested vi…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/system_check.rs#L228" rel="noreferrer noopener" target="_blank">src/system_check.rs:228</a> </span></li>
+
+<li><code class="evidence-text">--{} unix://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/krun/engine.rs#L76" rel="noreferrer noopener" target="_blank">src/vmm/krun/engine.rs:76</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/krun/engine.rs#L123" rel="noreferrer noopener" target="_blank">src/vmm/krun/engine.rs:123</a> </span></li>
+
+<li><code class="evidence-text">unix://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/krun/engine.rs#L129" rel="noreferrer noopener" target="_blank">src/vmm/krun/engine.rs:129</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">35</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/disk/ext4.rs#L381" rel="noreferrer noopener" target="_blank">src/disk/ext4.rs:381</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/images/archive/extractor.rs#L146" rel="noreferrer noopener" target="_blank">src/images/archive/extractor.rs:146</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/shim.rs#L95" rel="noreferrer noopener" target="_blank">src/vmm/controller/shim.rs:95</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/krun/engine.rs#L29" rel="noreferrer noopener" target="_blank">src/vmm/krun/engine.rs:29</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/cgroup.rs#L53" rel="noreferrer noopener" target="_blank">src/jailer/cgroup.rs:53</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/spawn.rs#L426" rel="noreferrer noopener" target="_blank">src/vmm/controller/spawn.rs:426</a> </span></li>
+
+<li><code class="evidence-text">18 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/common/fd.rs#L33" rel="noreferrer noopener" target="_blank">src/jailer/common/fd.rs:33</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/common/mod.rs#L22" rel="noreferrer noopener" target="_blank">src/jailer/common/mod.rs:22</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/common/rlimit.rs#L27" rel="noreferrer noopener" target="_blank">src/jailer/common/rlimit.rs:27</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/seatbelt.rs#L426" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/seatbelt.rs:426</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/ca.rs#L109" rel="noreferrer noopener" target="_blank">src/net/ca.rs:109</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/logging.rs#L35" rel="noreferrer noopener" target="_blank">src/net/gvproxy/logging.rs:35</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/portal/interfaces/exec.rs#L665" rel="noreferrer noopener" target="_blank">src/portal/interfaces/exec.rs:665</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/lock.rs#L62" rel="noreferrer noopener" target="_blank">src/runtime/lock.rs:62</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/credentials.rs#L60" rel="noreferrer noopener" target="_blank">src/jailer/credentials.rs:60</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/box_impl.rs#L1411" rel="noreferrer noopener" target="_blank">src/litebox/box_impl.rs:1411</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/litebox/init/tasks/guest_connect.rs#L554" rel="noreferrer noopener" target="_blank">src/litebox/init/tasks/guest_connect.rs:554</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/socket_path.rs#L74" rel="noreferrer noopener" target="_blank">src/net/socket_path.rs:74</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/system_check.rs#L166" rel="noreferrer noopener" target="_blank">src/system_check.rs:166</a> </span></li>
+
+<li><code class="evidence-text">11 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/landlock.rs#L154" rel="noreferrer noopener" target="_blank">src/jailer/landlock.rs:154</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/pre_exec.rs#L92" rel="noreferrer noopener" target="_blank">src/jailer/pre_exec.rs:92</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/bwrap.rs#L163" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/bwrap.rs:163</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/sandbox/landlock.rs#L45" rel="noreferrer noopener" target="_blank">src/jailer/sandbox/landlock.rs:45</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/instance.rs#L196" rel="noreferrer noopener" target="_blank">src/net/gvproxy/instance.rs:196</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/rootfs/copy_mount.rs#L576" rel="noreferrer noopener" target="_blank">src/rootfs/copy_mount.rs:576</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/core.rs#L216" rel="noreferrer noopener" target="_blank">src/runtime/core.rs:216</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/runtime/rt_impl.rs#L900" rel="noreferrer noopener" target="_blank">src/runtime/rt_impl.rs:900</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/jailer/seccomp.rs#L199" rel="noreferrer noopener" target="_blank">src/jailer/seccomp.rs:199</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/process.rs#L82" rel="noreferrer noopener" target="_blank">src/util/process.rs:82</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/lock/file.rs#L304" rel="noreferrer noopener" target="_blank">src/lock/file.rs:304</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/mod.rs#L43" rel="noreferrer noopener" target="_blank">src/util/mod.rs:43</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/net/gvproxy/ffi.rs#L35" rel="noreferrer noopener" target="_blank">src/net/gvproxy/ffi.rs:35</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/util/pid_file.rs#L63" rel="noreferrer noopener" target="_blank">src/util/pid_file.rs:63</a> </span></li>
+
+<li><code class="evidence-text">13 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/controller/watchdog.rs#L50" rel="noreferrer noopener" target="_blank">src/vmm/controller/watchdog.rs:50</a> </span></li>
+
+<li><code class="evidence-text">31 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/src/vmm/krun/context.rs#L85" rel="noreferrer noopener" target="_blank">src/vmm/krun/context.rs:85</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">16</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://[::]:50051</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/guest_ssh.rs#L327" rel="noreferrer noopener" target="_blank">tests/guest_ssh.rs:327</a> </span></li>
+
+<li><code class="evidence-text">tcp://192.168.127.2:80</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/gvproxy_backend.rs#L166" rel="noreferrer noopener" target="_blank">tests/gvproxy_backend.rs:166</a> </span></li>
+
+<li><code class="evidence-text">https://registry.local</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/image_registries.rs#L41" rel="noreferrer noopener" target="_blank">tests/image_registries.rs:41</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L519" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:519</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L666" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:666</a> </span></li>
+
+<li><code class="evidence-text">http://example.org/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L531" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:531</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L589" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:589</a> </span></li>
+
+<li><code class="evidence-text">http://www.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L578" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:578</a> </span></li>
+
+<li><code class="evidence-text">http://8.8.8.8/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L677" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:677</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L833" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:833</a> </span></li>
+
+<li><code class="evidence-text">http://{HOST_HOSTNAME}:{port}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L880" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:880</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L922" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:922</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L958" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:958</a> </span></li>
+
+<li><code class="evidence-text">http://{HOST_IP}:{port}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/network_spec.rs#L995" rel="noreferrer noopener" target="_blank">tests/network_spec.rs:995</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/rest_integration.rs#L21" rel="noreferrer noopener" target="_blank">tests/rest_integration.rs:21</a> </span></li>
+
+<li><code class="evidence-text">wget -q -O /dev/null --timeout=3 http://1.1.1.1/ 2&#62;&#38;1; echo EXIT:$?</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/security_enforcement.rs#L383" rel="noreferrer noopener" target="_blank">tests/security_enforcement.rs:383</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/exec_user.rs#L139" rel="noreferrer noopener" target="_blank">tests/exec_user.rs:139</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/import_export_benchmark.rs#L382" rel="noreferrer noopener" target="_blank">tests/import_export_benchmark.rs:382</a> <a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/recovery.rs#L116" rel="noreferrer noopener" target="_blank">tests/recovery.rs:116</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/tests/sigstop_quiesce.rs#L48" rel="noreferrer noopener" target="_blank">tests/sigstop_quiesce.rs:48</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">native_link</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">links = &#34;boxlite&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/Cargo.toml" rel="noreferrer noopener" target="_blank">Cargo.toml</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/boxlite/0.10.6/code/build.rs#L349" rel="noreferrer noopener" target="_blank">build.rs:349</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>2 min 49 s</dd></div><div><dt>VM restore</dt><dd>59 ms</dd></div><div><dt>Payload</dt><dd>24304 files, 751.4 MiB</dd></div><div><dt>Files opened</dt><dd>52180</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">969</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 917 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">2 min 49 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="72 similar processes, the first one shown">×72</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">642 ms</td>
+<td class="nowrap">718 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustctSZNjU/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">153 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc7bNAWJ.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustctSZNjU/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">146 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc7bNAWJ.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustctSZNjU/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">142 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">82 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 619: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="339 similar processes, the first one shown">×339</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.5 s</td>
+<td class="nowrap">49 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 639: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 640: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 666: /work/target/debug/build/libc-ca3b81bba335f01d/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.5 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 667: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 741: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 742: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">11.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 850: /work/target/debug/build/serde_core-304eefece1a1291c/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.6 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 851: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">15.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 854: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 972: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">21.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 973: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">21.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1150: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">29.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1151: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">29.8 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1154: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">29.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1272: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.1 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1273: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">34.1 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1277: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">34.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1280: /work/target/debug/build/serde_json-8bdb9b394c8b5974/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1338: /work/target/debug/build/zerocopy-fd3b413adffc1e06/build-script-build">zerocopy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.2 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1339: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">35.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1363: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.6 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1364: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-0f4e2900de2476d1/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">35.6 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1509: /work/target/debug/build/rustversion-cd03e7da230c42f2/build-script-build">rustversion</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">44.0 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1510: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">44.0 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1553: /work/target/debug/build/httparse-cb36d18ca8c369e1/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">48.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1554: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">48.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1557: /work/target/debug/build/ring-a9cc0def7bbe61b3/build-script-build">ring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">1.6 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1558: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/ring-c589ba26a1e6c3e5/out/15011910559549539077detect_compiler_family.c</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1559: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-c589ba26a1e6c3e5/out/15011910559549539077detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 15011910559549539077detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1560: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1561: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="32 similar processes, the first one shown">×32</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/flag_check -c /work/target/debug/build/ring-c589ba26a1e6c3e5/out/flag_check.c</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1562: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-c589ba26a1e6c3e5/out/flag_check.c -quiet -dumpdir /work/target/debug/build/ring-c589ba26a1e6c3e5/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccdr5tRt.s</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1563: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/flag_check /tmp/ccdr5tRt.s</td>
+<td class="nowrap muted">48.3 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1652: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/ring-c589ba26a1e6c3e5/out/libring_core_0_17_14_.a /work/target/debug/build/ring-c589ba26a1e6c3e5/out/25ac62e5b3c53843-curve25519.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/0bbbd18bda93c05b-aes_nohw.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/00c879ee3285a50d-montgomery.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/00c879ee3285a50d-montgomery_inv.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/a0330e891e733f4e-ecp_nistz.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/a0330e891e733f4e-gfp_p256.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/a0330e891e733f4e-gfp_p384.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/a0330e891e733f4e-p256.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/aaa1ba3e455ee2e1-limbs.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/a4019cc0736b0423-mem.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/d5a9841f3dc6e253-poly1305.o /work/target/debug/build/ring-c589ba26a1e6c3e5/out/a4019cc0736b0423-crypt</td>
+<td class="nowrap muted">49.8 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1935: /work/target/debug/build/icu_properties_data-2ac38e22d8da263c/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1947: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1948: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1952: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1955: /work/target/debug/build/icu_normalizer_data-bc0711913bdbce2d/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1971: /work/target/debug/build/crossbeam-utils-416887bede60e6f8/build-script-build">crossbeam-utils</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1973: /work/target/debug/build/rustix-0bbf1421a0d4aeb9/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">35 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1974: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-8b19f1bf8cc92196/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1993: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1994: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2200: /work/target/debug/build/prettyplease-1f6cfc3cb6fe24c3/build-script-build">prettyplease</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 16 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2312: /work/target/debug/build/getrandom-4d87cb24408a683b/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 19 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2314: /work/target/debug/build/crossbeam-epoch-e24b1982d8741dc3/build-script-build">crossbeam-epoch</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 19 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2316: /work/target/debug/build/rustls-0ae6ef7667bf1b66/build-script-build">rustls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 19 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2327: /work/target/debug/build/num-traits-34c9d17fcc634a35/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 20 s</td>
+<td class="nowrap">45 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2328: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 20 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2580: /work/target/debug/build/crossbeam-deque-868263c99ffe5d02/build-script-build">crossbeam-deque</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2597: /work/target/debug/build/indexmap-c4e41ed69c9d28d5/build-script-build">indexmap</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">42 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2598: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2615: /work/target/debug/build/zstd-sys-b295ba30a7fd5be6/build-script-build">zstd-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">8.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2616: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/5117245170720918351detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2617: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/5117245170720918351detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 5117245170720918351detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2618: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2619: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="41 similar processes, the first one shown">×41</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/flag_check -c /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/flag_check.c</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2620: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/flag_check.c -quiet -dumpdir /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccQdsXt8.s</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2621: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/flag_check /tmp/ccQdsXt8.s</td>
+<td class="nowrap muted">1 min 30 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2743: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/libzstd.a /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-debug.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-entropy_common.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-error_private.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-fse_decompress.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-pool.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-threading.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/44ff4c55aa9e5133-zstd_common.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/fb80479a5fb81f6a-fse_compress.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/fb80479a5fb81f6a-hist.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/fb80479a5fb81f6a-huf_compress.o /work/target/debug/build/zstd-sys-92c3f4e302e5f443/out/fb80479a5fb81f6a-zstd_compress.o /work/target/de</td>
+<td class="nowrap muted">1 min 38 s</td>
+<td class="nowrap">27 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3033: /work/target/debug/build/io-uring-7d4e12926fc72ff4/build-script-build">io-uring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3055: /work/target/debug/build/rayon-core-6dbcc2d56647fc95/build-script-build">rayon-core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3057: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3058: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3068: /work/target/debug/build/memoffset-cc071e3f855006d1/build-script-build">memoffset</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3069: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3079: /work/target/debug/build/memoffset-b7060ae8c1b61a72/build-script-build">memoffset</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3080: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 51 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3403: /work/target/debug/build/zstd-safe-1cbba409d2256ce5/build-script-build">zstd-safe</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3405: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3406: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2 min 3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3471: /work/target/debug/build/e2fsprogs-sys-586d5f168a85c3c1/build-script-build">e2fsprogs-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 6 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3473: /work/target/debug/build/libkrun-sys-d45ea15348c46b59/build-script-build">libkrun-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3475: /work/target/debug/build/bubblewrap-sys-98e6b8882960f013/build-script-build">bubblewrap-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3540: /work/target/debug/build/libsqlite3-sys-c00a7321da2e9f50/build-script-build">libsqlite3-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">6.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3541: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/14967725271034907351detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3542: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/14967725271034907351detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 14967725271034907351detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3543: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3544: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/flag_check -c /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/flag_check.c</td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3545: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/flag_check.c -quiet -dumpdir /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccnQDDuL.s</td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3546: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/flag_check /tmp/ccnQDDuL.s</td>
+<td class="nowrap muted">2 min 9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3550: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/libsqlite3.a /work/target/debug/build/libsqlite3-sys-1534b97f3ebd83be/out/c877a2978823c39d-sqlite3.o</td>
+<td class="nowrap muted">2 min 15 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3832: /work/target/debug/build/signal-hook-112904c118828de3/build-script-build">signal-hook</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 25 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3854: /work/target/debug/build/fuse-backend-rs-8e3df94d9467354e/build-script-build">fuse-backend-rs</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 25 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3896: /work/target/debug/build/pathrs-a7967faef37806d6/build-script-build">pathrs</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 28 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3928: /work/target/debug/build/boxlite-shared-44d6f953655a7edf/build-script-build">boxlite-shared</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 33 s</td>
+<td class="nowrap">150 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 3929: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 33 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3930: /usr/bin/protoc">/usr/bin/protoc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2 min 33 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3953: /work/target/debug/build/nix-16f55601e3bbee9a/build-script-build">nix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 34 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4185: /work/target/debug/build/boxlite-4a574b0dfa79c85d/build-script-build">boxlite</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">129 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4186: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/boxlite-b28d4df80554d6e7/out/14755927997506284709detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4187: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/boxlite-b28d4df80554d6e7/out/14755927997506284709detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 14755927997506284709detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4188: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4189: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/boxlite-b28d4df80554d6e7/out/flag_check -c /work/target/debug/build/boxlite-b28d4df80554d6e7/out/flag_check.c</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4190: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/boxlite-b28d4df80554d6e7/out/flag_check.c -quiet -dumpdir /work/target/debug/build/boxlite-b28d4df80554d6e7/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccrAZj1N.s</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4191: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/boxlite-b28d4df80554d6e7/out/flag_check /tmp/ccrAZj1N.s</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4195: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/boxlite-b28d4df80554d6e7/out/libkvm_smoke.a /work/target/debug/build/boxlite-b28d4df80554d6e7/out/ea708c7824d36062-kvm_smoke.o</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 4197: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-fsSL -o /work/target/debug/build/boxlite-b28d4df80554d6e7/out/runtime/boxlite-runtime.tar.gz https://github.com/boxlite-ai/boxlite/releases/download/v0.10.6/boxlite-runtime-v0.10.6-linux-x64-gnu.tar.gz</td>
+<td class="nowrap muted">2 min 49 s</td>
+<td class="nowrap">57 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">github.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /boxlite-ai/boxlite/releases/download/v0.10.6/boxlite-runtime-v0.10.6-linux-x64-gnu.tar.gz, host github.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">2 min 49 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">2 min 49 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">2 min 49 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>2964</dd></div><div><dt>Directories</dt><dd>631</dd></div><div><dt>Size</dt><dd>1.0 GiB</dd></div><div><dt>Compiled units</dt><dd>436</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling libc v0.2.190
+   Compiling syn v3.0.9
+    Checking cfg-if v1.0.5
+   Compiling syn v2.0.119
+    Checking smallvec v1.16.3
+    Checking memchr v2.8.3
+    Checking pin-project-lite v0.2.17
+    Checking futures-core v0.3.34
+    Checking bytes v1.12.1
+   Compiling jobserver v0.1.35
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.14
+   Compiling cc v1.8.0
+   Compiling parking_lot_core v0.9.12
+   Compiling serde_core v1.0.229
+    Checking errno v0.3.14
+    Checking scopeguard v1.2.0
+   Compiling autocfg v1.5.1
+    Checking lock_api v0.4.14
+    Checking signal-hook-registry v1.4.8
+    Checking once_cell v1.21.4
+    Checking itoa v1.0.18
+    Checking futures-sink v0.3.34
+    Checking parking_lot v0.12.5
+   Compiling tokio-macros v2.7.2
+    Checking socket2 v0.6.5
+    Checking mio v1.2.4
+    Checking tokio v1.53.2
+   Compiling synstructure v0.14.0
+    Checking slab v0.4.12
+   Compiling serde v1.0.229
+    Checking futures-channel v0.3.34
+   Compiling serde_derive v1.0.229
+    Checking log v0.4.34
+   Compiling zerofrom-derive v0.1.8
+    Checking futures-task v0.3.34
+    Checking zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling futures-macro v0.3.34
+    Checking futures-io v0.3.34
+    Checking stable_deref_trait v1.2.1
+    Checking yoke v0.8.3
+    Checking futures-util v0.3.34
+    Checking getrandom v0.2.17
+   Compiling pkg-config v0.3.34
+   Compiling getrandom v0.4.3
+   Compiling zmij v1.0.23
+    Checking http v1.5.0
+    Checking tracing-core v0.1.36
+   Compiling zerovec-derive v0.11.6
+    Checking zerovec v0.11.8
+   Compiling tracing-attributes v0.1.31
+   Compiling displaydoc v0.2.7
+    Checking typenum v1.20.1
+    Checking bitflags v2.13.2
+   Compiling serde_json v1.0.154
+   Compiling anyhow v1.0.104
+    Checking tracing v0.1.44
+    Checking http-body v1.1.0
+    Checking percent-encoding v2.3.2
+   Compiling heck v0.5.0
+   Compiling zerocopy v0.8.62
+    Checking zeroize v1.9.1
+    Checking tower-service v0.3.3
+   Compiling either v1.19.0
+   Compiling rustix v1.1.5
+   Compiling itertools v0.14.0
+    Checking tinystr v0.8.4
+    Checking tokio-util v0.7.20
+   Compiling ring v0.17.14
+    Checking aho-corasick v1.1.5
+   Compiling num_cpus v1.17.0
+    Checking writeable v0.6.4
+    Checking equivalent v1.0.2
+   Compiling httparse v1.10.1
+   Compiling linux-raw-sys v0.12.1
+    Checking litemap v0.8.3
+    Checking hashbrown v0.17.1
+   Compiling version_check v0.9.5
+    Checking regex-syntax v0.8.11
+   Compiling rustversion v1.0.23
+    Checking regex-automata v0.4.18
+   Compiling generic-array v0.14.7
+    Checking indexmap v2.14.2
+    Checking icu_locale_core v2.3.0
+   Compiling prost-derive v0.13.5
+    Checking ppv-lite86 v0.2.21
+    Checking zerotrie v0.2.5
+    Checking potential_utf v0.1.6
+   Compiling fastrand v2.5.0
+   Compiling fnv v1.0.7
+   Compiling crossbeam-utils v0.8.23
+    Checking subtle v2.6.1
+    Checking try-lock v0.2.5
+    Checking atomic-waker v1.1.2
+   Compiling icu_normalizer_data v2.3.0
+   Compiling thiserror v2.0.21
+    Checking utf8_iter v1.0.4
+    Checking tower-layer v0.3.3
+   Compiling icu_properties_data v2.3.0
+   Compiling strsim v0.11.1
+   Compiling ident_case v1.0.1
+   Compiling darling_core v0.20.11
+    Checking h2 v0.4.20
+    Checking icu_collections v2.3.0
+   Compiling tempfile v3.27.0
+    Checking want v0.3.2
+    Checking icu_provider v2.3.1
+    Checking rustls-pki-types v1.15.1
+    Checking sync_wrapper v1.0.2
+   Compiling thiserror-impl v2.0.21
+    Checking httpdate v1.0.3
+    Checking untrusted v0.9.0
+    Checking hyper v1.12.0
+   Compiling regex v1.13.1
+   Compiling darling_macro v0.20.11
+   Compiling prettyplease v0.2.37
+    Checking base64 v0.23.1
+    Checking ipnet v2.12.2
+    Checking bitflags v1.3.2
+    Checking hyper-util v0.1.21
+   Compiling hybrid-array v0.4.15
+   Compiling prost v0.13.5
+   Compiling darling v0.20.11
+    Checking icu_properties v2.3.0
+    Checking icu_normalizer v2.3.0
+    Checking tower v0.5.3
+    Checking http-body-util v0.1.5
+    Checking rand_core v0.6.4
+   Compiling num-traits v0.2.19
+   Compiling fixedbitset v0.5.7
+   Compiling rustls v0.23.45
+    Checking base64 v0.22.1
+   Compiling crossbeam-epoch v0.9.21
+   Compiling getrandom v0.3.4
+   Compiling petgraph v0.7.1
+    Checking rand_chacha v0.3.1
+    Checking idna_adapter v1.2.2
+   Compiling derive_builder_core v0.20.2
+   Compiling prost-types v0.13.5
+    Checking crypto-common v0.1.7
+    Checking block-buffer v0.10.4
+    Checking rustls-webpki v0.103.15
+    Checking form_urlencoded v1.2.2
+   Compiling zstd-sys v2.1.1+zstd.1.5.7
+   Compiling indexmap v1.9.3
+   Compiling async-trait v0.1.92
+   Compiling unicode-xid v0.2.6
+   Compiling crossbeam-deque v0.8.8
+    Checking konst_macro_rules v0.2.19
+   Compiling virtue v0.0.18
+    Checking utf8parse v0.2.2
+   Compiling multimap v0.10.1
+    Checking lazy_static v1.5.1
+   Compiling prost-build v0.13.5
+    Checking anstyle-parse v1.0.0
+   Compiling bincode_derive v2.0.1
+    Checking konst v0.2.20
+   Compiling const_format_proc_macros v0.2.34
+    Checking digest v0.10.7
+   Compiling derive_builder_macro v0.20.2
+    Checking idna v1.1.0
+    Checking rand v0.8.8
+   Compiling crypto-common v0.2.2
+   Compiling block-buffer v0.12.1
+   Compiling memoffset v0.7.1
+   Compiling memoffset v0.6.5
+   Compiling pin-project-internal v1.1.13
+    Checking anstyle-query v1.1.5
+   Compiling thiserror v1.0.69
+    Checking num-conv v0.2.2
+   Compiling rayon-core v1.13.0
+    Checking colorchoice v1.0.5
+    Checking powerfmt v0.2.1
+   Compiling vcpkg v0.2.15
+    Checking deranged v0.5.8
+    Checking is_terminal_polyfill v1.70.2
+   Compiling const-oid v0.10.2
+   Compiling io-uring v0.5.13
+    Checking mime v0.3.17
+    Checking hashbrown v0.12.3
+    Checking time-core v0.1.9
+    Checking base64ct v1.8.3
+    Checking anstyle v1.0.14
+    Checking anstream v1.0.0
+    Checking pem-rfc7468 v0.7.0
+    Checking time v0.3.55
+    Checking axum-core v0.4.5
+   Compiling digest v0.11.3
+   Compiling libsqlite3-sys v0.37.0
+    Checking pin-project v1.1.13
+    Checking rand_core v0.9.5
+    Checking url v2.5.8
+    Checking derive_builder v0.20.2
+    Checking tokio-rustls v0.26.6
+    Checking const_format v0.2.36
+   Compiling tonic-build v0.12.3
+    Checking webpki-roots v1.0.9
+   Compiling bubblewrap-sys v0.10.6
+   Compiling libkrun-sys v0.10.6
+   Compiling e2fsprogs-sys v0.10.6
+   Compiling strum_macros v0.27.2
+    Checking futures-executor v0.3.34
+   Compiling thiserror-impl v1.0.69
+   Compiling getset v0.1.7
+   Compiling async-stream-impl v0.3.6
+   Compiling der_derive v0.7.3
+    Checking tinyvec v1.13.3
+    Checking foldhash v0.2.0
+    Checking strum v0.27.2
+   Compiling cpufeatures v0.3.1
+    Checking flagset v0.4.7
+    Checking const-oid v0.9.6
+   Compiling unty v0.0.4
+   Compiling cfg_aliases v0.2.2
+   Compiling crc32fast v1.5.2
+   Compiling zstd-safe v7.3.0
+    Checking matchit v0.7.3
+    Checking ryu v1.0.23
+    Checking cpufeatures v0.2.17
+    Checking clap_lex v1.1.1
+    Checking clap_builder v4.6.7
+    Checking sha2 v0.10.9
+    Checking serde_urlencoded v0.7.1
+    Checking axum v0.7.9
+   Compiling nix v0.30.1
+   Compiling bincode v2.0.1
+    Checking der v0.7.10
+   Compiling sha2 v0.11.1
+    Checking hashbrown v0.16.1
+    Checking unicode-normalization v0.1.25
+    Checking async-stream v0.3.6
+    Checking futures v0.3.34
+    Checking hyper-rustls v0.27.10
+   Compiling seccompiler v0.4.0
+   Compiling boxlite-shared v0.10.6
+    Checking tower-http v0.6.11
+    Checking rand_chacha v0.9.0
+    Checking tower v0.4.13
+    Checking hmac v0.12.1
+    Checking sharded-slab v0.1.7
+    Checking hyper-timeout v0.5.2
+    Checking xattr v1.6.1
+   Compiling pathrs v0.2.6
+    Checking matchers v0.2.0
+   Compiling clap_derive v4.6.7
+    Checking tracing-log v0.2.0
+    Checking tokio-stream v0.1.19
+    Checking nibble_vec v0.1.0
+   Compiling enumflags2_derive v0.7.12
+    Checking filetime v0.2.29
+    Checking thread_local v1.1.10
+    Checking socket2 v0.5.10
+    Checking atty v0.2.14
+    Checking socket2 v0.4.10
+    Checking adler v1.0.2
+    Checking iana-time-zone v0.1.65
+    Checking adler2 v2.0.1
+    Checking scoped-tls v1.0.1
+    Checking option-ext v0.2.0
+   Compiling fuse-backend-rs v0.12.1
+    Checking simd-adler32 v0.3.10
+    Checking endian-type v0.1.2
+    Checking termcolor v1.4.1
+    Checking humantime v2.4.0
+   Compiling signal-hook v0.3.18
+   Compiling hex v0.4.3
+    Checking base64 v0.13.1
+    Checking nu-ansi-term v0.50.3
+    Checking pin-utils v0.1.1
+    Checking nix v0.26.4
+    Checking tracing-subscriber v0.3.23
+    Checking jwt v0.16.0
+   Compiling boxlite v0.10.6
+    Checking env_logger v0.9.3
+    Checking radix_trie v0.2.1
+    Checking miniz_oxide v0.9.1
+    Checking dirs-sys v0.4.1
+    Checking tokio-uring v0.4.0
+    Checking chrono v0.4.45
+    Checking miniz_oxide v0.7.4
+    Checking tonic v0.12.3
+    Checking tar v0.4.46
+    Checking enumflags2 v0.7.12
+    Checking clap v4.6.7
+    Checking nix v0.24.3
+    Checking rand v0.9.5
+    Checking rayon v1.12.0
+    Checking reqwest v0.12.28
+    Checking vm-memory v0.14.1
+    Checking olpc-cjson v0.1.4
+    Checking hashlink v0.11.1
+    Checking spki v0.7.3
+    Checking oci-spec v0.8.4
+    Checking yasna v0.5.2
+    Checking itertools v0.15.0
+    Checking clap-num v1.2.0
+    Checking pem v3.0.6
+    Checking vmm-sys-util v0.12.1
+    Checking crossbeam-channel v0.5.17
+    Checking arc-swap v1.9.2
+    Checking bincode v1.3.3
+    Checking futures-locks v0.7.1
+    Checking mio v0.8.11
+    Checking http-auth v0.1.10
+   Compiling async-recursion v1.2.0
+    Checking caps v0.5.6
+    Checking fallible-iterator v0.3.0
+    Checking symlink v0.1.0
+    Checking byteorder v1.5.0
+    Checking fallible-streaming-iterator v0.1.9
+    Checking unicase v2.10.0
+    Checking static_assertions v1.1.0
+    Checking same-file v1.0.6
+    Checking walkdir v2.5.0
+    Checking oci-client v0.15.0
+    Checking rusqlite v0.39.0
+    Checking qcow2-rs v0.1.6
+    Checking tracing-appender v0.2.5
+    Checking rcgen v0.13.2
+    Checking flate2 v1.1.10
+    Checking x509-cert v0.2.5
+    Checking sysinfo v0.30.13
+    Checking ulid v1.2.1
+    Checking zstd v0.13.3
+    Checking landlock v0.4.7
+    Checking dirs v5.0.1
+warning: boxlite@0.10.6: Compiling seccomp filter: resources/seccomp/x86_64-unknown-linux-gnu.json -&#62; /work/target/debug/build/boxlite-b28d4df80554d6e7/out/seccomp_filter.bpf
+warning: boxlite@0.10.6: Successfully compiled seccomp filter (9386 bytes)
+warning: boxlite@0.10.6: BOXLITE_DEPS_STUB=2: downloading prebuilt runtime
+warning: boxlite@0.10.6: Downloading https://github.com/boxlite-ai/boxlite/releases/download/v0.10.6/boxlite-runtime-v0.10.6-linux-x64-gnu.tar.gz...
+warning: boxlite@0.10.6: Failed to download prebuilt runtime from https://github.com/boxlite-ai/boxlite/releases/download/v0.10.6/boxlite-runtime-v0.10.6-linux-x64-gnu.tar.gz: curl failed: curl: (22) The requested URL returned error: 404
+warning: boxlite@0.10.6: Native libraries will not be available.
+error: failed to run custom build command for `boxlite v0.10.6`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/boxlite-4a574b0dfa79c85d/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-changed=build.rs
+  cargo:rerun-if-changed=src/default_runtime_dir.rs
+  cargo:rerun-if-env-changed=BOXLITE_DEPS_STUB
+  cargo:rerun-if-env-changed=BOXLITE_EMBED_RUNTIME
+  cargo:rerun-if-env-changed=CARGO_TARGET_DIR
+  cargo:rerun-if-changed=src/kvm_smoke.c
+  cargo:rerun-if-env-changed=CC_FORCE_DISABLE
+  CC_FORCE_DISABLE = None
+  cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu
+  CC_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_gnu
+  CC_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=HOST_CC
+  HOST_CC = None
+  cargo:rerun-if-env-changed=CC
+  CC = None
+  cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=HOST_CFLAGS
+  HOST_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+  CFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+  CFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=HOST_CFLAGS
+  HOST_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+  CFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+  CFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=CC_FORCE_DISABLE
+  CC_FORCE_DISABLE = None
+  cargo:rerun-if-env-changed=AR_x86_64-unknown-linux-gnu
+  AR_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=AR_x86_64_unknown_linux_gnu
+  AR_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=HOST_AR
+  HOST_AR = None
+  cargo:rerun-if-env-changed=AR
+  AR = None
+  cargo:rerun-if-env-changed=ARFLAGS
+  ARFLAGS = None
+  cargo:rerun-if-env-changed=HOST_ARFLAGS
+  HOST_ARFLAGS = None
+  cargo:rerun-if-env-changed=ARFLAGS_x86_64_unknown_linux_gnu
+  ARFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=ARFLAGS_x86_64-unknown-linux-gnu
+  ARFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=AR_x86_64-unknown-linux-gnu
+  AR_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=AR_x86_64_unknown_linux_gnu
+  AR_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=HOST_AR
+  HOST_AR = None
+  cargo:rerun-if-env-changed=AR
+  AR = None
+  cargo:rerun-if-env-changed=ARFLAGS
+  ARFLAGS = None
+  cargo:rerun-if-env-changed=HOST_ARFLAGS
+  HOST_ARFLAGS = None
+  cargo:rerun-if-env-changed=ARFLAGS_x86_64_unknown_linux_gnu
+  ARFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=ARFLAGS_x86_64-unknown-linux-gnu
+  ARFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rustc-link-lib=static=kvm_smoke
+  cargo:rustc-link-search=native=/work/target/debug/build/boxlite-b28d4df80554d6e7/out
+  cargo:warning=Compiling seccomp filter: resources/seccomp/x86_64-unknown-linux-gnu.json -&#62; /work/target/debug/build/boxlite-b28d4df80554d6e7/out/seccomp_filter.bpf
+  cargo:warning=Successfully compiled seccomp filter (9386 bytes)
+  cargo:rerun-if-changed=resources/seccomp/x86_64-unknown-linux-gnu.json
+  cargo:rerun-if-changed=resources/seccomp/
+  cargo:warning=BOXLITE_DEPS_STUB=2: downloading prebuilt runtime
+  cargo:rerun-if-env-changed=BOXLITE_RUNTIME_URL
+  cargo:warning=Downloading https://github.com/boxlite-ai/boxlite/releases/download/v0.10.6/boxlite-runtime-v0.10.6-linux-x64-gnu.tar.gz...
+  cargo:warning=Failed to download prebuilt runtime from https://github.com/boxlite-ai/boxlite/releases/download/v0.10.6/boxlite-runtime-v0.10.6-linux-x64-gnu.tar.gz: curl failed: curl: (22) The requested URL returned error: 404
+
+  cargo:warning=Native libraries will not be available.
+
+  --- stderr
+
+  thread &#39;main&#39; (4185) panicked at /cw/vendor/boxlite-0.10.6/build.rs:1214:17:
+  Failed to prepare complete prebuilt BoxLite runtime in /work/target/debug/build/boxlite-b28d4df80554d6e7/out/runtime
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-13 02:21 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-1896447</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 02:21 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-1896495</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 02:29 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 02:33 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-1898673-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 02:33 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-1898703</td></tr>
+
+<tr><td class="muted nowrap">2026-10-13 02:33 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-1898703</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

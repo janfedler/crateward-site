@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: dittolive-ditto-sys 5.1.0-experimental-innovapptive-memory.2</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>dittolive-ditto-sys <span class="version">5.1.0-experimental-innovapptive-memory.2</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 101488</span>
+      <a class="muted" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="101488.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="101488.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">The build looked up software.ditto.live.</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">47</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">7</span></a>
+  <a href="#behavior">Behavior <span class="count">4</span></a>
+  <a href="#findings">Static findings <span class="count">16</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · dittolive-ditto-sys</div></td><td class="mono where">software.ditto.live</td><td>The build looked up software.ditto.live.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · dittolive-ditto-sys</div></td><td class="mono where"><a href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L420" rel="noreferrer noopener" target="_blank">build/main.rs:420</a></td><td>New since 4.14.7: downloader_pattern</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · dittolive-ditto-sys</div></td><td class="mono where"><a href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L420" rel="noreferrer noopener" target="_blank">build/main.rs:420</a></td><td>high severity downloader_pattern in build_script code: https://software.ditto.live/rust/Ditto/{version}/{target}/release/{libname} at build/main.rs:420 with std::process::Command::new at build/main.rs:448</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · dittolive-ditto-sys</div></td><td class="mono where"><a href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L448" rel="noreferrer noopener" target="_blank">build/main.rs:448</a></td><td>medium severity process_spawn in build_script code (3 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · dittolive-ditto-sys</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · dittolive-ditto-sys</div></td><td class="mono where"><a href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs" rel="noreferrer noopener" target="_blank">build/main.rs</a></td><td>low severity build_script in build_script code: build/main.rs</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · dittolive-ditto-sys</div></td><td class="mono where"><a href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L420" rel="noreferrer noopener" target="_blank">build/main.rs:420</a></td><td>low severity url_literal in build_script code: https://software.ditto.live/rust/Ditto/{version}/{target}/release/{libname}</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">net:software.ditto.live</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">16</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">9</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">3</span></label>
+  <span class="muted">7 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://software.ditto.live/rust/Ditto/{version}/{target}/release/{libname} at build/main.rs:420 with std::process::Command::new at build/main.rs:448</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L420" rel="noreferrer noopener" target="_blank">build/main.rs:420</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L448" rel="noreferrer noopener" target="_blank">build/main.rs:448</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L569" rel="noreferrer noopener" target="_blank">build/main.rs:569</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/utils/mod.rs#L58" rel="noreferrer noopener" target="_blank">build/utils/mod.rs:58</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L9" rel="noreferrer noopener" target="_blank">dittoffi.rs:9</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L38" rel="noreferrer noopener" target="_blank">dittoffi.rs:38</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L406" rel="noreferrer noopener" target="_blank">dittoffi.rs:406</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L442" rel="noreferrer noopener" target="_blank">dittoffi.rs:442</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L465" rel="noreferrer noopener" target="_blank">dittoffi.rs:465</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L492" rel="noreferrer noopener" target="_blank">dittoffi.rs:492</a> <a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L945" rel="noreferrer noopener" target="_blank">dittoffi.rs:945</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build/main.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs" rel="noreferrer noopener" target="_blank">build/main.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://software.ditto.live/rust/Ditto/{version}/{target}/release/{libname}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/build/main.rs#L420" rel="noreferrer noopener" target="_blank">build/main.rs:420</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/dittoffi.rs#L576" rel="noreferrer noopener" target="_blank">dittoffi.rs:576</a> </span></li>
+
+<li><code class="evidence-text">13 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/ffi_utils.rs#L77" rel="noreferrer noopener" target="_blank">ffi_utils.rs:77</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">native_link</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">links = &#34;dittoffi&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/dittolive-ditto-sys/5.1.0-experimental-innovapptive-memory.2/code/Cargo.toml" rel="noreferrer noopener" target="_blank">Cargo.toml</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>45.4 s</dd></div><div><dt>VM restore</dt><dd>78 ms</dd></div><div><dt>Payload</dt><dd>4367 files, 58.8 MiB</dd></div><div><dt>Files opened</dt><dd>10636</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">178</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 164 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">45.1 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="22 similar processes, the first one shown">×22</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">225 ms</td>
+<td class="nowrap">737 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcgmepSI/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">816 ms</td>
+<td class="nowrap">143 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccCyQ1vj.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcgmepSI/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">823 ms</td>
+<td class="nowrap">136 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccCyQ1vj.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcgmepSI/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">826 ms</td>
+<td class="nowrap">132 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">967 ms</td>
+<td class="nowrap">82 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">968 ms</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">976 ms</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 607: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="63 similar processes, the first one shown">×63</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.26/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=f65c548d1bdebf35 -C extra-filename=-76fddff3086055f2 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">50 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 627: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 628: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 689: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 690: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">5.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 721: /work/target/debug/build/syn-30cdc8597c8cae22/build-script-build">syn</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">6.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 722: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">6.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 783: /work/target/debug/build/serde_core-8877f57c32423562/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 784: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">12.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 827: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 829: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.4 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 830: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">12.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 936: /work/target/debug/build/paste-486a5cb33bee7857/build-script-build">paste</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.7 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 937: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">15.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1070: /work/target/debug/build/object-cb67a7b7906b17f4/build-script-build">object</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">20.4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1071: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">20.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1097: /work/target/debug/build/prettyplease-1f6cfc3cb6fe24c3/build-script-build">prettyplease</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">21.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1110: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">21.9 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1111: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-3612222dcefb6f57/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">21.9 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1115: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">21.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1564: /work/target/debug/build/dittolive-ditto-sys-2ac2c77ec149f1f3/build-script-main">dittolive-ditto-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">45.1 s</td>
+<td class="nowrap">61 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1565: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-o /work/target/debug/build/dittolive-ditto-sys-cc55c3fc8fd277d3/out/libdittoffi.a --create-dirs --location --compressed --max-time 1024 -f https://software.ditto.live/rust/Ditto/5.1.0-experimental-innovapptive-memory.2/x86_64-unknown-linux-gnu/release/libdittoffi.a</td>
+<td class="nowrap muted">45.1 s</td>
+<td class="nowrap">59 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">software.ditto.live</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI software.ditto.live, inside TLS: GET /rust/Ditto/5.1.0-experimental-innovapptive-memory.2/x86_64-unknown-linux-gnu/release/libdittoffi.a, host software.ditto.live, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">45.1 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">45.1 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">45.1 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>665</dd></div><div><dt>Directories</dt><dd>151</dd></div><div><dt>Size</dt><dd>365.7 MiB</dd></div><div><dt>Compiled units</dt><dd>136</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling syn v3.0.6
+   Compiling libc v0.2.190
+   Compiling cfg-if v1.0.5
+   Compiling syn v1.0.109
+   Compiling syn v2.0.119
+   Compiling serde_core v1.0.229
+   Compiling futures-core v0.3.34
+   Compiling pin-project-lite v0.2.17
+   Compiling crc32fast v1.5.2
+   Compiling parking_lot_core v0.9.12
+   Compiling adler2 v2.0.1
+   Compiling paste v1.0.15
+   Compiling smallvec v1.16.2
+   Compiling scopeguard v1.2.0
+   Compiling futures-sink v0.3.34
+   Compiling futures-io v0.3.34
+   Compiling simd-adler32 v0.3.10
+   Compiling miniz_oxide v0.9.1
+   Compiling futures-channel v0.3.34
+   Compiling lock_api v0.4.14
+   Compiling ext-trait-proc_macros v1.0.1
+   Compiling errno v0.3.14
+   Compiling futures-macro v0.3.34
+   Compiling thiserror v2.0.21
+   Compiling memchr v2.8.3
+   Compiling winnow v1.0.4
+   Compiling prettyplease v0.2.37
+   Compiling twox-hash v2.1.5
+   Compiling object v0.37.3
+   Compiling futures-task v0.3.34
+   Compiling slab v0.4.12
+   Compiling futures-util v0.3.34
+   Compiling ruzstd v0.8.3
+   Compiling toml_parser v1.1.4+spec-1.1.0
+   Compiling signal-hook-registry v1.4.8
+   Compiling ext-trait v1.0.1
+   Compiling flate2 v1.1.10
+   Compiling parking_lot v0.12.5
+   Compiling toml_datetime v0.7.5+spec-1.1.0
+   Compiling serde_spanned v1.1.2
+   Compiling ext-trait-proc_macros v2.0.3
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.4
+   Compiling thiserror-impl v2.0.21
+   Compiling tokio-macros v2.7.2
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling macro_rules_attribute-proc_macro v0.1.3
+   Compiling bytes v1.12.1
+   Compiling winnow v0.7.15
+   Compiling toml v0.9.12+spec-1.1.0
+   Compiling tokio v1.53.2
+   Compiling macro_rules_attribute v0.1.3
+   Compiling ext-trait v2.0.3
+   Compiling extension-traits v1.0.1
+   Compiling futures-executor v0.3.34
+   Compiling with_builtin_macros-proc_macros v0.0.3
+   Compiling seal-the-deal-proc_macros v0.1.2
+   Compiling once_cell v1.21.4
+   Compiling async-compat v0.2.6
+   Compiling seal-the-deal v0.1.2
+   Compiling with_builtin_macros v0.0.3
+   Compiling futures v0.3.34
+   Compiling safer_ffi-proc_macros v0.2.0-rc1
+   Compiling uninit v0.5.1
+   Compiling extension-traits v2.0.3
+   Compiling dittolive-ditto-sys v5.1.0-experimental-innovapptive-memory.2
+   Compiling extern-c v0.1.0
+   Compiling never-say-never v6.6.666
+   Compiling unwind_safe v0.1.0
+   Compiling safer-ffi v0.2.0-rc1
+warning: dittolive-ditto-sys@5.1.0-experimental-innovapptive-memory.2: [dittolive-ditto-sys] `libdittoffi.a` not found (build with `-vv` to debug the locations searched)
+warning: dittolive-ditto-sys@5.1.0-experimental-innovapptive-memory.2: [dittolive-ditto-sys] Attempting to download https://software.ditto.live/rust/Ditto/5.1.0-experimental-innovapptive-memory.2/x86_64-unknown-linux-gnu/release/libdittoffi.a
+warning: dittolive-ditto-sys@5.1.0-experimental-innovapptive-memory.2: [dittolive-ditto-sys] Failed to download Ditto SDK binary component from https://software.ditto.live/rust/Ditto/5.1.0-experimental-innovapptive-memory.2/x86_64-unknown-linux-gnu/release/libdittoffi.a
+error: failed to run custom build command for `dittolive-ditto-sys v5.1.0-experimental-innovapptive-memory.2`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/dittolive-ditto-sys-2ac2c77ec149f1f3/build-script-main` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-env-changed=DITTOFFI_SEARCH_PATH
+  cargo:rerun-if-env-changed=LIBDITTO_STATIC
+  cargo:rerun-if-env-changed=CARGO_FEATURE_DOWNLOAD
+  cargo:rerun-if-env-changed=DITTO_LOCAL_BUILD
+  cargo:rerun-if-env-changed=LIBDITTO_STATIC_AMEND_WITH
+  cargo:rerun-if-env-changed=CARGO_TARGET_DIR
+  cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_GNU_OUT_DIR
+  cargo:rerun-if-env-changed=OUT_DIR
+  cargo:warning=[dittolive-ditto-sys] `libdittoffi.a` not found (build with `-vv` to debug the locations searched)
+  cargo:warning=[dittolive-ditto-sys] Attempting to download https://software.ditto.live/rust/Ditto/5.1.0-experimental-innovapptive-memory.2/x86_64-unknown-linux-gnu/release/libdittoffi.a
+  cargo:warning=[dittolive-ditto-sys] Failed to download Ditto SDK binary component from https://software.ditto.live/rust/Ditto/5.1.0-experimental-innovapptive-memory.2/x86_64-unknown-linux-gnu/release/libdittoffi.a
+
+  --- stderr
+  `LIBDITTO_STATIC` not set, defaulting to `static`
+  TARGET_DIR may be /work/target/debug
+  X86_64_UNKNOWN_LINUX_GNU_OUT_DIR unset
+  OUT_DIR = /work/target/debug/build/dittolive-ditto-sys-cc55c3fc8fd277d3/out
+  Checking for /work/target/debug/libdittoffi.a
+  Checking for /work/target/debug/deps/libdittoffi.a
+  Checking for /work/target/debug/build/dittolive-ditto-sys-cc55c3fc8fd277d3/out/libdittoffi.a
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                   Dload  Upload   Total   Spent    Left  Speed
+    0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  curl: (22) The requested URL returned error: 404
+
+  thread &#39;main&#39; (1564) panicked at /cw/vendor/dittolive-ditto-sys-5.1.0-experimental-innovapptive-memory.2/build/main.rs:464:17:
+  Failed to download Ditto SDK binary component
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-08 11:04 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-799714</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:04 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-799757</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:09 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-800051-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:09 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-800051-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:09 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-800083</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:10 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-800051-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:11 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-800051-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:11 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-800083</td></tr>
+
+<tr><td class="muted nowrap">2026-10-08 11:11 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-800083</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

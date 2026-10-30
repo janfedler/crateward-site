@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: deq-runtime 0.5.10</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>deq-runtime <span class="version">0.5.10</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 46779</span>
+      <a class="muted" href="https://crates.io/crates/deq-runtime/0.5.10" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="46779.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="46779.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="46779-diff.html">Compare with 0.5.8</a>
+    </p>
+    <p class="headline">high severity shell_command in build_script code (3 places): certutil</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">60</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">9</span></a>
+  <a href="#behavior">Behavior <span class="count">6</span></a>
+  <a href="#findings">Static findings <span class="count">17</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · deq-runtime</div></td><td class="mono where"><a href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a></td><td>high severity shell_command in build_script code (3 places): certutil</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network</div></td><td class="mono where">archives.boost.io</td><td>The build looked up archives.boost.io.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · stim-cxx</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · deq-runtime</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>4 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · deq-runtime</div></td><td class="mono where"><a href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · deq-runtime</div></td><td class="mono where"><a href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L94" rel="noreferrer noopener" target="_blank">build.rs:94</a></td><td>high severity downloader_pattern in build_script code: https://archives.boost.io/release/{BOOST_VERSION}/source/{archive_name}.tar.gz at build.rs:94 with std::process::Command::new at build.rs:99</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · deq-runtime</div></td><td class="mono where"><a href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L99" rel="noreferrer noopener" target="_blank">build.rs:99</a></td><td>medium severity process_spawn in build_script code (5 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · deq-runtime</div></td><td class="mono where"><a href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L94" rel="noreferrer noopener" target="_blank">build.rs:94</a></td><td>low severity url_literal in build_script code (4 places): https://archives.boost.io/release/{BOOST_VERSION}/source/{archive_name}.tar.gz</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">net:archives.boost.io</code> <code class="chip">net:github.com</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">17</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">4</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">5</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">5</span></label>
+  <span class="muted">9 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">certutil</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a> </span></li>
+
+<li><code class="evidence-text">failed to run certutil</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L181" rel="noreferrer noopener" target="_blank">build.rs:181</a> </span></li>
+
+<li><code class="evidence-text">certutil failed</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L183" rel="noreferrer noopener" target="_blank">build.rs:183</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://archives.boost.io/release/{BOOST_VERSION}/source/{archive_name}.tar.gz at build.rs:94 with std::process::Command::new at build.rs:99</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L94" rel="noreferrer noopener" target="_blank">build.rs:94</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L99" rel="noreferrer noopener" target="_blank">build.rs:99</a> <a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L117" rel="noreferrer noopener" target="_blank">build.rs:117</a> <a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L156" rel="noreferrer noopener" target="_blank">build.rs:156</a> <a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L159" rel="noreferrer noopener" target="_blank">build.rs:159</a> <a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L176" rel="noreferrer noopener" target="_blank">build.rs:176</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/src/decoder/tesseract_ffi.rs#L7" rel="noreferrer noopener" target="_blank">src/decoder/tesseract_ffi.rs:7</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://archives.boost.io/release/{BOOST_VERSION}/source/{archive_name}.tar.gz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/build.rs#L94" rel="noreferrer noopener" target="_blank">build.rs:94</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/src/decoder/dyn_lib_decoder.rs#L62" rel="noreferrer noopener" target="_blank">src/decoder/dyn_lib_decoder.rs:62</a> <a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/src/decoder/tesseract_ffi.rs#L37" rel="noreferrer noopener" target="_blank">src/decoder/tesseract_ffi.rs:37</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://{client_addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/src/server.rs#L107" rel="noreferrer noopener" target="_blank">src/server.rs:107</a> <a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/src/server.rs#L278" rel="noreferrer noopener" target="_blank">src/server.rs:278</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://{address}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/deq-runtime/0.5.10/code/tests/mock_decoder_test.rs#L152" rel="noreferrer noopener" target="_blank">tests/mock_decoder_test.rs:152</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>4 min 46 s</dd></div><div><dt>VM restore</dt><dd>64 ms</dd></div><div><dt>Payload</dt><dd>12927 files, 149.7 MiB</dd></div><div><dt>Files opened</dt><dd>84250</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">832</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 792 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">4 min 46 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="51 similar processes, the first one shown">×51</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;span-locations&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=c83ce984471a4e48 -C extra-filename=-5cb179a647ef6e51 --out-dir /work/target/debug/build/proc-macro2-5cb179a647ef6e51 -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">376 ms</td>
+<td class="nowrap">687 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcrd6j6D/symbols.o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51.build_script_build.dfb9ac565abdb04-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51.7zrad1clk47dffwz5ub8n8yx5.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libr</td>
+<td class="nowrap muted">906 ms</td>
+<td class="nowrap">153 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cciiLGVB.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcrd6j6D/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">912 ms</td>
+<td class="nowrap">147 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cciiLGVB.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcrd6j6D/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">915 ms</td>
+<td class="nowrap">143 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 592: /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">75 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 593: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-97392f29eb377993/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 608: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="212 similar processes, the first one shown">×212</span></td>
+<td class="mono args">--crate-name proc_macro2 --edition=2021 /cw/vendor/proc-macro2-1.0.107/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;span-locations&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=5d63f7a10747f6e2 -C extra-filename=-e838b6f4c830537c --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --extern unicode_ident=/work/target/debug/deps/libunicode_ident-76fddff3086055f2.rmeta</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">530 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 691: /work/target/debug/build/libc-28727978777c70d4/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">8.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 692: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">8.2 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 694: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">8.2 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 748: /work/target/debug/build/num-traits-e52ebcd8ebc5315f/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.1 s</td>
+<td class="nowrap">40 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 749: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">10.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 822: /work/target/debug/build/portable-atomic-df2adbef8625d15d/build-script-build">portable-atomic</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.6 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 823: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">12.6 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 858: /work/target/debug/build/libc-49d4b3a762d07ddb/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 859: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">13.2 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 861: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.2 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 899: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">14.1 s</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 900: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-53d53971fb3aec2e/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">14.1 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 904: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">14.1 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 907: /work/target/debug/build/serde_core-9f3c05d252ac67ed/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">14.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 908: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">14.1 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 981: /work/target/debug/build/crossbeam-utils-416887bede60e6f8/build-script-build">crossbeam-utils</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">16.1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1068: /work/target/debug/build/zerocopy-eeb6d50dc741d86a/build-script-build">zerocopy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.6 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1069: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">23.6 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1072: /work/target/debug/build/crossbeam-epoch-e24b1982d8741dc3/build-script-build">crossbeam-epoch</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1233: /work/target/debug/build/crossbeam-deque-868263c99ffe5d02/build-script-build">crossbeam-deque</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">28.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1235: /work/target/debug/build/scratch-df407e26e1b62d18/build-script-build">scratch</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">28.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1340: /work/target/debug/build/rayon-core-6dbcc2d56647fc95/build-script-build">rayon-core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1342: /work/target/debug/build/matrixmultiply-f591747a4662a481/build-script-build">matrixmultiply</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1343: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1353: /work/target/debug/build/link-cplusplus-cfdad64c744bb3b3/build-script-build">link-cplusplus</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">80 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1354: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/13467941607636041344detect_compiler_family.c</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1355: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/13467941607636041344detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 13467941607636041344detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1356: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1357: /usr/bin/c++">/usr/bin/c++</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check -c /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check.cpp</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1358: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check.cpp -quiet -dumpdir /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/ -dumpbase flag_check.cpp -dumpbase-ext .cpp -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccXQkfZc.s</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1359: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/flag_check /tmp/ccXQkfZc.s</td>
+<td class="nowrap muted">32.5 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1363: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/liblink-cplusplus.a /work/target/debug/build/link-cplusplus-c01734ea58dc2cb8/out/c16f17691ff6f04b-dummy.o</td>
+<td class="nowrap muted">32.5 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1570: /work/target/debug/build/prettyplease-1f6cfc3cb6fe24c3/build-script-build">prettyplease</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1572: /work/target/debug/build/pulldown-cmark-d2199a33034d84c5/build-script-build">pulldown-cmark</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1574: /work/target/debug/build/crunchy-2b92b0176daaf959/build-script-build">crunchy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1576: /work/target/debug/build/crc32fast-1316cc99d3f89c42/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.2 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1577: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">38.2 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1592: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1594: /work/target/debug/build/rustix-f3996fcb1b2e1347/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.7 s</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1595: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-0f4e2900de2476d1/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">38.7 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1847: /work/target/debug/build/getrandom-38a6990e35ca485f/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">48.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1886: /work/target/debug/build/tiny-keccak-b531649123d3cb97/build-script-build">tiny-keccak</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">50.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1974: /work/target/debug/build/cxx-72e6c006341a8974/build-script-build">cxx</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">1.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1975: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/cxx-b882469886ba4736/out/17146377878375618225detect_compiler_family.c</td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1976: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/cxx-b882469886ba4736/out/17146377878375618225detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 17146377878375618225detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1977: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1978: /usr/bin/c++">/usr/bin/c++</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/cxx-b882469886ba4736/out/flag_check -c /work/target/debug/build/cxx-b882469886ba4736/out/flag_check.cpp</td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1979: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/cxx-b882469886ba4736/out/flag_check.cpp -quiet -dumpdir /work/target/debug/build/cxx-b882469886ba4736/out/ -dumpbase flag_check.cpp -dumpbase-ext .cpp -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccreYBDR.s</td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1980: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/cxx-b882469886ba4736/out/flag_check /tmp/ccreYBDR.s</td>
+<td class="nowrap muted">54.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1984: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/cxx-b882469886ba4736/out/libcxxbridge1.a /work/target/debug/build/cxx-b882469886ba4736/out/c16f17691ff6f04b-cxx.o</td>
+<td class="nowrap muted">55.7 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1986: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">55.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2181: /work/target/debug/build/num-complex-8ca71ed559f9f356/build-script-build">num-complex</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2182: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2401: /work/target/debug/build/zip-8e88c19ee24c8564/build-script-build">zip</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2403: /work/target/debug/build/getrandom-ff13900ae77c80ab/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2449: /work/target/debug/build/syn-c2ea2f17499af52b/build-script-build">syn</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 8 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2450: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 8 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2792: /work/target/debug/build/fixed-20da4c996e55c9b6/build-script-build">fixed</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2852: /work/target/debug/build/smartstring-c32a6518e155c428/build-script-build">smartstring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">58 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2853: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2864: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name autocfg_ceee0710005586f3_1 --crate-type=lib --out-dir /work/target/debug/build/smartstring-80333a7ae602a855/out --emit=llvm-ir --target x86_64-unknown-linux-gnu -</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2869: /work/target/debug/build/ahash-490db03622bb81ce/build-script-build">ahash</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2870: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2873: /work/target/debug/build/stim-cxx-d9588f52c526e19c/build-script-build">stim-cxx</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">2 min 20 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2874: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-fsSL --retry 3 --connect-timeout 10 --max-time 120 -o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/stim-rs-prebuilt/libstim.a https://github.com/inmzhang/stim-rs/releases/download/v0.4.5/stim-cxx-libstim-x86_64-unknown-linux-gnu.a</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">58 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2876: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-E /work/target/debug/build/stim-cxx-edee75a40dca9360/out/7536614018413903375detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2877: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/stim-cxx-edee75a40dca9360/out/7536614018413903375detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 7536614018413903375detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2878: /usr/bin/c++">/usr/bin/c++</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2879: /usr/bin/c++">/usr/bin/c++</span> <span class="times" title="106 similar processes, the first one shown">×106</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/flag_check -c /work/target/debug/build/stim-cxx-edee75a40dca9360/out/flag_check.cpp</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2880: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /work/target/debug/build/stim-cxx-edee75a40dca9360/out/flag_check.cpp -quiet -dumpdir /work/target/debug/build/stim-cxx-edee75a40dca9360/out/ -dumpbase flag_check.cpp -dumpbase-ext .cpp -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc32x9W2.s</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2881: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/flag_check /tmp/cc32x9W2.s</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3197: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/stim-cxx-edee75a40dca9360/out/libstim-cxx-bridge.a /work/target/debug/build/stim-cxx-edee75a40dca9360/out/56513d4eb1ab6546-lib.rs.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/17aa48d434ffd999-stim.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/b7ef7b459e641e50-circuit.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/b7ef7b459e641e50-circuit_instruction.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/b7ef7b459e641e50-gate_decomposition.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/b7ef7b459e641e50-gate_target.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/3427c421026a553a-command_analyze_errors.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/3427c421026a553a-command_convert.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/3427c421026a553a-command_detect.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/3427c421026a553a-command_diagram.o /work/target/debug/build/stim-cxx-edee75a40dca9360/out/3427</td>
+<td class="nowrap muted">3 min 46 s</td>
+<td class="nowrap">242 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3236: /work/target/debug/build/nix-8b07234e162dc728/build-script-build">nix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 48 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3577: /work/target/debug/build/serde_json-dd75adc00d97e7a0/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4 min 7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3954: /work/target/debug/build/deq-runtime-c4e645157a22145f/build-script-build">deq-runtime</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">4 min 46 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3955: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-sSfL -o /work/target/debug/build/deq-runtime-6adad415fee975be/out/boost_1_83_0.tar.gz https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.gz</td>
+<td class="nowrap muted">4 min 46 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">4</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">github.com</code> <code class="chip">archives.boost.io</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /inmzhang/stim-rs/releases/download/v0.4.5/stim-cxx-libstim-x86_64-unknown-linux-gnu.a, host github.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI archives.boost.io, inside TLS: GET /release/1.83.0/source/boost_1_83_0.tar.gz, host archives.boost.io, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">6</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">1 min 27 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 27 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">1 min 27 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">4 min 46 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">4 min 46 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">4 min 46 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">3</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>2176</dd></div><div><dt>Directories</dt><dd>447</dd></div><div><dt>Size</dt><dd>1.7 GiB</dd></div><div><dt>Compiled units</dt><dd>443</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Why</th><th>Path</th><th>Kind</th><th>Size</th><th>Mode</th></tr></thead>
+<tbody>
+<tr><td class="word">link leaving the disk</td><td class="mono">/work/.warm/upper/debug/build/stim-cxx-edee75a40dca9360/out/cxxbridge/crate/stim-cxx</td><td class="word">symlink to /cw/vendor/stim-cxx-0.4.5</td><td class="nowrap">25 B</td><td class="nowrap mono">777</td></tr><tr><td class="word">link leaving the disk</td><td class="mono">/work/.warm/upper/debug/build/stim-cxx-edee75a40dca9360/out/cxxbridge/include/rust/cxx.h</td><td class="word">symlink to /cw/vendor/cxx-1.0.202/include/cxx.h</td><td class="nowrap">36 B</td><td class="nowrap mono">777</td></tr><tr><td class="word">link leaving the disk</td><td class="mono">/work/.warm/upper/cxxbridge/rust/cxx.h</td><td class="word">symlink to /cw/vendor/cxx-1.0.202/include/cxx.h</td><td class="nowrap">36 B</td><td class="nowrap mono">777</td></tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling syn v2.0.119
+   Compiling syn v3.0.6
+   Compiling libc v0.2.189
+   Compiling cfg-if v1.0.5
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling indexmap v2.14.2
+   Compiling num-traits v0.2.19
+   Compiling libm v0.2.16
+   Compiling memchr v2.8.3
+   Compiling bytes v1.12.1
+   Compiling portable-atomic v1.15.0
+   Compiling pin-project-lite v0.2.17
+   Compiling futures-core v0.3.34
+   Compiling either v1.18.0
+   Compiling once_cell v1.21.4
+   Compiling typenum v1.20.1
+   Compiling itoa v1.0.18
+   Compiling serde_core v1.0.229
+   Compiling anyhow v1.0.104
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.3
+   Compiling tokio-macros v2.7.2
+   Compiling unicode-width v0.2.2
+   Compiling crossbeam-utils v0.8.23
+   Compiling smallvec v1.16.2
+   Compiling tokio v1.53.1
+   Compiling http v1.5.0
+   Compiling itertools v0.14.0
+   Compiling crossbeam-epoch v0.9.21
+   Compiling zerocopy v0.8.59
+   Compiling prost-derive v0.14.4
+   Compiling hybrid-array v0.4.15
+   Compiling tracing-core v0.1.36
+   Compiling zerocopy-derive v0.8.59
+   Compiling tracing-attributes v0.1.31
+   Compiling scratch v1.0.9
+   Compiling crossbeam-deque v0.8.8
+   Compiling futures-sink v0.3.34
+   Compiling slab v0.4.12
+   Compiling tokio-util v0.7.19
+   Compiling tracing v0.1.44
+   Compiling http-body v1.1.0
+   Compiling link-cplusplus v1.0.12
+   Compiling num-integer v0.1.47
+   Compiling matrixmultiply v0.3.11
+   Compiling rayon-core v1.13.0
+   Compiling bitflags v2.13.2
+   Compiling termcolor v1.4.1
+   Compiling codespan-reporting v0.13.1
+   Compiling num-complex v0.4.6
+   Compiling futures-macro v0.3.34
+   Compiling serde_derive v1.0.229
+   Compiling tower-service v0.3.3
+   Compiling rustix v1.1.5
+   Compiling rawpointer v0.2.1
+   Compiling crc32fast v1.5.0
+   Compiling crunchy v0.2.4
+   Compiling rand_core v0.10.1
+   Compiling pulldown-cmark v0.13.4
+   Compiling prettyplease v0.2.37
+   Compiling cxxbridge-flags v1.0.202
+   Compiling futures-task v0.3.34
+   Compiling ucd-trie v0.1.7
+   Compiling pest v2.9.2
+   Compiling futures-util v0.3.34
+   Compiling cxx v1.0.202
+   Compiling getrandom v0.4.3
+   Compiling serde v1.0.229
+   Compiling cxx-build v1.0.202
+   Compiling crypto-common v0.2.2
+   Compiling block-buffer v0.12.1
+   Compiling inout v0.2.2
+   Compiling foldhash v0.1.5
+   Compiling unicase v2.9.0
+   Compiling tiny-keccak v2.0.2
+   Compiling utf8parse v0.2.2
+   Compiling linux-raw-sys v0.12.1
+   Compiling try-lock v0.2.5
+   Compiling atomic-waker v1.1.2
+   Compiling fnv v1.0.7
+   Compiling regex-syntax v0.8.11
+   Compiling log v0.4.34
+   Compiling simd-adler32 v0.3.10
+   Compiling regex-automata v0.4.18
+   Compiling h2 v0.4.19
+   Compiling want v0.3.1
+   Compiling prost v0.14.4
+   Compiling anstyle-parse v1.0.0
+   Compiling hashbrown v0.15.5
+   Compiling cipher v0.5.2
+   Compiling rayon v1.12.0
+   Compiling httparse v1.10.1
+   Compiling pest_meta v2.9.2
+   Compiling futures-channel v0.3.34
+   Compiling num-complex v0.2.4
+   Compiling fixedbitset v0.5.7
+   Compiling fastrand v2.5.0
+   Compiling tower-layer v0.3.3
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling adler2 v2.0.1
+   Compiling cpufeatures v0.3.1
+   Compiling httpdate v1.0.3
+   Compiling colorchoice v1.0.5
+   Compiling anstyle-query v1.1.5
+   Compiling sync_wrapper v1.0.2
+   Compiling anstyle v1.0.14
+   Compiling anstream v1.0.0
+   Compiling hyper v1.11.1
+   Compiling chacha20 v0.10.2
+   Compiling miniz_oxide v0.9.1
+   Compiling tempfile v3.27.0
+   Compiling petgraph v0.8.3
+   Compiling pest_generator v2.9.2
+   Compiling pulldown-cmark-to-cmark v22.0.3
+   Compiling prost-types v0.14.4
+   Compiling regex v1.13.1
+   Compiling http-body-util v0.1.5
+   Compiling getrandom v0.2.17
+   Compiling thiserror-impl v2.0.21
+   Compiling pin-project-internal v1.1.13
+   Compiling multimap v0.10.1
+   Compiling cfg_aliases v0.2.2
+   Compiling syn v1.0.109
+   Compiling bumpalo v3.20.3
+   Compiling mime v0.3.17
+   Compiling getrandom v0.3.4
+   Compiling zip v2.4.2
+   Compiling foldhash v0.2.0
+   Compiling prost-build v0.14.4
+   Compiling axum-core v0.5.6
+   Compiling zopfli v0.8.3
+   Compiling nix v0.31.3
+   Compiling pin-project v1.1.13
+   Compiling thiserror v2.0.21
+   Compiling rand_core v0.6.4
+   Compiling const-random-macro v0.1.16
+   Compiling rand v0.10.3
+   Compiling pest_derive v2.9.2
+   Compiling flate2 v1.1.10
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling tonic-build v0.14.6
+   Compiling ndarray v0.16.1
+   Compiling stim-cxx v0.4.5
+   Compiling ahash v0.8.12
+   Compiling smartstring v1.0.1
+   Compiling num-bigint v0.4.8
+   Compiling ppv-lite86 v0.2.21
+   Compiling approx v0.3.2
+   Compiling cxxbridge-macro v1.0.202
+   Compiling displaydoc v0.2.7
+   Compiling percent-encoding v2.3.2
+   Compiling fixed v1.31.0
+   Compiling matchit v0.8.4
+   Compiling scopeguard v1.2.0
+   Compiling unicode-xid v0.2.6
+   Compiling derive_more-impl v2.1.1
+   Compiling lock_api v0.4.14
+   Compiling axum v0.8.9
+   Compiling alga v0.9.3
+   Compiling rand_chacha v0.3.1
+   Compiling py_literal v0.4.0
+   Compiling tonic-prost-build v0.14.6
+   Compiling hyper-timeout v0.5.2
+   Compiling const-random v0.1.18
+   Compiling parking_lot_core v0.9.12
+   Compiling env_filter v2.0.0
+   Compiling heck v0.3.3
+   Compiling half v2.7.1
+   Compiling tokio-stream v0.1.19
+   Compiling console v0.16.6
+   Compiling itertools v0.8.2
+   Compiling num_cpus v1.17.0
+   Compiling async-trait v0.1.92
+   Compiling web-time v1.1.0
+   Compiling serde_json v1.0.141
+   Compiling unit-prefix v0.5.2
+   Compiling strsim v0.11.1
+   Compiling small_ctor v0.1.2
+   Compiling base64 v0.22.1
+   Compiling unindent v0.1.11
+   Compiling byteorder v1.5.0
+   Compiling clap_lex v1.1.1
+   Compiling az v1.3.0
+   Compiling static_assertions v1.1.0
+   Compiling bytemuck v1.25.2
+   Compiling clap_builder v4.6.7
+   Compiling ndarray-npy v0.9.1
+   Compiling structdoc-derive v0.1.4
+   Compiling tonic v0.14.6
+   Compiling fastant v0.1.11
+   Compiling indicatif v0.18.6
+   Compiling sprs v0.11.3
+   Compiling env_logger v0.11.11
+   Compiling parking_lot v0.12.5
+   Compiling deq-runtime v0.5.10
+   Compiling rand v0.8.8
+   Compiling derive_more v2.1.1
+   Compiling clap_derive v4.6.7
+   Compiling ndarray v0.17.2
+   Compiling itertools v0.13.0
+   Compiling fastrace-macro v0.7.19
+   Compiling rhai_codegen v3.2.0
+   Compiling bitflags v1.3.2
+   Compiling allocator-api2 v0.2.21
+   Compiling sorted-iter v0.1.11
+   Compiling dyn-clone v1.0.20
+   Compiling sorted-vec v0.8.11
+   Compiling thin-vec v0.2.20
+   Compiling ryu v1.0.23
+   Compiling rtrb v0.3.5
+   Compiling fastrace v0.7.19
+   Compiling rhai v1.26.1
+   Compiling binar v0.1.6
+   Compiling relay-bp v0.2.2
+   Compiling hashbrown v0.16.1
+   Compiling structdoc v0.1.4
+   Compiling stim v0.4.5
+   Compiling clap v4.6.7
+error: failed to run custom build command for `deq-runtime v0.5.10`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/deq-runtime-c4e645157a22145f/build-script-build` (exit status: 101)
+  --- stdout
+  cargo::rerun-if-changed=../proto
+  cargo::rerun-if-changed=cpp/tesseract/tesseract_core.h
+  cargo::rerun-if-changed=cpp/tesseract/tesseract_bridge.h
+  cargo::rerun-if-changed=cpp/tesseract/tesseract_bridge.cc
+  cargo::rerun-if-changed=src/decoder/tesseract_ffi.rs
+
+  --- stderr
+  cargo:warning=Downloading Boost 1.83.0 headers...
+  curl: (22) The requested URL returned error: 404
+
+  thread &#39;main&#39; (3954) panicked at /cw/vendor/deq-runtime-0.5.10/build.rs:105:9:
+  failed to download Boost
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-01 04:38 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-627152</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:38 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-450252</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:38 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:43 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:43 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:43 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:48 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:48 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 04:48 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-523934</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

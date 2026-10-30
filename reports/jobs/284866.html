@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: forklaunch 1.34.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>forklaunch <span class="version">1.34.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 284866</span>
+      <a class="muted" href="https://crates.io/crates/forklaunch/1.34.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="284866.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="284866.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="284866-diff.html">Compare with 1.33.0</a>
+    </p>
+    <p class="headline">high severity exfiltration_endpoint in library code: {&#34;id&#34;: &#34;cfg-1&#34;, &#34;serviceName&#34;: &#34;iam&#34;, &#34;slackWebhookUrl&#34;: &#34;https://hooks.slack.com/x&#34;}</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">568</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:exfiltration_endpoint</span><div class="sub">static · forklaunch</div></td><td class="mono where"><a href="https://crates.io/crates/forklaunch/1.34.0/code/src/notifiers.rs#L204" rel="noreferrer noopener" target="_blank">src/notifiers.rs:204</a></td><td>high severity exfiltration_endpoint in library code: {&#34;id&#34;: &#34;cfg-1&#34;, &#34;serviceName&#34;: &#34;iam&#34;, &#34;slackWebhookUrl&#34;: &#34;https://hooks.slack.com/x&#34;}</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · forklaunch</div></td><td class="mono where"><a href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L433" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:433</a></td><td>medium severity obfuscated_data in library code (3 places): STRIPE_API_KEY=replace-with-stripe-api-key\u{a}PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com\u{a}PAYPAL_CLIENT_SECRET=replace-with-paypal-client-secret\u{a}PAYPAL_WEBHOOK_ID=replace-with-paypal-web…</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · forklaunch</div></td><td class="mono where"><a href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L188" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:188</a></td><td>medium severity secret_environment_variable in library code (10 places): OPENAI_API_KEY</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · forklaunch</div></td><td class="mono where"><a href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L903" rel="noreferrer noopener" target="_blank">src/core/docker.rs:903</a></td><td>medium severity shell_command in library code (2 places): /bin/sh -c &#34;mc alias set local http://minio:9000 minioadmin minioadmin &#38;&#38; {}&#34;</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · forklaunch</div></td><td class="mono where"><a href="https://crates.io/crates/forklaunch/1.34.0/code/scripts/install.js#L97" rel="noreferrer noopener" target="_blank">scripts/install.js:97</a></td><td>medium severity yara:persistence_locations in library code: Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · forklaunch</div></td><td class="mono where"><a href="https://crates.io/crates/forklaunch/1.34.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:exfiltration_endpoint</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">568</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">16</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">179</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">372</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">exfiltration_endpoint</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">{&#34;id&#34;: &#34;cfg-1&#34;, &#34;serviceName&#34;: &#34;iam&#34;, &#34;slackWebhookUrl&#34;: &#34;https://hooks.slack.com/x&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/notifiers.rs#L204" rel="noreferrer noopener" target="_blank">src/notifiers.rs:204</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">10</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">OPENAI_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L188" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:188</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L2547" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:2547</a> </span></li>
+
+<li><code class="evidence-text">ANTHROPIC_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L189" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:189</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L2522" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:2522</a> </span></li>
+
+<li><code class="evidence-text">AWS_ACCESS_KEY_ID</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L844" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:844</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/sms/tests.rs#L102" rel="noreferrer noopener" target="_blank">src/infra/capabilities/sms/tests.rs:102</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/voice/tests.rs#L87" rel="noreferrer noopener" target="_blank">src/infra/capabilities/voice/tests.rs:87</a> </span></li>
+
+<li><code class="evidence-text">AWS_SECRET_ACCESS_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L844" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:844</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L2989" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:2989</a> </span></li>
+
+<li><code class="evidence-text">OPENAI_API_KEY, openai</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L2591" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:2591</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">STRIPE_API_KEY=replace-with-stripe-api-key\u{a}PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com\u{a}PAYPAL_CLIENT_SECRET=replace-with-paypal-client-secret\u{a}PAYPAL_WEBHOOK_ID=replace-with-paypal-web…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L433" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:433</a> </span></li>
+
+<li><code class="evidence-text">ACCOUNTS_DATABASE_URL=postgresql://accounts_app@postgresql:5432/kestrel_accounts\u{a}ACCOUNTS_STORAGE_ENCRYPTION_NAMESPACE=accounts-records\u{a}ACCOUNTSX_KEEP=1\u{a}IAM_NOTE=accounts\u{a}OTHER_URL=htt…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1433" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1433</a> </span></li>
+
+<li><code class="evidence-text"># Separate database per service. Runtime role must not bypass row-level security.\u{a}DATABASE_URL=postgresql://app@localhost:5432/service\u{a}MIGRATION_DATABASE_URL=postgresql://owner@localhost:5432/…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/service_database.rs#L64" rel="noreferrer noopener" target="_blank">src/init/rust_project/service_database.rs:64</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">/bin/sh -c &#34;mc alias set local http://minio:9000 minioadmin minioadmin &#38;&#38; {}&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L903" rel="noreferrer noopener" target="_blank">src/core/docker.rs:903</a> </span></li>
+
+<li><code class="evidence-text">RUN arch=$(uname -m) &#38;&#38; case &#34;$arch&#34; in {cases}*) echo &#34;No pinned watchexec for $arch&#34; &#62;&#38;2; exit 1 ;; esac \\u{a}&#38;&#38; name=watchexec-{WATCHEXEC_VERSION}-$arch-unknown-linux-musl \\u{a}&#38;&#38; curl -fsSL -o /…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L141" rel="noreferrer noopener" target="_blank">src/dev.rs:141</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/scripts/install.js#L97" rel="noreferrer noopener" target="_blank">scripts/install.js:97</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">116</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::blocking::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/create.rs#L145" rel="noreferrer noopener" target="_blank">src/app/create.rs:145</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L56" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:56</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L146" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:146</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L201" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:201</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/token.rs#L28" rel="noreferrer noopener" target="_blank">src/core/token.rs:28</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/token.rs#L110" rel="noreferrer noopener" target="_blank">src/core/token.rs:110</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/validate.rs#L66" rel="noreferrer noopener" target="_blank">src/core/validate.rs:66</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/integrate.rs#L86" rel="noreferrer noopener" target="_blank">src/integrate.rs:86</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/login.rs#L204" rel="noreferrer noopener" target="_blank">src/login.rs:204</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/s3_upload.rs#L149" rel="noreferrer noopener" target="_blank">src/release/s3_upload.rs:149</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/s3_upload.rs#L256" rel="noreferrer noopener" target="_blank">src/release/s3_upload.rs:256</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/whoami.rs#L61" rel="noreferrer noopener" target="_blank">src/whoami.rs:61</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::DELETE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/domain.rs#L168" rel="noreferrer noopener" target="_blank">src/app/domain.rs:168</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/domain.rs#L306" rel="noreferrer noopener" target="_blank">src/app/domain.rs:306</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/domain.rs#L666" rel="noreferrer noopener" target="_blank">src/app/domain.rs:666</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L132" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:132</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/environment/delete.rs#L105" rel="noreferrer noopener" target="_blank">src/environment/delete.rs:105</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/github/disconnect.rs#L55" rel="noreferrer noopener" target="_blank">src/github/disconnect.rs:55</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/invitations.rs#L126" rel="noreferrer noopener" target="_blank">src/org/invitations.rs:126</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/members.rs#L218" rel="noreferrer noopener" target="_blank">src/org/members.rs:218</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::NO_CONTENT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/domain.rs#L545" rel="noreferrer noopener" target="_blank">src/app/domain.rs:545</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/instance/email.rs#L216" rel="noreferrer noopener" target="_blank">src/managed/instance/email.rs:216</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::NOT_FOUND</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/domain.rs#L545" rel="noreferrer noopener" target="_blank">src/app/domain.rs:545</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/domain.rs#L669" rel="noreferrer noopener" target="_blank">src/app/domain.rs:669</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/instance/email.rs#L146" rel="noreferrer noopener" target="_blank">src/managed/instance/email.rs:146</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/instance/email.rs#L216" rel="noreferrer noopener" target="_blank">src/managed/instance/email.rs:216</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/instance/email.rs#L308" rel="noreferrer noopener" target="_blank">src/managed/instance/email.rs:308</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PUT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/readiness.rs#L162" rel="noreferrer noopener" target="_blank">src/app/readiness.rs:162</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/website.rs#L75" rel="noreferrer noopener" target="_blank">src/app/website.rs:75</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L122" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:122</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L258" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:258</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/domain.rs#L123" rel="noreferrer noopener" target="_blank">src/org/domain.rs:123</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/members.rs#L162" rel="noreferrer noopener" target="_blank">src/org/members.rs:162</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/show.rs#L41" rel="noreferrer noopener" target="_blank">src/org/show.rs:41</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/set_current.rs#L123" rel="noreferrer noopener" target="_blank">src/release/set_current.rs:123</a> </span></li>
+
+<li><code class="evidence-text">reqwest::blocking::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/website.rs#L60" rel="noreferrer noopener" target="_blank">src/app/website.rs:60</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L814" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:814</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/version_check.rs#L101" rel="noreferrer noopener" target="_blank">src/core/version_check.rs:101</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L118" rel="noreferrer noopener" target="_blank">src/model.rs:118</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L155" rel="noreferrer noopener" target="_blank">src/model.rs:155</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/prebuilt.rs#L12" rel="noreferrer noopener" target="_blank">src/release/prebuilt.rs:12</a> </span></li>
+
+<li><code class="evidence-text">reqwest::redirect::Policy::none</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/website.rs#L61" rel="noreferrer noopener" target="_blank">src/app/website.rs:61</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L119" rel="noreferrer noopener" target="_blank">src/model.rs:119</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L156" rel="noreferrer noopener" target="_blank">src/model.rs:156</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/prebuilt.rs#L14" rel="noreferrer noopener" target="_blank">src/release/prebuilt.rs:14</a> </span></li>
+
+<li><code class="evidence-text">reqwest::blocking::Response</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/app/website.rs#L122" rel="noreferrer noopener" target="_blank">src/app/website.rs:122</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L26" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:26</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L45" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:45</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L82" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:82</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L111" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:111</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L116" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:116</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L121" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:121</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L126" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:126</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L131" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:131</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L145" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:145</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L178" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:178</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L193" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:193</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L216" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:216</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L232" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:232</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L246" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:246</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L254" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:254</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/data/kafka.rs#L94" rel="noreferrer noopener" target="_blank">src/data/kafka.rs:94</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/data/redis.rs#L82" rel="noreferrer noopener" target="_blank">src/data/redis.rs:82</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L145" rel="noreferrer noopener" target="_blank">src/managed/client.rs:145</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L145" rel="noreferrer noopener" target="_blank">src/managed/client.rs:145</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L226" rel="noreferrer noopener" target="_blank">src/managed/client.rs:226</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/shared.rs#L29" rel="noreferrer noopener" target="_blank">src/org/shared.rs:29</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/shared.rs#L36" rel="noreferrer noopener" target="_blank">src/org/shared.rs:36</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/shared.rs#L36" rel="noreferrer noopener" target="_blank">src/org/shared.rs:36</a> </span></li>
+
+<li><code class="evidence-text">reqwest::blocking::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L562" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:562</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::OK</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/pull.rs#L103" rel="noreferrer noopener" target="_blank">src/config/pull.rs:103</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/push.rs#L242" rel="noreferrer noopener" target="_blank">src/config/push.rs:242</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/push.rs#L285" rel="noreferrer noopener" target="_blank">src/config/push.rs:285</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/email_sender.rs#L39" rel="noreferrer noopener" target="_blank">src/core/email_sender.rs:39</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/pool/log_budget.rs#L84" rel="noreferrer noopener" target="_blank">src/org/pool/log_budget.rs:84</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::FORBIDDEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/email_sender.rs#L494" rel="noreferrer noopener" target="_blank">src/core/email_sender.rs:494</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/pool/log_budget.rs#L306" rel="noreferrer noopener" target="_blank">src/org/pool/log_budget.rs:306</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::BAD_REQUEST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/email_sender.rs#L499" rel="noreferrer noopener" target="_blank">src/core/email_sender.rs:499</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::CONFLICT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/email_sender.rs#L506" rel="noreferrer noopener" target="_blank">src/core/email_sender.rs:506</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/integrate.rs#L94" rel="noreferrer noopener" target="_blank">src/integrate.rs:94</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::SERVICE_UNAVAILABLE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/email_sender.rs#L512" rel="noreferrer noopener" target="_blank">src/core/email_sender.rs:512</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::INTERNAL_SERVER_ERROR</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/email_sender.rs#L514" rel="noreferrer noopener" target="_blank">src/core/email_sender.rs:514</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/pool/log_budget.rs#L315" rel="noreferrer noopener" target="_blank">src/org/pool/log_budget.rs:315</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/host_ports.rs#L182" rel="noreferrer noopener" target="_blank">src/core/host_ports.rs:182</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/host_ports.rs#L184" rel="noreferrer noopener" target="_blank">src/core/host_ports.rs:184</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/host_ports.rs#L275" rel="noreferrer noopener" target="_blank">src/core/host_ports.rs:275</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L23" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:23</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L41" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:41</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L79" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:79</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L175" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:175</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L189" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:189</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/shared.rs#L25" rel="noreferrer noopener" target="_blank">src/org/shared.rs:25</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::GET</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L112" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:112</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L249" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:249</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::POST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L117" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:117</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L220" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:220</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L237" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:237</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/domain.rs#L63" rel="noreferrer noopener" target="_blank">src/org/domain.rs:63</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/domain.rs#L93" rel="noreferrer noopener" target="_blank">src/org/domain.rs:93</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/invitations.rs#L99" rel="noreferrer noopener" target="_blank">src/org/invitations.rs:99</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/org/members.rs#L119" rel="noreferrer noopener" target="_blank">src/org/members.rs:119</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::PATCH</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L127" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:127</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/environment/approval.rs#L94" rel="noreferrer noopener" target="_blank">src/environment/approval.rs:94</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/environment/branch.rs#L97" rel="noreferrer noopener" target="_blank">src/environment/branch.rs:97</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url::parse</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L99" rel="noreferrer noopener" target="_blank">src/model.rs:99</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_TYPE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/s3_upload.rs#L162" rel="noreferrer noopener" target="_blank">src/release/s3_upload.rs:162</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/s3_upload.rs#L264" rel="noreferrer noopener" target="_blank">src/release/s3_upload.rs:264</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_LENGTH</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/s3_upload.rs#L163" rel="noreferrer noopener" target="_blank">src/release/s3_upload.rs:163</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/s3_upload.rs#L265" rel="noreferrer noopener" target="_blank">src/release/s3_upload.rs:265</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/bootstrapper.rs#L36" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/bootstrapper.rs:36</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/cac/bootstrapper.rs#L28" rel="noreferrer noopener" target="_blank">src/templates/rust/cac/bootstrapper.rs:28</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/ecommerce/bootstrapper.rs#L52" rel="noreferrer noopener" target="_blank">src/templates/rust/ecommerce/bootstrapper.rs:52</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/iam/bootstrapper.rs#L45" rel="noreferrer noopener" target="_blank">src/templates/rust/iam/bootstrapper.rs:45</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/native-service/bootstrapper.rs#L16" rel="noreferrer noopener" target="_blank">src/templates/rust/project/native-service/bootstrapper.rs:16</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/module/server.rs#L6" rel="noreferrer noopener" target="_blank">src/templates/rust/project/module/server.rs:6</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/native-service/server.rs#L8" rel="noreferrer noopener" target="_blank">src/templates/rust/project/native-service/server.rs:8</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">61</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/analyze/verification.rs#L49" rel="noreferrer noopener" target="_blank">src/analyze/verification.rs:49</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/change/core/clean_application.rs#L30" rel="noreferrer noopener" target="_blank">src/change/core/clean_application.rs:30</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/format.rs#L24" rel="noreferrer noopener" target="_blank">src/core/format.rs:24</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/host_ports.rs#L192" rel="noreferrer noopener" target="_blank">src/core/host_ports.rs:192</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L214" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:214</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L585" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:585</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/version_check.rs#L157" rel="noreferrer noopener" target="_blank">src/core/version_check.rs:157</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/version_check.rs#L281" rel="noreferrer noopener" target="_blank">src/core/version_check.rs:281</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/workspace_archive.rs#L98" rel="noreferrer noopener" target="_blank">src/core/workspace_archive.rs:98</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/workspace_archive.rs#L330" rel="noreferrer noopener" target="_blank">src/core/workspace_archive.rs:330</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L78" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:78</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L270" rel="noreferrer noopener" target="_blank">src/dev.rs:270</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L374" rel="noreferrer noopener" target="_blank">src/dev.rs:374</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L428" rel="noreferrer noopener" target="_blank">src/dev.rs:428</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L454" rel="noreferrer noopener" target="_blank">src/dev.rs:454</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L477" rel="noreferrer noopener" target="_blank">src/dev.rs:477</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L521" rel="noreferrer noopener" target="_blank">src/dev.rs:521</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L1591" rel="noreferrer noopener" target="_blank">src/dev.rs:1591</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/contracts.rs#L216" rel="noreferrer noopener" target="_blank">src/dev/contracts.rs:216</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L127" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:127</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L161" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:161</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L184" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:184</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L318" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:318</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L327" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:327</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L332" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:332</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L345" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:345</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L357" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:357</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L361" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:361</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L626" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:626</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/typescript.rs#L517" rel="noreferrer noopener" target="_blank">src/dev/typescript.rs:517</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/native_local.rs#L527" rel="noreferrer noopener" target="_blank">src/infra/native_local.rs:527</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/native_layout.rs#L51" rel="noreferrer noopener" target="_blank">src/init/rust_project/native_layout.rs:51</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/sdk_consumer.rs#L690" rel="noreferrer noopener" target="_blank">src/init/rust_project/sdk_consumer.rs:690</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/typescript_image.rs#L1380" rel="noreferrer noopener" target="_blank">src/init/rust_project/typescript_image.rs:1380</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/typescript_workspace.rs#L22" rel="noreferrer noopener" target="_blank">src/init/typescript_workspace.rs:22</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L440" rel="noreferrer noopener" target="_blank">src/release/create.rs:440</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L1406" rel="noreferrer noopener" target="_blank">src/release/create.rs:1406</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L7" rel="noreferrer noopener" target="_blank">src/release/git.rs:7</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L40" rel="noreferrer noopener" target="_blank">src/release/git.rs:40</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L54" rel="noreferrer noopener" target="_blank">src/release/git.rs:54</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L74" rel="noreferrer noopener" target="_blank">src/release/git.rs:74</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L92" rel="noreferrer noopener" target="_blank">src/release/git.rs:92</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L106" rel="noreferrer noopener" target="_blank">src/release/git.rs:106</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/typescript_build.rs#L107" rel="noreferrer noopener" target="_blank">src/sdk/typescript_build.rs:107</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L900" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:900</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L906" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:906</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L1037" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:1037</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L1055" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:1055</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket/compiler.rs#L63" rel="noreferrer noopener" target="_blank">src/sdk/websocket/compiler.rs:63</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L509" rel="noreferrer noopener" target="_blank">src/dev.rs:509</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L1329" rel="noreferrer noopener" target="_blank">src/dev.rs:1329</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L1330" rel="noreferrer noopener" target="_blank">src/dev.rs:1330</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L1332" rel="noreferrer noopener" target="_blank">src/dev.rs:1332</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L126" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:126</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L145" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:145</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L158" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:158</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L207" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:207</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/sdk.rs#L238" rel="noreferrer noopener" target="_blank">src/dev/sdk.rs:238</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L329" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:329</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L344" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:344</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/websocket.rs#L359" rel="noreferrer noopener" target="_blank">src/sdk/websocket.rs:359</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/tests/fixtures/rust-notes-assembly/src/notes/application.rs#L41" rel="noreferrer noopener" target="_blank">tests/fixtures/rust-notes-assembly/src/notes/application.rs:41</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">341</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">redis://localhost:6379</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/change/service.rs#L429" rel="noreferrer noopener" target="_blank">src/change/service.rs:429</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L100" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:100</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L309" rel="noreferrer noopener" target="_blank">src/infra/local.rs:309</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L3389" rel="noreferrer noopener" target="_blank">src/release/create.rs:3389</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L3397" rel="noreferrer noopener" target="_blank">src/release/create.rs:3397</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L3414" rel="noreferrer noopener" target="_blank">src/release/create.rs:3414</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:9000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/change/service.rs#L511" rel="noreferrer noopener" target="_blank">src/change/service.rs:511</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L330" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:330</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L887" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:887</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L303" rel="noreferrer noopener" target="_blank">src/infra/local.rs:303</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/native_local.rs#L248" rel="noreferrer noopener" target="_blank">src/infra/native_local.rs:248</a> </span></li>
+
+<li><code class="evidence-text">redis://localhost:6379/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/change/worker.rs#L220" rel="noreferrer noopener" target="_blank">src/change/worker.rs:220</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/change/worker.rs#L349" rel="noreferrer noopener" target="_blank">src/change/worker.rs:349</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L197" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:197</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}            &#34;account&#34;: {&#34;id&#34;: &#34;ca-1&#34;},\u{a}            &#34;setupInstructions&#34;: {\u{a}                &#34;cloudFormationUrl&#34;: &#34;https://...&#34;,\u{a}                &#34;terraformSnippet&#34;: &#34;resource ...&#34;,\u{a}…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/cloud_account/create.rs#L122" rel="noreferrer noopener" target="_blank">src/cloud_account/create.rs:122</a> </span></li>
+
+<li><code class="evidence-text">  Paste into https://mermaid.live to render</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/audit.rs#L946" rel="noreferrer noopener" target="_blank">src/compliance/audit.rs:946</a> </span></li>
+
+<li><code class="evidence-text">fetch(`https://graph.facebook.com/v20.0/${id}/messages`, { headers: { authorization: `Bearer ${process.env.WHATSAPP_TOKEN}` } })</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/checks.rs#L3341" rel="noreferrer noopener" target="_blank">src/compliance/checks.rs:3341</a> </span></li>
+
+<li><code class="evidence-text">https://api.osv.dev/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L30" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:30</a> </span></li>
+
+<li><code class="evidence-text">registry+https://github.com/rust-lang/crates.io-index</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L937" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:937</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L957" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:957</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L1040" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:1040</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps/cargo.rs#L53" rel="noreferrer noopener" target="_blank">src/compliance/deps/cargo.rs:53</a> </span></li>
+
+<li><code class="evidence-text">git+https://secret@example.com/repo#abc</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L973" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:973</a> </span></li>
+
+<li><code class="evidence-text">registry+https://secret@example.com/index</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L974" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:974</a> </span></li>
+
+<li><code class="evidence-text">[[package]]\u{a}name = &#34;myapp&#34;\u{a}version = &#34;0.1.0&#34;\u{a}source = { editable = &#34;.&#34; }\u{a}\u{a}[[package]]\u{a}name = &#34;urllib3&#34;\u{a}version = &#34;1.26.0&#34;\u{a}source = { registry = &#34;https://pypi.org/simple…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/deps.rs#L1154" rel="noreferrer noopener" target="_blank">src/compliance/deps.rs:1154</a> </span></li>
+
+<li><code class="evidence-text">Compliance management and audit reporting. More info: https://forklaunch.com/docs/compliance</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/compliance/mod.rs#L36" rel="noreferrer noopener" target="_blank">src/compliance/mod.rs:36</a> </span></li>
+
+<li><code class="evidence-text"># application\u{a}DB_HOST=db.example.com\u{a}DB_PORT=5432\u{a}GOOGLE_CLOUD_LOCATION=us-central1\u{a}GOOGLE_CLOUD_API_KEY=abc123\u{a}REDIS_URL=redis://localhost:6379\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/push.rs#L368" rel="noreferrer noopener" target="_blank">src/config/push.rs:368</a> </span></li>
+
+<li><code class="evidence-text"># application\u{a}DB_HOST=db.example.com\u{a}DB_PORT=5432\u{a}REDIS_URL=redis://localhost:6379\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/push.rs#L386" rel="noreferrer noopener" target="_blank">src/config/push.rs:386</a> </span></li>
+
+<li><code class="evidence-text"># application\u{a}APP_NAME=myapp\u{a}# my-service (svc-123)\u{a}DB_HOST=db.example.com\u{a}# video-processor-worker (wkr-456)\u{a}QUEUE_URL=sqs://queue\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/push.rs#L414" rel="noreferrer noopener" target="_blank">src/config/push.rs:414</a> </span></li>
+
+<li><code class="evidence-text">QUEUE_URL=sqs://queue\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/config/push.rs#L433" rel="noreferrer noopener" target="_blank">src/config/push.rs:433</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8004</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L10" rel="noreferrer noopener" target="_blank">src/constants.rs:10</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8007</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L11" rel="noreferrer noopener" target="_blank">src/constants.rs:11</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L12" rel="noreferrer noopener" target="_blank">src/constants.rs:12</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L605" rel="noreferrer noopener" target="_blank">src/init/agent.rs:605</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L13" rel="noreferrer noopener" target="_blank">src/constants.rs:13</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L256" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:256</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L703" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:703</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L871" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:871</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:5173</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L14" rel="noreferrer noopener" target="_blank">src/constants.rs:14</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8008</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L15" rel="noreferrer noopener" target="_blank">src/constants.rs:15</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8005</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L16" rel="noreferrer noopener" target="_blank">src/constants.rs:16</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8006</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L17" rel="noreferrer noopener" target="_blank">src/constants.rs:17</a> </span></li>
+
+<li><code class="evidence-text">https://platform-management.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L19" rel="noreferrer noopener" target="_blank">src/constants.rs:19</a> </span></li>
+
+<li><code class="evidence-text">https://observability-api.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L20" rel="noreferrer noopener" target="_blank">src/constants.rs:20</a> </span></li>
+
+<li><code class="evidence-text">https://iam.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L21" rel="noreferrer noopener" target="_blank">src/constants.rs:21</a> </span></li>
+
+<li><code class="evidence-text">https://billing.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L22" rel="noreferrer noopener" target="_blank">src/constants.rs:22</a> </span></li>
+
+<li><code class="evidence-text">https://forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L23" rel="noreferrer noopener" target="_blank">src/constants.rs:23</a> </span></li>
+
+<li><code class="evidence-text">https://studio-orchestrator.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L24" rel="noreferrer noopener" target="_blank">src/constants.rs:24</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L200" rel="noreferrer noopener" target="_blank">src/model.rs:200</a> </span></li>
+
+<li><code class="evidence-text">https://resource-management.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L25" rel="noreferrer noopener" target="_blank">src/constants.rs:25</a> </span></li>
+
+<li><code class="evidence-text">https://developer-tools.forklaunch-production-us-west-2-0aef7f56.app.forklaunch.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L36" rel="noreferrer noopener" target="_blank">src/constants.rs:36</a> </span></li>
+
+<li><code class="evidence-text">The &#39;{linter}&#39; linter cannot lint TypeScript 7 applications: typescript-eslint does not support TypeScript 7 yet (https://github.com/typescript-eslint/typescript-eslint/issues/10940). Use --linter oxl…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/constants.rs#L761" rel="noreferrer noopener" target="_blank">src/constants.rs:761</a> </span></li>
+
+<li><code class="evidence-text">\u{a}        const registrations = configInjector({\u{a}            workerService: {\u{a}                lifetime: Lifetime.Scoped,\u{a}                factory: (options) =&#62; {\u{a}                    …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/deletions/delete_from_registrations_ts.rs#L312" rel="noreferrer noopener" target="_blank">src/core/ast/deletions/delete_from_registrations_ts.rs:312</a> </span></li>
+
+<li><code class="evidence-text">\u{a}        const environmentConfig = configInjector.chain({\u{a}          OTEL_LEVEL: {\u{a}            lifetime: Lifetime.Singleton,\u{a}            type: optional(string),\u{a}            value: g…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/infrastructure/env.rs#L750" rel="noreferrer noopener" target="_blank">src/core/ast/infrastructure/env.rs:750</a> </span></li>
+
+<li><code class="evidence-text">const harness = new BlueprintTestHarness({\u{a}        customEnvVars: {\u{a}            REDIS_URL: process.env.REDIS_URL || &#39;redis://localhost:6379&#39;\u{a}        }\u{a}    });</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/infrastructure/test_utils.rs#L123" rel="noreferrer noopener" target="_blank">src/core/ast/infrastructure/test_utils.rs:123</a> </span></li>
+
+<li><code class="evidence-text">clientUrl: getEnvVar(&#39;DB_URL&#39;) || `mongodb://${validConfigInjector.resolve(\u{a}                                        &#39;DB_USER&#39;\u{a}                                    )}:${validConfigInjector.resol…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/transformations/transform_mikroorm_config_ts.rs#L328" rel="noreferrer noopener" target="_blank">src/core/ast/transformations/transform_mikroorm_config_ts.rs:328</a> </span></li>
+
+<li><code class="evidence-text">clientUrl:\u{a}    getEnvVar(&#39;DB_URL&#39;) ||\u{a}    `mongodb://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/transformations/transform_mikroorm_config_ts.rs#L592" rel="noreferrer noopener" target="_blank">src/core/ast/transformations/transform_mikroorm_config_ts.rs:592</a> </span></li>
+
+<li><code class="evidence-text">import { forklaunchExpress, schemaValidator } from &#39;@forklaunch/blueprint-core&#39;;\u{a}import { getEnvVar } from &#39;@forklaunch/common&#39;;\u{a}import dotenv from &#39;dotenv&#39;;\u{a}import { organizationRouter } …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/transformations/transform_server_ts.rs#L108" rel="noreferrer noopener" target="_blank">src/core/ast/transformations/transform_server_ts.rs:108</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/transformations/transform_server_ts.rs#L263" rel="noreferrer noopener" target="_blank">src/core/ast/transformations/transform_server_ts.rs:263</a> </span></li>
+
+<li><code class="evidence-text">/** \u{a} * Generated by ForkLaunch\u{a} * File: server.ts\u{a} * This is an auto-generated file. Modifications are encouraged but may inhibit automated upgrades.\u{a} */\u{a}\u{a}import { forklaunchE…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/ast/transformations/transform_server_ts.rs#L151" rel="noreferrer noopener" target="_blank">src/core/ast/transformations/transform_server_ts.rs:151</a> </span></li>
+
+<li><code class="evidence-text">/bin/sh -c &#34;mc alias set local http://minio:9000 minioadmin minioadmin &#38;&#38; {}&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L903" rel="noreferrer noopener" target="_blank">src/core/docker.rs:903</a> </span></li>
+
+<li><code class="evidence-text">PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093,PLAINTEXT_HOST://0.0.0.0:9092</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L986" rel="noreferrer noopener" target="_blank">src/core/docker.rs:986</a> </span></li>
+
+<li><code class="evidence-text">PLAINTEXT://kafka:29092,PLAINTEXT_HOST://127.0.0.1:9092</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L991" rel="noreferrer noopener" target="_blank">src/core/docker.rs:991</a> </span></li>
+
+<li><code class="evidence-text">-health.url=http://localhost:3200/ready</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L1139" rel="noreferrer noopener" target="_blank">src/core/docker.rs:1139</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000/api/health</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L1273" rel="noreferrer noopener" target="_blank">src/core/docker.rs:1273</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L1363" rel="noreferrer noopener" target="_blank">src/core/docker.rs:1363</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L198" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:198</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L242" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:242</a> </span></li>
+
+<li><code class="evidence-text">http://minio:9000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L1423" rel="noreferrer noopener" target="_blank">src/core/docker.rs:1423</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L331" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:331</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L900" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:900</a> </span></li>
+
+<li><code class="evidence-text">http://otel-collector:4318</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L2079" rel="noreferrer noopener" target="_blank">src/core/docker.rs:2079</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L275" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:275</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{}/health</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L2186" rel="noreferrer noopener" target="_blank">src/core/docker.rs:2186</a> </span></li>
+
+<li><code class="evidence-text">http://iam:{}/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L2246" rel="noreferrer noopener" target="_blank">src/core/docker.rs:2246</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/docker.rs#L2293" rel="noreferrer noopener" target="_blank">src/core/docker.rs:2293</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L291" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:291</a> </span></li>
+
+<li><code class="evidence-text">{}://localhost:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L217" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:217</a> </span></li>
+
+<li><code class="evidence-text">{}://{}:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L229" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:229</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/config/mod.rs#L61" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/config/mod.rs:61</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/config/mod.rs#L72" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/config/mod.rs:72</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8000/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L242" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:242</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L951" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:951</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8000/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L245" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:245</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L964" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:964</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L257" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:257</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L716" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:716</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L398" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:398</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:4318</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L274" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:274</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L112" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:112</a> </span></li>
+
+<li><code class="evidence-text">redis://localhost:6379/0</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L664" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:664</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L1062" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:1062</a> </span></li>
+
+<li><code class="evidence-text">redis://localhost:6379/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L676" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:676</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379/0</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L689" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:689</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L818" rel="noreferrer noopener" target="_blank">src/infra/local.rs:818</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1578" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1578</a> </span></li>
+
+<li><code class="evidence-text">ws://localhost:11000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L728" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:728</a> </span></li>
+
+<li><code class="evidence-text">redis://custom:6379/0</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/env_defaults.rs#L1058" rel="noreferrer noopener" target="_blank">src/core/env_defaults.rs:1058</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L159" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:159</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/static_analysis/workspace_diagnostics.rs#L658" rel="noreferrer noopener" target="_blank">src/core/static_analysis/workspace_diagnostics.rs:658</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L103" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:103</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L2312" rel="noreferrer noopener" target="_blank">src/release/create.rs:2312</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/releases</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L270" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:270</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com:8080/releases/internal</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L278" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:278</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/deployments/123?status=true</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L286" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:286</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L293" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:293</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/http_client.rs#L298" rel="noreferrer noopener" target="_blank">src/core/http_client.rs:298</a> </span></li>
+
+<li><code class="evidence-text">postgresql://dummy:dummy@localhost:5432/dummy</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L98" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:98</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{}/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L125" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:125</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/openapi_export.rs#L130" rel="noreferrer noopener" target="_blank">src/core/openapi_export.rs:130</a> </span></li>
+
+<li><code class="evidence-text">services:\u{a}  notes:\u{a}    build:\u{a}      context: .\u{a}      dockerfile: Dockerfile.rust\u{a}    command: &#39;custom arbitrary shell code&#39;\u{a}  remote:\u{a}    build: https://example.test/repo.g…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/static_analysis/workspace_diagnostics.rs#L967" rel="noreferrer noopener" target="_blank">src/core/static_analysis/workspace_diagnostics.rs:967</a> </span></li>
+
+<li><code class="evidence-text">Your free trial has expired{}. Please upgrade at https://forklaunch.com/checkout?plan=pro to continue using the CLI.</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/validate.rs#L85" rel="noreferrer noopener" target="_blank">src/core/validate.rs:85</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/forklaunch/forklaunch-js/releases/download/cli-v{}/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/core/version_check.rs#L92" rel="noreferrer noopener" target="_blank">src/core/version_check.rs:92</a> </span></li>
+
+<li><code class="evidence-text">Checks that dependencies aligned across projects. More info: https://forklaunch.com/docs/depcheck</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/depcheck.rs#L32" rel="noreferrer noopener" target="_blank">src/depcheck.rs:32</a> </span></li>
+
+<li><code class="evidence-text">{\u{a}            &#34;id&#34;: &#34;d1&#34;,\u{a}            &#34;status&#34;: &#34;completed&#34;,\u{a}            &#34;metadata&#34;: {\u{a}                &#34;outputs&#34;: {\u{a}                    &#34;url_iam&#34;: &#34;http://alb-1.us-east-1.elb.amazo…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/info.rs#L596" rel="noreferrer noopener" target="_blank">src/deploy/info.rs:596</a> </span></li>
+
+<li><code class="evidence-text">http://alb-1.us-east-1.elb.amazonaws.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/info.rs#L616" rel="noreferrer noopener" target="_blank">src/deploy/info.rs:616</a> </span></li>
+
+<li><code class="evidence-text">https://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L58" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:58</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L148" rel="noreferrer noopener" target="_blank">src/release/git.rs:148</a> </span></li>
+
+<li><code class="evidence-text">ssh://git@</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L60" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:60</a> </span></li>
+
+<li><code class="evidence-text">https://{rest}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L61" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:61</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L64" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:64</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L67" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:67</a> </span></li>
+
+<li><code class="evidence-text">git://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L63" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:63</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L66" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:66</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native.rs#L46" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native.rs:46</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L80" rel="noreferrer noopener" target="_blank">src/init/agent.rs:80</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L103" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:103</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/observe/logs.rs#L367" rel="noreferrer noopener" target="_blank">src/observe/logs.rs:367</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L131" rel="noreferrer noopener" target="_blank">src/release/git.rs:131</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/Main-Street-App/mainstreet-hq</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L286" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:286</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L305" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:305</a> </span></li>
+
+<li><code class="evidence-text">ssh://git@github.com/main-street-app/mainstreet-hq.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L289" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:289</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/Main-Street-App/mainstreet-hq.git/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L290" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:290</a> </span></li>
+
+<li><code class="evidence-text">http://github.com/Main-Street-App/mainstreet-hq</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L291" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:291</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/o/r</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L331" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:331</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L333" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:333</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L337" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:337</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L341" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:341</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L351" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:351</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L362" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:362</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L371" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:371</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/deploy/target.rs#L372" rel="noreferrer noopener" target="_blank">src/deploy/target.rs:372</a> </span></li>
+
+<li><code class="evidence-text">RUN arch=$(uname -m) &#38;&#38; case &#34;$arch&#34; in {cases}*) echo &#34;No pinned watchexec for $arch&#34; &#62;&#38;2; exit 1 ;; esac \\u{a}&#38;&#38; name=watchexec-{WATCHEXEC_VERSION}-$arch-unknown-linux-musl \\u{a}&#38;&#38; curl -fsSL -o /…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev.rs#L141" rel="noreferrer noopener" target="_blank">src/dev.rs:141</a> </span></li>
+
+<li><code class="evidence-text">fetch(&#34;http://localhost:8000/health&#34;)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/dev/typescript.rs#L472" rel="noreferrer noopener" target="_blank">src/dev/typescript.rs:472</a> </span></li>
+
+<li><code class="evidence-text">Repository URL (e.g. https://github.com/org/repo)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/github/connect.rs#L38" rel="noreferrer noopener" target="_blank">src/github/connect.rs:38</a> </span></li>
+
+<li><code class="evidence-text">http://billing-server:8001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/email/tests.rs#L108" rel="noreferrer noopener" target="_blank">src/infra/capabilities/email/tests.rs:108</a> </span></li>
+
+<li><code class="evidence-text">http://billing:8001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/email/tests.rs#L161" rel="noreferrer noopener" target="_blank">src/infra/capabilities/email/tests.rs:161</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/email/tests.rs#L195" rel="noreferrer noopener" target="_blank">src/infra/capabilities/email/tests.rs:195</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/tests.rs#L17" rel="noreferrer noopener" target="_blank">src/infra/capabilities/tests.rs:17</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/tests.rs#L18" rel="noreferrer noopener" target="_blank">src/infra/capabilities/tests.rs:18</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L399" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:399</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L404" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:404</a> </span></li>
+
+<li><code class="evidence-text">http://billing:8001,http://jobs-server:8002</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/email/tests.rs#L178" rel="noreferrer noopener" target="_blank">src/infra/capabilities/email/tests.rs:178</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{GATEWAY_MOCK_HOST_PORT}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/mod.rs#L698" rel="noreferrer noopener" target="_blank">src/infra/capabilities/mod.rs:698</a> </span></li>
+
+<li><code class="evidence-text">http://{service_key}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/mod.rs#L792" rel="noreferrer noopener" target="_blank">src/infra/capabilities/mod.rs:792</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/mod.rs#L865" rel="noreferrer noopener" target="_blank">src/infra/capabilities/mod.rs:865</a> </span></li>
+
+<li><code class="evidence-text">http://{GATEWAY_MOCK_SERVICE}:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/mod.rs#L972" rel="noreferrer noopener" target="_blank">src/infra/capabilities/mod.rs:972</a> </span></li>
+
+<li><code class="evidence-text">http://gateway-mock:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/models/tests.rs#L271" rel="noreferrer noopener" target="_blank">src/infra/capabilities/models/tests.rs:271</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/tests.rs#L21" rel="noreferrer noopener" target="_blank">src/infra/capabilities/tests.rs:21</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L831" rel="noreferrer noopener" target="_blank">src/infra/local.rs:831</a> </span></li>
+
+<li><code class="evidence-text">http://{service}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native.rs#L134" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native.rs:134</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native.rs#L230" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native.rs:230</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{old}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native.rs#L173" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native.rs:173</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{new}{suffix}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native.rs#L175" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native.rs:175</a> </span></li>
+
+<li><code class="evidence-text">http://{receiver}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native.rs#L649" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native.rs:649</a> </span></li>
+
+<li><code class="evidence-text">http://removed:8000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L423" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:423</a> </span></li>
+
+<li><code class="evidence-text">http://other:8123</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L424" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:424</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L445" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:445</a> </span></li>
+
+<li><code class="evidence-text">image: node:22-alpine\u{a}environment:\u{a}  MOCK_EVENTS_URL_EMAIL: http://old:8123\u{a}  MOCK_EVENTS_URL_SMS: https://old:8443/base\u{a}  MOCK_EVENTS_URL_VOICE: https://old.example:8443\u{a}  OTHER_U…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L488" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:488</a> </span></li>
+
+<li><code class="evidence-text">http://new:8123</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L491" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:491</a> </span></li>
+
+<li><code class="evidence-text">https://new:8443/base</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L492" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:492</a> </span></li>
+
+<li><code class="evidence-text">https://old.example:8443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L493" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:493</a> </span></li>
+
+<li><code class="evidence-text">http://old:8123</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/capabilities/native/tests.rs#L494" rel="noreferrer noopener" target="_blank">src/infra/capabilities/native/tests.rs:494</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L823" rel="noreferrer noopener" target="_blank">src/infra/local.rs:823</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/native_local/tests.rs#L28" rel="noreferrer noopener" target="_blank">src/infra/native_local/tests.rs:28</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L486" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:486</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1551" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1551</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1579" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1579</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1580" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1580</a> </span></li>
+
+<li><code class="evidence-text">http://jobs-server:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L856" rel="noreferrer noopener" target="_blank">src/infra/local.rs:856</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L905" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:905</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L916" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:916</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L954" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:954</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L958" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:958</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L969" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:969</a> </span></li>
+
+<li><code class="evidence-text">REDIS_URL=redis://localhost:6379/{database}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L867" rel="noreferrer noopener" target="_blank">src/infra/local.rs:867</a> </span></li>
+
+<li><code class="evidence-text">S3_URL=http://localhost:9000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L869" rel="noreferrer noopener" target="_blank">src/infra/local.rs:869</a> </span></li>
+
+<li><code class="evidence-text">PLATFORM_GATEWAY_URL=http://localhost:18088</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/local.rs#L870" rel="noreferrer noopener" target="_blank">src/infra/local.rs:870</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/native_local.rs#L107" rel="noreferrer noopener" target="_blank">src/infra/native_local.rs:107</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/native_local.rs#L119" rel="noreferrer noopener" target="_blank">src/infra/native_local.rs:119</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L286" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:286</a> </span></li>
+
+<li><code class="evidence-text">redis://localhost:6379/{redis_database}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/infra/native_local.rs#L244" rel="noreferrer noopener" target="_blank">src/infra/native_local.rs:244</a> </span></li>
+
+<li><code class="evidence-text">--mcp expects name=url, for example --mcp linear=https://mcp.linear.app/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L63" rel="noreferrer noopener" target="_blank">src/init/agent.rs:63</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L80" rel="noreferrer noopener" target="_blank">src/init/agent.rs:80</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L103" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:103</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/template/update.rs#L270" rel="noreferrer noopener" target="_blank">src/managed/template/update.rs:270</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/observe/logs.rs#L365" rel="noreferrer noopener" target="_blank">src/observe/logs.rs:365</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L130" rel="noreferrer noopener" target="_blank">src/release/git.rs:130</a> </span></li>
+
+<li><code class="evidence-text">http://{host}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L196" rel="noreferrer noopener" target="_blank">src/init/agent.rs:196</a> </span></li>
+
+<li><code class="evidence-text">linear=https://mcp.linear.app/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L555" rel="noreferrer noopener" target="_blank">src/init/agent.rs:555</a> </span></li>
+
+<li><code class="evidence-text">https://mcp.linear.app/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L558" rel="noreferrer noopener" target="_blank">src/init/agent.rs:558</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L577" rel="noreferrer noopener" target="_blank">src/init/agent.rs:577</a> </span></li>
+
+<li><code class="evidence-text">my_linear=https://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L561" rel="noreferrer noopener" target="_blank">src/init/agent.rs:561</a> </span></li>
+
+<li><code class="evidence-text">_linear=https://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L563" rel="noreferrer noopener" target="_blank">src/init/agent.rs:563</a> </span></li>
+
+<li><code class="evidence-text">Linear=https://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L564" rel="noreferrer noopener" target="_blank">src/init/agent.rs:564</a> </span></li>
+
+<li><code class="evidence-text">linear=ftp://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L565" rel="noreferrer noopener" target="_blank">src/init/agent.rs:565</a> </span></li>
+
+<li><code class="evidence-text">linear=https://x y</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L566" rel="noreferrer noopener" target="_blank">src/init/agent.rs:566</a> </span></li>
+
+<li><code class="evidence-text">PORT=8003\u{a}RECORDS_URL=http://custom:1\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L603" rel="noreferrer noopener" target="_blank">src/init/agent.rs:603</a> </span></li>
+
+<li><code class="evidence-text">PORT=8003\u{a}RECORDS_URL=http://custom:1\u{a}HMAC_SECRET_KEY=k\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/agent.rs#L611" rel="noreferrer noopener" target="_blank">src/init/agent.rs:611</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project.rs#L2781" rel="noreferrer noopener" target="_blank">src/init/rust_project.rs:2781</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L717" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:717</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{port}/health</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project.rs#L2810" rel="noreferrer noopener" target="_blank">src/init/rust_project.rs:2810</a> </span></li>
+
+<li><code class="evidence-text">PORT=9999\u{a}REDIS_URL=redis://localhost:6379</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project.rs#L4464" rel="noreferrer noopener" target="_blank">src/init/rust_project.rs:4464</a> </span></li>
+
+<li><code class="evidence-text">PORT=9999\u{a}REDIS_URL=redis://localhost:6379\u{a}HOST=127.0.0.1\u{a}PROTOCOL=http\u{a}VERSION=v1\u{a}DOCS_PATH=/docs\u{a}RUST_LOG=info\u{a}MCP_ENABLED=true\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project.rs#L4468" rel="noreferrer noopener" target="_blank">src/init/rust_project.rs:4468</a> </span></li>
+
+<li><code class="evidence-text">--mcp expects &#60;name&#62;=&#60;url&#62;, for example --mcp linear=https://mcp.linear.app/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/agent.rs#L34" rel="noreferrer noopener" target="_blank">src/init/rust_project/agent.rs:34</a> </span></li>
+
+<li><code class="evidence-text">http://{name}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/agent.rs#L69" rel="noreferrer noopener" target="_blank">src/init/rust_project/agent.rs:69</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L93" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:93</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{port}/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L315" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:315</a> </span></li>
+
+<li><code class="evidence-text">\u{a}services:\u{a}  iam:\u{a}    environment: { PORT: &#34;8000&#34;, HMAC_SECRET_KEY: &#34;${IAM_HMAC_SECRET_KEY:?x}&#34;, JWKS_PUBLIC_KEY_URL: &#34;${IAM_JWKS_PUBLIC_KEY_URL:?x}&#34; }\u{a}  billing:\u{a}    environment: …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L378" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:378</a> </span></li>
+
+<li><code class="evidence-text">http://custom:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L403" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:403</a> </span></li>
+
+<li><code class="evidence-text">STRIPE_API_KEY=replace-with-stripe-api-key\u{a}PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com\u{a}PAYPAL_CLIENT_SECRET=replace-with-paypal-client-secret\u{a}PAYPAL_WEBHOOK_ID=replace-with-paypal-web…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L433" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:433</a> </span></li>
+
+<li><code class="evidence-text">\u{a}services:\u{a}  iam:\u{a}    environment: { PORT: &#34;8001&#34;, HMAC_SECRET_KEY: shared, JWKS_PUBLIC_KEY_URL: &#34;http://iam:8001/api/auth/jwks&#34; }\u{a}  billing:\u{a}    environment: { PORT: &#34;8002&#34;, HMAC_…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L462" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:462</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L481" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:481</a> </span></li>
+
+<li><code class="evidence-text">http://billing:8002</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L482" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:482</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8001/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L484" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:484</a> </span></li>
+
+<li><code class="evidence-text">https://api-m.sandbox.paypal.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/auth_env.rs#L494" rel="noreferrer noopener" target="_blank">src/init/rust_project/auth_env.rs:494</a> </span></li>
+
+<li><code class="evidence-text">https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/language_images.rs#L7" rel="noreferrer noopener" target="_blank">src/init/rust_project/language_images.rs:7</a> </span></li>
+
+<li><code class="evidence-text">postgresql://{}@postgresql:5432/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L223" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:223</a> </span></li>
+
+<li><code class="evidence-text">http://iam:{port}/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L325" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:325</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379/{wanted}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L479" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:479</a> </span></li>
+
+<li><code class="evidence-text">http://{hostname}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L741" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:741</a> </span></li>
+
+<li><code class="evidence-text">://{old}:</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1043" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1043</a> </span></li>
+
+<li><code class="evidence-text">://{new}:</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1043" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1043</a> </span></li>
+
+<li><code class="evidence-text">://{old}-server:</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1043" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1043</a> </span></li>
+
+<li><code class="evidence-text">://{new}-server:</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1043" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1043</a> </span></li>
+
+<li><code class="evidence-text">services:\u{a}  accounts:\u{a}    hostname: accounts\u{a}    container_name: kestrel-accounts-rust\u{a}    environment:\u{a}      PORT: &#39;8000&#39;\u{a}      DATABASE_URL: ${ACCOUNTS_DATABASE_URL:?Configur…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1407" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1407</a> </span></li>
+
+<li><code class="evidence-text">ACCOUNTS_DATABASE_URL=postgresql://accounts_app@postgresql:5432/kestrel_accounts\u{a}ACCOUNTS_STORAGE_ENCRYPTION_NAMESPACE=accounts-records\u{a}ACCOUNTSX_KEEP=1\u{a}IAM_NOTE=accounts\u{a}OTHER_URL=htt…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1433" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1433</a> </span></li>
+
+<li><code class="evidence-text">DATABASE_URL=postgresql://accounts_app@127.0.0.1:5432/kestrel_accounts\u{a}PORT=8000\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1434" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1434</a> </span></li>
+
+<li><code class="evidence-text">http://ledgers:8000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1445" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1445</a> </span></li>
+
+<li><code class="evidence-text">LEDGERS_DATABASE_URL=postgresql://ledgers_app@postgresql:5432/kestrel_ledgers\u{a}LEDGERS_STORAGE_ENCRYPTION_NAMESPACE=ledgers-records\u{a}ACCOUNTSX_KEEP=1\u{a}IAM_NOTE=accounts\u{a}OTHER_URL=http://l…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1449" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1449</a> </span></li>
+
+<li><code class="evidence-text">DATABASE_URL=postgresql://ledgers_app@127.0.0.1:5432/kestrel_ledgers\u{a}PORT=8000\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1450" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1450</a> </span></li>
+
+<li><code class="evidence-text">JOBS_DATABASE_URL=postgresql://jobs_app@postgresql:5432/kestrel_jobs\u{a}JOBS_REDIS_URL=redis://redis:6379/1\u{a}JOBS_TENANT_ID=t\u{a}OTHER_DATABASE_URL=x\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1461" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1461</a> </span></li>
+
+<li><code class="evidence-text">DATABASE_URL=postgresql://x\u{a}MIGRATION_DATABASE_URL=postgresql://y\u{a}SQLX_OFFLINE=true\u{a}REDIS_URL=redis://127.0.0.1:6379/1\u{a}MINE=1\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1462" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1462</a> </span></li>
+
+<li><code class="evidence-text">JOBS_REDIS_URL=redis://redis:6379/1\u{a}JOBS_TENANT_ID=t\u{a}OTHER_DATABASE_URL=x\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1464" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1464</a> </span></li>
+
+<li><code class="evidence-text">REDIS_URL=redis://127.0.0.1:6379/1\u{a}MINE=1\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1465" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1465</a> </span></li>
+
+<li><code class="evidence-text">QUEUE_NAME=zebra-jobs-dev\u{a}DATABASE_URL=postgresql://a@postgresql:5432/zebra_accounts\u{a}PATH_HINT=/srv/old-zebra-x\u{a}OTHER=zebras-keep\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1490" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1490</a> </span></li>
+
+<li><code class="evidence-text">QUEUE_NAME=kestrel-jobs-dev\u{a}DATABASE_URL=postgresql://a@postgresql:5432/kestrel_accounts\u{a}PATH_HINT=/srv/old-zebra-x\u{a}OTHER=zebras-keep\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1493" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1493</a> </span></li>
+
+<li><code class="evidence-text">postgresql://localhost/app</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1516" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1516</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8002/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1523" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1523</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1541" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1541</a> </span></li>
+
+<li><code class="evidence-text">postgresql://notes_app@postgresql:5432/notes_app_notes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1533" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1533</a> </span></li>
+
+<li><code class="evidence-text">postgresql://notes_owner@postgresql:5432/notes_app_notes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1537" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1537</a> </span></li>
+
+<li><code class="evidence-text">redis://redis:6379/2</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1552" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1552</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1581" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1581</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1582" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1582</a> </span></li>
+
+<li><code class="evidence-text">services:\u{a}  api:\u{a}    environment: {REDIS_URL: &#39;redis://redis:6379/0&#39;}\u{a}  web-migrate:\u{a}    environment: {REDIS_URL: &#39;redis://redis:6379/0&#39;}\u{a}  web:\u{a}    environment: {REDIS_URL: &#39;r…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1573" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1573</a> </span></li>
+
+<li><code class="evidence-text">postgresql://a_app@postgresql:5432/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1593" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1593</a> </span></li>
+
+<li><code class="evidence-text">postgresql://a_app@127.0.0.1:5432/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1593" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1593</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8004/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1594" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1594</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8004/api/auth/jwks</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1594" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1594</a> </span></li>
+
+<li><code class="evidence-text">http://coding-server:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1595" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1595</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1595" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1595</a> </span></li>
+
+<li><code class="evidence-text">PORT: &#39;8000&#39;, DATABASE_URL: &#39;${NOTES_DATABASE_URL:?x}&#39;, S3_URL: &#39;http://minio:9000&#39;, S3_BUCKET: demo-notes-dev</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1663" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1663</a> </span></li>
+
+<li><code class="evidence-text">postgresql://notes_app@127.0.0.1:5432/demo_notes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1689" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1689</a> </span></li>
+
+<li><code class="evidence-text">postgresql://notes_owner@127.0.0.1:5432/demo_notes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/local_runtime.rs#L1690" rel="noreferrer noopener" target="_blank">src/init/rust_project/local_runtime.rs:1690</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:9090/ready</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/modules.rs#L541" rel="noreferrer noopener" target="_blank">src/init/rust_project/modules.rs:541</a> </span></li>
+
+<li><code class="evidence-text">println!(&#34;notes listening on http://{}&#34;, address);\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/native_layout.rs#L806" rel="noreferrer noopener" target="_blank">src/init/rust_project/native_layout.rs:806</a> </span></li>
+
+<li><code class="evidence-text">println!(&#34;records listening on http://{}&#34;, address);\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/native_layout.rs#L811" rel="noreferrer noopener" target="_blank">src/init/rust_project/native_layout.rs:811</a> </span></li>
+
+<li><code class="evidence-text"># Separate database per service. Runtime role must not bypass row-level security.\u{a}DATABASE_URL=postgresql://app@localhost:5432/service\u{a}MIGRATION_DATABASE_URL=postgresql://owner@localhost:5432/…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/service_database.rs#L64" rel="noreferrer noopener" target="_blank">src/init/rust_project/service_database.rs:64</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{producer_port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L477" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:477</a> </span></li>
+
+<li><code class="evidence-text">DATABASE_URL=postgres://worker:change-me@localhost:5432/worker?sslmode=require\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L650" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:650</a> </span></li>
+
+<li><code class="evidence-text">http://{name}-server:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L666" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:666</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8137</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L911" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:911</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L925" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:925</a> </span></li>
+
+<li><code class="evidence-text">https://jobs.example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L931" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:931</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/rust_project/worker.rs#L940" rel="noreferrer noopener" target="_blank">src/init/rust_project/worker.rs:940</a> </span></li>
+
+<li><code class="evidence-text">https://shop.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L471" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:471</a> </span></li>
+
+<li><code class="evidence-text">http://shop.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L472" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:472</a> </span></li>
+
+<li><code class="evidence-text">ftp://shop.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L473" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:473</a> </span></li>
+
+<li><code class="evidence-text">s3://bucket/manifest.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/init/storefront.rs#L474" rel="noreferrer noopener" target="_blank">src/init/storefront.rs:474</a> </span></li>
+
+<li><code class="evidence-text">https://platform.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L444" rel="noreferrer noopener" target="_blank">src/managed/client.rs:444</a> </span></li>
+
+<li><code class="evidence-text">https://platform.example.com/managed-mode/templates</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L449" rel="noreferrer noopener" target="_blank">src/managed/client.rs:449</a> </span></li>
+
+<li><code class="evidence-text">https://platform.example.com/managed-mode/instances/abc/claim-link</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L453" rel="noreferrer noopener" target="_blank">src/managed/client.rs:453</a> </span></li>
+
+<li><code class="evidence-text">https://platform.example.com/managed-mode/instances/abc/claim</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L460" rel="noreferrer noopener" target="_blank">src/managed/client.rs:460</a> </span></li>
+
+<li><code class="evidence-text">https://platform.example.com/managed-mode/templates/clinic</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L464" rel="noreferrer noopener" target="_blank">src/managed/client.rs:464</a> </span></li>
+
+<li><code class="evidence-text">https://GitHub.com/Acme/clinic.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L109" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:109</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/clinic</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L110" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:110</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L114" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:114</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L118" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:118</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L125" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:125</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/clinic/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L113" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:113</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/clinic.git/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L117" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:117</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/clinic-staging</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/detect.rs#L126" rel="noreferrer noopener" target="_blank">src/managed/detect.rs:126</a> </span></li>
+
+<li><code class="evidence-text">https://forklaunch.com/claim/tok</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/instance/claim_next.rs#L287" rel="noreferrer noopener" target="_blank">src/managed/instance/claim_next.rs:287</a> </span></li>
+
+<li><code class="evidence-text">Show one managed instance with its lifecycle detail.\u{a}\u{a}This is the row a client polls to follow the state machine: every lifecycle\u{a}command (create, reset, update, apply-variables) answers 2…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/instance/get.rs#L29" rel="noreferrer noopener" target="_blank">src/managed/instance/get.rs:29</a> </span></li>
+
+<li><code class="evidence-text">Declare where a provider&#39;s callback is handed on each instance.\u{a}\u{a}A provider such as Epic lets you register ONE redirect URI per app, but a\u{a}product has many instances. So every instance sen…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/template/relay/mod.rs#L38" rel="noreferrer noopener" target="_blank">src/managed/template/relay/mod.rs:38</a> </span></li>
+
+<li><code class="evidence-text">https URL of the repository versions are built from, e.g. https://github.com/org/repo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/template/update.rs#L217" rel="noreferrer noopener" target="_blank">src/managed/template/update.rs:217</a> </span></li>
+
+<li><code class="evidence-text">--source-repo &#39;{}&#39; must be an https repository URL such as https://github.com/org/repo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/template/update.rs#L273" rel="noreferrer noopener" target="_blank">src/managed/template/update.rs:273</a> </span></li>
+
+<li><code class="evidence-text">Each instance&#39;s UI is now https://&#60;hostPrefix&#62;.{} — point that wildcard at your frontend deployment (see the vercel-frontend skill).</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/template/update.rs#L495" rel="noreferrer noopener" target="_blank">src/managed/template/update.rs:495</a> </span></li>
+
+<li><code class="evidence-text">https://iam.forklaunch.com/api/auth/token</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L123" rel="noreferrer noopener" target="_blank">src/model.rs:123</a> </span></li>
+
+<li><code class="evidence-text">https://attacker.invalid</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/model.rs#L216" rel="noreferrer noopener" target="_blank">src/model.rs:216</a> </span></li>
+
+<li><code class="evidence-text">wss://{}/ws</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/observe/logs.rs#L366" rel="noreferrer noopener" target="_blank">src/observe/logs.rs:366</a> </span></li>
+
+<li><code class="evidence-text">ws://{}/ws</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/observe/logs.rs#L368" rel="noreferrer noopener" target="_blank">src/observe/logs.rs:368</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/observe/logs.rs#L370" rel="noreferrer noopener" target="_blank">src/observe/logs.rs:370</a> </span></li>
+
+<li><code class="evidence-text">http://iam:8002</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L2691" rel="noreferrer noopener" target="_blank">src/release/create.rs:2691</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L2691" rel="noreferrer noopener" target="_blank">src/release/create.rs:2691</a> </span></li>
+
+<li><code class="evidence-text">http://localhost</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/create.rs#L3590" rel="noreferrer noopener" target="_blank">src/release/create.rs:3590</a> </span></li>
+
+<li><code class="evidence-text">ssh://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L122" rel="noreferrer noopener" target="_blank">src/release/git.rs:122</a> </span></li>
+
+<li><code class="evidence-text">ssh://git@github.com/acme/app.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L159" rel="noreferrer noopener" target="_blank">src/release/git.rs:159</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/app.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L160" rel="noreferrer noopener" target="_blank">src/release/git.rs:160</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/app</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L161" rel="noreferrer noopener" target="_blank">src/release/git.rs:161</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L167" rel="noreferrer noopener" target="_blank">src/release/git.rs:167</a> </span></li>
+
+<li><code class="evidence-text">https://x-access-token:tok@github.com/acme/app.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L162" rel="noreferrer noopener" target="_blank">src/release/git.rs:162</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme/app/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L163" rel="noreferrer noopener" target="_blank">src/release/git.rs:163</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/acme</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/release/git.rs#L177" rel="noreferrer noopener" target="_blank">src/release/git.rs:177</a> </span></li>
+
+<li><code class="evidence-text"> Application/Vnd.Example+JSON; profile=&#34;https://example.test/v1&#34; </code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/media.rs#L43" rel="noreferrer noopener" target="_blank">src/sdk/media.rs:43</a> </span></li>
+
+<li><code class="evidence-text">http://json-schema.org/draft-07/schema#</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema.rs#L160" rel="noreferrer noopener" target="_blank">src/sdk/schema.rs:160</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema.rs#L965" rel="noreferrer noopener" target="_blank">src/sdk/schema.rs:965</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L29" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:29</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L561" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:561</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L589" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:589</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L665" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:665</a> </span></li>
+
+<li><code class="evidence-text">https://json-schema.org/draft/2020-12/schema</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema.rs#L286" rel="noreferrer noopener" target="_blank">src/sdk/schema.rs:286</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema.rs#L978" rel="noreferrer noopener" target="_blank">src/sdk/schema.rs:978</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L566" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:566</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L620" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:620</a> </span></li>
+
+<li><code class="evidence-text">https://json-schema.org/draft/2019-09/schema</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema.rs#L974" rel="noreferrer noopener" target="_blank">src/sdk/schema.rs:974</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L619" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:619</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L666" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:666</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema.rs#L1099" rel="noreferrer noopener" target="_blank">src/sdk/schema.rs:1099</a> </span></li>
+
+<li><code class="evidence-text">https://forklaunch.invalid/__document__</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L8" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:8</a> </span></li>
+
+<li><code class="evidence-text">http://json-schema.org/draft-04/schema#</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L587" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:587</a> </span></li>
+
+<li><code class="evidence-text">http://json-schema.org/draft-06/schema#</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/sdk/schema_resources.rs#L588" rel="noreferrer noopener" target="_blank">src/sdk/schema_resources.rs:588</a> </span></li>
+
+<li><code class="evidence-text">{} listening on http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/bootstrapper.rs#L37" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/bootstrapper.rs:37</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/cac/bootstrapper.rs#L29" rel="noreferrer noopener" target="_blank">src/templates/rust/cac/bootstrapper.rs:29</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/ecommerce/bootstrapper.rs#L53" rel="noreferrer noopener" target="_blank">src/templates/rust/ecommerce/bootstrapper.rs:53</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/iam/bootstrapper.rs#L46" rel="noreferrer noopener" target="_blank">src/templates/rust/iam/bootstrapper.rs:46</a> </span></li>
+
+<li><code class="evidence-text">{{{name}}} listening on http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/native-service/bootstrapper.rs#L20" rel="noreferrer noopener" target="_blank">src/templates/rust/project/native-service/bootstrapper.rs:20</a> </span></li>
+
+<li><code class="evidence-text">{protocol}://{host}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/config/mod.rs#L32" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/config/mod.rs:32</a> </span></li>
+
+<li><code class="evidence-text">{}://{}:0</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/config/mod.rs#L68" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/config/mod.rs:68</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/config/mod.rs#L116" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/config/mod.rs:116</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unparsable_source</span> <span class="context">library</span> <span class="count">29</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">expected `;`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/agent/__test__/agent.rs#L17" rel="noreferrer noopener" target="_blank">src/templates/rust/agent/__test__/agent.rs:17</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/kafka-worker/main.rs#L7" rel="noreferrer noopener" target="_blank">src/templates/rust/kafka-worker/main.rs:7</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/leased-worker/smoke.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/leased-worker/smoke.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/postgres-worker/main.rs#L9" rel="noreferrer noopener" target="_blank">src/templates/rust/postgres-worker/main.rs:9</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/library/tests/smoke.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/project/library/tests/smoke.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/native-service/__test__/http.rs#L18" rel="noreferrer noopener" target="_blank">src/templates/rust/project/native-service/__test__/http.rs:18</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/postgres-service/persistence_test.rs#L5" rel="noreferrer noopener" target="_blank">src/templates/rust/project/postgres-service/persistence_test.rs:5</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/main.rs#L3" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/main.rs:3</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/tests/smoke.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/tests/smoke.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/worker/src/main.rs#L3" rel="noreferrer noopener" target="_blank">src/templates/rust/project/worker/src/main.rs:3</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/worker/tests/smoke.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/project/worker/tests/smoke.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/redis-worker/main.rs#L9" rel="noreferrer noopener" target="_blank">src/templates/rust/redis-worker/main.rs:9</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/router/router.rs#L11" rel="noreferrer noopener" target="_blank">src/templates/rust/router/router.rs:11</a> </span></li>
+
+<li><code class="evidence-text">expected `,`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/agent/mod.rs#L15" rel="noreferrer noopener" target="_blank">src/templates/rust/agent/mod.rs:15</a> </span></li>
+
+<li><code class="evidence-text">expected square brackets</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/api/contracts/registry.rs#L19" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/api/contracts/registry.rs:19</a> </span></li>
+
+<li><code class="evidence-text">expected one of: `fn`, `extern`, `use`, `static`, `const`, `unsafe`, `mod`, `type`, `struct`, `enum`, `union`, `trait`, `auto`, `impl`, `default`, `macro`, identifier, `self`, `super`, `crate`, `::`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/api/controllers/mod.rs#L8" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/api/controllers/mod.rs:8</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/api/controllers/webhook.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/api/controllers/webhook.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/api/routes/mod.rs#L12" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/api/routes/mod.rs:12</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/api/routes/webhook.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/api/routes/webhook.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/domain/mod.rs#L13" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/domain/mod.rs:13</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/registrations.rs#L4" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/registrations.rs:4</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/project/service/src/contracts/mod.rs#L2" rel="noreferrer noopener" target="_blank">src/templates/rust/project/service/src/contracts/mod.rs:2</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/router/native_routes_mod.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/router/native_routes_mod.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/router/routes_mod.rs#L1" rel="noreferrer noopener" target="_blank">src/templates/rust/router/routes_mod.rs:1</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/sdk/rust/lib.rs#L2" rel="noreferrer noopener" target="_blank">src/templates/sdk/rust/lib.rs:2</a> </span></li>
+
+<li><code class="evidence-text">expected identifier</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/billing/config.rs#L20" rel="noreferrer noopener" target="_blank">src/templates/rust/billing/config.rs:20</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/router/contract.rs#L5" rel="noreferrer noopener" target="_blank">src/templates/rust/router/contract.rs:5</a> </span></li>
+
+<li><code class="evidence-text">expected `!`</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/capabilities/mod.rs#L5" rel="noreferrer noopener" target="_blank">src/templates/rust/capabilities/mod.rs:5</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/templates/rust/capabilities/native_mod.rs#L6" rel="noreferrer noopener" target="_blank">src/templates/rust/capabilities/native_mod.rs:6</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/managed/client.rs#L441" rel="noreferrer noopener" target="_blank">src/managed/client.rs:441</a> <a class="place" href="https://crates.io/crates/forklaunch/1.34.0/code/src/observe/issues.rs#L614" rel="noreferrer noopener" target="_blank">src/observe/issues.rs:614</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>691 ms</dd></div><div><dt>VM restore</dt><dd>62 ms</dd></div><div><dt>Payload</dt><dd>24729 files, 407.1 MiB</dd></div><div><dt>Files opened</dt><dd>998</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">677 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">436 ms</td>
+<td class="nowrap">210 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.60s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-27 04:44 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 04:44 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 04:45 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 04:45 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 04:45 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 04:45 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

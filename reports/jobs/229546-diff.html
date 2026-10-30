@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: shine-cli 2.5.0 to 2.6.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>shine-cli <span class="version">2.5.0 → 2.6.0</span></h1>
+    <p class="meta">
+      <span class="badge">changes</span>
+      <a href="229546.html">2.6.0 report</a>
+      <a href="171818.html">2.5.0 report</a>
+      <a class="muted" href="https://diff.rs/shine-cli/2.5.0/2.6.0/" rel="noreferrer noopener" target="_blank">source diff on diff.rs</a>
+    </p>
+    <p class="headline">Evidence: 2 changed. Static findings: 54 new, 51 gone. Run full: 0 changed.</p>
+  </div>
+  <div class="versus">
+    <div class="verdict was tone-high"><div class="score">50</div> <div class="level">high</div></div>
+    <span class="arrow" aria-label="became">→</span>
+    <div class="verdict tone-high"><div class="score">50</div> <div class="level">high</div></div>
+  </div>
+</div>
+
+
+
+<nav class="toc" aria-label="Sections">
+  <a href="#evidence">Evidence <span class="count bad">2</span></a>
+  <a href="#package">Package</a>
+  <a href="#findings">Static findings <span class="count bad">105</span></a>
+  <a href="#run-full">Run: full <span class="count">0</span></a>
+  <a href="#behavior">Behavior <span class="count">0</span></a>
+</nav>
+
+<h2 id="evidence">Evidence</h2>
+<p class="tally">2 changed, 10 the same.</p>
+
+<table class="changes">
+<thead><tr><th>Change</th><th class="num">Points</th><th>Signal</th><th>What</th></tr></thead>
+<tbody>
+
+<tr class="changed"><td><span class="change changed">changed</span></td>
+<td class="num nowrap"><span class="muted">30 →</span> <span class="points low">0</span></td>
+<td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">shine-cli</div></td>
+<td>high severity downloader_pattern in build_script code: https://example.test at cli/src/apps/refresh.rs:237 with std::process::Command::new at cli/build.rs:49 A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr class="changed"><td><span class="change changed">changed</span></td>
+<td class="num nowrap"><span class="muted">0 →</span> <span class="points bad">30</span></td>
+<td class="signal"><span class="word">static:exfiltration_endpoint</span><div class="sub">shine-cli</div></td>
+<td>high severity exfiltration_endpoint in build_script code: transfer.sh</td></tr>
+
+</tbody>
+</table>
+
+
+<h2 id="package">Package</h2>
+
+<dl class="facts">
+<div class=""><dt>Build script</dt><dd>no change</dd></div><div class=""><dt>Proc macro</dt><dd>no change</dd></div><div class=""><dt>links</dt><dd>no change</dd></div><div class=""><dt>New dependencies</dt><dd>none</dd></div>
+</dl>
+
+
+<h2 id="findings">Static findings</h2>
+<p class="tally">54 new, 51 gone, 185 the same. Code that only moved counts as the same.</p>
+
+<h4>New in 2.6.0</h4>
+<div class="findings added">
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ssh options contain whitespace and can&#39;t be passed to rsync -e</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L217" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:217</a> </span></li>
+
+<li><code class="evidence-text">#!/bin/sh\u{a}shift\u{a}exec /bin/sh -c &#34;$*&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L375" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:375</a> </span></li>
+
+<li><code class="evidence-text">$pwsh = Get-Command pwsh.exe -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1\u{a}$shell = if ($null -ne $pwsh) {{ $pwsh.Source }} else {{ &#39;powershell.exe&#39; }}\u{a}&#38; $she…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/command.rs#L87" rel="noreferrer noopener" target="_blank">cli/src/ssh/command.rs:87</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe -NoProfile -EncodedCommand {bootstrap_encoded}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/command.rs#L97" rel="noreferrer noopener" target="_blank">cli/src/ssh/command.rs:97</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">secret_environment_variable</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">NPM_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L134" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:134</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L142" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:142</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L195" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:195</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.test at cli/src/apps/refresh.rs:237 with std::process::Command::new at cli/build.rs:49</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L237" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:237</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">environment_enumeration</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L116" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:116</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">exfiltration_endpoint</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">transfer.sh</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:16</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">12</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L652" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:652</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L1359" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:1359</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/self_install/binary/tests.rs#L183" rel="noreferrer noopener" target="_blank">cli/src/self_install/binary/tests.rs:183</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L473" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:473</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L931" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:931</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L180" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:180</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L242" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:242</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/mod.rs#L395" rel="noreferrer noopener" target="_blank">cli/src/update_check/mod.rs:395</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer.rs#L204" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer.rs:204</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer.rs#L221" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer.rs:221</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L32" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:32</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L31" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:31</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/tests/builtin_presets/sys.rs#L8" rel="noreferrer noopener" target="_blank">tests/builtin_presets/sys.rs:8</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://localhost:8111</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/core_runtime.rs#L264" rel="noreferrer noopener" target="_blank">cli/src/core_runtime.rs:264</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8222</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/core_runtime.rs#L278" rel="noreferrer noopener" target="_blank">cli/src/core_runtime.rs:278</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid/overlay.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/catalog.rs#L112" rel="noreferrer noopener" target="_blank">cli/src/env/catalog.rs:112</a> </span></li>
+
+<li><code class="evidence-text"># base\u{a}export VITE_NAME = &#34;Shine&#34; # display name\u{a}VITE_OWNER=&#39;Shine team&#39; # owner\u{a}VITE_URL=https://example.test # note\u{a}EMPTY=\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L228" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:228</a> </span></li>
+
+<li><code class="evidence-text">https://example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L239" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:239</a> </span></li>
+
+<li><code class="evidence-text">VITE_API=https://api.example.test\u{a}TOKEN=unsealed\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L364" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:364</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L397" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:397</a> </span></li>
+
+<li><code class="evidence-text">VITE_API=http://localhost:3000\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L370" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:370</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/tests/builtin_presets/shell.rs#L43" rel="noreferrer noopener" target="_blank">tests/builtin_presets/shell.rs:43</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/tests/source_package.rs#L72" rel="noreferrer noopener" target="_blank">tests/source_package.rs:72</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">environment_enumeration</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L88" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:88</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">build_script</span> <span class="count">20</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/install.rs#L366" rel="noreferrer noopener" target="_blank">cli/src/apps/install.rs:366</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L44" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:44</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L361" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:361</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L62" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:62</a> </span></li>
+
+<li><code class="evidence-text">15 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/mod.rs#L323" rel="noreferrer noopener" target="_blank">cli/src/apps/mod.rs:323</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/uninstall.rs#L577" rel="noreferrer noopener" target="_blank">cli/src/apps/uninstall.rs:577</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/upgrade.rs#L341" rel="noreferrer noopener" target="_blank">cli/src/apps/upgrade.rs:341</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/store.rs#L74" rel="noreferrer noopener" target="_blank">cli/src/env/broker/store.rs:74</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/proc.rs#L54" rel="noreferrer noopener" target="_blank">cli/src/proc.rs:54</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/self_install/binary/tests.rs#L22" rel="noreferrer noopener" target="_blank">cli/src/self_install/binary/tests.rs:22</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/relay.rs#L25" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/relay.rs:25</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/broker/tests.rs#L304" rel="noreferrer noopener" target="_blank">cli/src/ssh/broker/tests.rs:304</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/completion.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/completion.rs:16</a> </span></li>
+
+<li><code class="evidence-text">27 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/discovery.rs#L290" rel="noreferrer noopener" target="_blank">cli/src/config/discovery.rs:290</a> </span></li>
+
+<li><code class="evidence-text">35 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/load.rs#L411" rel="noreferrer noopener" target="_blank">cli/src/config/load.rs:411</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L1405" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:1405</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L465" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:465</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/mod.rs#L362" rel="noreferrer noopener" target="_blank">cli/src/secret/mod.rs:362</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L87" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:87</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/broker/interaction.rs#L99" rel="noreferrer noopener" target="_blank">cli/src/ssh/broker/interaction.rs:99</a> </span></li>
+
+</ul>
+</details>
+</div>
+
+
+<h4>Gone since 2.5.0</h4>
+<details class="more"><summary>51 findings</summary>
+<div class="findings removed">
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">17</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/core_runtime.rs#L283" rel="noreferrer noopener" target="_blank">cli/src/core_runtime.rs:283</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L896" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:896</a> </span></li>
+
+<li><code class="evidence-text">$env:COMPLETE = &#39;powershell&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L165" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:165</a> </span></li>
+
+<li><code class="evidence-text">PowerShell should register shine completion: {powershell}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L166" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:166</a> </span></li>
+
+<li><code class="evidence-text">PowerShell should update env Path: {powershell_snippet}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L208" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:208</a> </span></li>
+
+<li><code class="evidence-text">PowerShell should have setproxy function: {powershell_snippet}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L212" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:212</a> </span></li>
+
+<li><code class="evidence-text">PowerShell wrapper should resolve through shine bin: {powershell_snippet}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L216" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:216</a> </span></li>
+
+<li><code class="evidence-text">PowerShell should expand $HOME when assigning shine bin: {powershell_snippet}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L220" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:220</a> </span></li>
+
+<li><code class="evidence-text">PowerShell should not keep $HOME as a literal path: {powershell_snippet}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L224" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:224</a> </span></li>
+
+<li><code class="evidence-text">ssh options contain whitespace and can&#39;t be passed to rsync -e</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L688" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:688</a> </span></li>
+
+<li><code class="evidence-text">#!/bin/sh\u{a}shift\u{a}exec /bin/sh -c &#34;$*&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L1238" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:1238</a> </span></li>
+
+<li><code class="evidence-text">$pwsh = Get-Command pwsh.exe -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1\u{a}$shell = if ($null -ne $pwsh) {{ $pwsh.Source }} else {{ &#39;powershell.exe&#39; }}\u{a}&#38; $she…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/mod.rs#L714" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:714</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe -NoProfile -EncodedCommand {bootstrap_encoded}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/mod.rs#L724" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:724</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1095" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1095</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:/tmp/init.ps1 rust yazi</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1139" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1139</a> </span></li>
+
+<li><code class="evidence-text">curl --proto &#39;=https&#39; --tlsv1.2 -LsSf https://setup.atuin.sh | sh\u{a}    load_atuin_env\u{a}    status &#34;installed&#34; &#34;$(atuin --version)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1797" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1797</a> </span></li>
+
+<li><code class="evidence-text">https://sh.rustup.rs | sh -s -- -y --no-modify-path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1837" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1837</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">secret_environment_variable</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">NPM_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/broker.rs#L1036" rel="noreferrer noopener" target="_blank">cli/src/env/broker.rs:1036</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/broker.rs#L1044" rel="noreferrer noopener" target="_blank">cli/src/env/broker.rs:1044</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/broker.rs#L1097" rel="noreferrer noopener" target="_blank">cli/src/env/broker.rs:1097</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.test at cli/src/apps/refresh.rs:215 with std::process::Command::new at cli/build.rs:49</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/apps/refresh.rs#L215" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:215</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">exfiltration_endpoint</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">transfer.sh</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L979" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:979</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">yara_match persistence_locations</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1384" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1384</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/shells/mod.rs#L283" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:283</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L504" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:504</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L505" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:505</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L787" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:787</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L804" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:804</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text"># base\u{a}export VITE_NAME = &#34;Shine&#34; # display name\u{a}VITE_OWNER=&#39;Shine team&#39; # owner\u{a}VITE_URL=https://example.test # note\u{a}EMPTY=\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/workspace.rs#L1774" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:1774</a> </span></li>
+
+<li><code class="evidence-text">https://example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/workspace.rs#L1785" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:1785</a> </span></li>
+
+<li><code class="evidence-text">VITE_API=https://api.example.test\u{a}TOKEN=unsealed\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/workspace.rs#L1912" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:1912</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/workspace.rs#L1945" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:1945</a> </span></li>
+
+<li><code class="evidence-text">VITE_API=http://localhost:3000\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/workspace.rs#L1918" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:1918</a> </span></li>
+
+<li><code class="evidence-text">curl --proto &#39;=https&#39; --tlsv1.2 -LsSf https://setup.atuin.sh | sh\u{a}    load_atuin_env\u{a}    status &#34;installed&#34; &#34;$(atuin --version)&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1797" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1797</a> </span></li>
+
+<li><code class="evidence-text">https://sh.rustup.rs | sh -s -- -y --no-modify-path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/sys/commands.rs#L1837" rel="noreferrer noopener" target="_blank">cli/src/sys/commands.rs:1837</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">build_script</span> <span class="count">16</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/apps/install.rs#L367" rel="noreferrer noopener" target="_blank">cli/src/apps/install.rs:367</a> </span></li>
+
+<li><code class="evidence-text">30 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/apps/mod.rs#L614" rel="noreferrer noopener" target="_blank">cli/src/apps/mod.rs:614</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/apps/uninstall.rs#L556" rel="noreferrer noopener" target="_blank">cli/src/apps/uninstall.rs:556</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/apps/upgrade.rs#L401" rel="noreferrer noopener" target="_blank">cli/src/apps/upgrade.rs:401</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/secret/mod.rs#L344" rel="noreferrer noopener" target="_blank">cli/src/secret/mod.rs:344</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/completion.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/completion.rs:16</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/broker.rs#L515" rel="noreferrer noopener" target="_blank">cli/src/ssh/broker.rs:515</a> </span></li>
+
+<li><code class="evidence-text">28 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/config/discovery.rs#L302" rel="noreferrer noopener" target="_blank">cli/src/config/discovery.rs:302</a> </span></li>
+
+<li><code class="evidence-text">39 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/config/load.rs#L382" rel="noreferrer noopener" target="_blank">cli/src/config/load.rs:382</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/broker.rs#L195" rel="noreferrer noopener" target="_blank">cli/src/env/broker.rs:195</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/env/workspace.rs#L2243" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:2243</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/secret/age.rs#L457" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:457</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/ssh/agent.rs#L854" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:854</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/proc.rs#L55" rel="noreferrer noopener" target="_blank">cli/src/proc.rs:55</a> <a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/self_install.rs#L800" rel="noreferrer noopener" target="_blank">cli/src/self_install.rs:800</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.5.0/code/cli/src/secret/hybrid.rs#L361" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:361</a> </span></li>
+
+</ul>
+</details>
+</div>
+</details>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head"><h2>Run: full</h2></div>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">0 new, 0 gone, 52 the same</span></h3>
+<p class="muted">The same processes ran.</p>
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0 changed, 0 the same</span></h3>
+<p class="muted">No change.</p>
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0 changed, 0 the same</span></h3>
+<p class="muted">No change.</p>
+</div>
+</section>
+
+
+<h2 id="behavior">Behavior</h2>
+<p class="tally">0 new, 0 gone, 9 the same.</p>
+<div class="behavior">
+
+
+</div>
+
+</main>
+</body>
+</html>

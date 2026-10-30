@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: shine-cli 2.6.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>shine-cli <span class="version">2.6.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 229546</span>
+      <a class="muted" href="https://crates.io/crates/shine-cli/2.6.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="229546.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="229546.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="229546-diff.html">Compare with 2.5.0</a>
+    </p>
+    <p class="headline">high severity exfiltration_endpoint in build_script code: transfer.sh</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">50</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">15</span></a>
+  <a href="#behavior">Behavior <span class="count">9</span></a>
+  <a href="#findings">Static findings <span class="count">239</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:exfiltration_endpoint</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:16</a></td><td>high severity exfiltration_endpoint in build_script code: transfer.sh</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L134" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:134</a></td><td>New since 2.5.0: secret_environment_variable</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L217" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:217</a></td><td>New since 2.5.0: shell_command</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>12 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:16</a></td><td>New since 2.5.0: exfiltration_endpoint</td></tr>
+
+<tr><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L116" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:116</a></td><td>New since 2.5.0: environment_enumeration</td></tr>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/build.rs" rel="noreferrer noopener" target="_blank">cli/build.rs</a></td><td>low severity build_script in build_script code: cli/build.rs A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L237" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:237</a></td><td>high severity downloader_pattern in build_script code: https://example.test at cli/src/apps/refresh.rs:237 with std::process::Command::new at cli/build.rs:49 A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/file_groups/filesystem.rs#L167" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/file_groups/filesystem.rs:167</a></td><td>high severity environment_enumeration in build_script code (3 places): std::env::vars_os A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:foreign_functions</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/live_bun_bench.rs#L54" rel="noreferrer noopener" target="_blank">cli/src/shells/live_bun_bench.rs:54</a></td><td>medium severity foreign_functions in build_script code: extern block A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:network_access</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent.rs#L75" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:75</a></td><td>medium severity network_access in build_script code (50 places): tokio::net::UnixListener A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/build.rs#L49" rel="noreferrer noopener" target="_blank">cli/build.rs:49</a></td><td>medium severity process_spawn in build_script code (68 places): std::process::Command::new A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/dispatch/tests.rs#L45" rel="noreferrer noopener" target="_blank">cli/src/dispatch/tests.rs:45</a></td><td>high severity secret_environment_variable in build_script code (18 places): GH_TOKEN=TOKEN A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/commands/cli.rs#L317" rel="noreferrer noopener" target="_blank">cli/src/commands/cli.rs:317</a></td><td>high severity shell_command in build_script code (20 places): powershell A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L237" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:237</a></td><td>low severity url_literal in build_script code (32 places): https://example.test A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+<tr><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · shine-cli</div></td><td class="mono where"><a href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/legacy_serve.rs#L24" rel="noreferrer noopener" target="_blank">cli/src/legacy_serve.rs:24</a></td><td>high severity yara:persistence_locations in build_script code (7 places): Paths and keys used to persist on a developer machine A reviewer marked this a false positive in 2.5.0.</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:downloader_pattern</code> <code class="chip">static:environment_enumeration</code> <code class="chip">static:exfiltration_endpoint</code> <code class="chip">static:foreign_functions</code> <code class="chip">static:network_access</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:persistence_locations</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">239</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">47</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">119</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">36</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">37</span></label>
+  <span class="muted">16 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">19</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/commands/cli.rs#L317" rel="noreferrer noopener" target="_blank">cli/src/commands/cli.rs:317</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/completion.rs#L953" rel="noreferrer noopener" target="_blank">cli/src/completion.rs:953</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/dispatch/tests.rs#L1908" rel="noreferrer noopener" target="_blank">cli/src/dispatch/tests.rs:1908</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/mod.rs#L141" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:141</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/legacy_serve.rs#L55" rel="noreferrer noopener" target="_blank">cli/src/legacy_serve.rs:55</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/legacy_serve.rs#L218" rel="noreferrer noopener" target="_blank">cli/src/legacy_serve.rs:218</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/legacy_serve.rs#L552" rel="noreferrer noopener" target="_blank">cli/src/legacy_serve.rs:552</a> </span></li>
+
+<li><code class="evidence-text">$env:COMPLETE = &#39;powershell&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/install.rs#L1258" rel="noreferrer noopener" target="_blank">cli/src/shells/install.rs:1258</a> </span></li>
+
+<li><code class="evidence-text">.config/powershell/Microsoft.PowerShell_profile.ps1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/mod.rs#L65" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:65</a> </span></li>
+
+<li><code class="evidence-text">ssh options contain whitespace and can&#39;t be passed to rsync -e</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L217" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:217</a> </span></li>
+
+<li><code class="evidence-text">#!/bin/sh\u{a}shift\u{a}exec /bin/sh -c &#34;$*&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L375" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:375</a> </span></li>
+
+<li><code class="evidence-text">$pwsh = Get-Command pwsh.exe -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1\u{a}$shell = if ($null -ne $pwsh) {{ $pwsh.Source }} else {{ &#39;powershell.exe&#39; }}\u{a}&#38; $she…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/command.rs#L87" rel="noreferrer noopener" target="_blank">cli/src/ssh/command.rs:87</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe -NoProfile -EncodedCommand {bootstrap_encoded}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/command.rs#L97" rel="noreferrer noopener" target="_blank">cli/src/ssh/command.rs:97</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe -NoProfile -EncodedCommand QQ==</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L751" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:751</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L761" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:761</a> </span></li>
+
+<li><code class="evidence-text">powershell.exe -NoProfile -EncodedCommand </code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L960" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:960</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L1015" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:1015</a> </span></li>
+
+<li><code class="evidence-text">else { &#39;powershell.exe&#39; }</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L975" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:975</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L1019" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:1019</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">secret_environment_variable</span> <span class="context">build_script</span> <span class="count">18</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GH_TOKEN=TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/dispatch/tests.rs#L45" rel="noreferrer noopener" target="_blank">cli/src/dispatch/tests.rs:45</a> </span></li>
+
+<li><code class="evidence-text">NPM_TOKEN=NODE_AUTH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/dispatch/tests.rs#L76" rel="noreferrer noopener" target="_blank">cli/src/dispatch/tests.rs:76</a> </span></li>
+
+<li><code class="evidence-text">NPM_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L134" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:134</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L142" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:142</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/tests.rs#L195" rel="noreferrer noopener" target="_blank">cli/src/env/broker/tests.rs:195</a> </span></li>
+
+<li><code class="evidence-text">GH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/commands.rs#L857" rel="noreferrer noopener" target="_blank">cli/src/env/commands.rs:857</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/commands.rs#L865" rel="noreferrer noopener" target="_blank">cli/src/env/commands.rs:865</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L1449" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:1449</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L1462" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:1462</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L172" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:172</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L329" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:329</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L339" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:339</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L350" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:350</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L367" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:367</a> </span></li>
+
+<li><code class="evidence-text">GH_TOKEN_SECRET</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/commands.rs#L858" rel="noreferrer noopener" target="_blank">cli/src/env/commands.rs:858</a> </span></li>
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L172" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:172</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L328" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:328</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L349" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:349</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">yara_match persistence_locations</span> <span class="context">build_script</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/legacy_serve.rs#L24" rel="noreferrer noopener" target="_blank">cli/src/legacy_serve.rs:24</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/lifecycle_plan.rs#L710" rel="noreferrer noopener" target="_blank">cli/src/lifecycle_plan.rs:710</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/maintenance/tests.rs#L31" rel="noreferrer noopener" target="_blank">cli/src/maintenance/tests.rs:31</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/preset_authoring.rs#L376" rel="noreferrer noopener" target="_blank">cli/src/preset_authoring.rs:376</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/install.rs#L791" rel="noreferrer noopener" target="_blank">cli/src/shells/install.rs:791</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/mod.rs#L54" rel="noreferrer noopener" target="_blank">cli/src/shells/mod.rs:54</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">environment_enumeration</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/file_groups/filesystem.rs#L167" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/file_groups/filesystem.rs:167</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L116" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:116</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.test at cli/src/apps/refresh.rs:237 with std::process::Command::new at cli/build.rs:49</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L237" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:237</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">exfiltration_endpoint</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">transfer.sh</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:16</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">66</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/build.rs#L49" rel="noreferrer noopener" target="_blank">cli/build.rs:49</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L652" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:652</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L1359" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:1359</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/file_groups/filesystem.rs#L162" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/file_groups/filesystem.rs:162</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/git_pull.rs#L562" rel="noreferrer noopener" target="_blank">cli/src/git_pull.rs:562</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/git_pull.rs#L889" rel="noreferrer noopener" target="_blank">cli/src/git_pull.rs:889</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/maintenance/worker.rs#L7" rel="noreferrer noopener" target="_blank">cli/src/maintenance/worker.rs:7</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/presets.rs#L534" rel="noreferrer noopener" target="_blank">cli/src/presets.rs:534</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L356" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:356</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L371" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:371</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L451" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:451</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L459" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:459</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L570" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:570</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/self_install/binary/tests.rs#L183" rel="noreferrer noopener" target="_blank">cli/src/self_install/binary/tests.rs:183</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/live_bun_bench.rs#L192" rel="noreferrer noopener" target="_blank">cli/src/shells/live_bun_bench.rs:192</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/live_bun_bench.rs#L252" rel="noreferrer noopener" target="_blank">cli/src/shells/live_bun_bench.rs:252</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent.rs#L174" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:174</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L473" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:473</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L556" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:556</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L702" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:702</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L907" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:907</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L931" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:931</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/task/mod.rs#L178" rel="noreferrer noopener" target="_blank">cli/src/task/mod.rs:178</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L180" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:180</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L242" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:242</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/mod.rs#L395" rel="noreferrer noopener" target="_blank">cli/src/update_check/mod.rs:395</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/admin_fs.rs#L14" rel="noreferrer noopener" target="_blank">cli/src/admin_fs.rs:14</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace.rs#L149" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:149</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/git_pull.rs#L14" rel="noreferrer noopener" target="_blank">cli/src/git_pull.rs:14</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/gpg.rs#L173" rel="noreferrer noopener" target="_blank">cli/src/secret/gpg.rs:173</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L31" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:31</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L384" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:384</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L404" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:404</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/admin_fs.rs#L15" rel="noreferrer noopener" target="_blank">cli/src/admin_fs.rs:15</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/identity.rs#L274" rel="noreferrer noopener" target="_blank">cli/src/env/identity.rs:274</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/identity.rs#L318" rel="noreferrer noopener" target="_blank">cli/src/env/identity.rs:318</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/identity.rs#L554" rel="noreferrer noopener" target="_blank">cli/src/env/identity.rs:554</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L250" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:250</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace.rs#L153" rel="noreferrer noopener" target="_blank">cli/src/env/workspace.rs:153</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/git_pull.rs#L15" rel="noreferrer noopener" target="_blank">cli/src/git_pull.rs:15</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/git_pull.rs#L994" rel="noreferrer noopener" target="_blank">cli/src/git_pull.rs:994</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/privilege.rs#L22" rel="noreferrer noopener" target="_blank">cli/src/privilege.rs:22</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/privilege.rs#L46" rel="noreferrer noopener" target="_blank">cli/src/privilege.rs:46</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L93" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:93</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L116" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:116</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L159" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:159</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L328" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:328</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L381" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:381</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/exec.rs#L238" rel="noreferrer noopener" target="_blank">cli/src/secret/exec.rs:238</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/exec.rs#L260" rel="noreferrer noopener" target="_blank">cli/src/secret/exec.rs:260</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/exec.rs#L289" rel="noreferrer noopener" target="_blank">cli/src/secret/exec.rs:289</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/exec.rs#L315" rel="noreferrer noopener" target="_blank">cli/src/secret/exec.rs:315</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/exec.rs#L339" rel="noreferrer noopener" target="_blank">cli/src/secret/exec.rs:339</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/gpg.rs#L64" rel="noreferrer noopener" target="_blank">cli/src/secret/gpg.rs:64</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/gpg.rs#L87" rel="noreferrer noopener" target="_blank">cli/src/secret/gpg.rs:87</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/gpg.rs#L114" rel="noreferrer noopener" target="_blank">cli/src/secret/gpg.rs:114</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/gpg.rs#L148" rel="noreferrer noopener" target="_blank">cli/src/secret/gpg.rs:148</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/gpg.rs#L174" rel="noreferrer noopener" target="_blank">cli/src/secret/gpg.rs:174</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L66" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:66</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer.rs#L204" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer.rs:204</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer.rs#L221" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer.rs:221</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/argv.rs#L32" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/argv.rs:32</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L282" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:282</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L356" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:356</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L240" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:240</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::from</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/maintenance/worker.rs#L40" rel="noreferrer noopener" target="_blank">cli/src/maintenance/worker.rs:40</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">50</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::UnixListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent.rs#L75" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:75</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent.rs#L79" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent.rs:79</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/integration_tests.rs#L74" rel="noreferrer noopener" target="_blank">cli/src/ssh/integration_tests.rs:74</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L506" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:506</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/integration_tests.rs#L88" rel="noreferrer noopener" target="_blank">cli/src/ssh/integration_tests.rs:88</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/integration_tests.rs#L104" rel="noreferrer noopener" target="_blank">cli/src/ssh/integration_tests.rs:104</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/remote_client.rs#L52" rel="noreferrer noopener" target="_blank">cli/src/ssh/remote_client.rs:52</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/remote_client.rs#L117" rel="noreferrer noopener" target="_blank">cli/src/ssh/remote_client.rs:117</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/remote_client.rs#L125" rel="noreferrer noopener" target="_blank">cli/src/ssh/remote_client.rs:125</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/remote_client.rs#L230" rel="noreferrer noopener" target="_blank">cli/src/ssh/remote_client.rs:230</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/integration_tests.rs#L89" rel="noreferrer noopener" target="_blank">cli/src/ssh/integration_tests.rs:89</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/remote_client.rs#L53" rel="noreferrer noopener" target="_blank">cli/src/ssh/remote_client.rs:53</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/mod.rs#L522" rel="noreferrer noopener" target="_blank">cli/src/ssh/mod.rs:522</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L32" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:32</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L207" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:207</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L253" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:253</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L159" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:159</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L160" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:160</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L184" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:184</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue::from_str</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L185" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:185</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L312" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:312</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderMap</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L200" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:200</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L208" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:208</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L225" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:225</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L304" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:304</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::FORBIDDEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L240" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:240</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L391" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:391</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L411" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:411</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L429" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:429</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::TOO_MANY_REQUESTS</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L240" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:240</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderMap::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L305" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:305</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L384" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:384</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L406" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:406</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L424" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:424</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L451" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:451</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L307" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:307</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue::from_static</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L308" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:308</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L378" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:378</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L385" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:385</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L386" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:386</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L387" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:387</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L407" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:407</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L408" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:408</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L425" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:425</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L426" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:426</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L435" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:435</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::USER_AGENT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L311" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:311</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::AUTHORIZATION</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L316" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:316</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::BAD_GATEWAY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L438" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:438</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/github.rs#L450" rel="noreferrer noopener" target="_blank">cli/src/update_check/github.rs:450</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">foreign_functions</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/live_bun_bench.rs#L54" rel="noreferrer noopener" target="_blank">cli/src/shells/live_bun_bench.rs:54</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/tests/builtin_presets/sys.rs#L8" rel="noreferrer noopener" target="_blank">tests/builtin_presets/sys.rs:8</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/presets/sys/macos/profile.post.sh#L81" rel="noreferrer noopener" target="_blank">presets/sys/macos/profile.post.sh:81</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">32</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/refresh.rs#L237" rel="noreferrer noopener" target="_blank">cli/src/apps/refresh.rs:237</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L239" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:239</a> </span></li>
+
+<li><code class="evidence-text">presets_overlay_git = &#39;https://example.invalid/presets.git&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/discovery.rs#L286" rel="noreferrer noopener" target="_blank">cli/src/config/discovery.rs:286</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/o.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/mod.rs#L638" rel="noreferrer noopener" target="_blank">cli/src/config/mod.rs:638</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/mod.rs#L642" rel="noreferrer noopener" target="_blank">cli/src/config/mod.rs:642</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/mod.rs#L663" rel="noreferrer noopener" target="_blank">cli/src/config/mod.rs:663</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/mod.rs#L677" rel="noreferrer noopener" target="_blank">cli/src/config/mod.rs:677</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/mod.rs#L684" rel="noreferrer noopener" target="_blank">cli/src/config/mod.rs:684</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/overlay.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/save.rs#L386" rel="noreferrer noopener" target="_blank">cli/src/config/save.rs:386</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/save.rs#L397" rel="noreferrer noopener" target="_blank">cli/src/config/save.rs:397</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/dispatch/tests.rs#L817" rel="noreferrer noopener" target="_blank">cli/src/dispatch/tests.rs:817</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8111</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/core_runtime.rs#L264" rel="noreferrer noopener" target="_blank">cli/src/core_runtime.rs:264</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8222</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/core_runtime.rs#L278" rel="noreferrer noopener" target="_blank">cli/src/core_runtime.rs:278</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid/overlay.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/catalog.rs#L112" rel="noreferrer noopener" target="_blank">cli/src/env/catalog.rs:112</a> </span></li>
+
+<li><code class="evidence-text">shine: Bun was not found on PATH. Install Bun from https://bun.sh</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/live_bun.rs#L33" rel="noreferrer noopener" target="_blank">cli/src/env/live_bun.rs:33</a> </span></li>
+
+<li><code class="evidence-text"># base\u{a}export VITE_NAME = &#34;Shine&#34; # display name\u{a}VITE_OWNER=&#39;Shine team&#39; # owner\u{a}VITE_URL=https://example.test # note\u{a}EMPTY=\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L228" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:228</a> </span></li>
+
+<li><code class="evidence-text">VITE_API=https://api.example.test\u{a}TOKEN=unsealed\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L364" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:364</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L397" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:397</a> </span></li>
+
+<li><code class="evidence-text">VITE_API=http://localhost:3000\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L370" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:370</a> </span></li>
+
+<li><code class="evidence-text">absolute://server/share/config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/path_display.rs#L79" rel="noreferrer noopener" target="_blank">cli/src/path_display.rs:79</a> </span></li>
+
+<li><code class="evidence-text">absolute://?/UNC/server/share/config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/path_display.rs#L81" rel="noreferrer noopener" target="_blank">cli/src/path_display.rs:81</a> </span></li>
+
+<li><code class="evidence-text">absolute://?/C:/config</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/path_display.rs#L84" rel="noreferrer noopener" target="_blank">cli/src/path_display.rs:84</a> </span></li>
+
+<li><code class="evidence-text">http://{}:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/sys/execution.rs#L39" rel="noreferrer noopener" target="_blank">cli/src/sys/execution.rs:39</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/repos/biulight/shine/releases/latest</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/mod.rs#L18" rel="noreferrer noopener" target="_blank">cli/src/update_check/mod.rs:18</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/repos/biulight/shine/releases/tags/preview</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/mod.rs#L20" rel="noreferrer noopener" target="_blank">cli/src/update_check/mod.rs:20</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/linux</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L465" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:465</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/macos</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L469" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:469</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L478" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:478</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/preview</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L488" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:488</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L496" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:496</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/windows</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L506" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:506</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/update_check/upgrade.rs#L514" rel="noreferrer noopener" target="_blank">cli/src/update_check/upgrade.rs:514</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/tests/builtin_presets/shell.rs#L43" rel="noreferrer noopener" target="_blank">tests/builtin_presets/shell.rs:43</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/tests/source_package.rs#L72" rel="noreferrer noopener" target="_blank">tests/source_package.rs:72</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">cli/build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/build.rs" rel="noreferrer noopener" target="_blank">cli/build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">environment_enumeration</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L88" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:88</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">build_script</span> <span class="count">37</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/install.rs#L366" rel="noreferrer noopener" target="_blank">cli/src/apps/install.rs:366</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/tests.rs#L44" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/tests.rs:44</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/hybrid.rs#L361" rel="noreferrer noopener" target="_blank">cli/src/secret/hybrid.rs:361</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/tests.rs#L62" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/tests.rs:62</a> </span></li>
+
+<li><code class="evidence-text">15 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/mod.rs#L323" rel="noreferrer noopener" target="_blank">cli/src/apps/mod.rs:323</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/uninstall.rs#L577" rel="noreferrer noopener" target="_blank">cli/src/apps/uninstall.rs:577</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/preset_commands.rs#L740" rel="noreferrer noopener" target="_blank">cli/src/preset_commands.rs:740</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/shells/live_bun_bench.rs#L24" rel="noreferrer noopener" target="_blank">cli/src/shells/live_bun_bench.rs:24</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/status.rs#L1036" rel="noreferrer noopener" target="_blank">cli/src/status.rs:1036</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/apps/upgrade.rs#L341" rel="noreferrer noopener" target="_blank">cli/src/apps/upgrade.rs:341</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/broker/store.rs#L74" rel="noreferrer noopener" target="_blank">cli/src/env/broker/store.rs:74</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/live_bun.rs#L67" rel="noreferrer noopener" target="_blank">cli/src/env/live_bun.rs:67</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/main.rs#L44" rel="noreferrer noopener" target="_blank">cli/src/main.rs:44</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/maintenance/mod.rs#L239" rel="noreferrer noopener" target="_blank">cli/src/maintenance/mod.rs:239</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/maintenance/worker.rs#L26" rel="noreferrer noopener" target="_blank">cli/src/maintenance/worker.rs:26</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/proc.rs#L54" rel="noreferrer noopener" target="_blank">cli/src/proc.rs:54</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/self_install/binary/tests.rs#L22" rel="noreferrer noopener" target="_blank">cli/src/self_install/binary/tests.rs:22</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/agent/transfer/relay.rs#L25" rel="noreferrer noopener" target="_blank">cli/src/ssh/agent/transfer/relay.rs:25</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/broker/tests.rs#L304" rel="noreferrer noopener" target="_blank">cli/src/ssh/broker/tests.rs:304</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/completion.rs#L16" rel="noreferrer noopener" target="_blank">cli/src/completion.rs:16</a> </span></li>
+
+<li><code class="evidence-text">27 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/discovery.rs#L290" rel="noreferrer noopener" target="_blank">cli/src/config/discovery.rs:290</a> </span></li>
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/env_layer.rs#L250" rel="noreferrer noopener" target="_blank">cli/src/config/env_layer.rs:250</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/file_groups/platform.rs#L127" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/file_groups/platform.rs:127</a> </span></li>
+
+<li><code class="evidence-text">35 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/config/load.rs#L411" rel="noreferrer noopener" target="_blank">cli/src/config/load.rs:411</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/commands.rs#L623" rel="noreferrer noopener" target="_blank">cli/src/env/commands.rs:623</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/proxy.rs#L1405" rel="noreferrer noopener" target="_blank">cli/src/env/proxy.rs:1405</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/preset_migration.rs#L477" rel="noreferrer noopener" target="_blank">cli/src/preset_migration.rs:477</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/age.rs#L465" rel="noreferrer noopener" target="_blank">cli/src/secret/age.rs:465</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/mod.rs#L362" rel="noreferrer noopener" target="_blank">cli/src/secret/mod.rs:362</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/test_support.rs#L87" rel="noreferrer noopener" target="_blank">cli/src/test_support.rs:87</a> </span></li>
+
+<li><code class="evidence-text">22 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/env/workspace/file_groups/platform/windows.rs#L36" rel="noreferrer noopener" target="_blank">cli/src/env/workspace/file_groups/platform/windows.rs:36</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/home.rs#L40" rel="noreferrer noopener" target="_blank">cli/src/home.rs:40</a> <a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/secret/exec.rs#L279" rel="noreferrer noopener" target="_blank">cli/src/secret/exec.rs:279</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/broker/interaction.rs#L99" rel="noreferrer noopener" target="_blank">cli/src/ssh/broker/interaction.rs:99</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/ssh/integration_tests.rs#L125" rel="noreferrer noopener" target="_blank">cli/src/ssh/integration_tests.rs:125</a> </span></li>
+
+<li><code class="evidence-text">20 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/theme/mod.rs#L148" rel="noreferrer noopener" target="_blank">cli/src/theme/mod.rs:148</a> </span></li>
+
+<li><code class="evidence-text">18 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/shine-cli/2.6.0/code/cli/src/theme/osc.rs#L62" rel="noreferrer noopener" target="_blank">cli/src/theme/osc.rs:62</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>3 min 10 s</dd></div><div><dt>VM restore</dt><dd>62 ms</dd></div><div><dt>Payload</dt><dd>17727 files, 382.8 MiB</dd></div><div><dt>Files opened</dt><dd>80566</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1570</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1539 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">3 min 10 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="31 similar processes, the first one shown">×31</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/libc-0.2.191/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --allow=unused_qualifications --warn=clippy::unnecessary_semicolon --allow=clippy::unnecessary_cast --warn=clippy::ptr_as_ptr --allow=clippy::non_minimal_cfg --allow=clippy::missing_safety_doc --warn=clippy::map_unwrap_or --warn=clippy::manual_assert --allow=clippy::identity_op --warn=clippy::explicit_iter_loop --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;align&#34;, &#34;const-extern-fn&#34;, &#34;default&#34;, &#34;extra_traits&#34;, &#34;rustc-dep-of-std&#34;, &#34;rustc-std-workspace-core&#34;, &#34;std&#34;, &#34;use_std&#34;)) -C metadata=f2b3c09777387306</td>
+<td class="nowrap muted">441 ms</td>
+<td class="nowrap">836 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/libc-24a0c765ebd7d3cb/rustc2foIkn/symbols.o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb.build_script_build.2cf7c5ec755a4f39-cgu.0.rcgu.o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb.build_script_build.2cf7c5ec755a4f39-cgu.1.rcgu.o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb.build_script_build.2cf7c5ec755a4f39-cgu.2.rcgu.o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb.build_script_build.2cf7c5ec755a4f39-cgu.3.rcgu.o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb.9x3fp7esgkeb4azbnju054438.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rus</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">156 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 590: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjodKa4.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/libc-24a0c765ebd7d3cb/rustc2foIkn/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../li</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">146 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 591: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjodKa4.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/libc-24a0c765ebd7d3cb/build_script_build-24a0c765ebd7d3cb /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/libc-24a0c765ebd7d3cb/rustc2foIkn/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">142 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 594: /work/target/debug/build/libc-24a0c765ebd7d3cb/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 595: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 598: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="192 similar processes, the first one shown">×192</span></td>
+<td class="mono args">--crate-name libc --edition=2021 /cw/vendor/libc-0.2.191/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --allow=unused_qualifications --warn=clippy::unnecessary_semicolon --allow=clippy::unnecessary_cast --warn=clippy::ptr_as_ptr --allow=clippy::non_minimal_cfg --allow=clippy::missing_safety_doc --warn=clippy::map_unwrap_or --warn=clippy::manual_assert --allow=clippy::identity_op --warn=clippy::explicit_iter_loop --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;align&#34;, &#34;const-extern-fn&#34;, &#34;default&#34;, &#34;extra_traits&#34;, &#34;rustc-dep-of-std&#34;, &#34;rustc-std-workspace-core&#34;, &#34;std&#34;, &#34;use_std&#34;))</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">938 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 618: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.3 s</td>
+<td class="nowrap">123 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 619: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.4 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 621: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">2.4 s</td>
+<td class="nowrap">60 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 654: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 655: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 868: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.9 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 869: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">12.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 909: /work/target/debug/build/serde_core-040ff8da709058db/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 910: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">13.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1054: /work/target/debug/build/aws-lc-sys-59fa955fc2b97806/build-script-main">aws-lc-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.6 s</td>
+<td class="nowrap">28.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1055: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">--libs --cflags openssl</td>
+<td class="nowrap muted">19.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1057: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--libs --cflags aws-lc</td>
+<td class="nowrap muted">19.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1061: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">-E /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/17427769800390438736detect_compiler_family.c</td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1062: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/17427769800390438736detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 17427769800390438736detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1063: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="9 similar processes, the first one shown">×9</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1064: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="390 similar processes, the first one shown">×390</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/flag_check -c /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/flag_check.c</td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1065: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/flag_check.c -quiet -dumpdir /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccWRrYeY.s</td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1066: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/flag_check /tmp/ccWRrYeY.s</td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1115: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-dumpfullversion</td>
+<td class="nowrap muted">20.0 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2260: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="10 similar processes, the first one shown">×10</span></td>
+<td class="mono args">cqD /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/libaws_lc_0_46_0_crypto.a /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-asn1_lib.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-asn1_par.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-asn_pack.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_bitstr.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_bool.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_d2i_fp.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_dup.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_gentm.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_i2d_fp.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_int.o /work/target/debug/build/aws-lc-sys-46f8af00ae9ce730/out/837c4d226ede5892-a_mbstr.o /work/ta</td>
+<td class="nowrap muted">47.1 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2392: /work/target/debug/build/aws-lc-rs-28182d1366ca9342/build-script-build">aws-lc-rs</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">50.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2498: /work/target/debug/build/icu_normalizer_data-bc0711913bdbce2d/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">57.9 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2500: /work/target/debug/build/icu_properties_data-2ac38e22d8da263c/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">57.9 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2726: /work/target/debug/build/serde-aba6f6dbaff00389/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2727: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2730: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2731: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2742: /work/target/debug/build/rustls-d2710fffc8abf6d1/build-script-build">rustls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2744: /work/target/debug/build/httparse-cb36d18ca8c369e1/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2745: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2910: /work/target/debug/build/rustix-7cc0ced723d2828d/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 9 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2911: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-8273b0e35e9c3920/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">1 min 9 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2944: /work/target/debug/build/serde_json-e6611967f423fb56/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 10 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3122: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 20 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3172: /work/target/debug/build/ref-cast-bf0bf4803e95b6c6/build-script-build">ref-cast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3173: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3176: /work/target/debug/build/crc32fast-4ce09a82b6a6da8d/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3177: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3203: /work/target/debug/build/mime_guess-3cab6be6d7e04273/build-script-build">mime_guess</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 24 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3438: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3439: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-16c5e2ddec703063/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3443: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 29 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4033: /work/target/debug/build/shine-cli-501ebb43c834b84d/build-script-build">shine-cli</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 53 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 4034: "></span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 53 s</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>2176</dd></div><div><dt>Directories</dt><dd>329</dd></div><div><dt>Size</dt><dd>1.2 GiB</dd></div><div><dt>Compiled units</dt><dd>394</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling libc v0.2.191
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v3.0.9
+   Compiling cfg-if v1.0.5
+   Compiling typenum v1.20.1
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling shlex v2.0.1
+   Compiling version_check v0.9.5
+   Compiling stable_deref_trait v1.2.1
+   Compiling yoke v0.8.3
+   Compiling generic-array v0.14.7
+   Compiling jobserver v0.1.35
+   Compiling find-msvc-tools v0.1.15
+   Compiling cc v1.9.0
+   Compiling zerovec-derive v0.11.6
+   Compiling serde_core v1.0.229
+   Compiling zeroize v1.9.1
+   Compiling zerovec v0.11.8
+   Compiling cmake v0.1.58
+   Compiling displaydoc v0.2.7
+   Compiling bytes v1.12.1
+   Compiling pkg-config v0.3.34
+   Compiling dunce v1.0.5
+   Compiling pin-project-lite v0.2.17
+   Compiling fs_extra v1.3.0
+   Compiling aws-lc-sys v0.46.0
+   Compiling getrandom v0.2.17
+   Compiling itoa v1.0.18
+   Compiling rand_core v0.6.4
+   Compiling errno v0.3.14
+   Compiling futures-core v0.3.34
+   Compiling signal-hook-registry v1.4.8
+   Compiling crypto-common v0.1.7
+   Compiling tinystr v0.8.4
+   Compiling tokio-macros v2.7.2
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.4
+   Compiling smallvec v1.16.3
+   Compiling aws-lc-rs v1.18.2
+   Compiling litemap v0.8.3
+   Compiling writeable v0.6.4
+   Compiling icu_locale_core v2.3.0
+   Compiling tokio v1.54.0
+   Compiling zerotrie v0.2.5
+   Compiling potential_utf v0.1.6
+   Compiling hybrid-array v0.4.15
+   Compiling icu_properties_data v2.3.0
+   Compiling once_cell v1.21.4
+   Compiling icu_normalizer_data v2.3.0
+   Compiling subtle v2.6.1
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling http v1.5.0
+   Compiling rustls-pki-types v1.15.1
+   Compiling option-ext v0.2.0
+   Compiling dirs-sys v0.5.0
+   Compiling http-body v1.1.0
+   Compiling block-buffer v0.12.1
+   Compiling crypto-common v0.2.2
+   Compiling bitflags v2.13.2
+   Compiling futures-task v0.3.34
+   Compiling slab v0.4.12
+   Compiling httparse v1.10.1
+   Compiling rustls v0.23.46
+   Compiling const-oid v0.10.2
+   Compiling percent-encoding v2.3.2
+   Compiling zmij v1.0.23
+   Compiling serde v1.0.229
+   Compiling untrusted v0.9.0
+   Compiling rustls-webpki v0.103.16
+   Compiling digest v0.11.3
+   Compiling futures-util v0.3.34
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling serde_derive v1.0.229
+   Compiling cpufeatures v0.2.17
+   Compiling serde_json v1.0.154
+   Compiling unicase v2.10.0
+   Compiling cpufeatures v0.3.1
+   Compiling rustix v1.1.5
+   Compiling utf8parse v0.2.2
+   Compiling same-file v1.0.6
+   Compiling tower-service v0.3.3
+   Compiling try-lock v0.2.5
+   Compiling want v0.3.2
+   Compiling walkdir v2.5.0
+   Compiling anstyle-parse v1.0.0
+   Compiling sha2 v0.11.1
+   Compiling mime_guess v2.0.5
+   Compiling idna_adapter v1.2.2
+   Compiling tracing-core v0.1.36
+   Compiling crc32fast v1.5.3
+   Compiling colorchoice v1.0.5
+   Compiling anstyle v1.0.14
+   Compiling ref-cast v1.0.27
+   Compiling atomic-waker v1.1.2
+   Compiling memchr v2.8.3
+   Compiling winnow v1.0.4
+   Compiling linux-raw-sys v0.12.1
+   Compiling getrandom v0.4.3
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstyle-query v1.1.5
+   Compiling anstream v1.0.0
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling hyper v1.12.0
+   Compiling tracing v0.1.44
+   Compiling idna v1.1.0
+   Compiling form_urlencoded v1.2.2
+   Compiling dirs v6.0.0
+   Compiling sync_wrapper v1.0.2
+   Compiling futures-channel v0.3.34
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling block-buffer v0.10.4
+   Compiling inout v0.1.4
+   Compiling ref-cast-impl v1.0.27
+   Compiling serde_derive_internals v0.30.0
+   Compiling base64 v0.23.1
+   Compiling strsim v0.11.1
+   Compiling ipnet v2.12.2
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling simd-adler32 v0.3.10
+   Compiling tower-layer v0.3.3
+   Compiling heck v0.5.0
+   Compiling mime v0.3.17
+   Compiling openssl-probe v0.2.1
+   Compiling hashbrown v0.17.1
+   Compiling clap_lex v1.1.1
+   Compiling anyhow v1.0.104
+   Compiling equivalent v1.0.3
+   Compiling adler2 v2.0.1
+   Compiling is_ci v1.2.0
+   Compiling miniz_oxide v0.9.1
+   Compiling indexmap v2.14.2
+   Compiling clap_builder v4.6.7
+   Compiling rustls-native-certs v0.8.5
+   Compiling clap_derive v4.6.7
+   Compiling tower v0.5.3
+   Compiling hyper-util v0.1.21
+   Compiling schemars_derive v1.2.3
+   Compiling cipher v0.4.4
+   Compiling digest v0.10.7
+   Compiling shellexpand v3.1.2
+   Compiling url v2.5.8
+   Compiling xattr v1.6.1
+   Compiling tokio-rustls v0.26.6
+   Compiling rust-embed-utils v8.13.0
+   Compiling universal-hash v0.5.1
+   Compiling serde_spanned v1.1.2
+   Compiling filetime v0.2.29
+   Compiling syn v2.0.119
+   Compiling is-terminal v0.4.17
+   Compiling dyn-clone v1.0.20
+   Compiling log v0.4.34
+   Compiling unicode-width v0.2.2
+   Compiling opaque-debug v0.3.1
+   Compiling poly1305 v0.8.0
+   Compiling console v0.16.6
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling schemars v1.2.3
+   Compiling supports-color v2.1.0
+   Compiling rust-embed-impl v8.13.0
+   Compiling tar v0.4.46
+   Compiling toml v1.1.8+spec-1.1.0
+   Compiling hyper-rustls v0.27.10
+   Compiling uuid v1.28.0
+   Compiling flate2 v1.1.10
+   Compiling tower-http v0.6.11
+   Compiling sha2 v0.10.9
+   Compiling chacha20 v0.9.1
+   Compiling clap v4.6.7
+   Compiling toml_edit v0.25.17+spec-1.1.0
+   Compiling supports-color v3.0.2
+   Compiling jsonc-parser v0.32.3
+   Compiling http-body-util v0.1.5
+   Compiling directories v6.0.0
+   Compiling aead v0.5.2
+   Compiling fs2 v0.4.3
+   Compiling shell-words v1.1.1
+   Compiling similar v3.2.0
+   Compiling is_executable v1.0.6
+   Compiling shine-cli v2.6.0
+   Compiling tinyvec v1.13.3
+   Compiling unicode-normalization v0.1.26
+   Compiling clap_complete v4.6.11
+   Compiling shine-core v2.6.0
+   Compiling dialoguer v0.12.0
+   Compiling chacha20poly1305 v0.10.1
+   Compiling reqwest v0.13.5
+   Compiling rust-embed v8.13.0
+   Compiling owo-colors v4.4.0
+   Compiling glob v0.3.4
+   Compiling semver v1.0.28
+   Compiling bech32 v0.9.1
+   Compiling base64 v0.22.1
+   Compiling crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3m 10s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-21 17:13 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:13 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:16 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:18 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:18 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:19 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:23 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:23 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-21 17:23 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

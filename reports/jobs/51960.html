@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: masler 0.1.0-alpha.5</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>masler <span class="version">0.1.0-alpha.5</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 51960</span>
+      <a class="muted" href="https://crates.io/crates/masler/0.1.0-alpha.5" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="51960.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="51960.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">/work/target/debug/build/masl-as-07d6fa97d8bc92bf/build-script-build opened /proc/573/environ.</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">71</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">4</span></a>
+  <a href="#behavior">Behavior <span class="count">2</span></a>
+  <a href="#findings">Static findings <span class="count">3</span></a>
+  <a href="#run-full">Run: full <span class="count bad">48</span></a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">read_other_process</span><div class="sub">trace · masl-as</div></td><td class="mono where">/proc/573/environ</td><td>/work/target/debug/build/masl-as-07d6fa97d8bc92bf/build-script-build opened /proc/573/environ.</td></tr>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">read_other_process</span><div class="sub">trace · masler</div></td><td class="mono where">/proc/573/environ</td><td>/work/target/debug/build/masler-d8c1da615900fc23/build-script-build opened /proc/573/environ.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network</div></td><td class="mono where">index.crates.io</td><td>The build looked up index.crates.io.</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · masler</div></td><td class="mono where"><a href="https://crates.io/crates/masler/0.1.0-alpha.5/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">net:index.crates.io</code> <code class="chip">read:other-process</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">3</span></label>
+  
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">2</span></label>
+  <span class="muted">2 groups</span>
+</div>
+
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/masler/0.1.0-alpha.5/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/masler/0.1.0-alpha.5/code/src/processor/registers/mod.rs#L147" rel="noreferrer noopener" target="_blank">src/processor/registers/mod.rs:147</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/masler/0.1.0-alpha.5/code/src/processor/registers/register/mod.rs#L87" rel="noreferrer noopener" target="_blank">src/processor/registers/register/mod.rs:87</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+<ul class="alerts"><li>Process 1954 tried to tamper: ptrace 573 mode 0xd</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0xd</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0xd</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0xd</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 1954 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0xd</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0xd</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0xd</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0xd</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li><li>Process 2110 tried to tamper: ptrace 573 mode 0x9</li></ul>
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>1 min 22 s</dd></div><div><dt>VM restore</dt><dd>91 ms</dd></div><div><dt>Payload</dt><dd>12115 files, 383.6 MiB</dd></div><div><dt>Files opened</dt><dd>17883</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">259</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 243 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">1 min 21 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="114 similar processes, the first one shown">×114</span></td>
+<td class="mono args">--crate-name syn --edition=2021 /cw/vendor/syn-2.0.119/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg feature=&#34;clone-impls&#34; --cfg feature=&#34;default&#34; --cfg feature=&#34;derive&#34; --cfg feature=&#34;extra-traits&#34; --cfg feature=&#34;full&#34; --cfg feature=&#34;parsing&#34; --cfg feature=&#34;printing&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;visit&#34; --cfg feature=&#34;visit-mut&#34;</td>
+<td class="nowrap muted">337 ms</td>
+<td class="nowrap">4.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 621: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="22 similar processes, the first one shown">×22</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/serde_core-1.0.229/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;result&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;alloc&#34;, &#34;default&#34;, &#34;rc&#34;, &#34;result&#34;, &#34;std&#34;, &#34;unstable&#34;)) -C metadata=7b36ff07b2f427bd -C extra-filename=-4a29211c09205e73 --out-dir /work/target/debug/build/serde_core-4a29211c09205e73 -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">5.4 s</td>
+<td class="nowrap">211 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 628: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/serde_core-4a29211c09205e73/rustcg4g2Sk/symbols.o /work/target/debug/build/serde_core-4a29211c09205e73/build_script_build-4a29211c09205e73.build_script_build.3743f958d05f506d-cgu.0.rcgu.o /work/target/debug/build/serde_core-4a29211c09205e73/build_script_build-4a29211c09205e73.9imgtoeekxfh116ckiwyt6xqu.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/librus</td>
+<td class="nowrap muted">5.5 s</td>
+<td class="nowrap">100 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 629: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuRlQ0x.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/serde_core-4a29211c09205e73/build_script_build-4a29211c09205e73 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/serde_core-4a29211c09205e73/rustcg4g2Sk/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/u</td>
+<td class="nowrap muted">5.5 s</td>
+<td class="nowrap">94 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 630: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuRlQ0x.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/serde_core-4a29211c09205e73/build_script_build-4a29211c09205e73 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/serde_core-4a29211c09205e73/rustcg4g2Sk/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-</td>
+<td class="nowrap muted">5.5 s</td>
+<td class="nowrap">90 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 633: /work/target/debug/build/serde_core-4a29211c09205e73/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 634: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">5.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 722: /work/target/debug/build/serde_json-9aec22826aaf3607/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 804: /work/target/debug/build/camino-72a0d8d3b7a94e2e/build-script-build">camino</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">14.5 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 805: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">14.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 808: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">14.5 s</td>
+<td class="nowrap">44 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 809: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-53d53971fb3aec2e/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">14.5 s</td>
+<td class="nowrap">32 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 813: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">14.5 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 974: /work/target/debug/build/tree-sitter-language-d6373b4710db8c4a/build-script-build">tree-sitter-language</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">25.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 984: /work/target/debug/build/vergen-lib-43029ee6ab4330a0/build-script-build">vergen-lib</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1104: /work/target/debug/build/vergen-e720dc646c0b0102/build-script-build">vergen</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1240: /work/target/debug/build/radium-64a681424b418443/build-script-build">radium</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1508: /work/target/debug/build/tree-sitter-b00754ba49a8032f/build-script-build">tree-sitter</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">51.2 s</td>
+<td class="nowrap">1.0 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1509: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/2347949142483845984detect_compiler_family.c</td>
+<td class="nowrap muted">51.2 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1510: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/2347949142483845984detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 2347949142483845984detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">51.2 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1511: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">51.2 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1512: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="6 similar processes, the first one shown">×6</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/flag_check -c /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/flag_check.c</td>
+<td class="nowrap muted">51.2 s</td>
+<td class="nowrap">42 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1513: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccmSCQQd.s</td>
+<td class="nowrap muted">51.2 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1514: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/flag_check /tmp/ccmSCQQd.s</td>
+<td class="nowrap muted">51.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1530: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/libtree-sitter.a /work/target/debug/build/tree-sitter-495c7e11e77dbcac/out/98490c8781b409d2-lib.o</td>
+<td class="nowrap muted">52.2 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1707: /work/target/debug/build/tree-sitter-masl-25dea46fbda2620a/build-script-build">tree-sitter-masl</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">164 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1708: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/6307925480742217937detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1709: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/6307925480742217937detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 6307925480742217937detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1710: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1711: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/flag_check -c /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/flag_check.c</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1712: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/flag_check.c -quiet -dumpdir /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccegrWeS.s</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1713: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/flag_check /tmp/ccegrWeS.s</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1717: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/libtree-sitter-masl.a /work/target/debug/build/tree-sitter-masl-336c7590b6126eac/out/ea708c7824d36062-parser.o</td>
+<td class="nowrap muted">1 min 1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1954: /work/target/debug/build/masl-as-daf0ed9a8b21fcd5/build-script-build">masl-as</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 12 s</td>
+<td class="nowrap">411 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 1955: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">metadata --format-version 1</td>
+<td class="nowrap muted">1 min 12 s</td>
+<td class="nowrap">388 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1959: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">1 min 12 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1979: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name masl_memc --edition=2024 /cw/vendor/masl-memc-0.1.0-alpha.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=cfa840348de10d70 -C extra-filename=-9a943080a1a0a68d --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --extern deku=/work/target/debug/deps/libdeku-e09439ab830eafa5.rmeta --extern modular_bitfield=/work/target/debug/deps/libmodular_bitfield-970e5e66867222c8.rmeta --extern strum=/work/target/debug/deps/libstrum-f74504fc07ce9886.rmeta</td>
+<td class="nowrap muted">1 min 13 s</td>
+<td class="nowrap">754 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 1983: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">locate-project --workspace --message-format=plain --manifest-path=/cw/vendor/masl-memc-0.1.0-alpha.3/Cargo.toml</td>
+<td class="nowrap muted">1 min 13 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2110: /work/target/debug/build/masler-c7060fef3ec623e3/build-script-build">masler</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 19 s</td>
+<td class="nowrap">483 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 2111: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">metadata --format-version 1</td>
+<td class="nowrap muted">1 min 19 s</td>
+<td class="nowrap">463 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2115: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">1 min 19 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">80</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">index.crates.io</code> <code class="chip">index.crates.io.0.2.2</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI index.crates.io, inside TLS: GET /config.json, host index.crates.io, agent cargo/1.98.1 (797e8a9bc 2026-08-05)</td><td class="nowrap">1.6 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">6</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">1 min 12 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="mono">/usr/local/bin/cargo</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">50</span></h3>
+<h4>Secrets opened</h4>
+
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>Path</th><th>Mode</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">1 min 12 s</td><td class="mono">/work/target/debug/build/masl-as-daf0ed9a8b21fcd5/build-script-build</td><td class="mono">/proc/573/environ</td><td class="nowrap">read</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="mono">/work/target/debug/build/masler-c7060fef3ec623e3/build-script-build</td><td class="mono">/proc/573/environ</td><td class="nowrap">read</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+<h4>Tamper attempts</h4>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Process</th><th>What</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 12 s</td><td class="nowrap">1954</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0xd</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr><tr><td class="nowrap muted">1 min 19 s</td><td class="nowrap">2110</td><td class="mono">ptrace 573 mode 0x9</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1073</dd></div><div><dt>Directories</dt><dd>215</dd></div><div><dt>Size</dt><dd>716.2 MiB</dd></div><div><dt>Compiled units</dt><dd>241</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling syn v2.0.119
+   Compiling strsim v0.11.1
+   Compiling fnv v1.0.7
+   Compiling serde_core v1.0.229
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling indexmap v2.14.2
+   Compiling libc v0.2.189
+   Compiling memchr v2.8.3
+   Compiling darling_core v0.20.11
+   Compiling serde_json v1.0.151
+   Compiling darling_macro v0.20.11
+   Compiling darling v0.20.11
+   Compiling derive_builder_core v0.20.2
+   Compiling thiserror-impl v2.0.21
+   Compiling camino v1.2.6
+   Compiling anyhow v1.0.104
+   Compiling thiserror v2.0.21
+   Compiling derive_builder_macro v0.20.2
+   Compiling vergen-lib v9.1.0
+   Compiling aho-corasick v1.1.5
+   Compiling serde_derive v1.0.229
+   Compiling semver v1.0.28
+   Compiling tree-sitter-language v0.1.8
+   Compiling regex-syntax v0.8.11
+   Compiling regex-automata v0.4.18
+   Compiling serde v1.0.229
+   Compiling derive_builder v0.20.2
+   Compiling vergen v9.1.0
+   Compiling cargo-platform v0.3.3
+   Compiling winnow v1.0.4
+   Compiling num_threads v0.1.7
+   Compiling deranged v0.5.8
+   Compiling powerfmt v0.2.0
+   Compiling time v0.3.55
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling cargo_metadata v0.23.1
+   Compiling regex v1.13.1
+   Compiling rustc_version v0.4.1
+   Compiling sysinfo v0.37.2
+   Compiling darling_core v0.21.3
+   Compiling radium v0.7.0
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling cfg-if v1.0.5
+   Compiling once_cell v1.21.4
+   Compiling tracing-core v0.1.36
+   Compiling toml_edit v0.25.15+spec-1.1.0
+   Compiling darling_macro v0.21.3
+   Compiling smallvec v1.16.2
+   Compiling log v0.4.34
+   Compiling utf8parse v0.2.2
+   Compiling tap v1.0.1
+   Compiling wyz v0.5.1
+   Compiling anstyle-parse v1.0.0
+   Compiling darling v0.21.3
+   Compiling proc-macro-crate v3.5.0
+   Compiling tree-sitter v0.26.13
+   Compiling colorchoice v1.0.5
+   Compiling scopeguard v1.2.0
+   Compiling funty v2.0.0
+   Compiling anstyle-query v1.1.5
+   Compiling unicode-segmentation v1.13.3
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstyle v1.0.14
+   Compiling anstream v1.0.0
+   Compiling bitvec v1.1.1
+   Compiling lock_api v0.4.14
+   Compiling deku_derive v0.20.3
+   Compiling parking_lot_core v0.9.12
+   Compiling strum_macros v0.28.0
+   Compiling no_std_io2 v0.9.4
+   Compiling tree-sitter-masl v0.4.0
+   Compiling modular-bitfield-impl v0.13.1
+   Compiling clap_lex v1.1.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling bitflags v2.13.2
+   Compiling static_assertions v1.1.0
+   Compiling modular-bitfield v0.13.1
+   Compiling rustix v1.1.5
+   Compiling clap_builder v4.6.7
+   Compiling deku v0.20.3
+   Compiling strum v0.28.0
+   Compiling parking_lot v0.12.5
+   Compiling convert_case v0.10.0
+   Compiling masl-as v0.1.0-alpha.3
+   Compiling clap_derive v4.6.7
+   Compiling is-terminal v0.4.17
+   Compiling tracing-attributes v0.1.31
+   Compiling concolor-query v0.3.3
+   Compiling unicode-xid v0.2.6
+   Compiling bitflags v1.3.2
+   Compiling unicode-width v0.2.2
+   Compiling lazy_static v1.5.1
+   Compiling pin-project-lite v0.2.17
+   Compiling streaming-iterator v0.1.9
+   Compiling tracing v0.1.44
+   Compiling sharded-slab v0.1.7
+   Compiling concolor v0.1.1
+   Compiling derive_more-impl v2.1.1
+   Compiling clap v4.6.7
+   Compiling num-traits v0.2.19
+   Compiling crossterm v0.29.0
+   Compiling masl-memc v0.1.0-alpha.3
+   Compiling libm v0.2.16
+   Compiling tracing-log v0.2.0
+   Compiling masler v0.1.0-alpha.5
+   Compiling thread_local v1.1.10
+   Compiling iana-time-zone v0.1.65
+   Compiling yansi v1.0.1
+   Compiling nu-ansi-term v0.50.3
+   Compiling tracing-subscriber v0.3.23
+   Compiling ariadne v0.6.0
+   Compiling chrono v0.4.45
+   Compiling humansize v2.1.3
+   Compiling comfy-table v7.2.2
+   Compiling clap-verbosity-flag v3.0.4
+   Compiling derive_more v2.1.1
+   Compiling thousands v0.2.0
+   Compiling humantime v2.4.0
+   Compiling bytemuck v1.25.2
+   Compiling crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 21s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-01 17:05 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-627152</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:05 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-2308599</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:06 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:07 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:07 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:08 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:09 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:09 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 17:09 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-523934</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

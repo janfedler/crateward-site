@@ -1,0 +1,1929 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: gnostr-crawler 970402.1846.51281</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>gnostr-crawler <span class="version">970402.1846.51281</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 96329</span>
+      <a class="muted" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="96329.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="96329.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity downloader_pattern in build_script code: wss:// at build.rs:33 with std::process::Command::new at build.rs:147</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">46</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">10</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">137</span></a>
+  <a href="#run-full">Run: full <span class="count bad">1</span></a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · gnostr-crawler</div></td><td class="mono where"><a href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L33" rel="noreferrer noopener" target="_blank">build.rs:33</a></td><td>high severity downloader_pattern in build_script code: wss:// at build.rs:33 with std::process::Command::new at build.rs:147</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · gnostr-crawler</div></td><td class="mono where">exec:interpreter</td><td>New since the previous version: exec:interpreter.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">new_behavior</span><div class="sub">diff · gnostr-crawler</div></td><td class="mono where">exec:shell</td><td>New since the previous version: exec:shell.</td></tr>
+
+<tr><td class="num"><span class="points low">3</span></td><td class="signal"><span class="word">exec_interpreter</span><div class="sub">trace · openssl-sys</div></td><td class="mono where">/usr/bin/perl</td><td>The build ran /usr/bin/perl.</td></tr>
+
+<tr><td class="num"><span class="points low">3</span></td><td class="signal"><span class="word">exec_shell</span><div class="sub">trace · openssl-sys</div></td><td class="mono where">/bin/sh</td><td>The build ran /bin/sh.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>5 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">environment_dumped</span><div class="sub">disk · libz-sys</div></td><td class="mono where">/work/.warm/upper/debug/build/libz-sys-8151eeab73d3e858/output</td><td>A build script wrote the whole environment, with the planted github_token_env, into its build directory.</td></tr>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · gnostr-crawler</div></td><td class="mono where"><a href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:network_access</span><div class="sub">static · gnostr-crawler</div></td><td class="mono where"><a href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L164" rel="noreferrer noopener" target="_blank">build.rs:164</a></td><td>medium severity network_access in build_script code (29 places): reqwest::Client::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · gnostr-crawler</div></td><td class="mono where"><a href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L147" rel="noreferrer noopener" target="_blank">build.rs:147</a></td><td>medium severity process_spawn in build_script code (2 places): std::process::Command::new</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · gnostr-crawler</div></td><td class="mono where"><a href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L33" rel="noreferrer noopener" target="_blank">build.rs:33</a></td><td>low severity url_literal in build_script code (101 places): wss://</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">exec:interpreter</code> <code class="chip new">exec:shell</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:interpreter</code> <code class="chip">exec:shell</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:network_access</code> <code class="chip">static:process_spawn</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">137</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">37</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">97</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">wss:// at build.rs:33 with std::process::Command::new at build.rs:147</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L33" rel="noreferrer noopener" target="_blank">build.rs:33</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L164" rel="noreferrer noopener" target="_blank">build.rs:164</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L147" rel="noreferrer noopener" target="_blank">build.rs:147</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">26</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L31" rel="noreferrer noopener" target="_blank">src/api.rs:31</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L76" rel="noreferrer noopener" target="_blank">src/api.rs:76</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L271" rel="noreferrer noopener" target="_blank">src/api.rs:271</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L329" rel="noreferrer noopener" target="_blank">src/api.rs:329</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L336" rel="noreferrer noopener" target="_blank">src/api.rs:336</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/cli.rs#L105" rel="noreferrer noopener" target="_blank">src/cli.rs:105</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/commands/nip34.rs#L7" rel="noreferrer noopener" target="_blank">src/commands/nip34.rs:7</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/commands/sniper.rs#L37" rel="noreferrer noopener" target="_blank">src/commands/sniper.rs:37</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/commands/watch.rs#L8" rel="noreferrer noopener" target="_blank">src/commands/watch.rs:8</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L16" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:16</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L654" rel="noreferrer noopener" target="_blank">src/api.rs:654</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L704" rel="noreferrer noopener" target="_blank">src/api.rs:704</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L754" rel="noreferrer noopener" target="_blank">src/api.rs:754</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1663" rel="noreferrer noopener" target="_blank">src/api.rs:1663</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1705" rel="noreferrer noopener" target="_blank">src/api.rs:1705</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L425" rel="noreferrer noopener" target="_blank">src/relays.rs:425</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L439" rel="noreferrer noopener" target="_blank">src/relays.rs:439</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1518" rel="noreferrer noopener" target="_blank">src/api.rs:1518</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1757" rel="noreferrer noopener" target="_blank">src/api.rs:1757</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L459" rel="noreferrer noopener" target="_blank">src/query/mod.rs:459</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L510" rel="noreferrer noopener" target="_blank">src/query/mod.rs:510</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L531" rel="noreferrer noopener" target="_blank">src/query/mod.rs:531</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L18" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:18</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L57" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:57</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L34" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:34</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L446" rel="noreferrer noopener" target="_blank">src/relays.rs:446</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">wss://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L33" rel="noreferrer noopener" target="_blank">build.rs:33</a> </span></li>
+
+<li><code class="evidence-text">ws://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L33" rel="noreferrer noopener" target="_blank">build.rs:33</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L35" rel="noreferrer noopener" target="_blank">build.rs:35</a> </span></li>
+
+<li><code class="evidence-text">wss://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L40" rel="noreferrer noopener" target="_blank">build.rs:40</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/RandyMcMillan/bitchat/refs/heads/main/relays/online_relays_gps.csv</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L60" rel="noreferrer noopener" target="_blank">build.rs:60</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/permissionlesstech/bitchat/refs/heads/main/relays/online_relays_gps.csv</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L61" rel="noreferrer noopener" target="_blank">build.rs:61</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/sesseor/nostr-relays-list/main/relays.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs#L62" rel="noreferrer noopener" target="_blank">build.rs:62</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L108" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:108</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L119" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:119</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1781" rel="noreferrer noopener" target="_blank">src/api.rs:1781</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">68</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">wss://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L827" rel="noreferrer noopener" target="_blank">src/api.rs:827</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L72" rel="noreferrer noopener" target="_blank">src/relay_io.rs:72</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L372" rel="noreferrer noopener" target="_blank">src/relays.rs:372</a> </span></li>
+
+<li><code class="evidence-text">ws://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1526" rel="noreferrer noopener" target="_blank">src/api.rs:1526</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L497" rel="noreferrer noopener" target="_blank">src/query/mod.rs:497</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L552" rel="noreferrer noopener" target="_blank">src/query/mod.rs:552</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L553" rel="noreferrer noopener" target="_blank">src/query/mod.rs:553</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example.com\u{a}ws://relay.example.org\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1541" rel="noreferrer noopener" target="_blank">src/api.rs:1541</a> </span></li>
+
+<li><code class="evidence-text">[&#34;wss://relay.example.com/&#34;]</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1544" rel="noreferrer noopener" target="_blank">src/api.rs:1544</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example.com/ ws://relay.example.org/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1545" rel="noreferrer noopener" target="_blank">src/api.rs:1545</a> </span></li>
+
+<li><code class="evidence-text">wss://relay-one/\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1581" rel="noreferrer noopener" target="_blank">src/api.rs:1581</a> </span></li>
+
+<li><code class="evidence-text">[&#34;wss://relay-one/&#34;]</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1582" rel="noreferrer noopener" target="_blank">src/api.rs:1582</a> </span></li>
+
+<li><code class="evidence-text">wss://relay-one/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1583" rel="noreferrer noopener" target="_blank">src/api.rs:1583</a> </span></li>
+
+<li><code class="evidence-text">wss://relay-one</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1591" rel="noreferrer noopener" target="_blank">src/api.rs:1591</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1599" rel="noreferrer noopener" target="_blank">src/api.rs:1599</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1604" rel="noreferrer noopener" target="_blank">src/api.rs:1604</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example.com/\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1620" rel="noreferrer noopener" target="_blank">src/api.rs:1620</a> </span></li>
+
+<li><code class="evidence-text">{}\u{a}ws://127.0.0.1:1\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1659" rel="noreferrer noopener" target="_blank">src/api.rs:1659</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/commands/sniper.rs#L124" rel="noreferrer noopener" target="_blank">src/commands/sniper.rs:124</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L10" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:10</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L441" rel="noreferrer noopener" target="_blank">src/relays.rs:441</a> </span></li>
+
+<li><code class="evidence-text">wss://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/commands/sniper.rs#L125" rel="noreferrer noopener" target="_blank">src/commands/sniper.rs:125</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L10" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:10</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L26" rel="noreferrer noopener" target="_blank">src/relay_io.rs:26</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L79" rel="noreferrer noopener" target="_blank">src/relay_io.rs:79</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L441" rel="noreferrer noopener" target="_blank">src/relays.rs:441</a> </span></li>
+
+<li><code class="evidence-text">ws://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/commands/sniper.rs#L126" rel="noreferrer noopener" target="_blank">src/commands/sniper.rs:126</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L11" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:11</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L27" rel="noreferrer noopener" target="_blank">src/relay_io.rs:27</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L79" rel="noreferrer noopener" target="_blank">src/relay_io.rs:79</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L442" rel="noreferrer noopener" target="_blank">src/relays.rs:442</a> </span></li>
+
+<li><code class="evidence-text">ws://127.0.0.1:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/processor.rs#L13" rel="noreferrer noopener" target="_blank">src/processor.rs:13</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.damus.io</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L85" rel="noreferrer noopener" target="_blank">src/query/cli.rs:85</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L101" rel="noreferrer noopener" target="_blank">src/query/cli.rs:101</a> </span></li>
+
+<li><code class="evidence-text">wss://blossom.gnostr.cloud</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L87" rel="noreferrer noopener" target="_blank">src/query/cli.rs:87</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L102" rel="noreferrer noopener" target="_blank">src/query/cli.rs:102</a> </span></li>
+
+<li><code class="evidence-text">wss://nos.lol,wss://relay.nos.social</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L89" rel="noreferrer noopener" target="_blank">src/query/cli.rs:89</a> </span></li>
+
+<li><code class="evidence-text">wss://nos.lol</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L103" rel="noreferrer noopener" target="_blank">src/query/cli.rs:103</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.nos.social</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/cli.rs#L104" rel="noreferrer noopener" target="_blank">src/query/cli.rs:104</a> </span></li>
+
+<li><code class="evidence-text">&#60;section&#62;&#60;h2&#62;{}&#60;/h2&#62;&#60;form action=&#34;{}&#34; method=&#34;get&#34;&#62;&#60;label&#62;Relay &#60;input name=&#34;relay&#34; type=&#34;text&#34; placeholder=&#34;wss://relay.example.com&#34; value=&#34;{}&#34;&#62;&#60;/label&#62;&#60;br&#62;&#60;label&#62;Authors &#60;input name=&#34;authors&#34; type=&#34;…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/forms.rs#L9" rel="noreferrer noopener" target="_blank">src/query/forms.rs:9</a> </span></li>
+
+<li><code class="evidence-text">ws://127.0.0.1:1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/query/mod.rs#L496" rel="noreferrer noopener" target="_blank">src/query/mod.rs:496</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L11" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:11</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays.rs#L442" rel="noreferrer noopener" target="_blank">src/relays.rs:442</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L72" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:72</a> </span></li>
+
+<li><code class="evidence-text">https://relay.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L73" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:73</a> </span></li>
+
+<li><code class="evidence-text">ws://relay.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L76" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:76</a> </span></li>
+
+<li><code class="evidence-text">http://relay.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_fetch.rs#L77" rel="noreferrer noopener" target="_blank">src/relay_fetch.rs:77</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L71" rel="noreferrer noopener" target="_blank">src/relay_io.rs:71</a> </span></li>
+
+<li><code class="evidence-text">Prepended &#39;wss://&#39; to form valid URL: {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L74" rel="noreferrer noopener" target="_blank">src/relay_io.rs:74</a> </span></li>
+
+<li><code class="evidence-text">- wss://relay.example/\u{a}- relay.example\u{a}- wss://relay2.example/\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L190" rel="noreferrer noopener" target="_blank">src/relay_io.rs:190</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L196" rel="noreferrer noopener" target="_blank">src/relay_io.rs:196</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L197" rel="noreferrer noopener" target="_blank">src/relay_io.rs:197</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L210" rel="noreferrer noopener" target="_blank">src/relay_io.rs:210</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L227" rel="noreferrer noopener" target="_blank">src/relay_io.rs:227</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays_set.rs#L153" rel="noreferrer noopener" target="_blank">src/relays_set.rs:153</a> </span></li>
+
+<li><code class="evidence-text">wss://relay2.example/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L198" rel="noreferrer noopener" target="_blank">src/relay_io.rs:198</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L211" rel="noreferrer noopener" target="_blank">src/relay_io.rs:211</a> </span></li>
+
+<li><code class="evidence-text">relay.example\u{a}wss://relay2.example/\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L205" rel="noreferrer noopener" target="_blank">src/relay_io.rs:205</a> </span></li>
+
+<li><code class="evidence-text">wss://10.0.0.21:4848/\u{a}ws://100.71.217.147:4848/\u{a}wss://-auth.nostr1.com/\u{a}wss://localhost:4848/\u{a}ws://127.0.0.1:4848/\u{a}wss://relay.example/\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L219" rel="noreferrer noopener" target="_blank">src/relay_io.rs:219</a> </span></li>
+
+<li><code class="evidence-text">wss://localhost:4848/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L225" rel="noreferrer noopener" target="_blank">src/relay_io.rs:225</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays_set.rs#L151" rel="noreferrer noopener" target="_blank">src/relays_set.rs:151</a> </span></li>
+
+<li><code class="evidence-text">ws://127.0.0.1:4848/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_io.rs#L226" rel="noreferrer noopener" target="_blank">src/relay_io.rs:226</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays_set.rs#L152" rel="noreferrer noopener" target="_blank">src/relays_set.rs:152</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/permissionlesstech/bitchat/refs/heads/main/relays/online_relays_gps.csv</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_manager/sources.rs#L19" rel="noreferrer noopener" target="_blank">src/relay_manager/sources.rs:19</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/sesseor/nostr-relays-list/main/relays.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relay_manager/sources.rs#L34" rel="noreferrer noopener" target="_blank">src/relay_manager/sources.rs:34</a> </span></li>
+
+<li><code class="evidence-text">{{&#34;{}&#34;:&#34;wss://relay.gnostr.org&#34;}}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays_set.rs#L134" rel="noreferrer noopener" target="_blank">src/relays_set.rs:134</a> </span></li>
+
+<li><code class="evidence-text">wss://10.0.0.21:4848/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays_set.rs#L149" rel="noreferrer noopener" target="_blank">src/relays_set.rs:149</a> </span></li>
+
+<li><code class="evidence-text">ws://100.71.217.147:4848/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/relays_set.rs#L150" rel="noreferrer noopener" target="_blank">src/relays_set.rs:150</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">26</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ws://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L140" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:140</a> </span></li>
+
+<li><code class="evidence-text">wss://nostr-kyomu-haskell.onrender.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L176" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:176</a> </span></li>
+
+<li><code class="evidence-text">wss://nostr-relay.amethyst.name/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L177" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:177</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.bitcoindistrict.org/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L178" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:178</a> </span></li>
+
+<li><code class="evidence-text">wss://nos.lol/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L179" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:179</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.damus.io/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L180" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:180</a> </span></li>
+
+<li><code class="evidence-text">- wss://relay.example.com, extra</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L365" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:365</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L366" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:366</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L562" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:562</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L563" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:563</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L596" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:596</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L620" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:620</a> </span></li>
+
+<li><code class="evidence-text">- relay.example.com\u{a}- ws://relay.example.org\u{a}- http://skip.example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L377" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:377</a> </span></li>
+
+<li><code class="evidence-text">wss://relay.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L385" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:385</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L567" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:567</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L651" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:651</a> </span></li>
+
+<li><code class="evidence-text">ws://relay.example.org/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L386" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:386</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L652" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:652</a> </span></li>
+
+<li><code class="evidence-text">relay.example.com\u{a}ws://relay.example.org\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L590" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:590</a> </span></li>
+
+<li><code class="evidence-text">ws://relay.example.org</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L597" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:597</a> </span></li>
+
+<li><code class="evidence-text">wss://relay-one</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L634" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:634</a> </span></li>
+
+<li><code class="evidence-text">wss://relay-two</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L635" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:635</a> </span></li>
+
+<li><code class="evidence-text">relay.example.com\u{a}ws://relay.example.org\u{a}http://skip.example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L642" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:642</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L646" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:646</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L656" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:656</a> </span></li>
+
+<li><code class="evidence-text">ws://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L656" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:656</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/api.rs#L1471" rel="noreferrer noopener" target="_blank">src/api.rs:1471</a> <a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/src/lib.rs#L78" rel="noreferrer noopener" target="_blank">src/lib.rs:78</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/gnostr-crawler/970402.1846.51281/code/tests/crawler_helpers.rs#L77" rel="noreferrer noopener" target="_blank">tests/crawler_helpers.rs:77</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+<ul class="alerts"><li>Honeytoken github_token_env was copied into /work/.warm/upper/debug/build/libz-sys-8151eeab73d3e858/output</li></ul>
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>11 min 13 s</dd></div><div><dt>VM restore</dt><dd>65 ms</dd></div><div><dt>Payload</dt><dd>42783 files, 785.9 MiB</dd></div><div><dt>Files opened</dt><dd>494582</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2000</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 928 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">11 min 12 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="36 similar processes, the first one shown">×36</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">748 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcn0Qq0D/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">169 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOegow0.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcn0Qq0D/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">155 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOegow0.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustcn0Qq0D/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.9 s</td>
+<td class="nowrap">151 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">92 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">2.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">2.1 s</td>
+<td class="nowrap">40 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 619: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="148 similar processes, the first one shown">×148</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.26/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=f65c548d1bdebf35 -C extra-filename=-76fddff3086055f2 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">2.2 s</td>
+<td class="nowrap">56 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 639: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2.9 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 640: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">3.0 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 666: /work/target/debug/build/libc-ca3b81bba335f01d/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3.3 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 667: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">3.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 849: /work/target/debug/build/generic-array-341b6d6e7b5f7f5b/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 850: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">15.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 881: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.8 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 895: /work/target/debug/build/serde_core-6d38a3ce35613dd3/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.9 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 896: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">15.9 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 938: /work/target/debug/build/libc-d6090283aeec6873/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">18.0 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 939: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">18.0 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1129: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">30.3 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1130: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">30.3 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1134: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">30.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1274: /work/target/debug/build/crossbeam-utils-416887bede60e6f8/build-script-build">crossbeam-utils</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.7 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1289: /work/target/debug/build/zerocopy-e305f7a2c512e48f/build-script-build">zerocopy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.9 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1290: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">34.9 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1313: /work/target/debug/build/crc32fast-2ad1f9244d9f468c/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.3 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1314: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">35.3 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1405: /work/target/debug/build/getrandom-38a6990e35ca485f/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.1 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1570: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">46.9 s</td>
+<td class="nowrap">30 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1571: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">46.9 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1676: /work/target/debug/build/serde-593ffa063ad862ba/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">53.2 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1677: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">53.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1739: /work/target/debug/build/ahash-86ad56338b965f08/build-script-build">ahash</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">54.6 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1740: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">54.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1840: /work/target/debug/build/icu_properties_data-2ac38e22d8da263c/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">56.4 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1842: /work/target/debug/build/icu_normalizer_data-bc0711913bdbce2d/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">56.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1844: /work/target/debug/build/rustversion-cd03e7da230c42f2/build-script-build">rustversion</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">56.4 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1845: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">56.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1946: /work/target/debug/build/rustix-a18ff14717599237/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">58.3 s</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1947: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-5aa1ad3e70a3dd06/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">58.3 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2141: /work/target/debug/build/heapless-994543612d17960b/build-script-build">heapless</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 9 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2142: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=probe --crate-type=lib --out-dir /work/target/debug/build/heapless-d57dd1e5eef79dd5/out /work/target/debug/build/heapless-d57dd1e5eef79dd5/out/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 9 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2245: /work/target/debug/build/faster-hex-88d0d142359160df/build-script-build">faster-hex</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 18 s</td>
+<td class="nowrap">57 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2246: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">1 min 18 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2255: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name autocfg_b583679c165c4aa1_1 --crate-type=lib --out-dir /work/target/debug/build/faster-hex-4197b1f52613528b/out --emit=llvm-ir --target x86_64-unknown-linux-gnu -</td>
+<td class="nowrap muted">1 min 18 s</td>
+<td class="nowrap">27 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2411: /work/target/debug/build/httparse-cb36d18ca8c369e1/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 26 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2412: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 26 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2571: /work/target/debug/build/ring-9f1b9ae08e6abe78/build-script-build">ring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">4.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2572: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/ring-88dfadd1bdd0ce47/out/1788874067476009819detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">22 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2573: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-88dfadd1bdd0ce47/out/1788874067476009819detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 1788874067476009819detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2574: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2575: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="32 similar processes, the first one shown">×32</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/flag_check -c /work/target/debug/build/ring-88dfadd1bdd0ce47/out/flag_check.c</td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2576: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-88dfadd1bdd0ce47/out/flag_check.c -quiet -dumpdir /work/target/debug/build/ring-88dfadd1bdd0ce47/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccegrcgD.s</td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2577: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/flag_check /tmp/ccegrcgD.s</td>
+<td class="nowrap muted">1 min 32 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2666: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/ring-88dfadd1bdd0ce47/out/libring_core_0_17_14_.a /work/target/debug/build/ring-88dfadd1bdd0ce47/out/25ac62e5b3c53843-curve25519.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/0bbbd18bda93c05b-aes_nohw.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/00c879ee3285a50d-montgomery.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/00c879ee3285a50d-montgomery_inv.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/a0330e891e733f4e-ecp_nistz.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/a0330e891e733f4e-gfp_p256.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/a0330e891e733f4e-gfp_p384.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/a0330e891e733f4e-p256.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/aaa1ba3e455ee2e1-limbs.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/a4019cc0736b0423-mem.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/d5a9841f3dc6e253-poly1305.o /work/target/debug/build/ring-88dfadd1bdd0ce47/out/a4019cc0736b0423-crypt</td>
+<td class="nowrap muted">1 min 36 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2756: /work/target/debug/build/openssl-sys-79373439c967f64e/build-script-main">openssl-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 39 s</td>
+<td class="nowrap">3 min 28 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2757: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/openssl-sys-de2199a1b4697661/out/2132854475397301270detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2758: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/openssl-sys-de2199a1b4697661/out/2132854475397301270detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 2132854475397301270detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2759: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2760: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/openssl-sys-de2199a1b4697661/out/flag_check -c /work/target/debug/build/openssl-sys-de2199a1b4697661/out/flag_check.c</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">14 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2761: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/openssl-sys-de2199a1b4697661/out/flag_check.c -quiet -dumpdir /work/target/debug/build/openssl-sys-de2199a1b4697661/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccRsl7gy.s</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2762: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/openssl-sys-de2199a1b4697661/out/flag_check /tmp/ccRsl7gy.s</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2763: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">./Configure --prefix=/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install --openssldir=/usr/local/ssl no-shared no-module no-tests no-comp no-zlib no-zlib-dynamic --libdir=lib no-ssl3 no-md2 no-rc5 no-weak-ssl-ciphers no-camellia no-idea no-seed linux-x86_64 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -w</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">8.3 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2764: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-dM -E -x c /dev/null</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2765: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /dev/null -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dM -dumpbase null</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2766: /usr/bin/g++">/usr/bin/g++</span></td>
+<td class="mono args">-dM -E -x c /dev/null</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2767: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /dev/null -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dM -dumpbase null</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2768: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-Wa,--help -c -o null.2763.o -x assembler /dev/null</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2769: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 --help -o null.2763.o /dev/null</td>
+<td class="nowrap muted">1 min 40 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">13</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2770: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">configdata.pm</td>
+<td class="nowrap muted">1 min 47 s</td>
+<td class="nowrap">869 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2771: /usr/bin/make">/usr/bin/make</span></td>
+<td class="mono args">depend</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">108 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2772: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c : </td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2773: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c /usr/bin/perl ./util/add-depends.pl &#34;gcc&#34;</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">85 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2774: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">./util/add-depends.pl gcc</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">83 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2776: /usr/bin/make">/usr/bin/make</span></td>
+<td class="mono args">build_libs</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">3 min 17 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2777: /bin/sh">/bin/sh</span> <span class="times" title="110 similar processes, the first one shown">×110</span></td>
+<td class="mono args">-c /usr/bin/perl util/mkinstallvars.pl COMMENT=&#34;This file should be used when building against this OpenSSL build, and should never be installed&#34; PREFIX=. BINDIR=apps APPLINKDIR=ms LIBDIR= INCLUDEDIR=include &#34;INCLUDEDIR=./include&#34; ENGINESDIR=engines MODULESDIR=providers &#34;VERSION=3.6.3&#34; &#34;LDLIBS=-ldl -pthread &#34; &#62; builddata.pm</td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2778: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">util/mkinstallvars.pl COMMENT=This file should be used when building against this OpenSSL build, and should never be installed PREFIX=. BINDIR=apps APPLINKDIR=ms LIBDIR= INCLUDEDIR=include INCLUDEDIR=./include ENGINESDIR=engines MODULESDIR=providers VERSION=3.6.3 LDLIBS=-ldl -pthread </td>
+<td class="nowrap muted">1 min 48 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d3"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2997: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c &#34;make&#34; depend &#38;&#38; &#34;make&#34; _build_libs</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">3 min 8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2998: /usr/bin/make">/usr/bin/make</span></td>
+<td class="mono args">depend</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">145 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2999: /bin/sh">/bin/sh</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-c : </td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3000: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c /usr/bin/perl ./util/add-depends.pl &#34;gcc&#34;</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">124 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3001: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">./util/add-depends.pl gcc</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">123 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d4"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3003: /usr/bin/make">/usr/bin/make</span></td>
+<td class="mono args">_build_libs</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">3 min 8 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3004: /bin/sh">/bin/sh</span> <span class="times" title="155 similar processes, the first one shown">×155</span></td>
+<td class="mono args">-c cc  -I. -Iinclude -Iapps/include  -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSLDIR=&#34;\&#34;/usr/local/ssl\&#34;&#34; -DENGINESDIR=&#34;\&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3\&#34;&#34; -DMODULESDIR=&#34;\&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/ossl-modules\&#34;&#34; -D…</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">116 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3005: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-I. -Iinclude -Iapps/include -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSLDIR=&#34;/usr/local/ssl&#34; -DENGINESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3&#34; -DMODULESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/ossl-modules&#34; -DOPENSSL_BUILDING_OPENSSL -DNDEBUG -MMD -MF apps/lib/libapps-lib-app_libctx.d.tmp -c -o</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">116 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3006: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I . -I include -I apps/include -imultiarch x86_64-linux-gnu -MMD apps/lib/libapps-lib-app_libctx.d -MF apps/lib/libapps-lib-app_libctx.d.tmp -MQ apps/lib/libapps-lib-app_libctx.o -D_REENTRANT -D OPENSSL_USE_NODELETE -D L_ENDIAN -D OPENSSL_PIC -D OPENSSLDIR=&#34;/usr/local/ssl&#34; -D ENGINESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3&#34; -D MODULESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/ossl-modules&#34; -D OPENSSL_BUILDING_OPENSSL -D</td>
+<td class="nowrap muted">1 min 57 s</td>
+<td class="nowrap">110 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3007: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-I . -I include -I apps/include --gdwarf-4 --64 --noexecstack -o apps/lib/libapps-lib-app_libctx.o /tmp/ccmc0MJ2.s</td>
+<td class="nowrap muted">1 min 58 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3008: /usr/bin/touch">/usr/bin/touch</span> <span class="times" title="155 similar processes, the first one shown">×155</span></td>
+<td class="mono args">apps/lib/libapps-lib-app_libctx.d.tmp</td>
+<td class="nowrap muted">1 min 58 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3009: /bin/sh">/bin/sh</span> <span class="times" title="155 similar processes, the first one shown">×155</span></td>
+<td class="mono args">-c if cmp apps/lib/libapps-lib-app_libctx.d.tmp apps/lib/libapps-lib-app_libctx.d &#62; /dev/null 2&#62; /dev/null; then \\u{a}\u{9}rm -f apps/lib/libapps-lib-app_libctx.d.tmp; \\u{a}else \\u{a}\u{9}mv apps/lib/libapps-lib-app_libctx.d.tmp apps/lib/libapps-lib-app_libctx.d; \\u{a}fi</td>
+<td class="nowrap muted">1 min 58 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3010: /usr/bin/cmp">/usr/bin/cmp</span></td>
+<td class="mono args">apps/lib/libapps-lib-app_libctx.d.tmp apps/lib/libapps-lib-app_libctx.d</td>
+<td class="nowrap muted">1 min 58 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">512</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3011: /usr/bin/mv">/usr/bin/mv</span></td>
+<td class="mono args">apps/lib/libapps-lib-app_libctx.d.tmp apps/lib/libapps-lib-app_libctx.d</td>
+<td class="nowrap muted">1 min 58 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3156: /bin/sh">/bin/sh</span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args">-c CC=&#34;cc&#34; /usr/bin/perl crypto/aes/asm/aes-cfb-avx512.pl &#34;elf&#34; -I. -Iinclude -Iproviders/common/include -Iproviders/implementations/include -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSLDIR=&#34;\&#34;/usr/local/ssl\&#34;&#34; -DENGINESDIR=&#34;\&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3\&#34;&#34; -DMODULESDIR=&#34;…</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">39 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3157: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">crypto/aes/asm/aes-cfb-avx512.pl elf -I. -Iinclude -Iproviders/common/include -Iproviders/implementations/include -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSLDIR=&#34;/usr/local/ssl&#34; -DENGINESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3&#34; -DMODULESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/ossl-modules&#34; -DOPENSSL_BUILDING_OPENSSL -DNDEBUG -DAES_ASM -DBSAES_ASM</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">36 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d7"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3158: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-Wa,-v -c -o /dev/null -x assembler /dev/null</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3159: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -v -o /dev/null /dev/null</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3160: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c &#34;/usr/bin/perl&#34; &#34;crypto/aes/asm/../../perlasm/x86_64-xlate.pl&#34; elf &#34;crypto/aes/aes-cfb-avx512.s&#34;</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">29 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d8"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3161: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">crypto/aes/asm/../../perlasm/x86_64-xlate.pl elf crypto/aes/aes-cfb-avx512.s</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3162: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-Wa,-v -c -o /dev/null -x assembler /dev/null</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3163: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -v -o /dev/null /dev/null</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3164: /bin/sh">/bin/sh</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">-c CC=&#34;cc&#34; /usr/bin/perl crypto/aes/asm/aes-x86_64.pl &#34;elf&#34; -I. -Iinclude -Iproviders/common/include -Iproviders/implementations/include -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSLDIR=&#34;\&#34;/usr/local/ssl\&#34;&#34; -DENGINESDIR=&#34;\&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3\&#34;&#34; -DMODULESDIR=&#34;\&#34;/w…</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">74 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d6"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3165: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">crypto/aes/asm/aes-x86_64.pl elf -I. -Iinclude -Iproviders/common/include -Iproviders/implementations/include -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sections -fPIC -g -gdwarf-4 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -m64 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSLDIR=&#34;/usr/local/ssl&#34; -DENGINESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/engines-3&#34; -DMODULESDIR=&#34;/work/target/debug/build/openssl-sys-de2199a1b4697661/out/openssl-build/install/lib/ossl-modules&#34; -DOPENSSL_BUILDING_OPENSSL -DNDEBUG -DAES_ASM -DBSAES_ASM</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">73 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d7"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3166: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c &#34;/usr/bin/perl&#34; &#34;crypto/aes/asm/../../perlasm/x86_64-xlate.pl&#34; elf &#34;crypto/aes/aes-x86_64.s&#34;</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">65 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d8"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 3167: /usr/bin/perl">/usr/bin/perl</span></td>
+<td class="mono args">crypto/aes/asm/../../perlasm/x86_64-xlate.pl elf crypto/aes/aes-x86_64.s</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">62 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3168: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-Wa,-v -c -o /dev/null -x assembler /dev/null</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d8"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3169: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -v -o /dev/null /dev/null</td>
+<td class="nowrap muted">2 min 1 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d5"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 4308: /bin/sh">/bin/sh</span></td>
+<td class="mono args">-c cc  -I. -Iinclude -Iproviders/common/include -Iproviders/implementations/include  -DAES_ASM -DBSAES_ASM -DECP_NISTZ256_ASM -DGHASH_ASM -DKECCAK1600_ASM -DMD5_ASM -DOPENSSL_BN_ASM_GF2m -DOPENSSL_BN_ASM_MONT -DOPENSSL_BN_ASM_MONT5 -DOPENSSL_CPUID_OBJ -DOPENSSL_IA32_SSE2 -DOPENSSL_SM3_ASM -DPADLOCK_ASM -DPOLY1305_ASM -DRC4_ASM -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DSM4_ASM -DSTATIC_LEGACY -DVPAES_ASM -DWHIRLPOOL_ASM -DX25519_ASM -fPIC -pthread -m64 -Wa,--noexecstack -Wall -O3 -O2 -ffunction-sections -fdata-sec…</td>
+<td class="nowrap muted">2 min 20 s</td>
+<td class="nowrap">100 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d6"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 4309: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-I. -Iinclude -Iproviders/common/include -Iproviders/implementations/include -DAES_ASM -DBSAES_ASM -DECP_NISTZ256_ASM -DGHASH_ASM -DKECCAK1600_ASM -DMD5_ASM -DOPENSSL_BN_ASM_GF2m -DOPENSSL_BN_ASM_MONT -DOPENSSL_BN_ASM_MONT5 -DOPENSSL_CPUID_OBJ -DOPENSSL_IA32_SSE2 -DOPENSSL_SM3_ASM -DPADLOCK_ASM -DPOLY1305_ASM -DRC4_ASM -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DSM4_ASM -DSTATIC_LEGACY -DVPAES_ASM -DWHIRLPOOL_ASM -DX25519_ASM -fPIC -pthread -m64 -Wa,--noexecstack</td>
+<td class="nowrap muted">2 min 20 s</td>
+<td class="nowrap">100 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<p class="muted">28627 more processes not listed</p>
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>6225</dd></div><div><dt>Directories</dt><dd>1231</dd></div><div><dt>Size</dt><dd>3.2 GiB</dd></div><div><dt>Compiled units</dt><dd>1289</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>0.12.1
+   Compiling zlib-rs v0.6.8
+   Compiling adler2 v2.0.1
+   Compiling simd-adler32 v0.3.10
+   Compiling miniz_oxide v0.9.1
+   Compiling gix-features v0.46.2
+   Compiling zerovec v0.11.8
+   Compiling flate2 v1.1.10
+   Compiling form_urlencoded v1.2.2
+   Compiling ppv-lite86 v0.2.21
+   Compiling socket2 v0.6.5
+   Compiling faster-hex v0.9.0
+   Compiling futures-sink v0.3.34
+   Compiling tinystr v0.8.4
+   Compiling http v1.5.0
+   Compiling gix-utils v0.1.14
+   Compiling heapless v0.8.0
+   Compiling icu_locale_core v2.3.0
+   Compiling gix-hash v0.14.2
+   Compiling tokio v1.53.2
+   Compiling potential_utf v0.1.6
+   Compiling tempfile v3.27.0
+   Compiling zerotrie v0.2.5
+   Compiling hash32 v0.3.1
+   Compiling faster-hex v0.10.1
+   Compiling slab v0.4.12
+   Compiling icu_provider v2.3.1
+   Compiling icu_collections v2.3.0
+   Compiling futures-channel v0.3.34
+   Compiling prodash v28.0.0
+   Compiling foldhash v0.2.0
+   Compiling sha1_smol v1.0.1
+   Compiling gix-features v0.38.2
+   Compiling hashbrown v0.16.1
+   Compiling dashmap v6.2.1
+   Compiling winnow v0.7.15
+   Compiling futures-macro v0.3.34
+   Compiling futures-task v0.3.34
+   Compiling httparse v1.10.1
+   Compiling futures-io v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling gix-error v0.0.0
+   Compiling idna_adapter v1.2.2
+   Compiling sha1-checked v0.10.0
+   Compiling vcpkg v0.2.15
+   Compiling gix-hash v0.22.1
+   Compiling idna v1.1.0
+   Compiling static_assertions v1.1.0
+   Compiling url v2.5.8
+   Compiling gix-date v0.13.0
+   Compiling rand_chacha v0.3.1
+   Compiling ring v0.17.14
+   Compiling unicode-bom v2.0.3
+   Compiling rand v0.8.8
+   Compiling gix-actor v0.38.0
+   Compiling openssl-src v300.6.1+3.6.3
+   Compiling hashbrown v0.17.1
+   Compiling openssl-sys v0.9.117
+   Compiling gix-hashtable v0.12.0
+   Compiling gix-object v0.55.0
+   Compiling indexmap v2.14.2
+   Compiling gix-validate v0.10.1
+   Compiling sha2 v0.10.9
+   Compiling untrusted v0.9.0
+   Compiling simdutf8 v0.1.5
+   Compiling tower-service v0.3.3
+   Compiling gix-path v0.10.22
+   Compiling kstring v2.0.5
+   Compiling gix-date v0.9.4
+   Compiling winnow v0.6.26
+   Compiling zmij v1.0.23
+   Compiling strsim v0.11.1
+   Compiling arrayvec v0.7.8
+   Compiling gix-actor v0.32.0
+   Compiling http-body v1.1.0
+   Compiling encoding_rs v0.8.42
+   Compiling num-traits v0.2.19
+   Compiling gix-validate v0.9.4
+   Compiling hmac v0.12.1
+   Compiling spin v0.9.9
+   Compiling gix-object v0.44.0
+   Compiling gix-fs v0.19.2
+   Compiling der v0.7.10
+   Compiling block-padding v0.3.3
+   Compiling multiversion_no_op v1.0.0
+   Compiling ident_case v1.0.1
+   Compiling core_detect v1.0.0
+   Compiling inout v0.1.4
+   Compiling gix-chunk v0.5.0
+   Compiling try-lock v0.2.5
+   Compiling want v0.3.2
+   Compiling cipher v0.4.4
+   Compiling spki v0.7.3
+   Compiling gix-tempfile v21.0.2
+   Compiling lazy_static v1.5.1
+   Compiling gix-quote v0.6.2
+   Compiling filetime v0.2.29
+   Compiling ryu v1.0.23
+   Compiling either v1.19.0
+   Compiling libm v0.2.16
+   Compiling option-ext v0.2.0
+   Compiling bitcoin-io v0.1.101
+   Compiling gix-lock v21.0.2
+   Compiling pkcs8 v0.10.2
+   Compiling gix-glob v0.24.0
+   Compiling gix-chunk v0.4.12
+   Compiling regex v1.13.1
+   Compiling rustls-pki-types v1.15.1
+   Compiling atomic-waker v1.1.2
+   Compiling iana-time-zone v0.1.65
+   Compiling serde_json v1.0.151
+   Compiling tower-layer v0.3.3
+   Compiling data-encoding v2.11.1
+   Compiling shell-words v1.1.1
+   Compiling foldhash v0.1.5
+   Compiling unicase v2.10.0
+   Compiling hashbrown v0.15.5
+   Compiling gix-commitgraph v0.32.0
+   Compiling hex-conservative v0.2.3
+   Compiling libz-sys v1.1.29
+   Compiling gix-fs v0.11.3
+   Compiling tokio-util v0.7.19
+   Compiling gix-hashtable v0.5.2
+   Compiling secp256k1-sys v0.10.1
+   Compiling gix-bitmap v0.2.16
+   Compiling signature v2.2.0
+   Compiling ff v0.13.1
+   Compiling anyhow v1.0.104
+   Compiling utf-8 v0.7.6
+   Compiling base16ct v0.2.0
+   Compiling unicode-width v0.2.0
+   Compiling tree-sitter-language v0.1.8
+   Compiling mime v0.3.17
+   Compiling httpdate v1.0.3
+   Compiling sec1 v0.7.3
+   Compiling group v0.13.0
+   Compiling bitcoin_hashes v0.14.101
+   Compiling gix-revwalk v0.26.0
+   Compiling hkdf v0.12.4
+   Compiling sync_wrapper v1.0.2
+   Compiling crypto-bigint v0.5.5
+   Compiling unicode-segmentation v1.13.3
+   Compiling base64ct v1.8.3
+   Compiling heck v0.5.0
+   Compiling getrandom v0.3.4
+   Compiling rustix v0.38.44
+   Compiling elliptic-curve v0.13.8
+   Compiling gix-tempfile v14.0.2
+   Compiling chrono v0.4.45
+   Compiling gix-commitgraph v0.24.3
+   Compiling http-body-util v0.1.5
+   Compiling gix-glob v0.16.5
+   Compiling libssh2-sys v0.3.3
+   Compiling base64 v0.23.1
+   Compiling linux-raw-sys v0.4.15
+   Compiling rustls v0.23.45
+   Compiling ipnet v2.12.2
+   Compiling rustls-webpki v0.103.15
+   Compiling gix-revwalk v0.15.0
+   Compiling gix-lock v14.0.0
+   Compiling secp256k1 v0.29.1
+   Compiling mime_guess v2.0.5
+   Compiling gix-attributes v0.30.1
+   Compiling rfc6979 v0.4.0
+   Compiling gix-quote v0.4.15
+   Compiling arc-swap v1.9.2
+   Compiling gix-sec v0.13.3
+   Compiling universal-hash v0.5.1
+   Compiling crossbeam-epoch v0.9.21
+   Compiling bech32 v0.11.1
+   Compiling toml_write v0.1.2
+   Compiling base64 v0.22.1
+   Compiling crunchy v0.2.4
+   Compiling opaque-debug v0.3.1
+   Compiling ecdsa v0.16.9
+   Compiling rand_core v0.9.5
+   Compiling gix-ref v0.58.0
+   Compiling darling_core v0.20.11
+   Compiling clru v0.6.3
+   Compiling http v0.2.12
+   Compiling libgit2-sys v0.18.8+1.9.7
+   Compiling gix-config-value v0.17.2
+   Compiling semver v1.0.28
+   Compiling signal-hook v0.3.18
+   Compiling unicode-width v0.1.14
+   Compiling tiny-keccak v2.0.2
+   Compiling rustc_version v0.4.1
+   Compiling darling_macro v0.20.11
+   Compiling rand_chacha v0.9.0
+   Compiling gix-attributes v0.22.5
+   Compiling password-hash v0.5.0
+   Compiling gix-traverse v0.52.0
+   Compiling imara-diff v0.1.8
+   Compiling gix-command v0.7.1
+   Compiling webpki-roots v1.0.9
+   Compiling dirs-sys v0.5.0
+   Compiling darling_core v0.24.1
+   Compiling gix-packetline v0.21.5
+   Compiling zstd-sys v2.1.0+zstd.1.5.7
+   Compiling openssl v0.10.81
+   Compiling minimal-lexical v0.2.1
+   Compiling foreign-types-shared v0.1.1
+   Compiling hex v0.4.3
+   Compiling foreign-types v0.3.2
+   Compiling nom v7.1.3
+   Compiling darling_macro v0.24.1
+   Compiling webpki-roots v0.26.11
+   Compiling gix-index v0.46.0
+   Compiling pbkdf2 v0.12.2
+   Compiling rand v0.9.5
+   Compiling darling v0.20.11
+   Compiling curve25519-dalek v4.1.3
+   Compiling gix-pathspec v0.15.1
+   Compiling polyval v0.6.2
+   Compiling primeorder v0.13.6
+   Compiling num-integer v0.1.47
+   Compiling h2 v0.4.20
+   Compiling gix-ignore v0.19.1
+   Compiling tree-sitter v0.23.2
+   Compiling aead v0.5.2
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling ptr_meta_derive v0.3.2
+   Compiling openssl-macros v0.1.1
+   Compiling instant v0.1.13
+   Compiling hex_lit v0.1.1
+   Compiling paste v1.0.15
+   Compiling ucd-trie v0.1.7
+   Compiling syn v1.0.109
+   Compiling anstyle v1.0.14
+   Compiling home v0.5.12
+   Compiling num-bigint-dig v0.8.6
+   Compiling native-tls v0.2.18
+   Compiling pest v2.9.2
+   Compiling ptr_meta v0.3.2
+   Compiling gix-worktree v0.47.0
+   Compiling hyper v1.12.0
+   Compiling num-iter v0.1.46
+   Compiling ghash v0.5.1
+   Compiling signal-hook-mio v0.2.5
+   Compiling derive_builder_core v0.20.2
+   Compiling tungstenite v0.26.2
+   Compiling const-random-macro v0.1.16
+   Compiling darling v0.24.1
+   Compiling dirs v6.0.0
+   Compiling tokio-rustls v0.26.6
+   Compiling poly1305 v0.8.0
+   Compiling gix-ref v0.47.0
+   Compiling gix-traverse v0.41.0
+   Compiling strum_macros v0.26.4
+   Compiling pem-rfc7468 v0.7.0
+   Compiling serde_spanned v0.6.9
+   Compiling toml_datetime v0.6.11
+   Compiling itertools v0.13.0
+   Compiling chacha20 v0.9.1
+   Compiling aes v0.8.4
+   Compiling ctr v0.9.2
+   Compiling gix-config-value v0.14.12
+   Compiling castaway v0.2.4
+   Compiling gix-url v0.35.3
+   Compiling gix-sec v0.10.12
+   Compiling proc-macro-error v1.0.4
+   Compiling curve25519-dalek-derive v0.1.1
+   Compiling pin-project-internal v1.1.13
+   Compiling parking_lot_core v0.8.6
+   Compiling rayon-core v1.13.0
+   Compiling zstd-safe v8.0.0
+   Compiling prettyplease v0.2.37
+   Compiling utf8parse v0.2.2
+   Compiling crossbeam-deque v0.8.8
+   Compiling bitflags v1.3.2
+   Compiling indoc v2.0.7
+   Compiling bitcoin v0.32.102
+   Compiling alloc-no-stdlib v3.0.0
+   Compiling openssl-probe v0.2.1
+   Compiling parking v2.2.1
+   Compiling base64 v0.21.7
+   Compiling toml_edit v0.22.27
+   Compiling event-listener v5.4.2
+   Compiling alloc-stdlib v0.3.0
+   Compiling instability v0.3.14
+   Compiling anstyle-parse v1.0.0
+   Compiling pin-project v1.1.13
+   Compiling compact_str v0.8.2
+   Compiling num-bigint v0.4.8
+   Compiling aes-gcm v0.10.3
+   Compiling unicode-truncate v1.1.0
+   Compiling ssh-encoding v0.2.0
+   Compiling strum v0.26.3
+   Compiling gix-index v0.35.0
+   Compiling tokio-tungstenite v0.26.2
+   Compiling shellexpand v3.1.2
+   Compiling const-random v0.1.18
+   Compiling derive_builder_macro v0.20.2
+   Compiling crossterm v0.28.1
+   Compiling hyper-util v0.1.21
+   Compiling rancor v0.1.3
+   Compiling pest_meta v2.9.2
+   Compiling git2 v0.21.0
+   Compiling gix-filter v0.25.0
+   Compiling gix-discover v0.46.0
+   Compiling gix-revision v0.29.0
+   Compiling gix-ignore v0.11.4
+   Compiling tower v0.5.3
+   Compiling gix-revision v0.40.0
+   Compiling base58ck v0.1.101
+   Compiling ed25519 v2.2.3
+   Compiling lru v0.12.5
+   Compiling gix-command v0.3.11
+   Compiling pkcs1 v0.7.5
+   Compiling serde_urlencoded v0.7.1
+   Compiling cbc v0.1.2
+   Compiling blowfish v0.9.1
+   Compiling uluru v3.1.0
+   Compiling gix-packetline-blocking v0.17.5
+   Compiling num_cpus v1.17.0
+   Compiling multer v2.1.0
+   Compiling async-trait v0.1.92
+   Compiling bytecheck_derive v0.8.3
+   Compiling thread_local v1.1.10
+   Compiling anstyle-query v1.1.5
+   Compiling inotify-sys v0.1.8
+   Compiling portable-atomic v1.15.0
+   Compiling getrandom v0.1.16
+   Compiling num-conv v0.2.2
+   Compiling cpufeatures v0.3.1
+   Compiling http-range-header v0.4.2
+   Compiling cassowary v0.3.0
+   Compiling time-core v0.1.9
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling colorchoice v1.0.5
+   Compiling bitcoin-units v0.1.101
+   Compiling anstream v1.0.0
+   Compiling time-macros v0.2.32
+   Compiling ratatui v0.29.0
+   Compiling chacha20 v0.10.2
+   Compiling bytecheck v0.8.3
+   Compiling threadpool v1.8.1
+   Compiling gix-filter v0.13.0
+   Compiling gix-pack v0.65.0
+   Compiling bcrypt-pbkdf v0.10.0
+   Compiling ssh-cipher v0.2.0
+   Compiling rsa v0.9.10
+   Compiling ed25519-dalek v2.2.0
+   Compiling gix-refspec v0.36.0
+   Compiling gix-worktree v0.36.0
+   Compiling gix-refspec v0.25.0
+   Compiling gix-dir v0.20.0
+   Compiling gix-diff v0.58.0
+   Compiling pest_generator v2.9.2
+   Compiling derive_builder v0.20.2
+   Compiling dlv-list v0.5.2
+   Compiling num-rational v0.4.2
+   Compiling brotli-decompressor v6.0.1
+   Compiling tokio-native-tls v0.3.1
+   Compiling event-listener-strategy v0.5.4
+   Compiling toml v0.8.23
+   Compiling gix-config v0.40.0
+   Compiling gix-transport v0.53.0
+   Compiling gix-pathspec v0.7.7
+   Compiling gix-url v0.27.5
+   Compiling p256 v0.13.2
+   Compiling p521 v0.13.3
+   Compiling p384 v0.13.1
+   Compiling nostr v0.44.8
+   Compiling textwrap v0.11.0
+   Compiling gix-config v0.51.0
+   Compiling http-body v0.4.6
+   Compiling headers-core v0.2.0
+   Compiling h2 v0.3.27
+   Compiling gix-pack v0.53.0
+   Compiling heck v0.3.3
+   Compiling tungstenite v0.21.0
+   Compiling gix-shallow v0.8.1
+   Compiling itertools v0.14.0
+   Compiling uuid v1.27.0
+   Compiling memoffset v0.9.1
+   Compiling deranged v0.5.8
+   Compiling uncased v0.9.10
+   Compiling maybe-async v0.2.11
+   Compiling munge_macro v0.4.7
+   Compiling synstructure v0.13.2
+   Compiling socket2 v0.5.10
+   Compiling is-terminal v0.4.17
+   Compiling atty v0.2.14
+   Compiling termcolor v1.4.1
+   Compiling ansi_term v0.12.1
+   Compiling pulldown-cmark v0.10.3
+   Compiling humantime v2.4.0
+   Compiling num-modular v0.6.6
+   Compiling v_htmlescape v0.15.8
+   Compiling unicode-xid v0.2.6
+   Compiling cfg_aliases v0.2.2
+   Compiling num_threads v0.1.7
+   Compiling powerfmt v0.2.1
+   Compiling strsim v0.8.0
+   Compiling konst_macro_rules v0.2.19
+   Compiling vec_map v0.8.2
+   Compiling clap v2.34.0
+   Compiling konst v0.2.20
+   Compiling time v0.3.55
+   Compiling nix v0.31.3
+   Compiling const_format_proc_macros v0.2.34
+   Compiling num-order v1.2.0
+   Compiling env_logger v0.10.2
+   Compiling rsass v0.28.10
+   Compiling hyper v0.14.32
+   Compiling yoke-derive v0.7.5
+   Compiling munge v0.4.7
+   Compiling gix-protocol v0.56.0
+   Compiling tokio-tungstenite v0.21.0
+   Compiling structopt-derive v0.4.18
+   Compiling gix-odb v0.63.0
+   Compiling headers v0.3.9
+   Compiling gix-submodule v0.25.0
+   Compiling hyper-rustls v0.27.10
+   Compiling tower-http v0.6.11
+   Compiling ssh-key v0.6.7
+   Compiling gix-submodule v0.14.0
+   Compiling gnostr-grammar v970402.1846.51281
+   Compiling async-lock v3.4.2
+   Compiling hyper-tls v0.6.0
+   Compiling brotli v9.0.0
+   Compiling parking_lot v0.11.2
+   Compiling ordered-multimap v0.7.3
+   Compiling pest_derive v2.9.2
+   Compiling zstd v0.14.0
+   Compiling gix-status v0.25.0
+   Compiling gix-diff v0.46.0
+   Compiling gix-odb v0.75.0
+   Compiling rend v0.5.4
+   Compiling rand v0.10.3
+   Compiling lightning-types v0.2.12
+   Compiling git2-hooks v0.7.0
+   Compiling gix-discover v0.35.0
+   Compiling askama_parser v0.2.1
+   Compiling gnostr-types v970402.1846.51281
+   Compiling k256 v0.13.4
+   Compiling charset v0.1.5
+   Compiling gnostr_filehash_core v970402.1846.51281
+   Compiling getopts v0.2.24
+   Compiling tungstenite v0.24.0
+   Compiling tokio-socks v0.5.3
+   Compiling colored v2.2.0
+   Compiling sharded-slab v0.1.7
+   Compiling salsa20 v0.10.2
+   Compiling bs58 v0.5.1
+   Compiling gix-mailmap v0.30.0
+   Compiling futures-executor v0.3.34
+   Compiling gethostname v1.1.0
+   Compiling fxhash v0.2.1
+   Compiling tree-sitter-json v0.24.8
+   Compiling tracing-log v0.2.0
+   Compiling ripemd v0.1.3
+   Compiling matchers v0.2.0
+   Compiling scopetime v0.1.2
+   Compiling figment v0.10.19
+   Compiling vte v0.14.1
+   Compiling rkyv_derive v0.8.18
+   Compiling fs2 v0.4.3
+   Compiling predicates-core v1.0.10
+   Compiling unsafe-libyaml v0.2.11
+   Compiling scoped-tls v1.0.1
+   Compiling compression-core v0.4.33
+   Compiling ascii v1.1.0
+   Compiling rustc-hash v1.1.0
+   Compiling easy-cast v0.5.5
+   Compiling lru v0.16.4
+   Compiling x11rb-protocol v0.13.2
+   Compiling chunked_transfer v1.5.0
+   Compiling buf-min v0.7.1
+   Compiling nu-ansi-term v0.50.3
+   Compiling pulldown-cmark-escape v0.10.1
+   Compiling openssl-probe v0.1.6
+   Compiling tagptr v0.2.0
+   Compiling convert_case v0.4.0
+   Compiling clap_lex v1.1.1
+   Compiling quoted_printable v0.5.2
+   Compiling deunicode v1.6.2
+   Compiling slug v0.1.6
+   Compiling mailparse v0.16.1
+   Compiling reqwest v0.12.28
+   Compiling clap_builder v4.6.7
+   Compiling derive_more v0.99.20
+   Compiling moka v0.12.16
+   Compiling git2 v0.20.4
+   Compiling tracing-subscriber v0.3.23
+   Compiling tiny_http v0.12.0
+   Compiling x11rb v0.13.2
+   Compiling nostr-database v0.44.0
+   Compiling tiny-bip39 v2.0.0
+   Compiling compression-codecs v0.4.45
+   Compiling warp v0.3.7
+   Compiling serde_yaml v0.9.34+deprecated
+   Compiling sled v0.34.7
+   Compiling rkyv v0.8.18
+   Compiling strip-ansi-escapes v0.2.1
+   Compiling bip32 v0.5.3
+   Compiling futures v0.3.34
+   Compiling gix v0.78.0
+   Compiling scrypt v0.11.0
+   Compiling simple_logger v4.3.3
+   Compiling async-wsocket v0.13.2
+   Compiling directories v6.0.0
+   Compiling tokio-tungstenite v0.24.0
+error: failed to run custom build command for `gnostr_filehash_core v970402.1846.51281`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/gnostr_filehash_core-9de9bd753fd98b4e/build-script-build` (exit status: 101)
+  --- stderr
+
+  thread &#39;main&#39; (20326) panicked at /cw/vendor/gnostr_filehash_core-970402.1846.51281/build.rs:88:5:
+  Can not get git commit: No such file or directory (os error 2)
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-07 22:55 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-799714</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 22:55 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-799757</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:34 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-800051-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:44 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-800051-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:44 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-800083</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:44 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-800051-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:56 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-800051-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:56 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-800083</td></tr>
+
+<tr><td class="muted nowrap">2026-10-07 23:56 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-800083</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

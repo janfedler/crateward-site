@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: reqtls 0.4.0-alpha3</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>reqtls <span class="version">0.4.0-alpha3</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 59723</span>
+      <a class="muted" href="https://crates.io/crates/reqtls/0.4.0-alpha3" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="59723.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="59723.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">high severity shell_command in build_script code (2 places): powershell</p>
+  </div>
+  
+  <div class="verdict tone-high">
+    <div class="score">50</div>
+    <div class="level">high</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">6</span></a>
+  <a href="#findings">Static findings <span class="count">86</span></a>
+  <a href="#run-full">Run: full</a>
+  <a href="#timeline">Timeline <span class="count">9</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L159" rel="noreferrer noopener" target="_blank">build/stream.rs:159</a></td><td>high severity shell_command in build_script code (2 places): powershell</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · reqtls</div></td><td class="mono where">ms.xllgl.top</td><td>The build looked up ms.xllgl.top.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs#L68" rel="noreferrer noopener" target="_blank">build/mod.rs:68</a></td><td>New since 0.4.0-alpha2: downloader_pattern</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>5 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs" rel="noreferrer noopener" target="_blank">build/mod.rs</a></td><td>low severity build_script in build_script code: build/mod.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:downloader_pattern</span><div class="sub">static · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs#L68" rel="noreferrer noopener" target="_blank">build/mod.rs:68</a></td><td>high severity downloader_pattern in build_script code: std::net::TcpStream::connect at build/mod.rs:68 with std::process::Command::new at build/stream.rs:159</td></tr>
+
+<tr><td class="signal"><span class="word">static:network_access</span><div class="sub">static · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs#L68" rel="noreferrer noopener" target="_blank">build/mod.rs:68</a></td><td>medium severity network_access in build_script code (6 places): std::net::TcpStream::connect</td></tr>
+
+<tr><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/signature.rs#L261" rel="noreferrer noopener" target="_blank">src/boring/signature.rs:261</a></td><td>medium severity obfuscated_data in library code: -----BEGIN CERTIFICATE-----\u{a}MIIHgjCCBwegAwIBAgITVwABYQfXwLGCln1OagAAAAFhBzAKBggqhkjOPQQDAzBX\u{a}MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSgw\u{a}JgYDVQQDEx9NaWNyb3NvZnQgVExTIE…</td></tr>
+
+<tr><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · reqtls</div></td><td class="mono where"><a href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L159" rel="noreferrer noopener" target="_blank">build/stream.rs:159</a></td><td>medium severity process_spawn in build_script code (3 places): std::process::Command::new</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">net:ms.xllgl.top</code> <code class="chip">static:downloader_pattern</code> <code class="chip">static:network_access</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">86</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">7</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">22</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">54</span></label>
+  <span class="muted">10 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">shell_command</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">powershell</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L159" rel="noreferrer noopener" target="_blank">build/stream.rs:159</a> </span></li>
+
+<li><code class="evidence-text">certutil -hashfile {} SHA256 | Select-Object -Index 1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L160" rel="noreferrer noopener" target="_blank">build/stream.rs:160</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">downloader_pattern</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream::connect at build/mod.rs:68 with std::process::Command::new at build/stream.rs:159</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs#L68" rel="noreferrer noopener" target="_blank">build/mod.rs:68</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs#L68" rel="noreferrer noopener" target="_blank">build/mod.rs:68</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L63" rel="noreferrer noopener" target="_blank">build/stream.rs:63</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L70" rel="noreferrer noopener" target="_blank">build/stream.rs:70</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L159" rel="noreferrer noopener" target="_blank">build/stream.rs:159</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L167" rel="noreferrer noopener" target="_blank">build/stream.rs:167</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/stream.rs#L172" rel="noreferrer noopener" target="_blank">build/stream.rs:172</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">-----BEGIN CERTIFICATE-----\u{a}MIIHgjCCBwegAwIBAgITVwABYQfXwLGCln1OagAAAAFhBzAKBggqhkjOPQQDAzBX\u{a}MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSgw\u{a}JgYDVQQDEx9NaWNyb3NvZnQgVExTIE…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/signature.rs#L261" rel="noreferrer noopener" target="_blank">src/boring/signature.rs:261</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">18</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/bindings.rs#L37" rel="noreferrer noopener" target="_blank">src/boring/bindings.rs:37</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/bindings.rs#L84" rel="noreferrer noopener" target="_blank">src/boring/bindings.rs:84</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/bindings.rs#L103" rel="noreferrer noopener" target="_blank">src/boring/bindings.rs:103</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/bindings.rs#L145" rel="noreferrer noopener" target="_blank">src/boring/bindings.rs:145</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/evp/aead.rs#L31" rel="noreferrer noopener" target="_blank">src/boring/evp/aead.rs:31</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/evp/cipher.rs#L41" rel="noreferrer noopener" target="_blank">src/boring/evp/cipher.rs:41</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/bindings.rs#L404" rel="noreferrer noopener" target="_blank">src/boring/rsa/bindings.rs:404</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/buffer/mod.rs#L23" rel="noreferrer noopener" target="_blank">src/buffer/mod.rs:23</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/buffer/reader.rs#L7" rel="noreferrer noopener" target="_blank">src/buffer/reader.rs:7</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/brotli.rs#L21" rel="noreferrer noopener" target="_blank">src/coder/brotli.rs:21</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/deflate.rs#L15" rel="noreferrer noopener" target="_blank">src/coder/deflate.rs:15</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/zstd.rs#L21" rel="noreferrer noopener" target="_blank">src/coder/zstd.rs:21</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/connection/mod.rs#L20" rel="noreferrer noopener" target="_blank">src/connection/mod.rs:20</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/dns/stream.rs#L83" rel="noreferrer noopener" target="_blank">src/dns/stream.rs:83</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/ext.rs#L12" rel="noreferrer noopener" target="_blank">src/ext.rs:12</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/finger.rs#L72" rel="noreferrer noopener" target="_blank">src/finger.rs:72</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/gm_sm/sm2.rs#L20" rel="noreferrer noopener" target="_blank">src/gm_sm/sm2.rs:20</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/rand.rs#L12" rel="noreferrer noopener" target="_blank">src/rand.rs:12</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/certificate/store.rs#L94" rel="noreferrer noopener" target="_blank">src/boring/rsa/certificate/store.rs:94</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/dns/stream.rs#L59" rel="noreferrer noopener" target="_blank">src/dns/stream.rs:59</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/dns/stream.rs#L92" rel="noreferrer noopener" target="_blank">src/dns/stream.rs:92</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build/mod.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/build/mod.rs" rel="noreferrer noopener" target="_blank">build/mod.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">36</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/alpn.rs#L30" rel="noreferrer noopener" target="_blank">src/alpn.rs:30</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/buffer/encode.rs#L140" rel="noreferrer noopener" target="_blank">src/buffer/encode.rs:140</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/ext.rs#L18" rel="noreferrer noopener" target="_blank">src/coder/ext.rs:18</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/ext.rs#L114" rel="noreferrer noopener" target="_blank">src/ext.rs:114</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/message/session_ticket.rs#L87" rel="noreferrer noopener" target="_blank">src/message/session_ticket.rs:87</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/rand.rs#L20" rel="noreferrer noopener" target="_blank">src/rand.rs:20</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/base64.rs#L14" rel="noreferrer noopener" target="_blank">src/boring/base64.rs:14</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/brotli.rs#L70" rel="noreferrer noopener" target="_blank">src/coder/brotli.rs:70</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/zstd.rs#L49" rel="noreferrer noopener" target="_blank">src/coder/zstd.rs:49</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/dns/stream.rs#L128" rel="noreferrer noopener" target="_blank">src/dns/stream.rs:128</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/evp/aead.rs#L75" rel="noreferrer noopener" target="_blank">src/boring/evp/aead.rs:75</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/evp/cipher.rs#L60" rel="noreferrer noopener" target="_blank">src/boring/evp/cipher.rs:60</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/hash/hasher.rs#L36" rel="noreferrer noopener" target="_blank">src/boring/hash/hasher.rs:36</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/hash/hmac.rs#L18" rel="noreferrer noopener" target="_blank">src/boring/hash/hmac.rs:18</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/connection/mod.rs#L135" rel="noreferrer noopener" target="_blank">src/connection/mod.rs:135</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/hash/mod.rs#L29" rel="noreferrer noopener" target="_blank">src/boring/hash/mod.rs:29</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/mod.rs#L24" rel="noreferrer noopener" target="_blank">src/boring/rsa/mod.rs:24</a> </span></li>
+
+<li><code class="evidence-text">21 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/certificate/mod.rs#L51" rel="noreferrer noopener" target="_blank">src/boring/rsa/certificate/mod.rs:51</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/signature.rs#L21" rel="noreferrer noopener" target="_blank">src/boring/signature.rs:21</a> </span></li>
+
+<li><code class="evidence-text">20 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/certificate/siger/mod.rs#L35" rel="noreferrer noopener" target="_blank">src/boring/rsa/certificate/siger/mod.rs:35</a> </span></li>
+
+<li><code class="evidence-text">11 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/certificate/store.rs#L28" rel="noreferrer noopener" target="_blank">src/boring/rsa/certificate/store.rs:28</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/export/coder.rs#L13" rel="noreferrer noopener" target="_blank">src/export/coder.rs:13</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/export/hasher.rs#L17" rel="noreferrer noopener" target="_blank">src/export/hasher.rs:17</a> </span></li>
+
+<li><code class="evidence-text">26 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/boring/rsa/key.rs#L22" rel="noreferrer noopener" target="_blank">src/boring/rsa/key.rs:22</a> </span></li>
+
+<li><code class="evidence-text">24 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/buffer/mod.rs#L75" rel="noreferrer noopener" target="_blank">src/buffer/mod.rs:75</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/buffer/reader.rs#L25" rel="noreferrer noopener" target="_blank">src/buffer/reader.rs:25</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/gm_sm/sm2.rs#L97" rel="noreferrer noopener" target="_blank">src/gm_sm/sm2.rs:97</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/coder/deflate.rs#L61" rel="noreferrer noopener" target="_blank">src/coder/deflate.rs:61</a> </span></li>
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/export/cipher.rs#L15" rel="noreferrer noopener" target="_blank">src/export/cipher.rs:15</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/export/mod.rs#L16" rel="noreferrer noopener" target="_blank">src/export/mod.rs:16</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/finger.rs#L152" rel="noreferrer noopener" target="_blank">src/finger.rs:152</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/message/client_hello.rs#L49" rel="noreferrer noopener" target="_blank">src/message/client_hello.rs:49</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/export/url.rs#L11" rel="noreferrer noopener" target="_blank">src/export/url.rs:11</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/extend/key_share.rs#L47" rel="noreferrer noopener" target="_blank">src/extend/key_share.rs:47</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/ffi.rs#L9" rel="noreferrer noopener" target="_blank">src/ffi.rs:9</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/message/server_hello.rs#L47" rel="noreferrer noopener" target="_blank">src/message/server_hello.rs:47</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">18</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">{}://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L133" rel="noreferrer noopener" target="_blank">src/url/mod.rs:133</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L157" rel="noreferrer noopener" target="_blank">src/url/mod.rs:157</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L177" rel="noreferrer noopener" target="_blank">src/url/mod.rs:177</a> <a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/uri.rs#L75" rel="noreferrer noopener" target="_blank">src/url/uri.rs:75</a> </span></li>
+
+<li><code class="evidence-text">https://docs.rs/urlencoding/2.1.3/urlencoding/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L219" rel="noreferrer noopener" target="_blank">src/url/mod.rs:219</a> </span></li>
+
+<li><code class="evidence-text">http://www.lxspider.com/?p=956</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L222" rel="noreferrer noopener" target="_blank">src/url/mod.rs:222</a> </span></li>
+
+<li><code class="evidence-text">https://fxg.jinritemai.com/ffa/morder/order/list?btm_ppre=a2427.b76571.c902327.d871297&#38;btm_pre=a2427.b76571.c902327.d871297&#38;btm_show_id=1bf5f779-f687-47db-8637-4941db8e409f</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L225" rel="noreferrer noopener" target="_blank">src/url/mod.rs:225</a> </span></li>
+
+<li><code class="evidence-text">https://cn.bing.com/search?q=abogus%E8%A1%A5%E7%8E%AF%E5%A2%83&#38;qs=UT&#38;pq=abogus&#38;sk=OS1LT1&#38;sc=5-6&#38;cvid=50BFA522127149719EEDBC510E8F26D2&#38;sp=3&#38;ghc=1&#38;lq=0&#38;ajf=60&#38;mkt=zh-CN&#38;FPIG=078354D7800D43BBA67D7529C688…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L228" rel="noreferrer noopener" target="_blank">src/url/mod.rs:228</a> </span></li>
+
+<li><code class="evidence-text">https://www.baidu.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L231" rel="noreferrer noopener" target="_blank">src/url/mod.rs:231</a> </span></li>
+
+<li><code class="evidence-text">socks5://127.0.0.1:1023</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L234" rel="noreferrer noopener" target="_blank">src/url/mod.rs:234</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L237" rel="noreferrer noopener" target="_blank">src/url/mod.rs:237</a> </span></li>
+
+<li><code class="evidence-text">https://www.so.com/link?m=uJUHfEbfz+ZVSx90v4iLs4mlJ1cSfmojdrI1pYls/wftn5aL/ll53A6XAa1BSX2UtYWvcHBuUKSEURqhhVHtJNCWxeXYrgMOwkXoRLHGJ4yHLzOB1C61LDwQTgDd5OjTmAFlu3YJVdfU=</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L240" rel="noreferrer noopener" target="_blank">src/url/mod.rs:240</a> </span></li>
+
+<li><code class="evidence-text">wss://poe.game.qq.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L243" rel="noreferrer noopener" target="_blank">src/url/mod.rs:243</a> </span></li>
+
+<li><code class="evidence-text">wss://poe.game.qq.com/api/trade2/live/poe2/%E7%93%A6%E5%B0%94%E7%9A%84%E5%AE%BF%E5%91%BD/32Y6Wjkc5</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L245" rel="noreferrer noopener" target="_blank">src/url/mod.rs:245</a> </span></li>
+
+<li><code class="evidence-text">wss://poe.game.qq.com/wss://poe.game.qq.com/api/trade2/live/poe2/%E7%93%A6%E5%B0%94%E7%9A%84%E5%AE%BF%E5%91%BD/32Y6Wjkc5</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L246" rel="noreferrer noopener" target="_blank">src/url/mod.rs:246</a> </span></li>
+
+<li><code class="evidence-text">socks5://username:passwrod@127.0.0.1:1023/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L250" rel="noreferrer noopener" target="_blank">src/url/mod.rs:250</a> </span></li>
+
+<li><code class="evidence-text">https://login.gjzwfw.gov.cn/tacs-uc/sso/loginTrust?backUrl=https://oauth.hubei.gov.cn:8443/uias/mainChain.do?appCode=hbzwfw&#38;checkUser=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L253" rel="noreferrer noopener" target="_blank">src/url/mod.rs:253</a> </span></li>
+
+<li><code class="evidence-text">https://life5-normal-m-zjg.amemv.com/aweme/v2/poi_shelf_api/second_page_shelf?poi_id=6601125223309772808&#38;item_id&#38;poi_enter_id=371ffca81e3ed1abda840f56f9b47955&#38;location_permission=1&#38;extra_params=%7B%22…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/reqtls/0.4.0-alpha3/code/src/url/mod.rs#L256" rel="noreferrer noopener" target="_blank">src/url/mod.rs:256</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-full">
+<div class="run-head">
+  <h2>Run: full</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+<p class="muted">The full build covers everything the earlier <code>cargo check</code> run did, so only the full run is shown.</p>
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>13.4 s</dd></div><div><dt>VM restore</dt><dd>63 ms</dd></div><div><dt>Payload</dt><dd>187 files, 1.1 MiB</dd></div><div><dt>Files opened</dt><dd>723</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">11</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 9 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">build --locked --offline</td>
+<td class="nowrap muted">4 ms</td>
+<td class="nowrap">13.4 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 580: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name build_script_mod --edition=2024 /cw/vendor/reqtls-0.4.0-alpha3/build/mod.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;cert_signer&#34;, &#34;export&#34;, &#34;log&#34;, &#34;quic&#34;, &#34;static_link&#34;, &#34;zstd&#34;)) -C metadata=26a74b735fc5bb9f -C extra-filename=-0b7566f14d0cceee --out-dir /work/target/debug/build/reqtls-0b7566f14d0cceee -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">119 ms</td>
+<td class="nowrap">831 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 589: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/reqtls-0b7566f14d0cceee/rustcphk7ES/symbols.o /work/target/debug/build/reqtls-0b7566f14d0cceee/build_script_mod-0b7566f14d0cceee.build_script_mod.f6c9dc7a21e9b4ab-cgu.0.rcgu.o /work/target/debug/build/reqtls-0b7566f14d0cceee/build_script_mod-0b7566f14d0cceee.build_script_mod.f6c9dc7a21e9b4ab-cgu.1.rcgu.o /work/target/debug/build/reqtls-0b7566f14d0cceee/build_script_mod-0b7566f14d0cceee.build_script_mod.f6c9dc7a21e9b4ab-cgu.2.rcgu.o /work/target/debug/build/reqtls-0b7566f14d0cceee/build_script_mod-0b7566f14d0cceee.2zbxh2454k00jmsmgci1uh9pp.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755</td>
+<td class="nowrap muted">793 ms</td>
+<td class="nowrap">154 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 590: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUYarDe.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/reqtls-0b7566f14d0cceee/build_script_mod-0b7566f14d0cceee /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/reqtls-0b7566f14d0cceee/rustcphk7ES/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../</td>
+<td class="nowrap muted">800 ms</td>
+<td class="nowrap">147 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 591: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUYarDe.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/reqtls-0b7566f14d0cceee/build_script_mod-0b7566f14d0cceee /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/reqtls-0b7566f14d0cceee/rustcphk7ES/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu</td>
+<td class="nowrap muted">805 ms</td>
+<td class="nowrap">140 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 594: /work/target/debug/build/reqtls-0b7566f14d0cceee/build-script-mod">reqtls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">954 ms</td>
+<td class="nowrap">10.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 596: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="5 similar processes, the first one shown">×5</span></td>
+<td class="mono args">--crate-name bytemuck --edition=2018 /cw/vendor/bytemuck-1.25.2/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --deny=unexpected_cfgs --check-cfg cfg(target_arch, values(&#34;spirv&#34;)) --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;aarch64_simd&#34;, &#34;align_offset&#34;, &#34;alloc_uninit&#34;, &#34;avx512_simd&#34;, &#34;bytemuck_derive&#34;, &#34;const_zeroed&#34;, &#34;derive&#34;, &#34;extern_crate_alloc&#34;, &#34;extern_crate_std&#34;, &#34;impl_core_error&#34;, &#34;latest_stable_rust&#34;, &#34;min_const_generics&#34;, &#34;must_cast&#34;, &#34;must_cast_extra&#34;, &#34;nightly_docs&#34;, &#34;nightly_float&#34;, &#34;nightly_portable_simd&#34;, &#34;nightly_stdsimd&#34;, &#34;pod_saturating&#34;, &#34;rustversion&#34;, &#34;track_caller&#34;, &#34;transparentwrapper_extra&#34;, &#34;unsound_ptr_pod_impl&#34;, &#34;wasm_simd&#34;, &#34;zeroable_atomics&#34;, &#34;zeroable_maybe_uninit&#34;, &#34;zeroable_u… -C metadata=c309cc4f662b8f68 -C extra-filename=-31d06f36c7eb3a75 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints</td>
+<td class="nowrap muted">11.0 s</td>
+<td class="nowrap">113 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">2</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">ms.xllgl.top</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:8080</td><td class="nowrap">unknown</td><td class="mono"></td><td class="nowrap">37 B</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">957 ms</td><td class="mono">/work/target/debug/build/reqtls-0b7566f14d0cceee/build-script-mod</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">957 ms</td><td class="mono">/work/target/debug/build/reqtls-0b7566f14d0cceee/build-script-mod</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">962 ms</td><td class="mono">/work/target/debug/build/reqtls-0b7566f14d0cceee/build-script-mod</td><td class="nowrap">connect</td><td class="mono">:8080</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>68</dd></div><div><dt>Directories</dt><dd>30</dd></div><div><dt>Size</dt><dd>24.2 MiB</dd></div><div><dt>Compiled units</dt><dd>10</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling reqtls v0.4.0-alpha3
+   Compiling bytemuck v1.25.2
+   Compiling hex v0.4.3
+   Compiling urlencoding v2.1.3
+   Compiling crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 13.41s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">9</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-02 13:58 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-2372261</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:58 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-2372263</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:58 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-2445642-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:59 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-2445642-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:59 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">ReadyForSandbox</td><td>scored</td><td class="muted">analyzer-2372276</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:59 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-2445642-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:59 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-2445642-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:59 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-2372276</td></tr>
+
+<tr><td class="muted nowrap">2026-10-02 13:59 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-2372276</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

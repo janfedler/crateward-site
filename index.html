@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'">
+<title>Crateward</title>
+<meta name="description" content="Crateward finds malicious Rust crates by running their build code in an offline Firecracker microVM with eBPF tracing and honeytokens.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crateward">
+<meta property="og:title" content="Crateward">
+<meta property="og:description" content="Watches every new crates.io release. Build scripts run in an offline microVM with eBPF tracing and honeytokens.">
+<meta property="og:url" content="https://crateward.com/">
+<meta property="og:image" content="https://crateward.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crateward's report of a malicious crate: the build ran a dropped program from /tmp.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main>
+<h1 class="display">Crateward</h1>
+<p>Crateward watches new crate versions on crates.io. It analyzes every one
+statically and builds those whose build runs their own code inside an
+isolated microVM, where it records what the build does. This page shows
+aggregate numbers only. Findings are published here after they were
+reported and the embargo passed.</p>
+
+<h2>So far</h2>
+<table>
+<tr><th>Versions seen</th><td>318777</td></tr>
+<tr><th>Versions with a verdict</th><td>318736</td></tr>
+
+<tr><th>Static analysis only</th><td>265776 (83%)</td></tr>
+
+<tr><th>Built and traced in a microVM on Linux</th><td>52522 (16%)</td></tr>
+
+<tr><th>No code for Linux (not applicable)</th><td>438 (0%)</td></tr>
+
+</table>
+
+<h2>Verdicts by risk level</h2>
+<table>
+<tr><th>none</th><td>221608</td></tr><tr><th>low</th><td>93629</td></tr><tr><th>medium</th><td>3439</td></tr><tr><th>high</th><td>52</td></tr><tr><th>critical</th><td>8</td></tr>
+</table>
+<p class="muted">A low level is not a claim that a version is safe: every
+verdict states what the analysis covered, and static only means the version
+was not built.</p>
+
+<h2>Versions finished per day</h2>
+<table>
+<tr><th>2026-10-30</th><td>2997</td></tr><tr><th>2026-10-29</th><td>10158</td></tr><tr><th>2026-10-28</th><td>11592</td></tr><tr><th>2026-10-27</th><td>10999</td></tr><tr><th>2026-10-26</th><td>10544</td></tr><tr><th>2026-10-25</th><td>9389</td></tr><tr><th>2026-10-24</th><td>9329</td></tr><tr><th>2026-10-23</th><td>9603</td></tr><tr><th>2026-10-22</th><td>11034</td></tr><tr><th>2026-10-21</th><td>11027</td></tr><tr><th>2026-10-20</th><td>11542</td></tr><tr><th>2026-10-19</th><td>9513</td></tr><tr><th>2026-10-18</th><td>8533</td></tr><tr><th>2026-10-17</th><td>8462</td></tr><tr><th>2026-10-16</th><td>9227</td></tr><tr><th>2026-10-15</th><td>10676</td></tr><tr><th>2026-10-14</th><td>10306</td></tr><tr><th>2026-10-13</th><td>9623</td></tr><tr><th>2026-10-12</th><td>8941</td></tr><tr><th>2026-10-11</th><td>8777</td></tr><tr><th>2026-10-10</th><td>8497</td></tr><tr><th>2026-10-09</th><td>10988</td></tr><tr><th>2026-10-08</th><td>10451</td></tr><tr><th>2026-10-07</th><td>10040</td></tr><tr><th>2026-10-06</th><td>13805</td></tr><tr><th>2026-10-05</th><td>3768</td></tr><tr><th>2026-10-03</th><td>5370</td></tr><tr><th>2026-10-02</th><td>8675</td></tr><tr><th>2026-10-01</th><td>9629</td></tr><tr><th>2026-09-30</th><td>7335</td></tr>
+</table>
+
+<h2>Self checks</h2>
+<p>The latest canary runs (a known bad and a known good test crate) gave the expected results.</p>
+
+
+<h2>Job reports</h2>
+<p><a href="reports/">The reports of chosen crate versions</a>, as
+Crateward's dashboard shows them.</p>
+
+
+<h2>Published findings</h2>
+
+<table>
+<tr><th>Crate</th><th>Kind</th><th>Reported</th><th>Published</th><th></th></tr>
+
+<tr><td>monica_rand_core 0.10.3</td><td>malicious</td><td>removed by crates.io first</td><td>2026-10-06</td><td><a href="findings/monica-rand-core-0-10-2/">details</a></td></tr>
+
+<tr><td>monica_rand_core 0.10.1</td><td>malicious</td><td>removed by crates.io first</td><td>2026-10-06</td><td><a href="findings/monica-rand-core-0-10-2/">details</a></td></tr>
+
+<tr><td>monica_rand_core 0.10.2</td><td>malicious</td><td>removed by crates.io first</td><td>2026-10-02</td><td><a href="findings/monica-rand-core-0-10-2/">details</a></td></tr>
+
+</table>
+
+
+</main>
+<footer>
+<span>Updated 2026-10-30 08:50 UTC</span>
+<a href="stats.json">stats.json</a>
+<a href="about/">About Crateward</a>
+<a href="mailto:security@janfedler.de">security@janfedler.de</a>
+</footer>
+</body>
+</html>

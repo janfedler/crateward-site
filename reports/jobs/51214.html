@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: spider_firewall 2.39.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>spider_firewall <span class="version">2.39.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 51214</span>
+      <a class="muted" href="https://crates.io/crates/spider_firewall/2.39.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="51214.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="51214.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="51214-diff.html">Compare with 2.38.0</a>
+    </p>
+    <p class="headline">The planted github_token_env left the VM.</p>
+  </div>
+  
+  <div class="verdict tone-critical">
+    <div class="score">100</div>
+    <div class="level">critical</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b class="review-false_positive">False positive.</b> A person reviewed this verdict and found the crate benign. The evidence below is what the analysis saw.</span>
+  
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">9</span></a>
+  <a href="#behavior">Behavior <span class="count">7</span></a>
+  <a href="#findings">Static findings <span class="count">63</span></a>
+  <a href="#run-check">Run: check <span class="count bad">1</span></a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points bad">100</span></td><td class="signal"><span class="word">honeytoken_left_vm</span><div class="sub">network</div></td><td class="mono where">https://api.github.com</td><td>The planted github_token_env left the VM.</td></tr>
+
+<tr><td class="num"><span class="points bad">30</span></td><td class="signal"><span class="word">static:exfiltration_endpoint</span><div class="sub">static · spider_firewall</div></td><td class="mono where"><a href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L488" rel="noreferrer noopener" target="_blank">build.rs:488</a></td><td>high severity exfiltration_endpoint in build_script code: ngrok.io</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">disk_outside_build</span><div class="sub">disk</div></td><td class="mono where">/work/home/.cargo/spider_firewall-buildcache</td><td>The build left /work/home/.cargo/spider_firewall-buildcache (dir).</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · spider_firewall</div></td><td class="mono where">api.github.com</td><td>The build looked up api.github.com.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · spider_firewall</div></td><td class="mono where">raw.githubusercontent.com</td><td>The build looked up raw.githubusercontent.com.</td></tr>
+
+</tbody>
+</table>
+
+
+<details class="more">
+<summary>4 without points</summary>
+<table class="evidence">
+<thead><tr><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="signal"><span class="word">static:build_script</span><div class="sub">static · spider_firewall</div></td><td class="mono where"><a href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+<tr><td class="signal"><span class="word">static:network_access</span><div class="sub">static · spider_firewall</div></td><td class="mono where"><a href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L195" rel="noreferrer noopener" target="_blank">build.rs:195</a></td><td>medium severity network_access in build_script code (6 places): reqwest::blocking::Client</td></tr>
+
+<tr><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · spider_firewall</div></td><td class="mono where"><a href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L29" rel="noreferrer noopener" target="_blank">build.rs:29</a></td><td>high severity secret_environment_variable in build_script code (2 places): GITHUB_TOKEN</td></tr>
+
+<tr><td class="signal"><span class="word">static:url_literal</span><div class="sub">static · spider_firewall</div></td><td class="mono where"><a href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L779" rel="noreferrer noopener" target="_blank">build.rs:779</a></td><td>low severity url_literal in build_script code (53 places): https://</td></tr>
+
+</tbody>
+</table>
+</details>
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">disk:outside</code> <code class="chip">leak:github_token_env</code> <code class="chip">net:api.github.com</code> <code class="chip">net:raw.githubusercontent.com</code> <code class="chip">static:exfiltration_endpoint</code> <code class="chip">static:network_access</code> <code class="chip">static:secret_environment_variable</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">63</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">3</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">6</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">45</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">9</span></label>
+  <span class="muted">7 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">secret_environment_variable</span> <span class="context">build_script</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L29" rel="noreferrer noopener" target="_blank">build.rs:29</a> </span></li>
+
+<li><code class="evidence-text">GH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L29" rel="noreferrer noopener" target="_blank">build.rs:29</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">exfiltration_endpoint</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">ngrok.io</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L488" rel="noreferrer noopener" target="_blank">build.rs:488</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">network_access</span> <span class="context">build_script</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::blocking::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L195" rel="noreferrer noopener" target="_blank">build.rs:195</a> <a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L270" rel="noreferrer noopener" target="_blank">build.rs:270</a> <a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L314" rel="noreferrer noopener" target="_blank">build.rs:314</a> <a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L722" rel="noreferrer noopener" target="_blank">build.rs:722</a> <a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L812" rel="noreferrer noopener" target="_blank">build.rs:812</a> </span></li>
+
+<li><code class="evidence-text">reqwest::blocking::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L891" rel="noreferrer noopener" target="_blank">build.rs:891</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">url_literal</span> <span class="context">build_script</span> <span class="count">44</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L779" rel="noreferrer noopener" target="_blank">build.rs:779</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L780" rel="noreferrer noopener" target="_blank">build.rs:780</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/repos/ShadowWhisperer/BlockLists/contents/RAW</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L933" rel="noreferrer noopener" target="_blank">build.rs:933</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L976" rel="noreferrer noopener" target="_blank">build.rs:976</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com/repos/badmojr/1Hosts/contents/Lite/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1024" rel="noreferrer noopener" target="_blank">build.rs:1024</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/badmojr/1Hosts/master/{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1044" rel="noreferrer noopener" target="_blank">build.rs:1044</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/spider-rs/bad_websites/main/websites.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1078" rel="noreferrer noopener" target="_blank">build.rs:1078</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1095" rel="noreferrer noopener" target="_blank">build.rs:1095</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/malware-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1106" rel="noreferrer noopener" target="_blank">build.rs:1106</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/phishing-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1117" rel="noreferrer noopener" target="_blank">build.rs:1117</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/scam-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1128" rel="noreferrer noopener" target="_blank">build.rs:1128</a> </span></li>
+
+<li><code class="evidence-text">https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-domains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1139" rel="noreferrer noopener" target="_blank">build.rs:1139</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1151" rel="noreferrer noopener" target="_blank">build.rs:1151</a> </span></li>
+
+<li><code class="evidence-text">https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1162" rel="noreferrer noopener" target="_blank">build.rs:1162</a> </span></li>
+
+<li><code class="evidence-text">https://lists.cyberhost.uk/malware.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1177" rel="noreferrer noopener" target="_blank">build.rs:1177</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/romainmarcoux/malicious-domains/main/full-domains-aa.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1194" rel="noreferrer noopener" target="_blank">build.rs:1194</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/ransomware-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1209" rel="noreferrer noopener" target="_blank">build.rs:1209</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/fraud-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1220" rel="noreferrer noopener" target="_blank">build.rs:1220</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/abuse-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1231" rel="noreferrer noopener" target="_blank">build.rs:1231</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-domains-ACTIVE.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1242" rel="noreferrer noopener" target="_blank">build.rs:1242</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/stamparm/maltrail/master/trails/static/suspicious/domain.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1253" rel="noreferrer noopener" target="_blank">build.rs:1253</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/phishdestroy/destroylist/main/rootlist/formats/primary_active/domains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1264" rel="noreferrer noopener" target="_blank">build.rs:1264</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/durablenapkin/scamblocklist/master/hosts.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1275" rel="noreferrer noopener" target="_blank">build.rs:1275</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.mini-onlydomains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1289" rel="noreferrer noopener" target="_blank">build.rs:1289</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/fake-onlydomains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1305" rel="noreferrer noopener" target="_blank">build.rs:1305</a> </span></li>
+
+<li><code class="evidence-text">https://threatfox.abuse.ch/downloads/hostfile/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1322" rel="noreferrer noopener" target="_blank">build.rs:1322</a> </span></li>
+
+<li><code class="evidence-text">https://hole.cert.pl/domains/v2/domains_hosts.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1338" rel="noreferrer noopener" target="_blank">build.rs:1338</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/PhishIndex/phishindex-blocklist/main/Data/Malicious%20Domains/txt/all_domains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1353" rel="noreferrer noopener" target="_blank">build.rs:1353</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1375" rel="noreferrer noopener" target="_blank">build.rs:1375</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/romainmarcoux/malicious-domains/main/full-domains-{}.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1392" rel="noreferrer noopener" target="_blank">build.rs:1392</a> </span></li>
+
+<li><code class="evidence-text">https://phishunt.io/feed.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1412" rel="noreferrer noopener" target="_blank">build.rs:1412</a> </span></li>
+
+<li><code class="evidence-text">https://api.tweetfeed.live/v1/blocklist/domains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1432" rel="noreferrer noopener" target="_blank">build.rs:1432</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/redirect-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1447" rel="noreferrer noopener" target="_blank">build.rs:1447</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/tracking-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1458" rel="noreferrer noopener" target="_blank">build.rs:1458</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/ads-nl.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1469" rel="noreferrer noopener" target="_blank">build.rs:1469</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif-onlydomains.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1481" rel="noreferrer noopener" target="_blank">build.rs:1481</a> </span></li>
+
+<li><code class="evidence-text">https://urlhaus.abuse.ch/downloads/hostfile/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1490" rel="noreferrer noopener" target="_blank">build.rs:1490</a> </span></li>
+
+<li><code class="evidence-text">https://www.spamhaus.org/drop/drop.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1691" rel="noreferrer noopener" target="_blank">build.rs:1691</a> </span></li>
+
+<li><code class="evidence-text">https://feodotracker.abuse.ch/downloads/ipblocklist.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1705" rel="noreferrer noopener" target="_blank">build.rs:1705</a> </span></li>
+
+<li><code class="evidence-text">https://rules.emergingthreats.net/blockrules/compromised-ips.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1721" rel="noreferrer noopener" target="_blank">build.rs:1721</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/elliotwutingfeng/ThreatFox-IOC-IPs/main/ips.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1740" rel="noreferrer noopener" target="_blank">build.rs:1740</a> </span></li>
+
+<li><code class="evidence-text">https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-ips.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1756" rel="noreferrer noopener" target="_blank">build.rs:1756</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/stamparm/ipsum/master/levels/3.txt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1776" rel="noreferrer noopener" target="_blank">build.rs:1776</a> </span></li>
+
+<li><code class="evidence-text">// Auto-generated by build.rs — known-bad IPv4 ranges (inclusive (start, end) u32),\u{a}// sorted and merged for binary-search lookup.\u{a}// Sources:\u{a}//   Spamhaus DROP (https://www.spamhaus.or…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs#L1813" rel="noreferrer noopener" target="_blank">build.rs:1813</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">8</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://URL-Evil.test/path?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/dynamic.rs#L550" rel="noreferrer noopener" target="_blank">src/dynamic.rs:550</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L233" rel="noreferrer noopener" target="_blank">src/lib.rs:233</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L234" rel="noreferrer noopener" target="_blank">src/lib.rs:234</a> </span></li>
+
+<li><code class="evidence-text">https://www.veed.io/ms-MY/peralatan</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L481" rel="noreferrer noopener" target="_blank">src/lib.rs:481</a> </span></li>
+
+<li><code class="evidence-text">https://www.trustpilot.com/review/grey.co</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L539" rel="noreferrer noopener" target="_blank">src/lib.rs:539</a> </span></li>
+
+<li><code class="evidence-text">https://admissions.usask.ca/programs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L553" rel="noreferrer noopener" target="_blank">src/lib.rs:553</a> </span></li>
+
+<li><code class="evidence-text">https://platform.openai.com/docs/api-reference</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L579" rel="noreferrer noopener" target="_blank">src/lib.rs:579</a> </span></li>
+
+<li><code class="evidence-text">https://www.sina.com.cn/news</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/src/lib.rs#L664" rel="noreferrer noopener" target="_blank">src/lib.rs:664</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://example.com/path/to/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/spider_firewall/2.39.0/code/benches/firewall_bench.rs#L37" rel="noreferrer noopener" target="_blank">benches/firewall_bench.rs:37</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+<ul class="alerts"><li>Honeytoken github_token_env left the VM through https://api.github.com</li></ul>
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>1 min 3 s</dd></div><div><dt>VM restore</dt><dd>77 ms</dd></div><div><dt>Payload</dt><dd>10532 files, 206.6 MiB</dd></div><div><dt>Files opened</dt><dd>15845</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">286</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 268 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 573: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">1 min 3 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 580: /work/target/debug/build/libc-fef4a680aa8c4060/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">381 ms</td>
+<td class="nowrap">107 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 581: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">383 ms</td>
+<td class="nowrap">104 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-unknown">
+<td class="d2"><span class="branch">└</span><span class="badge role">unknown</span> <span class="mono" title="pid 583: "></span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">488 ms</td>
+<td class="nowrap">0 ms</td>
+<td class="nowrap">32512</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 585: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="116 similar processes, the first one shown">×116</span></td>
+<td class="mono args">--crate-name libc --edition=2021 /cw/vendor/libc-0.2.189/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --allow=unused_qualifications --warn=clippy::unnecessary_semicolon --allow=clippy::unnecessary_cast --warn=clippy::ptr_as_ptr --allow=clippy::non_minimal_cfg --allow=clippy::missing_safety_doc --warn=clippy::map_unwrap_or --warn=clippy::manual_assert --allow=clippy::identity_op --warn=clippy::explicit_iter_loop --cfg feature=&#34;default&#34; --cfg feature=&#34;std&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;align&#34;, &#34;const-extern-fn&#34;, &#34;default&#34;, &#34;extra_traits&#34;, &#34;rustc-dep-of-std&#34;, &#34;rustc-std-workspace-core&#34;, &#34;std&#34;, &#34;use_std&#34;)) -C metadata=3945cfea6f6f778b</td>
+<td class="nowrap muted">490 ms</td>
+<td class="nowrap">1.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 601: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="11 similar processes, the first one shown">×11</span></td>
+<td class="mono args">--crate-name yoke_derive --edition=2021 /cw/vendor/yoke-derive-0.8.4/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type proc-macro --emit=dep-info,link -C prefer-dynamic -C embed-bitcode=no --warn=clippy::wildcard_dependencies --warn=clippy::useless_transmute --warn=unused_qualifications --warn=unused_macro_rules --warn=unused_lifetimes --warn=clippy::unnecessary_wraps --warn=unexpected_cfgs --deny=clippy::trivially_copy_pass_by_ref --deny=trivial_numeric_casts --warn=clippy::transmutes_expressible_as_ptr_casts --warn=clippy::transmute_undefined_repr --warn=clippy::transmute_ptr_to_ref --warn=clippy::transmute_ptr_to_ptr --warn=clippy::transmute_int_to_non_zero --warn=clippy::transmute_int_to_bool --warn=clippy::transmute_bytes_to_str --warn=clippy::todo --warn=clippy::same_functions_in_if_condition</td>
+<td class="nowrap muted">1.7 s</td>
+<td class="nowrap">755 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 615: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-Wl,--version-script=/work/target/debug/deps/rustcRuScZy/list -Wl,--no-undefined-version -m64 /work/target/debug/deps/rustcRuScZy/symbols.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.0.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.1.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.2.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.3.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.4.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.5.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.6.rcgu.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.yoke_derive.e4cbed1edec505a7-cgu.7.rcgu.o /work/target/debug/deps/rustcRuScZy/rmeta.o /work/target/debug/deps/yoke_derive-92110ac5a916ca72.dp8vorady9p2aa8fks3jr2k</td>
+<td class="nowrap muted">2.2 s</td>
+<td class="nowrap">211 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 616: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc25hKyH.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -shared -fuse-ld=lld -o /work/target/debug/deps/libyoke_derive-92110ac5a916ca72.so /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/deps/rustcRuScZy/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. --version-script=/work/target/debug/deps/rustcRuScZy/list --no-undefined-version /work/target/debug/deps/rust</td>
+<td class="nowrap muted">2.3 s</td>
+<td class="nowrap">205 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 617: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/cc25hKyH.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -shared -o /work/target/debug/deps/libyoke_derive-92110ac5a916ca72.so /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/deps/rustcRuScZy/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. --version-script=/work/target/debug/deps/rustcRuScZy/list --no-undefined-version /work/target/d</td>
+<td class="nowrap muted">2.3 s</td>
+<td class="nowrap">201 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 728: /work/target/debug/build/icu_normalizer_data-bc0711913bdbce2d/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.6 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 730: /work/target/debug/build/icu_properties_data-2ac38e22d8da263c/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">5.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 895: /work/target/debug/build/ring-17bf665f7123a0cf/build-script-build">ring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">10.9 s</td>
+<td class="nowrap">1.6 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 896: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/ring-302b96543280299a/out/5187812984567796785detect_compiler_family.c</td>
+<td class="nowrap muted">10.9 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 897: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-302b96543280299a/out/5187812984567796785detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 5187812984567796785detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">10.9 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 898: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">11.0 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 899: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="30 similar processes, the first one shown">×30</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -I /cw/vendor/ring-0.17.14/include -I /cw/vendor/ring-0.17.14/pregenerated -Wall -Wextra -fvisibility=hidden -std=c1x -Wall -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wmissing-field-initializers -Wmissing-include-dirs -Wnested-externs -Wredundant-decls -Wshadow -Wsign-compare -Wsign-conversion -Wstrict-prototypes -Wundef -Wuninitialized -g3 -DNDEBUG -o</td>
+<td class="nowrap muted">11.0 s</td>
+<td class="nowrap">239 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 900: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -I /cw/vendor/ring-0.17.14/include -I /cw/vendor/ring-0.17.14/pregenerated -imultiarch x86_64-linux-gnu -dD -D NDEBUG /cw/vendor/ring-0.17.14/crypto/curve25519/curve25519.c -quiet -dumpdir /work/target/debug/build/ring-302b96543280299a/out/ -dumpbase 25ac62e5b3c53843-curve25519.c -dumpbase-ext .c -m64 -mtune=generic -march=x86-64 -g3 -O0 -Wextra -Wall -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wmissing-field-initializers -Wmissing-include-dirs</td>
+<td class="nowrap muted">11.0 s</td>
+<td class="nowrap">209 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 901: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-I /cw/vendor/ring-0.17.14/include -I /cw/vendor/ring-0.17.14/pregenerated --gdwarf-5 --64 -o /work/target/debug/build/ring-302b96543280299a/out/25ac62e5b3c53843-curve25519.o /tmp/ccTqaaID.s</td>
+<td class="nowrap muted">11.2 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 986: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/ring-302b96543280299a/out/libring_core_0_17_14_.a /work/target/debug/build/ring-302b96543280299a/out/25ac62e5b3c53843-curve25519.o /work/target/debug/build/ring-302b96543280299a/out/0bbbd18bda93c05b-aes_nohw.o /work/target/debug/build/ring-302b96543280299a/out/00c879ee3285a50d-montgomery.o /work/target/debug/build/ring-302b96543280299a/out/00c879ee3285a50d-montgomery_inv.o /work/target/debug/build/ring-302b96543280299a/out/a0330e891e733f4e-ecp_nistz.o /work/target/debug/build/ring-302b96543280299a/out/a0330e891e733f4e-gfp_p256.o /work/target/debug/build/ring-302b96543280299a/out/a0330e891e733f4e-gfp_p384.o /work/target/debug/build/ring-302b96543280299a/out/a0330e891e733f4e-p256.o /work/target/debug/build/ring-302b96543280299a/out/aaa1ba3e455ee2e1-limbs.o /work/target/debug/build/ring-302b96543280299a/out/a4019cc0736b0423-mem.o /work/target/debug/build/ring-302b96543280299a/out/d5a9841f3dc6e253-poly1305.o /work/target/debug/build/ring-302b96543280299a/out/a4019cc0736b0423-crypt</td>
+<td class="nowrap muted">12.5 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1005: /work/target/debug/build/openssl-sys-9db41c071c247f6c/build-script-main">openssl-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">12.7 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 1006: /usr/bin/pkg-config">/usr/bin/pkg-config</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--libs --cflags openssl</td>
+<td class="nowrap muted">12.7 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1008: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/openssl-sys-9df3017baf71da3f/out/5165554423751669773detect_compiler_family.c</td>
+<td class="nowrap muted">12.7 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1009: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/openssl-sys-9df3017baf71da3f/out/5165554423751669773detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 5165554423751669773detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">12.7 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 1010: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">12.7 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1115: /work/target/debug/build/crc32fast-5a628f5722b42a68/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1116: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">19.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1259: /work/target/debug/build/openssl-5b0637e9b4e9865b/build-script-build">openssl</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.0 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1296: /work/target/debug/build/rustls-1551d69aa1a87bbc/build-script-build">rustls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">25.8 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1298: /work/target/debug/build/httparse-cb36d18ca8c369e1/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">25.8 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1299: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">25.8 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1314: /work/target/debug/build/encoding_rs-6f145cf12cb04c54/build-script-build">encoding_rs</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.7 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1495: /work/target/debug/build/native-tls-737da4b4f5619c2f/build-script-build">native-tls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1708: /work/target/debug/build/fst-88a73851c39ff7e9/build-script-build">fst</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">44.5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1807: /work/target/debug/build/ua_generator-73cb9770c1ebfd3a/build-script-build">ua_generator</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">47.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1968: /work/target/debug/build/spider_firewall-6eeb5bd96c59fedc/build-script-build">spider_firewall</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">60 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">5</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">api.github.com</code> <code class="chip">raw.githubusercontent.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI api.github.com, inside TLS: GET /repos/ShadowWhisperer/BlockLists/contents/RAW, host api.github.com, agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Safari/605.1.15</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI api.github.com, inside TLS: GET /repos/badmojr/1Hosts/contents/Lite/, host api.github.com, agent Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI raw.githubusercontent.com, inside TLS: GET /spider-rs/bad_websites/main/websites.txt, host raw.githubusercontent.com, agent Mozilla/5.0 (X11; Linux x86_64; rv:154.0) Gecko/20100101 Firefox/154.0</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">3</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">1 min 3 s</td><td class="mono">/work/target/debug/build/spider_firewall-6eeb5bd96c59fedc/build-script-build</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 3 s</td><td class="mono">/work/target/debug/build/spider_firewall-6eeb5bd96c59fedc/build-script-build</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">1 min 3 s</td><td class="mono">/work/target/debug/build/spider_firewall-6eeb5bd96c59fedc/build-script-build</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">1</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1031</dd></div><div><dt>Directories</dt><dd>210</dd></div><div><dt>Size</dt><dd>489.0 MiB</dd></div><div><dt>Compiled units</dt><dd>231</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Why</th><th>Path</th><th>Kind</th><th>Size</th><th>Mode</th></tr></thead>
+<tbody>
+<tr><td class="word">outside the build areas</td><td class="mono">/work/home/.cargo/spider_firewall-buildcache</td><td class="word">dir</td><td class="nowrap">4.0 KiB</td><td class="nowrap mono">755</td></tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling libc v0.2.189
+   Compiling zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling stable_deref_trait v1.2.1
+   Compiling yoke v0.8.3
+   Compiling zerovec v0.11.8
+   Compiling cfg-if v1.0.5
+   Compiling tinystr v0.8.4
+   Compiling smallvec v1.16.2
+   Compiling writeable v0.6.4
+   Compiling litemap v0.8.3
+   Compiling icu_locale_core v2.3.0
+   Compiling zerotrie v0.2.5
+   Compiling potential_utf v0.1.6
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling icu_normalizer_data v2.3.0
+   Compiling icu_properties_data v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling bytes v1.12.1
+   Compiling pin-project-lite v0.2.17
+   Compiling percent-encoding v2.3.2
+   Compiling memchr v2.8.3
+   Compiling pkg-config v0.3.34
+   Compiling vcpkg v0.2.15
+   Compiling futures-core v0.3.34
+   Compiling zeroize v1.9.0
+   Compiling once_cell v1.21.4
+   Compiling rustls-pki-types v1.15.1
+   Compiling openssl-sys v0.9.117
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling log v0.4.34
+   Compiling ring v0.17.14
+   Compiling idna_adapter v1.2.2
+   Compiling form_urlencoded v1.2.2
+   Compiling mio v1.2.3
+   Compiling socket2 v0.6.5
+   Compiling futures-sink v0.3.34
+   Compiling tokio v1.53.1
+   Compiling idna v1.1.0
+   Compiling http v1.5.0
+   Compiling getrandom v0.2.17
+   Compiling untrusted v0.9.0
+   Compiling crc32fast v1.5.2
+   Compiling serde v1.0.229
+   Compiling http-body v1.1.0
+   Compiling encoding_rs v0.8.42
+   Compiling url v2.5.8
+   Compiling simd-adler32 v0.3.10
+   Compiling futures-task v0.3.34
+   Compiling bitflags v2.13.2
+   Compiling adler2 v2.0.1
+   Compiling slab v0.4.12
+   Compiling foreign-types-shared v0.1.1
+   Compiling alloc-no-stdlib v2.0.4
+   Compiling futures-io v0.3.34
+   Compiling openssl v0.10.81
+   Compiling futures-util v0.3.34
+   Compiling alloc-stdlib v0.2.4
+   Compiling foreign-types v0.3.2
+   Compiling miniz_oxide v0.9.1
+   Compiling rustls v0.23.45
+   Compiling httparse v1.10.1
+   Compiling serde_json v1.0.151
+   Compiling rustls-webpki v0.103.15
+   Compiling openssl-macros v0.1.1
+   Compiling webpki-roots v1.0.9
+   Compiling scopeguard v1.2.0
+   Compiling base64 v0.22.1
+   Compiling native-tls v0.2.18
+   Compiling tower-service v0.3.3
+   Compiling simdutf8 v0.1.5
+   Compiling multiversion_no_op v1.0.0
+   Compiling subtle v2.6.1
+   Compiling try-lock v0.2.5
+   Compiling core_detect v1.0.0
+   Compiling want v0.3.1
+   Compiling webpki-roots v0.26.11
+   Compiling flate2 v1.1.10
+   Compiling brotli-decompressor v4.0.3
+   Compiling futures-channel v0.3.34
+   Compiling tracing-core v0.1.36
+   Compiling atomic-waker v1.1.2
+   Compiling fastrand v2.5.0
+   Compiling openssl-probe v0.2.1
+   Compiling hyper v1.11.1
+   Compiling tracing v0.1.44
+   Compiling ureq v2.12.1
+   Compiling sync_wrapper v1.0.2
+   Compiling ipnet v2.12.2
+   Compiling tower-layer v0.3.3
+   Compiling base64 v0.23.1
+   Compiling dotenvy v0.15.7
+   Compiling fst v0.4.7
+   Compiling ua_generator v0.5.81
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling tokio-native-tls v0.3.1
+   Compiling http-body-util v0.1.5
+   Compiling siphasher v1.0.4
+   Compiling ryu v1.0.23
+   Compiling serde_urlencoded v0.7.1
+   Compiling phf_shared v0.13.1
+   Compiling hyper-tls v0.6.0
+   Compiling tower-http v0.6.11
+   Compiling allocator-api2 v0.2.21
+   Compiling equivalent v1.0.2
+   Compiling psl-types v2.0.11
+   Compiling foldhash v0.1.5
+   Compiling hashbrown v0.15.5
+   Compiling psl v2.1.238
+   Compiling reqwest v0.12.28
+   Compiling phf_generator v0.13.1
+   Compiling spider_firewall v2.39.0
+   Compiling phf_macros v0.13.1
+    Checking phf v0.13.1
+warning: spider_firewall@2.39.0: spider_firewall: GitHub listing fetch failed for https://api.github.com/repos/ShadowWhisperer/BlockLists/contents/RAW (HTTP 404 Not Found) — skipping this source
+warning: spider_firewall@2.39.0: spider_firewall: GitHub listing fetch failed for https://api.github.com/repos/badmojr/1Hosts/contents/Lite/ (HTTP 404 Not Found) — skipping this source
+error: failed to run custom build command for `spider_firewall v2.39.0`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/spider_firewall-6eeb5bd96c59fedc/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-env-changed=SPIDER_FIREWALL_OFFLINE
+  cargo:rerun-if-env-changed=SPIDER_FIREWALL_CACHE_DIR
+  cargo:rerun-if-env-changed=SPIDER_FIREWALL_FETCH_RETRIES
+  cargo:rerun-if-env-changed=SPIDER_FIREWALL_FETCH_TIMEOUT_SECS
+  cargo:warning=spider_firewall: GitHub listing fetch failed for https://api.github.com/repos/ShadowWhisperer/BlockLists/contents/RAW (HTTP 404 Not Found) — skipping this source
+  cargo:warning=spider_firewall: GitHub listing fetch failed for https://api.github.com/repos/badmojr/1Hosts/contents/Lite/ (HTTP 404 Not Found) — skipping this source
+
+  --- stderr
+
+  thread &#39;main&#39; (1968) panicked at /cw/vendor/spider_firewall-2.39.0/build.rs:724:29:
+  Failed to fetch https://raw.githubusercontent.com/spider-rs/bad_websites/main/websites.txt: HTTP 404 Not Found (after 4 attempt(s); no cached copy available)
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-01 15:46 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-627152</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 15:46 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-2280903</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 15:46 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-639812-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 15:48 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-639812-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 15:48 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-523934</td></tr>
+
+<tr><td class="muted nowrap">2026-10-01 15:48 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-523934</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

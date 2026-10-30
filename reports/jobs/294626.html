@@ -1,0 +1,1570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: guigu-agent-bridge 0.2.24</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>guigu-agent-bridge <span class="version">0.2.24</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 294626</span>
+      <a class="muted" href="https://crates.io/crates/guigu-agent-bridge/0.2.24" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="294626.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="294626.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (54 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">143</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · guigu-agent-bridge</div></td><td class="mono where"><a href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs#L17" rel="noreferrer noopener" target="_blank">build.rs:17</a></td><td>medium severity process_spawn in build_script code (54 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · guigu-agent-bridge</div></td><td class="mono where"><a href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/config.rs#L1541" rel="noreferrer noopener" target="_blank">src/config.rs:1541</a></td><td>medium severity environment_enumeration in library code (2 places): std::env::vars</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:obfuscated_data</span><div class="sub">static · guigu-agent-bridge</div></td><td class="mono where"><a href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/historical_unknown_abandonment.rs#L183" rel="noreferrer noopener" target="_blank">src/historical_unknown_abandonment.rs:183</a></td><td>medium severity obfuscated_data in library code (5 places): SELECT decision_id,owner_token,fence,before_task_version,before_admission_revision,before_continuation_revision,before_generation,post_continuation_revision,reason,policy_ref,authorization_ref,not_rep…</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · guigu-agent-bridge</div></td><td class="mono where"><a href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs#L12" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs:12</a></td><td>medium severity yara:persistence_locations in binary code (2 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:sandbox_evasion</span><div class="sub">static · guigu-agent-bridge</div></td><td class="mono where"><a href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/owner_observation.rs#L43" rel="noreferrer noopener" target="_blank">src/storage/owner_observation.rs:43</a></td><td>medium severity yara:sandbox_evasion in library code: Checks for virtual machines, sandboxes or debuggers</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · guigu-agent-bridge</div></td><td class="mono where"><a href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:obfuscated_data</code> <code class="chip">static:process_spawn</code> <code class="chip">static:yara:persistence_locations</code> <code class="chip">static:yara:sandbox_evasion</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">143</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">13</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">80</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">50</span></label>
+  <span class="muted">16 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">obfuscated_data</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">SELECT decision_id,owner_token,fence,before_task_version,before_admission_revision,before_continuation_revision,before_generation,post_continuation_revision,reason,policy_ref,authorization_ref,not_rep…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/historical_unknown_abandonment.rs#L183" rel="noreferrer noopener" target="_blank">src/historical_unknown_abandonment.rs:183</a> </span></li>
+
+<li><code class="evidence-text">SELECT contract_version,operation_id,backup_snapshot_sha256,backup_source_set_sha256,observed_live_source_set_sha256,migration_version,migration_checksum_digest,retained_pre0014_business_digest,migrat…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/owner_binding_remediation.rs#L739" rel="noreferrer noopener" target="_blank">src/owner_binding_remediation.rs:739</a> </span></li>
+
+<li><code class="evidence-text">SELECT compatibility.native_operation_id,control.cutover_operation_id,control.phase,control.watermark,control.restart_hold_state FROM matrix_recovery_compatibility compatibility LEFT JOIN matrix_recov…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/matrix_recovery_compatibility.rs#L159" rel="noreferrer noopener" target="_blank">src/storage/matrix_recovery_compatibility.rs:159</a> </span></li>
+
+<li><code class="evidence-text">INSERT INTO runtime_owner_evidence(instance_token,runtime_generation,evidence_revision,state,pid,proc_starttime,process_fingerprint,boot_id,boottime_ns,captured_at,barrier_epoch,barrier_state,in_fligh…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/owner_lifecycle.rs#L84" rel="noreferrer noopener" target="_blank">src/storage/owner_lifecycle.rs:84</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/reliability.rs#L1181" rel="noreferrer noopener" target="_blank">src/storage/reliability.rs:1181</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs#L17" rel="noreferrer noopener" target="_blank">build.rs:17</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs#L56" rel="noreferrer noopener" target="_blank">build.rs:56</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs#L66" rel="noreferrer noopener" target="_blank">build.rs:66</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs#L79" rel="noreferrer noopener" target="_blank">build.rs:79</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">binary</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs#L12" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs:12</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_residue.rs#L12" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_residue.rs:12</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/config.rs#L1541" rel="noreferrer noopener" target="_blank">src/config.rs:1541</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match sandbox_evasion</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Checks for virtual machines, sandboxes or debuggers</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/owner_observation.rs#L43" rel="noreferrer noopener" target="_blank">src/storage/owner_observation.rs:43</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">28</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/acp/output_process_rows.rs#L2" rel="noreferrer noopener" target="_blank">src/acp/output_process_rows.rs:2</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/backup_runtime_tests.rs#L112" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/backup_runtime_tests.rs:112</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/process_death_tests.rs#L56" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/process_death_tests.rs:56</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/legacy_owner_reconciliation.rs#L552" rel="noreferrer noopener" target="_blank">src/legacy_owner_reconciliation.rs:552</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/legacy_owner_reconciliation.rs#L559" rel="noreferrer noopener" target="_blank">src/legacy_owner_reconciliation.rs:559</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/crash_tests.rs#L7" rel="noreferrer noopener" target="_blank">src/offline_production_migration/crash_tests.rs:7</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/crash_tests.rs#L52" rel="noreferrer noopener" target="_blank">src/offline_production_migration/crash_tests.rs:52</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/exclusion_tests.rs#L74" rel="noreferrer noopener" target="_blank">src/offline_production_migration/exclusion_tests.rs:74</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/tests.rs#L150" rel="noreferrer noopener" target="_blank">src/offline_production_migration/tests.rs:150</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/capability_evidence_tests.rs#L75" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/capability_evidence_tests.rs:75</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/client.rs#L34" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/client.rs:34</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/resource_tests.rs#L31" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/resource_tests.rs:31</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/stage.rs#L171" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/stage.rs:171</a> </span></li>
+
+<li><code class="evidence-text">tokio::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/acp/transport.rs#L252" rel="noreferrer noopener" target="_blank">src/acp/transport.rs:252</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/acp/transport.rs#L919" rel="noreferrer noopener" target="_blank">src/acp/transport.rs:919</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L509" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:509</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L527" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:527</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L547" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:547</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L564" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:564</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L610" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:610</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_preacceptance.rs#L1393" rel="noreferrer noopener" target="_blank">src/offline_preacceptance.rs:1393</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_preacceptance.rs#L1412" rel="noreferrer noopener" target="_blank">src/offline_preacceptance.rs:1412</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_preacceptance.rs#L1431" rel="noreferrer noopener" target="_blank">src/offline_preacceptance.rs:1431</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_preacceptance.rs#L1478" rel="noreferrer noopener" target="_blank">src/offline_preacceptance.rs:1478</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/launcher.rs#L101" rel="noreferrer noopener" target="_blank">src/offline_production_migration/launcher.rs:101</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_recovery.rs#L1000" rel="noreferrer noopener" target="_blank">src/offline_recovery.rs:1000</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/process_death_tests.rs#L55" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/process_death_tests.rs:55</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/capability_evidence_tests.rs#L74" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/capability_evidence_tests.rs:74</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">26</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tokio::net::lookup_host</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/assembly.rs#L38" rel="noreferrer noopener" target="_blank">src/a2a/assembly.rs:38</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Url</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L24" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:24</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L36" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:36</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L46" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:46</a> </span></li>
+
+<li><code class="evidence-text">reqwest::redirect::Policy::none</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L47" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:47</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Certificate::from_pem</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L53" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:53</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::UNAUTHORIZED</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L135" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:135</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Response</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/client.rs#L156" rel="noreferrer noopener" target="_blank">src/a2a/client.rs:156</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Error</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/error.rs#L95" rel="noreferrer noopener" target="_blank">src/a2a/error.rs:95</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/error.rs#L114" rel="noreferrer noopener" target="_blank">src/a2a/error.rs:114</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/error.rs#L115" rel="noreferrer noopener" target="_blank">src/a2a/error.rs:115</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/server.rs#L54" rel="noreferrer noopener" target="_blank">src/a2a/server.rs:54</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/server.rs#L234" rel="noreferrer noopener" target="_blank">src/a2a/server.rs:234</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/server.rs#L244" rel="noreferrer noopener" target="_blank">src/a2a/server.rs:244</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/health.rs#L617" rel="noreferrer noopener" target="_blank">src/app/health.rs:617</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/server.rs#L56" rel="noreferrer noopener" target="_blank">src/a2a/server.rs:56</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/server.rs#L86" rel="noreferrer noopener" target="_blank">src/a2a/server.rs:86</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/health.rs#L593" rel="noreferrer noopener" target="_blank">src/app/health.rs:593</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/runtime.rs#L1554" rel="noreferrer noopener" target="_blank">src/app/runtime.rs:1554</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/runtime.rs#L1867" rel="noreferrer noopener" target="_blank">src/app/runtime.rs:1867</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::UnixListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/server.rs#L121" rel="noreferrer noopener" target="_blank">src/a2a/server.rs:121</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/health.rs#L649" rel="noreferrer noopener" target="_blank">src/app/health.rs:649</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/health.rs#L683" rel="noreferrer noopener" target="_blank">src/app/health.rs:683</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/runtime.rs#L1671" rel="noreferrer noopener" target="_blank">src/app/runtime.rs:1671</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/app/runtime.rs#L1915" rel="noreferrer noopener" target="_blank">src/app/runtime.rs:1915</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/launcher.rs#L27" rel="noreferrer noopener" target="_blank">src/offline_production_migration/launcher.rs:27</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">binary</span> <span class="count">22</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/orchestration.rs#L80" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/orchestration.rs:80</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/orchestration.rs#L227" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/orchestration.rs:227</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs#L360" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs:360</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary/tests.rs#L11" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary/tests.rs:11</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary/tests.rs#L317" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary/tests.rs:317</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/tests.rs#L8" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/tests.rs:8</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs#L430" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs:430</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs#L450" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs:450</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_residue_command.rs#L55" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_residue_command.rs:55</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_residue_command.rs#L61" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_residue_command.rs:61</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/manifest.rs#L157" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/manifest.rs:157</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/manifest.rs#L171" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/manifest.rs:171</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/manifest.rs#L190" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/manifest.rs:190</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/manifest.rs#L279" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/manifest.rs:279</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/manifest.rs#L318" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/manifest.rs:318</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/probe.rs#L37" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/probe.rs:37</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/probe.rs#L72" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/probe.rs:72</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/probe.rs#L95" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/probe.rs:95</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs#L94" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs:94</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs#L299" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs:299</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs#L305" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs:305</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary/tests.rs#L10" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary/tests.rs:10</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">environment_enumeration</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/build.rs#L22" rel="noreferrer noopener" target="_blank">build.rs:22</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/evidence.rs#L16" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/evidence.rs:16</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/legacy_owner_reconciliation.rs#L1236" rel="noreferrer noopener" target="_blank">src/legacy_owner_reconciliation.rs:1236</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">29</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/backup.rs#L62" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/backup.rs:62</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/capability_evidence_tests.rs#L57" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/capability_evidence_tests.rs:57</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/tests.rs#L143" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/tests.rs:143</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/cleanup_witness.rs#L172" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/cleanup_witness.rs:172</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/fault.rs#L14" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/fault.rs:14</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/maintenance_lock.rs#L56" rel="noreferrer noopener" target="_blank">src/maintenance_lock.rs:56</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/launcher.rs#L81" rel="noreferrer noopener" target="_blank">src/offline_production_migration/launcher.rs:81</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/resource_tests.rs#L19" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/resource_tests.rs:19</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/owner_observation.rs#L176" rel="noreferrer noopener" target="_blank">src/storage/owner_observation.rs:176</a> </span></li>
+
+<li><code class="evidence-text">17 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/fs.rs#L84" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/fs.rs:84</a> </span></li>
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/lock.rs#L20" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/lock.rs:20</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/client.rs#L37" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/client.rs:37</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/provision_temp.rs#L16" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/provision_temp.rs:16</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/publication_tests.rs#L30" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/publication_tests.rs:30</a> </span></li>
+
+<li><code class="evidence-text">11 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/isolated_state_backup/sqlite.rs#L121" rel="noreferrer noopener" target="_blank">src/isolated_state_backup/sqlite.rs:121</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/proc_lookup.rs#L75" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/proc_lookup.rs:75</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/provision.rs#L59" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/provision.rs:59</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/legacy_owner_reconciliation.rs#L1250" rel="noreferrer noopener" target="_blank">src/legacy_owner_reconciliation.rs:1250</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/provision_teardown.rs#L3" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/provision_teardown.rs:3</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/scan.rs#L185" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/scan.rs:185</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_production_migration/snapshot.rs#L93" rel="noreferrer noopener" target="_blank">src/offline_production_migration/snapshot.rs:93</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/publication.rs#L79" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/publication.rs:79</a> </span></li>
+
+<li><code class="evidence-text">18 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/artifact.rs#L21" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/artifact.rs:21</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/bootstrap.rs#L179" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/bootstrap.rs:179</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/helper.rs#L141" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/helper.rs:141</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/stage.rs#L97" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/stage.rs:97</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/bootstrap_cleanup.rs#L9" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/bootstrap_cleanup.rs:9</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/capability_evidence.rs#L63" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/capability_evidence.rs:63</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/privileged_proc_proof/sandbox.rs#L44" rel="noreferrer noopener" target="_blank">src/privileged_proc_proof/sandbox.rs:44</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">15</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://{bind}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/assembly.rs#L147" rel="noreferrer noopener" target="_blank">src/a2a/assembly.rs:147</a> </span></li>
+
+<li><code class="evidence-text">http+unix://local</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/assembly.rs#L147" rel="noreferrer noopener" target="_blank">src/a2a/assembly.rs:147</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/assembly.rs#L238" rel="noreferrer noopener" target="_blank">src/a2a/assembly.rs:238</a> </span></li>
+
+<li><code class="evidence-text">https://localhost/rpc</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/a2a/assembly.rs#L249" rel="noreferrer noopener" target="_blank">src/a2a/assembly.rs:249</a> </span></li>
+
+<li><code class="evidence-text">[transports.matrix]\u{a}enabled = false\u{a}homeserver = &#34;ftp://example.com&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/config.rs#L1899" rel="noreferrer noopener" target="_blank">src/config.rs:1899</a> </span></li>
+
+<li><code class="evidence-text">[transports.matrix]\u{a}enabled = true\u{a}homeserver = &#34;https://matrix.example&#34;\u{a}user_id = &#34;@u:x&#34;\u{a}device_id = &#34;BRIDGE&#34;\u{a}access_token = &#34;{env:TOKEN}&#34;\u{a}crypto_store_path = &#34;/home/tester/.l…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/config.rs#L2017" rel="noreferrer noopener" target="_blank">src/config.rs:2017</a> </span></li>
+
+<li><code class="evidence-text">[transports.matrix]\u{a}enabled = true\u{a}homeserver = &#34;https://matrix.example&#34;\u{a}user_id = &#34;@u:x&#34;\u{a}device_id = &#34;BRIDGE&#34;\u{a}access_token = &#34;{env:TOKEN}&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/config.rs#L2040" rel="noreferrer noopener" target="_blank">src/config.rs:2040</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/matrix/client.rs#L37" rel="noreferrer noopener" target="_blank">src/matrix/client.rs:37</a> </span></li>
+
+<li><code class="evidence-text">{}://{host}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/matrix/store_identity.rs#L122" rel="noreferrer noopener" target="_blank">src/matrix/store_identity.rs:122</a> </span></li>
+
+<li><code class="evidence-text">sqlite://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L475" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:475</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L494" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:494</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_delivery.rs#L798" rel="noreferrer noopener" target="_blank">src/offline_delivery.rs:798</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_recovery.rs#L908" rel="noreferrer noopener" target="_blank">src/offline_recovery.rs:908</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/offline_recovery.rs#L935" rel="noreferrer noopener" target="_blank">src/offline_recovery.rs:935</a> </span></li>
+
+<li><code class="evidence-text">https://example.test/hook</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/storage/codec.rs#L513" rel="noreferrer noopener" target="_blank">src/storage/codec.rs:513</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">binary</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/orchestration.rs#L15" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/orchestration.rs:15</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs#L135" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/prepare_boundary.rs:135</a> <a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/verify_release_manifest/evidence.rs#L186" rel="noreferrer noopener" target="_blank">src/bin/verify_release_manifest/evidence.rs:186</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs#L101" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_bootstrap.rs:101</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/src/bin/provision-isolated-proc-proof-fixture/unit_residue.rs#L103" rel="noreferrer noopener" target="_blank">src/bin/provision-isolated-proc-proof-fixture/unit_residue.rs:103</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://matrix.0x8.xyz</code>
+<span class="places"><a class="place" href="https://crates.io/crates/guigu-agent-bridge/0.2.24/code/examples/t053-sdk.rs#L110" rel="noreferrer noopener" target="_blank">examples/t053-sdk.rs:110</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>3 min 59 s</dd></div><div><dt>VM restore</dt><dd>55 ms</dd></div><div><dt>Payload</dt><dd>19410 files, 295.8 MiB</dd></div><div><dt>Files opened</dt><dd>55299</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">861</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 815 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">3 min 59 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="59 similar processes, the first one shown">×59</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=a3dc8fb24392fcd4 -C extra-filename=-a411f7480bd0f42c --out-dir /work/target/debug/build/proc-macro2-a411f7480bd0f42c -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">612 ms</td>
+<td class="nowrap">686 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc74BIQq/symbols.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.build_script_build.dd8d7f624ad1d48e-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c.cnca5igddme2fkrf01fktrtaw.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/lib</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">184 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMthSTv.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc74BIQq/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">175 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMthSTv.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build_script_build-a411f7480bd0f42c /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-a411f7480bd0f42c/rustc74BIQq/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">172 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 591: /work/target/debug/build/proc-macro2-a411f7480bd0f42c/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">82 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 592: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 594: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-4f3f927bd5485a92/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">33 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 607: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="382 similar processes, the first one shown">×382</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.3 s</td>
+<td class="nowrap">49 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 627: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.5 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 628: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 689: /work/target/debug/build/libc-24a0c765ebd7d3cb/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">6.4 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 690: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">6.4 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 738: /work/target/debug/build/serde_core-9f3c05d252ac67ed/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">11.3 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 739: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">11.3 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 759: /work/target/debug/build/serde-4274e99183c60f18/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">13.0 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 760: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">13.0 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 874: /work/target/debug/build/generic-array-4cac162ab79b2857/build-script-build">generic-array</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.7 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 875: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--verbose --version</td>
+<td class="nowrap muted">17.7 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1051: /work/target/debug/build/icu_normalizer_data-f722c08713ba03b8/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1053: /work/target/debug/build/icu_properties_data-489780b4c65588d7/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.6 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1055: /work/target/debug/build/serde_core-6d38a3ce35613dd3/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">23.6 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1056: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">23.6 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1167: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">30.9 s</td>
+<td class="nowrap">60 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1168: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">30.9 s</td>
+<td class="nowrap">39 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1172: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">31.0 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1287: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">34.3 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1288: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">34.3 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1368: /work/target/debug/build/zerocopy-c5bc315bc68c4a12/build-script-build">zerocopy</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">38.5 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1369: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">38.5 s</td>
+<td class="nowrap">20 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1409: /work/target/debug/build/num-traits-8f76fc38ea2a0840/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">40.1 s</td>
+<td class="nowrap">48 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1410: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">40.1 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1589: /work/target/debug/build/serde_json-07d8d8a5fae0eda7/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">50.1 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1663: /work/target/debug/build/crossbeam-utils-665909be77656540/build-script-build">crossbeam-utils</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">53.0 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1704: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">55.9 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1706: /work/target/debug/build/getrandom-4d87cb24408a683b/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">55.9 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1764: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">58.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2125: /work/target/debug/build/ruma-common-28694a1f78dc371c/build-script-build">ruma-common</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 14 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2140: /work/target/debug/build/ring-93da05495704c329/build-script-build">ring</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">1.9 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2141: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-E /work/target/debug/build/ring-33e4a446d5e81de3/out/17874392638965843560detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2142: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-33e4a446d5e81de3/out/17874392638965843560detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 17874392638965843560detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2143: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">3 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2144: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="32 similar processes, the first one shown">×32</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/ring-33e4a446d5e81de3/out/flag_check -c /work/target/debug/build/ring-33e4a446d5e81de3/out/flag_check.c</td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">37 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2145: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/ring-33e4a446d5e81de3/out/flag_check.c -quiet -dumpdir /work/target/debug/build/ring-33e4a446d5e81de3/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cc6cPL5W.s</td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">25 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2146: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/ring-33e4a446d5e81de3/out/flag_check /tmp/cc6cPL5W.s</td>
+<td class="nowrap muted">1 min 15 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2234: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/ring-33e4a446d5e81de3/out/libring_core_0_17_14_.a /work/target/debug/build/ring-33e4a446d5e81de3/out/b9fed4bd5e786284-curve25519.o /work/target/debug/build/ring-33e4a446d5e81de3/out/2b18790154092d07-aes_nohw.o /work/target/debug/build/ring-33e4a446d5e81de3/out/20d6a080d7761227-montgomery.o /work/target/debug/build/ring-33e4a446d5e81de3/out/20d6a080d7761227-montgomery_inv.o /work/target/debug/build/ring-33e4a446d5e81de3/out/abdfa25550f18ac7-ecp_nistz.o /work/target/debug/build/ring-33e4a446d5e81de3/out/abdfa25550f18ac7-gfp_p256.o /work/target/debug/build/ring-33e4a446d5e81de3/out/abdfa25550f18ac7-gfp_p384.o /work/target/debug/build/ring-33e4a446d5e81de3/out/abdfa25550f18ac7-p256.o /work/target/debug/build/ring-33e4a446d5e81de3/out/9fa4cd275cb9daeb-limbs.o /work/target/debug/build/ring-33e4a446d5e81de3/out/8948ea8e62ee340e-mem.o /work/target/debug/build/ring-33e4a446d5e81de3/out/e288d65bf9bc9ef0-poly1305.o /work/target/debug/build/ring-33e4a446d5e81de3/out/8948ea8e62ee340e-crypt</td>
+<td class="nowrap muted">1 min 17 s</td>
+<td class="nowrap">34 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2423: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">--crate-name ruma_common --edition=2021 /cw/vendor/ruma-common-0.15.4/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --warn=rust_2018_idioms --warn=clippy::wildcard_imports --warn=unused_qualifications --warn=unused_import_braces --warn=clippy::unseparated_literal_suffix --warn=clippy::unreadable_literal --warn=unreachable_pub --warn=unexpected_cfgs --warn=clippy::todo --warn=clippy::str_to_string --warn=semicolon_in_expressions_from_macros --warn=clippy::semicolon_if_nothing_returned --warn=clippy::nonstandard_macro_braces --allow=clippy::new_without_default --warn=clippy::mut_mut --warn=clippy::mod_module_files --warn=clippy::missing_enforced_import_renames --warn=clippy::map_flatten</td>
+<td class="nowrap muted">1 min 23 s</td>
+<td class="nowrap">2.1 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-cargo">
+<td class="d2"><span class="branch">└</span><span class="badge role">cargo</span> <span class="mono" title="pid 2427: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">locate-project --workspace --message-format=plain --manifest-path=/cw/vendor/ruma-common-0.15.4/Cargo.toml</td>
+<td class="nowrap muted">1 min 23 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2429: /work/target/debug/build/anyhow-02472fc0cb68ba3c/build-script-build">anyhow</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2430: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=anyhow_build_probe --edition=2018 --crate-name=anyhow --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/anyhow-53d53971fb3aec2e/out/probe src/nightly.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2434: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2437: /work/target/debug/build/crc32fast-4ce09a82b6a6da8d/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">11 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2438: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2441: /work/target/debug/build/httparse-cb36d18ca8c369e1/build-script-build">httparse</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">10 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2442: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2445: /work/target/debug/build/ruma-events-a25cbc581df10144/build-script-build">ruma-events</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 25 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2468: /work/target/debug/build/libsqlite3-sys-34d6dd03d8ae789a/build-script-build">libsqlite3-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">7.3 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2469: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/877906722519753102detect_compiler_family.c</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2470: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/877906722519753102detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 877906722519753102detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2471: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2472: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mno-omit-leaf-frame-pointer -o /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/flag_check -c /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/flag_check.c</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2473: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/flag_check.c -quiet -dumpdir /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/ccWgZtCz.s</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">12 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2474: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/flag_check /tmp/ccWgZtCz.s</td>
+<td class="nowrap muted">1 min 27 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 2478: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/libsqlite3.a /work/target/debug/build/libsqlite3-sys-4d9f25aff60a6740/out/8017ddc1302f104c-sqlite3.o</td>
+<td class="nowrap muted">1 min 34 s</td>
+<td class="nowrap">23 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2489: /work/target/debug/build/curve25519-dalek-ffeeb53153456d4f/build-script-build">curve25519-dalek</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 34 s</td>
+<td class="nowrap">19 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2490: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">1 min 34 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2638: /work/target/debug/build/ruma-client-api-e8112d1fd32a7c74/build-script-build">ruma-client-api</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 38 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2969: /work/target/debug/build/rustls-e84a1c61165ae9a7/build-script-build">rustls</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 10 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3210: /work/target/debug/build/matrix-sdk-common-1367a9b45264849c/build-script-build">matrix-sdk-common</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 17 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3238: /work/target/debug/build/blake3-1d5a06db49da8db5/build-script-build">blake3</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">169 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3239: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-E /work/target/debug/build/blake3-277e813a768a8383/out/18011123964928020869detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3240: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/blake3-277e813a768a8383/out/18011123964928020869detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 18011123964928020869detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">4 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3241: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3242: /usr/bin/cc">/usr/bin/cc</span> <span class="times" title="8 similar processes, the first one shown">×8</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -Wall -Wextra -mavx512f -o /work/target/debug/build/blake3-277e813a768a8383/out/flag_check -c /work/target/debug/build/blake3-277e813a768a8383/out/flag_check.c</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3243: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/blake3-277e813a768a8383/out/flag_check.c -quiet -dumpdir /work/target/debug/build/blake3-277e813a768a8383/out/ -dumpbase flag_check.c -dumpbase-ext .c -m64 -mavx512f -mtune=generic -march=x86-64 -O0 -Wall -Wextra -ffunction-sections -fdata-sections -fPIC -fasynchronous-unwind-tables -o /tmp/cce0765C.s</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">13 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3244: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">--64 -o /work/target/debug/build/blake3-277e813a768a8383/out/flag_check /tmp/cce0765C.s</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3263: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="4 similar processes, the first one shown">×4</span></td>
+<td class="mono args">cqD /work/target/debug/build/blake3-277e813a768a8383/out/libblake3_sse2_sse41_avx2_assembly.a /work/target/debug/build/blake3-277e813a768a8383/out/0af7afa8371890fd-blake3_sse2_x86-64_unix.o /work/target/debug/build/blake3-277e813a768a8383/out/0af7afa8371890fd-blake3_sse41_x86-64_unix.o /work/target/debug/build/blake3-277e813a768a8383/out/0af7afa8371890fd-blake3_avx2_x86-64_unix.o</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3277: /work/target/debug/build/libsqlite3-sys-749f5fa7d6d20db2/build-script-build">libsqlite3-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">6.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3278: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-E /work/target/debug/build/libsqlite3-sys-9f97a64c087e3aed/out/6244432403795340809detect_compiler_family.c</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3279: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-E -quiet -imultiarch x86_64-linux-gnu /work/target/debug/build/libsqlite3-sys-9f97a64c087e3aed/out/6244432403795340809detect_compiler_family.c -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -dumpbase 6244432403795340809detect_compiler_family.c -dumpbase-ext .c</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">5 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3280: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-?</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3281: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-O0 -ffunction-sections -fdata-sections -fPIC -m64 -w -DSQLITE_CORE -DSQLITE_DEFAULT_FOREIGN_KEYS=1 -DSQLITE_ENABLE_API_ARMOR -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_LOAD_EXTENSION=1 -DSQLITE_ENABLE_MEMORY_MANAGEMENT -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_THREADSAFE=1 -DSQLITE_USE_URI -DHAVE_USLEEP=1 -DHAVE_ISNAN -D_POSIX_THREAD_SAFE_FUNCTIONS -DHAVE_LOCALTIME_R -o /work/target/debug/build/libsqlite3-sys-9f97a64c087e3aed/out/8017ddc1302f104c-sqlite3.o -c sqlite3/sqlite3.c</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">6.2 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3282: /usr/libexec/gcc/x86_64-linux-gnu/14/cc1">/usr/libexec/gcc/x86_64-linux-gnu/14/cc1</span></td>
+<td class="mono args">-quiet -imultiarch x86_64-linux-gnu -D SQLITE_CORE -D SQLITE_DEFAULT_FOREIGN_KEYS=1 -D SQLITE_ENABLE_API_ARMOR -D SQLITE_ENABLE_COLUMN_METADATA -D SQLITE_ENABLE_DBSTAT_VTAB -D SQLITE_ENABLE_FTS3 -D SQLITE_ENABLE_FTS3_PARENTHESIS -D SQLITE_ENABLE_FTS5 -D SQLITE_ENABLE_JSON1 -D SQLITE_ENABLE_LOAD_EXTENSION=1 -D SQLITE_ENABLE_MEMORY_MANAGEMENT -D SQLITE_ENABLE_RTREE -D SQLITE_ENABLE_STAT4 -D SQLITE_SOUNDEX</td>
+<td class="nowrap muted">2 min 18 s</td>
+<td class="nowrap">5.7 s</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3283: /usr/bin/as">/usr/bin/as</span></td>
+<td class="mono args">-W --64 -o /work/target/debug/build/libsqlite3-sys-9f97a64c087e3aed/out/8017ddc1302f104c-sqlite3.o /tmp/ccVNF2T6.s</td>
+<td class="nowrap muted">2 min 24 s</td>
+<td class="nowrap">462 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 3284: /usr/bin/ar">/usr/bin/ar</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">cqD /work/target/debug/build/libsqlite3-sys-9f97a64c087e3aed/out/libsqlite3.a /work/target/debug/build/libsqlite3-sys-9f97a64c087e3aed/out/8017ddc1302f104c-sqlite3.o</td>
+<td class="nowrap muted">2 min 24 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3508: /work/target/debug/build/serde_json-8bdb9b394c8b5974/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 33 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3544: /work/target/debug/build/decancer-e9d1cb27e6ac2eb8/build-script-build">decancer</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 38 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3754: /work/target/debug/build/thiserror-be99f9d731e5da91/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">28 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3755: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-bf0fafdea055103f/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">2 min 44 s</td>
+<td class="nowrap">24 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 3765: /work/target/debug/build/rustix-f28a299bb323435d/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">2 min 45 s</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 3766: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="2 similar processes, the first one shown">×2</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o /work/target/debug/build/rustix-ef5ac3590efa31c4/out/rustix_test_can_compile -</td>
+<td class="nowrap muted">2 min 45 s</td>
+<td class="nowrap">17 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4066: /work/target/debug/build/matrix-sdk-f1ea7c5200a3994e/build-script-build">matrix-sdk</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 16 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 4238: /work/target/debug/build/guigu-agent-bridge-fae3c2d6d9ae3804/build-script-build">guigu-agent-bridge</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">3 min 47 s</td>
+<td class="nowrap">15 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 4239: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">-vV</td>
+<td class="nowrap muted">3 min 47 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>3145</dd></div><div><dt>Directories</dt><dd>616</dd></div><div><dt>Size</dt><dd>1022.0 MiB</dd></div><div><dt>Compiled units</dt><dd>532</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v3.0.9
+   Compiling libc v0.2.191
+    Checking cfg-if v1.0.5
+   Compiling syn v2.0.119
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+    Checking pin-project-lite v0.2.17
+    Checking getrandom v0.2.17
+   Compiling zerovec-derive v0.11.7
+   Compiling displaydoc v0.2.7
+    Checking rand_core v0.6.4
+   Compiling find-msvc-tools v0.1.15
+   Compiling shlex v2.0.1
+    Checking memchr v2.8.3
+    Checking typenum v1.20.1
+   Compiling cc v1.10.0
+    Checking errno v0.3.14
+    Checking signal-hook-registry v1.4.8
+    Checking mio v1.2.4
+    Checking socket2 v0.6.5
+   Compiling tokio-macros v2.7.2
+   Compiling icu_properties_data v2.4.0
+   Compiling icu_normalizer_data v2.4.0
+    Checking tokio v1.54.1
+    Checking smallvec v1.16.4
+    Checking zerofrom v0.1.8
+   Compiling tracing-attributes v0.1.31
+    Checking stable_deref_trait v1.2.1
+    Checking once_cell v1.21.4
+    Checking yoke v0.8.4
+    Checking crypto-common v0.1.7
+    Checking itoa v1.0.18
+    Checking zerovec v0.11.9
+   Compiling thiserror v2.0.21
+    Checking subtle v2.6.1
+   Compiling equivalent v1.0.3
+    Checking tracing-core v0.1.36
+   Compiling zeroize_derive v1.5.0
+   Compiling thiserror-impl v2.0.21
+    Checking log v0.4.34
+    Checking futures-sink v0.3.34
+    Checking zeroize v1.9.1
+   Compiling hashbrown v0.17.1
+   Compiling indexmap v2.14.2
+    Checking tracing v0.1.44
+    Checking tinystr v0.8.5
+    Checking writeable v0.6.4
+    Checking litemap v0.8.3
+    Checking percent-encoding v2.3.2
+   Compiling zmij v1.0.23
+    Checking icu_locale_core v2.4.0
+    Checking potential_utf v0.1.6
+    Checking zerotrie v0.2.5
+    Checking utf8_iter v1.0.4
+    Checking icu_collections v2.4.0
+    Checking icu_provider v2.4.0
+    Checking http v1.5.0
+   Compiling autocfg v1.5.1
+   Compiling zerocopy v0.8.63
+   Compiling num-traits v0.2.19
+    Checking slab v0.4.12
+    Checking icu_normalizer v2.4.0
+    Checking icu_properties v2.4.0
+    Checking form_urlencoded v1.2.2
+    Checking block-buffer v0.10.4
+    Checking cpufeatures v0.2.17
+    Checking digest v0.10.7
+    Checking ppv-lite86 v0.2.21
+    Checking idna_adapter v1.2.2
+    Checking tokio-util v0.7.20
+   Compiling futures-macro v0.3.34
+    Checking futures-task v0.3.34
+    Checking futures-util v0.3.34
+    Checking idna v1.1.0
+   Compiling pkg-config v0.3.34
+   Compiling winnow v1.0.4
+    Checking base64 v0.22.1
+   Compiling serde_json v1.0.154
+   Compiling vcpkg v0.2.15
+   Compiling toml_parser v1.1.5+spec-1.1.0
+    Checking url v2.5.8
+   Compiling either v1.19.0
+   Compiling crossbeam-utils v0.8.23
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling toml_edit v0.25.17+spec-1.1.0
+    Checking aho-corasick v1.1.5
+    Checking regex-syntax v0.8.11
+   Compiling getrandom v0.3.4
+   Compiling parking_lot_core v0.9.12
+    Checking regex-automata v0.4.18
+   Compiling proc-macro-crate v3.5.0
+    Checking rand_chacha v0.3.1
+    Checking block-padding v0.3.3
+    Checking ryu v1.0.23
+   Compiling typewit_proc_macros v1.8.1
+   Compiling getrandom v0.4.3
+    Checking typewit v1.15.2
+    Checking inout v0.1.4
+    Checking rand v0.8.8
+   Compiling serde_spanned v0.6.9
+   Compiling toml_datetime v0.6.11
+   Compiling winnow v0.7.15
+   Compiling toml_edit v0.22.27
+    Checking rand_core v0.9.5
+    Checking cipher v0.4.4
+    Checking sha2 v0.10.9
+   Compiling futures-core v0.3.34
+   Compiling js_int v0.2.2
+   Compiling semver v1.0.28
+   Compiling rustc_version v0.4.1
+   Compiling ruma-identifiers-validation v0.10.1
+   Compiling toml v0.8.23
+    Checking konst_kernel v0.3.15
+    Checking const_panic v0.2.17
+    Checking regex v1.13.1
+    Checking http-body v1.1.0
+   Compiling ring v0.17.14
+    Checking bitflags v2.13.2
+    Checking time-core v0.1.9
+    Checking powerfmt v0.2.1
+   Compiling scopeguard v1.2.0
+    Checking num-conv v0.2.2
+   Compiling ruma-common v0.15.4
+    Checking sha1_smol v1.0.1
+    Checking deranged v0.5.9
+    Checking time v0.3.55
+    Checking uuid v1.29.0
+   Compiling lock_api v0.4.14
+    Checking konst v0.3.17
+   Compiling ruma-macros v0.15.2
+   Compiling curve25519-dalek v4.1.3
+    Checking serde_html_form v0.2.8
+   Compiling libsqlite3-sys v0.33.0
+    Checking futures-channel v0.3.34
+   Compiling ruma-events v0.30.5
+   Compiling httparse v1.10.1
+   Compiling crc32fast v1.5.3
+    Checking tower-service v0.3.3
+   Compiling anyhow v1.0.104
+    Checking web-time v1.1.0
+    Checking as_variant v1.3.0
+    Checking wildmatch v2.7.0
+    Checking hmac v0.12.1
+    Checking rustls-pki-types v1.15.1
+    Checking universal-hash v0.5.1
+    Checking js_option v0.1.1
+   Compiling curve25519-dalek-derive v0.1.1
+    Checking atomic-waker v1.1.2
+    Checking opaque-debug v0.3.1
+    Checking lazy_static v1.5.1
+    Checking fnv v1.0.7
+    Checking bitmaps v3.2.1
+   Compiling ruma-client-api v0.20.4
+    Checking try-lock v0.2.5
+    Checking untrusted v0.9.0
+    Checking simd-adler32 v0.3.10
+    Checking adler2 v2.0.1
+    Checking miniz_oxide v0.9.1
+    Checking want v0.3.2
+    Checking imbl-sized-chunks v0.1.3
+    Checking h2 v0.4.20
+    Checking poly1305 v0.8.0
+    Checking chacha20 v0.9.1
+    Checking rand_xoshiro v0.7.0
+   Compiling itertools v0.14.0
+    Checking tokio-stream v0.1.19
+    Checking aead v0.5.2
+    Checking sync_wrapper v1.0.2
+    Checking arrayvec v0.7.8
+   Compiling rustls v0.23.46
+    Checking archery v1.2.3
+    Checking date_header v1.0.5
+   Compiling futures-io v0.3.34
+    Checking httpdate v1.0.3
+   Compiling foldhash v0.2.0
+    Checking assign v1.1.1
+   Compiling bytes v1.12.1
+    Checking tower-layer v0.3.3
+    Checking maplit v1.0.2
+    Checking parking v2.2.1
+    Checking signature v2.2.0
+   Compiling allocator-api2 v0.2.21
+   Compiling hashbrown v0.16.1
+    Checking ed25519 v2.2.3
+    Checking event-listener v5.4.2
+    Checking hyper v1.12.0
+    Checking imbl v5.0.0
+    Checking chacha20poly1305 v0.10.1
+   Compiling prost-derive v0.13.5
+   Compiling parking_lot v0.12.5
+    Checking flate2 v1.1.10
+    Checking rustls-webpki v0.103.16
+    Checking http-body-util v0.1.5
+    Checking rand_chacha v0.9.0
+    Checking rmp v0.8.15
+   Compiling matrix-pickle-derive v0.2.3
+   Compiling blake3 v1.8.7
+    Checking serde_bytes v0.11.19
+   Compiling proc-macro-error-attr2 v2.0.0
+   Compiling include_dir_macros v0.7.4
+    Checking foldhash v0.1.5
+    Checking compression-core v0.4.34
+   Compiling matrix-sdk-common v0.13.0
+   Compiling crc-catalog v2.5.0
+    Checking base64 v0.23.1
+    Checking ipnet v2.12.2
+    Checking hyper-util v0.1.21
+   Compiling crc v3.4.0
+    Checking compression-codecs v0.4.46
+    Checking hashbrown v0.15.5
+   Compiling include_dir v0.7.4
+   Compiling proc-macro-error2 v2.0.1
+   Compiling crossbeam-queue v0.3.14
+    Checking matrix-pickle v0.2.3
+    Checking rmp-serde v1.3.1
+    Checking rand v0.9.5
+   Compiling futures-intrusive v0.5.0
+    Checking prost v0.13.5
+    Checking eyeball-im v0.7.0
+    Checking ruma v0.12.6
+    Checking ed25519-dalek v2.2.0
+   Compiling hashlink v0.11.1
+    Checking tower v0.5.3
+    Checking x25519-dalek v2.0.1
+    Checking pbkdf2 v0.12.2
+    Checking hkdf v0.12.4
+   Compiling spin v0.9.9
+    Checking aes v0.8.4
+    Checking cbc v0.1.2
+   Compiling itertools v0.10.5
+    Checking readlock-tokio v0.1.6
+    Checking deadpool-runtime v0.1.4
+    Checking readlock v0.1.11
+   Compiling decancer v3.3.3
+    Checking cpufeatures v0.3.1
+    Checking base64ct v1.8.3
+    Checking constant_time_eq v0.4.2
+    Checking vodozemac v0.9.0
+   Compiling sqlx-core v0.9.0
+    Checking eyeball v0.8.8
+   Compiling atoi v2.0.0
+   Compiling aquamarine v0.6.0
+   Compiling flume v0.12.0
+    Checking tokio-rustls v0.26.6
+    Checking ulid v1.2.1
+    Checking hashlink v0.10.0
+    Checking async-compression v0.4.51
+   Compiling futures-executor v0.3.34
+    Checking webpki-roots v1.0.11
+    Checking ctr v0.9.2
+    Checking serde_path_to_error v0.1.20
+    Checking num_cpus v1.17.0
+   Compiling async-trait v0.1.92
+    Checking tinyvec v1.13.3
+    Checking fallible-iterator v0.3.0
+    Checking byteorder v1.5.0
+    Checking bs58 v0.5.1
+    Checking fallible-streaming-iterator v0.1.9
+   Compiling rustix v1.1.6
+    Checking xxhash-rust v0.8.19
+   Compiling thiserror v1.0.69
+    Checking growable-bloom-filter v2.1.1
+    Checking rusqlite v0.35.0
+    Checking matrix-sdk-crypto v0.13.0
+    Checking unicode-normalization v0.1.26
+    Checking deadpool v0.12.3
+   Compiling sqlx-sqlite v0.9.0
+    Checking hyper-rustls v0.27.10
+    Checking tower-http v0.6.11
+    Checking matrix-sdk-store-encryption v0.13.0
+    Checking deadpool-sync v0.1.4
+    Checking serde_urlencoded v0.7.1
+   Compiling thiserror-impl v1.0.69
+    Checking fastrand v2.5.0
+    Checking mime v0.3.17
+    Checking iana-time-zone v0.1.65
+   Compiling heck v0.5.0
+    Checking linux-raw-sys v0.12.1
+   Compiling hex v0.4.3
+   Compiling dotenvy v0.15.7
+   Compiling sqlx-macros-core v0.9.0
+    Checking chrono v0.4.45
+    Checking reqwest v0.12.28
+    Checking deadpool-sqlite v0.11.0
+    Checking matrix-sdk-base v0.13.0
+    Checking event-listener-strategy v0.5.4
+    Checking concurrent-queue v2.5.0
+   Compiling async-stream-impl v0.3.6
+   Compiling matrix-sdk v0.13.0
+    Checking async-stream v0.3.6
+    Checking async-channel v2.5.0
+    Checking matrix-sdk-sqlite v0.13.0
+    Checking oauth2 v5.0.0
+    Checking tempfile v3.27.0
+   Compiling sqlx-macros v0.9.0
+    Checking axum-core v0.5.6
+    Checking backon v1.6.0
+   Compiling guigu-agent-bridge v0.2.24
+    Checking sharded-slab v0.1.7
+    Checking matchers v0.2.0
+    Checking tracing-log v0.2.0
+    Checking serde_spanned v1.1.2
+    Checking thread_local v1.1.10
+    Checking matchit v0.8.4
+    Checking anymap2 v0.13.0
+    Checking mime2ext v0.1.54
+    Checking language-tags v0.3.2
+    Checking toml_writer v1.1.3+spec-1.1.0
+    Checking nu-ansi-term v0.50.3
+    Checking urlencoding v2.1.3
+    Checking bytesize v2.7.0
+    Checking tracing-subscriber v0.3.23
+    Checking toml v1.1.8+spec-1.1.0
+    Checking axum v0.8.6
+    Checking sqlx v0.9.0
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3m 59s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-28 01:21 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 01:21 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 01:26 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 01:31 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 01:31 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 01:31 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

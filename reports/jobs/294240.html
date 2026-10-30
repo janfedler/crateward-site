@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: sipnab 0.5.231</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>sipnab <span class="version">0.5.231</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 294240</span>
+      <a class="muted" href="https://crates.io/crates/sipnab/0.5.231" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="294240.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="294240.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="294240-diff.html">Compare with 0.5.230</a>
+    </p>
+    <p class="headline">medium severity process_spawn in build_script code (24 places): std::process::Command::new</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">521</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · sipnab</div></td><td class="mono where"><a href="https://crates.io/crates/sipnab/0.5.231/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a></td><td>medium severity process_spawn in build_script code (24 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:environment_enumeration</span><div class="sub">static · sipnab</div></td><td class="mono where"><a href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L1697" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:1697</a></td><td>medium severity environment_enumeration in library code (2 places): std::env::vars_os</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · sipnab</div></td><td class="mono where"><a href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/decrypt.rs#L3124" rel="noreferrer noopener" target="_blank">src/capture/decrypt.rs:3124</a></td><td>medium severity included_binary in library code (2 places): tests/fixtures/tls_rsa/premaster_ct.bin (256 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:persistence_locations</span><div class="sub">static · sipnab</div></td><td class="mono where"><a href="https://crates.io/crates/sipnab/0.5.231/code/CHANGELOG.md#L20461" rel="noreferrer noopener" target="_blank">CHANGELOG.md:20461</a></td><td>medium severity yara:persistence_locations in library code (4 places): Paths and keys used to persist on a developer machine</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:yara:sandbox_evasion</span><div class="sub">static · sipnab</div></td><td class="mono where"><a href="https://crates.io/crates/sipnab/0.5.231/code/src/output/runtime.rs#L178" rel="noreferrer noopener" target="_blank">src/output/runtime.rs:178</a></td><td>medium severity yara:sandbox_evasion in library code: Checks for virtual machines, sandboxes or debuggers</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · sipnab</div></td><td class="mono where"><a href="https://crates.io/crates/sipnab/0.5.231/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:environment_enumeration</code> <code class="chip">static:included_binary</code> <code class="chip">static:process_spawn</code> <code class="chip">static:yara:persistence_locations</code> <code class="chip">static:yara:sandbox_evasion</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">521</span></label>
+  
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">12</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">183</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">326</span></label>
+  <span class="muted">12 groups</span>
+</div>
+
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/build.rs#L88" rel="noreferrer noopener" target="_blank">build.rs:88</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/build.rs#L184" rel="noreferrer noopener" target="_blank">build.rs:184</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/build.rs#L208" rel="noreferrer noopener" target="_blank">build.rs:208</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/build.rs#L217" rel="noreferrer noopener" target="_blank">build.rs:217</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match persistence_locations</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Paths and keys used to persist on a developer machine</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/CHANGELOG.md#L20461" rel="noreferrer noopener" target="_blank">CHANGELOG.md:20461</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/archive/mod.rs#L31" rel="noreferrer noopener" target="_blank">src/capture/archive/mod.rs:31</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/archive/tar.rs#L9" rel="noreferrer noopener" target="_blank">src/capture/archive/tar.rs:9</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli.rs#L3988" rel="noreferrer noopener" target="_blank">src/cli.rs:3988</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">2</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">tests/fixtures/tls_rsa/premaster_ct.bin (256 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/decrypt.rs#L3124" rel="noreferrer noopener" target="_blank">src/capture/decrypt.rs:3124</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/rsa_key.rs#L85" rel="noreferrer noopener" target="_blank">src/capture/rsa_key.rs:85</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L1697" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:1697</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">yara_match sandbox_evasion</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Checks for virtual machines, sandboxes or debuggers</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/runtime.rs#L178" rel="noreferrer noopener" target="_blank">src/output/runtime.rs:178</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">158</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L539" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:539</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L2297" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:2297</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/fanout.rs#L164" rel="noreferrer noopener" target="_blank">src/capture/fanout.rs:164</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L2893" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:2893</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5183" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5183</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5243" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5243</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5406" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5406</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6206" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6206</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6265" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6265</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6330" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6330</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11085" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11085</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11353" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11353</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11532" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11532</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11639" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11639</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L554" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:554</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L1271" rel="noreferrer noopener" target="_blank">src/output/api.rs:1271</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/prometheus_server.rs#L168" rel="noreferrer noopener" target="_blank">src/output/prometheus_server.rs:168</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1442" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1442</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1554" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1554</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1614" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1614</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1643" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1643</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/https_client.rs#L264" rel="noreferrer noopener" target="_blank">src/app/https_client.rs:264</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L2585" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:2585</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3010" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3010</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3014" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3014</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3097" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3097</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3880" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3880</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3909" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3909</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3922" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3922</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3941" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3941</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3974" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3974</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L4003" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:4003</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L4052" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:4052</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5002" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5002</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5031" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5031</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5059" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5059</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11084" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11084</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11084" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11084</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11333" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11333</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11466" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11466</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11496" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11496</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep_delivery.rs#L135" rel="noreferrer noopener" target="_blank">src/capture/hep_delivery.rs:135</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep_delivery.rs#L208" rel="noreferrer noopener" target="_blank">src/capture/hep_delivery.rs:208</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1476" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1476</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/https_client.rs#L271" rel="noreferrer noopener" target="_blank">src/app/https_client.rs:271</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3924" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3924</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5504" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5504</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5509" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5509</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L783" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:783</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/servers.rs#L238" rel="noreferrer noopener" target="_blank">src/app/servers.rs:238</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3204" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3204</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5000" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5000</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5029" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5029</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5452" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5452</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5483" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5483</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6205" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6205</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11340" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11340</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11460" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11460</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11496" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11496</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L552" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:552</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L595" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:595</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L1174" rel="noreferrer noopener" target="_blank">src/output/api.rs:1174</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L2798" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:2798</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3207" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3207</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3408" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3408</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L4076" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:4076</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6989" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6989</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/live_rtp.rs#L212" rel="noreferrer noopener" target="_blank">src/output/live_rtp.rs:212</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L330" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:330</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L2292" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:2292</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3410" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3410</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L4213" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:4213</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L4220" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:4220</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5759" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5759</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6225" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6225</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6287" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6287</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6294" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6294</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6864" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6864</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6921" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6921</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6991" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6991</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L7038" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:7038</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L7060" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:7060</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L9916" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:9916</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L10420" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:10420</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L10494" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:10494</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11279" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11279</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/live_rtp.rs#L230" rel="noreferrer noopener" target="_blank">src/output/live_rtp.rs:230</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L336" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:336</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L2293" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:2293</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L2735" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:2735</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L3021" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:3021</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation/worker_process.rs#L1292" rel="noreferrer noopener" target="_blank">src/process_isolation/worker_process.rs:1292</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L856" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:856</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1037" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1037</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1095" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1095</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1161" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1161</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1198" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1198</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1444" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1444</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1606" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1606</a> </span></li>
+
+<li><code class="evidence-text">socket2::Socket</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5366" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5366</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11460" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11460</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11573" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11573</a> </span></li>
+
+<li><code class="evidence-text">socket2::Socket::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5367" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5367</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5461" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5461</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5493" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5493</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11574" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11574</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1596" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1596</a> </span></li>
+
+<li><code class="evidence-text">socket2::Domain::IPV4</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5367" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5367</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5461" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5461</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5493" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5493</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11574" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11574</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1596" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1596</a> </span></li>
+
+<li><code class="evidence-text">socket2::Type::STREAM</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5367" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5367</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5461" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5461</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5493" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5493</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11574" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11574</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtpengine/control.rs#L1596" rel="noreferrer noopener" target="_blank">src/rtpengine/control.rs:1596</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::from</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5379" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5379</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L5471" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:5471</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11593" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11593</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6273" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6273</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6345" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6345</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6484" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6484</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6486" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6486</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6534" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6534</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6580" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6580</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6617" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6617</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6623" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6623</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6661" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6661</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L6709" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:6709</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11086" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11086</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11355" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11355</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11366" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11366</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11640" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11640</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11026" rel="noreferrer noopener" target="_blank">src/output/api.rs:11026</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11114" rel="noreferrer noopener" target="_blank">src/output/api.rs:11114</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11158" rel="noreferrer noopener" target="_blank">src/output/api.rs:11158</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11173" rel="noreferrer noopener" target="_blank">src/output/api.rs:11173</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11213" rel="noreferrer noopener" target="_blank">src/output/api.rs:11213</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11261" rel="noreferrer noopener" target="_blank">src/output/api.rs:11261</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11267" rel="noreferrer noopener" target="_blank">src/output/api.rs:11267</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/prometheus_server.rs#L731" rel="noreferrer noopener" target="_blank">src/output/prometheus_server.rs:731</a> </span></li>
+
+<li><code class="evidence-text">socket2::SockRef::from</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L11341" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:11341</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::from_std</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L601" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:601</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L1443" rel="noreferrer noopener" target="_blank">src/output/api.rs:1443</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11148" rel="noreferrer noopener" target="_blank">src/output/api.rs:11148</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11200" rel="noreferrer noopener" target="_blank">src/output/api.rs:11200</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L11251" rel="noreferrer noopener" target="_blank">src/output/api.rs:11251</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L1463" rel="noreferrer noopener" target="_blank">src/output/api.rs:1463</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L1482" rel="noreferrer noopener" target="_blank">src/output/api.rs:1482</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tls_listener.rs#L83" rel="noreferrer noopener" target="_blank">src/tls_listener.rs:83</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tls_listener.rs#L141" rel="noreferrer noopener" target="_blank">src/tls_listener.rs:141</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L10840" rel="noreferrer noopener" target="_blank">src/output/api.rs:10840</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::from</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation/worker_process.rs#L570" rel="noreferrer noopener" target="_blank">src/process_isolation/worker_process.rs:570</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation/worker_process.rs#L571" rel="noreferrer noopener" target="_blank">src/process_isolation/worker_process.rs:571</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tls_listener.rs#L50" rel="noreferrer noopener" target="_blank">src/tls_listener.rs:50</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tls_listener.rs#L113" rel="noreferrer noopener" target="_blank">src/tls_listener.rs:113</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tls_listener.rs#L144" rel="noreferrer noopener" target="_blank">src/tls_listener.rs:144</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">20</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/batch.rs#L10303" rel="noreferrer noopener" target="_blank">src/app/batch.rs:10303</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/bootstrap.rs#L11428" rel="noreferrer noopener" target="_blank">src/app/bootstrap.rs:11428</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_enrich.rs#L710" rel="noreferrer noopener" target="_blank">src/app/vcon_enrich.rs:710</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/archive/password.rs#L417" rel="noreferrer noopener" target="_blank">src/capture/archive/password.rs:417</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/input_set.rs#L2378" rel="noreferrer noopener" target="_blank">src/capture/input_set.rs:2378</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/writer.rs#L2290" rel="noreferrer noopener" target="_blank">src/capture/writer.rs:2290</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/event_exec.rs#L586" rel="noreferrer noopener" target="_blank">src/output/event_exec.rs:586</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/event_exec.rs#L771" rel="noreferrer noopener" target="_blank">src/output/event_exec.rs:771</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/event_exec.rs#L1075" rel="noreferrer noopener" target="_blank">src/output/event_exec.rs:1075</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/event_exec.rs#L1128" rel="noreferrer noopener" target="_blank">src/output/event_exec.rs:1128</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/privilege.rs#L189" rel="noreferrer noopener" target="_blank">src/privilege.rs:189</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L1692" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:1692</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L2553" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:2553</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L3861" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:3861</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/alerting.rs#L852" rel="noreferrer noopener" target="_blank">src/security/alerting.rs:852</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/alerting.rs#L1158" rel="noreferrer noopener" target="_blank">src/security/alerting.rs:1158</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/exec_placeholders.rs#L85" rel="noreferrer noopener" target="_blank">src/security/exec_placeholders.rs:85</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/tfps.rs#L683" rel="noreferrer noopener" target="_blank">src/security/tfps.rs:683</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tui/clipboard.rs#L107" rel="noreferrer noopener" target="_blank">src/tui/clipboard.rs:107</a> </span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/tfps.rs#L770" rel="noreferrer noopener" target="_blank">src/security/tfps.rs:770</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/libpcap.rs#L143" rel="noreferrer noopener" target="_blank">src/capture/libpcap.rs:143</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/next_ex.rs#L162" rel="noreferrer noopener" target="_blank">src/capture/next_ex.rs:162</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/crash/frames.rs#L327" rel="noreferrer noopener" target="_blank">src/crash/frames.rs:327</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/crash/frames.rs#L404" rel="noreferrer noopener" target="_blank">src/crash/frames.rs:404</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">293</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://sipnab.com/ns/yang/sipnab-diagnosis</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/analysis/yang.rs#L70" rel="noreferrer noopener" target="_blank">src/analysis/yang.rs:70</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/NormB/sipnab</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/analysis/yang.rs#L1136" rel="noreferrer noopener" target="_blank">src/analysis/yang.rs:1136</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.com/docs/output-formats/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/analysis/yang.rs#L1160" rel="noreferrer noopener" target="_blank">src/analysis/yang.rs:1160</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/bootstrap.rs#L5581" rel="noreferrer noopener" target="_blank">src/app/bootstrap.rs:5581</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/https_client.rs#L81" rel="noreferrer noopener" target="_blank">src/app/https_client.rs:81</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon_jose.rs#L740" rel="noreferrer noopener" target="_blank">src/output/vcon_jose.rs:740</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon_jose.rs#L740" rel="noreferrer noopener" target="_blank">src/output/vcon_jose.rs:740</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8000/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/bootstrap.rs#L7386" rel="noreferrer noopener" target="_blank">src/app/bootstrap.rs:7386</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2840" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2840</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli.rs#L9345" rel="noreferrer noopener" target="_blank">src/cli.rs:9345</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli.rs#L9390" rel="noreferrer noopener" target="_blank">src/cli.rs:9390</a> </span></li>
+
+<li><code class="evidence-text">https://www.itu.int/rec/dologin_pub.asp?lang=e&#38;id=T-REC-G.729-201206-I!!SOFT-ZST-E&#38;type=items</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L31" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:31</a> </span></li>
+
+<li><code class="evidence-text">The trained codebook values of G.729 are published in the reference C code of the ITU-T G.729 software package, and that code&#39;s notice keeps its authors&#39; rights. So sipnab reads them from your own cop…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L42" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:42</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}/package.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L552" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:552</a> </span></li>
+
+<li><code class="evidence-text">https://fetcher:s3cret-token@example.invalid/pkg.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L854" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:854</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L864" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:864</a> </span></li>
+
+<li><code class="evidence-text">https://fetcher:ab?cd-secret@example.invalid/pkg.zip</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/g729_install.rs#L874" rel="noreferrer noopener" target="_blank">src/app/g729_install.rs:874</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/https_client.rs#L83" rel="noreferrer noopener" target="_blank">src/app/https_client.rs:83</a> </span></li>
+
+<li><code class="evidence-text">&#39;{shown}&#39;: {client} speaks http:// and https:// only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/https_client.rs#L88" rel="noreferrer noopener" target="_blank">src/app/https_client.rs:88</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{}{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/https_client.rs#L163" rel="noreferrer noopener" target="_blank">src/app/https_client.rs:163</a> </span></li>
+
+<li><code class="evidence-text">://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L331" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:331</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L375" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:375</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw@store.example.com:8443/v1?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L448" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:448</a> </span></li>
+
+<li><code class="evidence-text">https://[redacted]@store.example.com:8443/v1?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L449" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:449</a> </span></li>
+
+<li><code class="evidence-text">udp://tok@[2001:db8::1]:9060</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L452" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:452</a> </span></li>
+
+<li><code class="evidence-text">udp://[redacted]@[2001:db8::1]:9060</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L453" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:453</a> </span></li>
+
+<li><code class="evidence-text">http://a@b@store.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L456" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:456</a> </span></li>
+
+<li><code class="evidence-text">http://[redacted]@store.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L457" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:457</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw#x@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L464" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:464</a> </span></li>
+
+<li><code class="evidence-text">https://[redacted]@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L465" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:465</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L469" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:469</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L513" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:513</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw?x@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L468" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:468</a> </span></li>
+
+<li><code class="evidence-text">--hep-send=tcp://user:pw@collector.example.com:9060</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L472" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:472</a> </span></li>
+
+<li><code class="evidence-text">--hep-send=tcp://[redacted]@collector.example.com:9060</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L473" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:473</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L514" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:514</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com/v1?mail=a@b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L476" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:476</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L477" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:477</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2193" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2193</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L480" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:480</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L481" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:481</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-a@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L498" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:498</a> </span></li>
+
+<li><code class="evidence-text">--hep-send=tcp://planted-b@collector.example.com:9060</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L499" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:499</a> </span></li>
+
+<li><code class="evidence-text">http://user:planted-c@store.example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L503" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:503</a> </span></li>
+
+<li><code class="evidence-text">http://[redacted]@store.example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L518" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:518</a> </span></li>
+
+<li><code class="evidence-text">MCP over HTTP at {}://{addr}/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/tui_mode.rs#L1032" rel="noreferrer noopener" target="_blank">src/app/tui_mode.rs:1032</a> </span></li>
+
+<li><code class="evidence-text">MCP over HTTP at http://127.0.0.1:43929/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/tui_mode.rs#L2814" rel="noreferrer noopener" target="_blank">src/app/tui_mode.rs:2814</a> </span></li>
+
+<li><code class="evidence-text">Reading A. | MCP over HTTP at https://127.0.0.1:43929/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/tui_mode.rs#L2818" rel="noreferrer noopener" target="_blank">src/app/tui_mode.rs:2818</a> </span></li>
+
+<li><code class="evidence-text">url {url:?} is not https://, and draft-ietf-vcon-vcon-core-04 section 2.4.1 says &#34;HTTPS MUST be used for retrieval&#34;; nothing was fetched</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L338" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:338</a> </span></li>
+
+<li><code class="evidence-text">https://a/b.wav</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L388" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:388</a> </span></li>
+
+<li><code class="evidence-text">https://m/calls/ab-c_1.wav.jwe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L416" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:416</a> </span></li>
+
+<li><code class="evidence-text">https://m/calls/a.wav?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L419" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:419</a> </span></li>
+
+<li><code class="evidence-text">https://m/calls/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L421" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:421</a> </span></li>
+
+<li><code class="evidence-text">https://m/..</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L422" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:422</a> </span></li>
+
+<li><code class="evidence-text">https://m/.hidden</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L423" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:423</a> </span></li>
+
+<li><code class="evidence-text">https://m/a%2F..%2Fb</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_audio_fetch.rs#L424" rel="noreferrer noopener" target="_blank">src/app/vcon_audio_fetch.rs:424</a> </span></li>
+
+<li><code class="evidence-text">&#39;{url}&#39; sends call content in the clear to another host; use https:// (plain http:// is for a service on this host, 127.0.0.1 or ::1)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_enrich.rs#L172" rel="noreferrer noopener" target="_blank">src/app/vcon_enrich.rs:172</a> </span></li>
+
+<li><code class="evidence-text">kind = &#34;conserver&#34;\u{a}url = &#34;https://keys.example.com/base&#34;\u{a}auth_file = &#34;/etc/keys/auth&#34;\u{a}ca = &#34;/etc/keys/ca.pem&#34;\u{a}timeout = 12\u{a}max_response_head = 15000\u{a}max_size = 16000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1558" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1558</a> </span></li>
+
+<li><code class="evidence-text">https://keys.example.com/base/vcon/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1571" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1571</a> </span></li>
+
+<li><code class="evidence-text">--vcon-fetch-url=https://flags.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1593" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1593</a> </span></li>
+
+<li><code class="evidence-text">https://flags.example.com/api/v1/vcons/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1606" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1606</a> </span></li>
+
+<li><code class="evidence-text">--vcon-fetch-url=http://127.0.0.1:9/v/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1631" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1631</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1705" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1705</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1718" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1718</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1744" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1744</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1879" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1879</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1895" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1895</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1932" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1932</a> </span></li>
+
+<li><code class="evidence-text">--vcon-fetch-url=https://user:pw@store.example/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1659" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1659</a> </span></li>
+
+<li><code class="evidence-text">url = &#34;https://user:pw@store.example/{uuid}&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1666" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1666</a> </span></li>
+
+<li><code class="evidence-text">--vcon-fetch-url=ftp://store.example/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1680" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1680</a> </span></li>
+
+<li><code class="evidence-text">an ftp:// URL was accepted</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1686" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1686</a> </span></li>
+
+<li><code class="evidence-text">https://api.vcon.store</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1784" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1784</a> </span></li>
+
+<li><code class="evidence-text">https://api.vcon.store/v1/vcons/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1785" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1785</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8000/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1788" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1788</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2794" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2794</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8000/vcon/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1789" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1789</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8000/api/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1792" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1792</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8000/api/vcon/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1793" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1793</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:3000</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1796" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1796</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:3000/api/v1/vcons/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1797" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1797</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:3000/x/{uuid}?full=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1800" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1800</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1801" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1801</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9/v/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1804" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1804</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1805" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1805</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9/v</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1807" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1807</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9/v?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L1811" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:1811</a> </span></li>
+
+<li><code class="evidence-text">kind = &#34;conserver&#34;\u{a}url = &#34;http://127.0.0.1:9&#34;\u{a}auth_file = {:?}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L2022" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:2022</a> </span></li>
+
+<li><code class="evidence-text">url = &#34;http://127.0.0.1:9/v/{uuid}&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L2031" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:2031</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_fetch.rs#L2299" rel="noreferrer noopener" target="_blank">src/app/vcon_fetch.rs:2299</a> </span></li>
+
+<li><code class="evidence-text">{endpoint} is plain http to another machine: the auth header and every container cross the network unencrypted. Use https:// for anything but loopback</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L694" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:694</a> </span></li>
+
+<li><code class="evidence-text">{issuer_from} {issuer:?} is not a URI: give a scheme and more, such as https://pbx.example.com/sipnab, of 1 to {} characters</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L995" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:995</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8000/vcon/external-ingress?ingress_list=sipnab</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2179" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2179</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2720" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2720</a> </span></li>
+
+<li><code class="evidence-text">https://api.vcon.store/v1/vcons</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2191" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2191</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2689" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2689</a> </span></li>
+
+<li><code class="evidence-text">http://store.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2195" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2195</a> </span></li>
+
+<li><code class="evidence-text">https://[2001:db8::1]:8443/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2197" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2197</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2199" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2199</a> </span></li>
+
+<li><code class="evidence-text">ftp://store.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2209" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2209</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2254" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2254</a> </span></li>
+
+<li><code class="evidence-text">https:///v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2211" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2211</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com:99999/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2212" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2212</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com:x/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2213" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2213</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw@store.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2214" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2214</a> </span></li>
+
+<li><code class="evidence-text">https://vcs_live_token@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2215" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2215</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com/v1#frag</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2216" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2216</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com /v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2217" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2217</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2232" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2232</a> </span></li>
+
+<li><code class="evidence-text">sipnab speaks http:// and https:// only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2257" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2257</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-pw@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2267" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2267</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2284" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2284</a> </span></li>
+
+<li><code class="evidence-text">ftp://user:planted-pw@store.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2268" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2268</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-pw@store.example.com /v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2270" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2270</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-pw@store.example.com/v1#frag</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2271" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2271</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-pw@store.example.com:99999/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2272" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2272</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-pw#x@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2273" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2273</a> </span></li>
+
+<li><code class="evidence-text">https://user:planted-pw?x@store.example.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2274" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2274</a> </span></li>
+
+<li><code class="evidence-text">kind = &#34;generic&#34;\u{a}url = &#34;https://keys.example.com/v1/vcons&#34;\u{a}replace_url = &#34;https://keys.example.com/v1/vcons/{uuid}&#34;\u{a}auth_file = &#34;/etc/keys/auth&#34;\u{a}ca = &#34;/etc/keys/ca.pem&#34;\u{a}done = &#34;/sr…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2435" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2435</a> </span></li>
+
+<li><code class="evidence-text">https://keys.example.com/v1/vcons</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2450" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2450</a> </span></li>
+
+<li><code class="evidence-text">https://keys.example.com/v1/vcons/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2453" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2453</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-url=https://flags.example.com/v2/in</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2486" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2486</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-replace-url=https://flags.example.com/v2/in/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2487" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2487</a> </span></li>
+
+<li><code class="evidence-text">https://flags.example.com/v2/in</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2501" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2501</a> </span></li>
+
+<li><code class="evidence-text">https://flags.example.com/v2/in/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2504" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2504</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-url=http://127.0.0.1:9/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2541" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2541</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2575" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2575</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2629" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2629</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2768" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2768</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-url=https://api.vcon.store</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2684" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2684</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-url=https://api.vcon.store/v1/vcons</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2692" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2692</a> </span></li>
+
+<li><code class="evidence-text">kind = &#34;conserver&#34;\u{a}url = &#34;http://127.0.0.1:8000&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2716" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2716</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2786" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2786</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-url=https://proxy.example.com/other/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2740" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2740</a> </span></li>
+
+<li><code class="evidence-text">--vcon-forward-replace-url=https://proxy.example.com/other/path/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2742" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2742</a> </span></li>
+
+<li><code class="evidence-text">https://proxy.example.com/other/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2746" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2746</a> </span></li>
+
+<li><code class="evidence-text">https://proxy.example.com/other/path/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2749" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2749</a> </span></li>
+
+<li><code class="evidence-text">http://192.0.2.10:8000/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2826" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2826</a> </span></li>
+
+<li><code class="evidence-text">http://store.example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2833" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2833</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8000/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2847" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2847</a> </span></li>
+
+<li><code class="evidence-text">http://[::1]:8000/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2853" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2853</a> </span></li>
+
+<li><code class="evidence-text">https://192.0.2.10/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_forward.rs#L2857" rel="noreferrer noopener" target="_blank">src/app/vcon_forward.rs:2857</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L853" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:853</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L234" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:234</a> </span></li>
+
+<li><code class="evidence-text">https://pbx.example.com/sipnab</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L996" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:996</a> </span></li>
+
+<li><code class="evidence-text">1http://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1006" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1006</a> </span></li>
+
+<li><code class="evidence-text">https://a b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1008" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1008</a> </span></li>
+
+<li><code class="evidence-text">ht_tp://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1009" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1009</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1049" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1049</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1/scitt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1050" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1050</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1/scitt/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1051" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1051</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1/s?tenant=a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1052" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1052</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example:8443/scitt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1148" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1148</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1185" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1185</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example:8443/scitt/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1152" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1152</a> </span></li>
+
+<li><code class="evidence-text">https://TS.example:8443/entries/1?x=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1153" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1153</a> </span></li>
+
+<li><code class="evidence-text">http://ts.example/scitt</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1161" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1161</a> </span></li>
+
+<li><code class="evidence-text">http://ts.example:80/e/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1165" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1165</a> </span></li>
+
+<li><code class="evidence-text">http://ts.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1169" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1169</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1170" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1170</a> </span></li>
+
+<li><code class="evidence-text">https://other.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1171" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1171</a> </span></li>
+
+<li><code class="evidence-text">ftp://ts.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1174" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1174</a> </span></li>
+
+<li><code class="evidence-text">https://poller:s3cret-token@other.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1196" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1196</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1212" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1212</a> </span></li>
+
+<li><code class="evidence-text">https://poller:s3cret-token@ts.example:8443/entries/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1197" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1197</a> </span></li>
+
+<li><code class="evidence-text">https://ts.example:8443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1217" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1217</a> </span></li>
+
+<li><code class="evidence-text">https://poller:ab?cd-secret@ts.example:8443/e/1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/vcon_scitt.rs#L1226" rel="noreferrer noopener" target="_blank">src/app/vcon_scitt.rs:1226</a> </span></li>
+
+<li><code class="evidence-text">https://signer:s3cret-token@example.invalid/chain.pem</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/vcon_input.rs#L1498" rel="noreferrer noopener" target="_blank">src/capture/vcon_input.rs:1498</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/vcon_input.rs#L1507" rel="noreferrer noopener" target="_blank">src/capture/vcon_input.rs:1507</a> </span></li>
+
+<li><code class="evidence-text">https://signer:ab?cd-secret@example.invalid/chain.pem</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/vcon_input.rs#L1517" rel="noreferrer noopener" target="_blank">src/capture/vcon_input.rs:1517</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com/v1/vcons</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli.rs#L9013" rel="noreferrer noopener" target="_blank">src/cli.rs:9013</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli.rs#L9063" rel="noreferrer noopener" target="_blank">src/cli.rs:9063</a> </span></li>
+
+<li><code class="evidence-text">https://store.example.com/v1/vcons/{uuid}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli.rs#L9027" rel="noreferrer noopener" target="_blank">src/cli.rs:9027</a> </span></li>
+
+<li><code class="evidence-text">Build the G.729 codebook tables from the ITU-T G.729 software package and install them.\u{a}\u{a}Downloads the package from itu.int, checks its sha256, builds the table file from it, and writes the fi…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/cli/g729_args.rs#L40" rel="noreferrer noopener" target="_blank">src/cli/g729_args.rs:40</a> </span></li>
+
+<li><code class="evidence-text">kind = &#34;vcon-store&#34;\u{a}url = &#34;https://store.example.com/v1/vcons&#34;\u{a}replace_url = &#34;https://store.example.com/v1/vcons/{uuid}&#34;\u{a}auth_file = &#34;/etc/sipnab/vcon.auth&#34;\u{a}ca = &#34;/etc/sipnab/store-ca.…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/config.rs#L5371" rel="noreferrer noopener" target="_blank">src/config.rs:5371</a> </span></li>
+
+<li><code class="evidence-text">sipnab://lint/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L42" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:42</a> </span></li>
+
+<li><code class="evidence-text">sipnab://filter/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L54" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:54</a> </span></li>
+
+<li><code class="evidence-text">sipnab://vcon/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L61" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:61</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs/{call_id}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L132" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:132</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L393" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:393</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L14672" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:14672</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L20910" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:20910</a> </span></li>
+
+<li><code class="evidence-text">sipnab://lint/{rule_id}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L143" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:143</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4501" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4501</a> </span></li>
+
+<li><code class="evidence-text">sipnab://filter/{alias}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L154" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:154</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L14702" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:14702</a> </span></li>
+
+<li><code class="evidence-text">sipnab://reference/{topic}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L167" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:167</a> </span></li>
+
+<li><code class="evidence-text">sipnab://schema/{tool}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L177" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:177</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L16113" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:16113</a> </span></li>
+
+<li><code class="evidence-text">sipnab:///{filename}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L190" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:190</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L16117" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:16117</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L20914" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:20914</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L20923" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:20923</a> </span></li>
+
+<li><code class="evidence-text">sipnab://vcon/{call_id}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L213" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:213</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L20944" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:20944</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L21014" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:21014</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L407" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:407</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L32" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:32</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L441" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:441</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L459" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:459</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L462" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:462</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L464" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:464</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L475" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:475</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L477" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:477</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L515" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:515</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L518" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:518</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L535" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:535</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L538" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:538</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L552" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:552</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L554" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:554</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L570" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:570</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L572" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:572</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L607" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:607</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L609" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:609</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L627" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:627</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L629" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:629</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L630" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:630</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L642" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:642</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L655" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:655</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L657" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:657</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L672" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:672</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L673" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:673</a> </span></li>
+
+<li><code class="evidence-text">sipnab://nope/{x}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/completion.rs#L408" rel="noreferrer noopener" target="_blank">src/mcp/completion.rs:408</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L35" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:35</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L138" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:138</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs/abc123@10.0.0.1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L114" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:114</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs/a/b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L126" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:126</a> </span></li>
+
+<li><code class="evidence-text">sipnab://reference/filter-dsl</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L135" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:135</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/reference.rs#L52" rel="noreferrer noopener" target="_blank">src/mcp/reference.rs:52</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/reference.rs#L115" rel="noreferrer noopener" target="_blank">src/mcp/reference.rs:115</a> </span></li>
+
+<li><code class="evidence-text">sipnab:///capture.pcap</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L136" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:136</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/streams</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L137" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:137</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/live.rs#L139" rel="noreferrer noopener" target="_blank">src/mcp/live.rs:139</a> </span></li>
+
+<li><code class="evidence-text">You are auditing codec interoperability with sipnab.\u{a}\u{a}1. `capture_status`.\u{a}2. `check_codec_negotiation` for offers that produced no common codec.\u{a}3. `group_dialogs` by `rtp.codec` with…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/prompts.rs#L89" rel="noreferrer noopener" target="_blank">src/mcp/prompts.rs:89</a> </span></li>
+
+<li><code class="evidence-text">sipnab://reference/sip-response-codes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/reference.rs#L60" rel="noreferrer noopener" target="_blank">src/mcp/reference.rs:60</a> </span></li>
+
+<li><code class="evidence-text">sipnab://reference/mos-and-codecs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/reference.rs#L67" rel="noreferrer noopener" target="_blank">src/mcp/reference.rs:67</a> </span></li>
+
+<li><code class="evidence-text">sipnab://reference/does-not-exist</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/reference.rs#L143" rel="noreferrer noopener" target="_blank">src/mcp/reference.rs:143</a> </span></li>
+
+<li><code class="evidence-text">sipnab:///{name}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4447" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4447</a> </span></li>
+
+<li><code class="evidence-text">&#39;{alias}&#39; is not a diagnostic alias; complete the &#39;sipnab://filter/{{alias}}&#39; template, or read sipnab://reference/filter-dsl for the grammar. Served: {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4522" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4522</a> </span></li>
+
+<li><code class="evidence-text">&#39;{tool}&#39; is not a tool this server loaded; complete the &#39;sipnab://schema/{{tool}}&#39; template for the loaded names</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4557" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4557</a> </span></li>
+
+<li><code class="evidence-text">sipnab:///</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4583" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4583</a> </span></li>
+
+<li><code class="evidence-text">&#39;{uri}&#39; is not a sipnab resource URI; expected sipnab:///&#60;filename&#62; for a capture, one of the sipnab://reference/... URIs that resources/list names, or a URI built from a template that resources/templ…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4588" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4588</a> </span></li>
+
+<li><code class="evidence-text">sipnab://reference/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L4741" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:4741</a> </span></li>
+
+<li><code class="evidence-text">sipnab:///../etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L14637" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:14637</a> </span></li>
+
+<li><code class="evidence-text">sipnab:///sub/dir.pcap</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L14637" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:14637</a> </span></li>
+
+<li><code class="evidence-text">sipnab://filter/slow-setup</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L14746" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:14746</a> </span></li>
+
+<li><code class="evidence-text">sipnab://filter/no-such-alias</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L14772" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:14772</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs/{i}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L493" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:493</a> </span></li>
+
+<li><code class="evidence-text">sipnab://live/dialogs/one-too-many</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/subscribe.rs#L497" rel="noreferrer noopener" target="_blank">src/mcp/subscribe.rs:497</a> </span></li>
+
+<li><code class="evidence-text">sipnab://schema/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/tool_schema.rs#L22" rel="noreferrer noopener" target="_blank">src/mcp/tool_schema.rs:22</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/tool_schema.rs#L194" rel="noreferrer noopener" target="_blank">src/mcp/tool_schema.rs:194</a> </span></li>
+
+<li><code class="evidence-text">https://vcon.example.com/v1/vcons</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/tools/vcon.rs#L2632" rel="noreferrer noopener" target="_blank">src/mcp/tools/vcon.rs:2632</a> </span></li>
+
+<li><code class="evidence-text">--mcp-resource-url {raw:?}: must be an absolute URL including the scheme, e.g. https://sipnab.example.com/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L199" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:199</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1065" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1065</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1068" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1068</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1094" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1094</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com/.well-known/oauth-protected-resource</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1071" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1071</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com/resource1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1074" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1074</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1080" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1080</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1093" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1093</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com/mcp/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1098" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1098</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1099" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1099</a> </span></li>
+
+<li><code class="evidence-text">HTTPS://Resource.Example.COM:8443/MCP</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1116" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1116</a> </span></li>
+
+<li><code class="evidence-text">https://resource.example.com:8443/MCP</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1118" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1118</a> </span></li>
+
+<li><code class="evidence-text">ftp://sipnab.example.com/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1135" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1135</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw@sipnab.test/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1136" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1136</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.test/mcp?tenant=1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1137" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1137</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.test/mcp#frag</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1138" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1138</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.test/{tenant}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1139" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1139</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.test/a//b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1140" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1140</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.test/a b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1141" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1141</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.example.com/mcp</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1162" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1162</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1165" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1165</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1211" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1211</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1310" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1310</a> </span></li>
+
+<li><code class="evidence-text">Bearer realm=&#34;sipnab&#34;, resource_metadata=&#34;https://sipnab.example.com/.well-known/oauth-protected-resource/mcp&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/transport.rs#L1221" rel="noreferrer noopener" target="_blank">src/mcp/transport.rs:1221</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.com/problems/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L104" rel="noreferrer noopener" target="_blank">src/output/api.rs:104</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.com/problems/bad-request</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L7873" rel="noreferrer noopener" target="_blank">src/output/api.rs:7873</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.com/problems/not-found</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L7914" rel="noreferrer noopener" target="_blank">src/output/api.rs:7914</a> </span></li>
+
+<li><code class="evidence-text">https://sipnab.com/problems/bad-gateway</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/api.rs#L14999" rel="noreferrer noopener" target="_blank">src/output/api.rs:14999</a> </span></li>
+
+<li><code class="evidence-text">Identity: eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.SIGNATURE;info=&#60;https://example.com/cert.pem&#62;;alg=ES256;ppt=shaken</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon.rs#L6665" rel="noreferrer noopener" target="_blank">src/output/vcon.rs:6665</a> </span></li>
+
+<li><code class="evidence-text">{token};info=&#60;https://x/c.pem&#62;;alg=ES256;ppt=shaken</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon.rs#L7025" rel="noreferrer noopener" target="_blank">src/output/vcon.rs:7025</a> </span></li>
+
+<li><code class="evidence-text">;info=&#60;https://x/c.pem&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon.rs#L7045" rel="noreferrer noopener" target="_blank">src/output/vcon.rs:7045</a> </span></li>
+
+<li><code class="evidence-text">Identity: {header}.{payload}.c2ln;info=&#60;https://cert.example/c.pem&#62;;alg=ES256;ppt=shaken</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon.rs#L9916" rel="noreferrer noopener" target="_blank">src/output/vcon.rs:9916</a> </span></li>
+
+<li><code class="evidence-text">https://example.invalid/schema</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon_schema.rs#L995" rel="noreferrer noopener" target="_blank">src/output/vcon_schema.rs:995</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/vcon_schema.rs#L1150" rel="noreferrer noopener" target="_blank">src/output/vcon_schema.rs:1150</a> </span></li>
+
+<li><code class="evidence-text">this tfps_ctl has no JSON mode: TFPS gained --json in sippulse/tfps#6, merged into master on 2026-09-18 and in no tagged release yet (v0.2.1 rejects it); build TFPS from master, https://github.com/sip…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/tfps.rs#L575" rel="noreferrer noopener" target="_blank">src/security/tfps.rs:575</a> </span></li>
+
+<li><code class="evidence-text">https://www.rfc-editor.org/rfc/rfc{}.html#section-{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/sip/lint/finding.rs#L161" rel="noreferrer noopener" target="_blank">src/sip/lint/finding.rs:161</a> </span></li>
+
+<li><code class="evidence-text">https://www.rfc-editor.org/rfc/rfc3261.html#section-8.1.1.7</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/sip/lint/finding.rs#L1033" rel="noreferrer noopener" target="_blank">src/sip/lint/finding.rs:1033</a> </span></li>
+
+<li><code class="evidence-text">this-is-not-a-passport;info=&#60;https://c.example/c.pem&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/sip/stir_shaken.rs#L382" rel="noreferrer noopener" target="_blank">src/sip/stir_shaken.rs:382</a> </span></li>
+
+<li><code class="evidence-text">{&#34;alg&#34;:&#34;ES256&#34;,&#34;ppt&#34;:&#34;shaken&#34;,&#34;typ&#34;:&#34;passport&#34;,&#34;x5u&#34;:&#34;https://cert.example.com/cert.pem&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/sip/stir_shaken.rs#L453" rel="noreferrer noopener" target="_blank">src/sip/stir_shaken.rs:453</a> </span></li>
+
+<li><code class="evidence-text">{header_b64}.{payload_b64}.{sig_b64};info=&#60;https://cert.example.com/cert.pem&#62;;alg=ES256;ppt=shaken</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/sip/stir_shaken.rs#L459" rel="noreferrer noopener" target="_blank">src/sip/stir_shaken.rs:459</a> </span></li>
+
+<li><code class="evidence-text">&#60;!DOCTYPE html&#62;\u{a}&#60;html lang=&#34;en&#34;&#62;\u{a}&#60;head&#62;\u{a}&#60;meta charset=&#34;utf-8&#34;&#62;\u{a}&#60;title&#62;sipnab — Call Flow Diagram&#60;/title&#62;\u{a}&#60;style&#62;\u{a}  body {{ background: #0d1117; color: #c9d1d9; font-family: s…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tui/call_flow/export.rs#L42" rel="noreferrer noopener" target="_blank">src/tui/call_flow/export.rs:42</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">32</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">4 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/bootstrap.rs#L1623" rel="noreferrer noopener" target="_blank">src/app/bootstrap.rs:1623</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/live.rs#L116" rel="noreferrer noopener" target="_blank">src/capture/live.rs:116</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/next_ex.rs#L87" rel="noreferrer noopener" target="_blank">src/capture/next_ex.rs:87</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation/worker_process.rs#L502" rel="noreferrer noopener" target="_blank">src/process_isolation/worker_process.rs:502</a> </span></li>
+
+<li><code class="evidence-text">5 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/app/run_provenance.rs#L185" rel="noreferrer noopener" target="_blank">src/app/run_provenance.rs:185</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/archive/password.rs#L1333" rel="noreferrer noopener" target="_blank">src/capture/archive/password.rs:1333</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/fanout.rs#L92" rel="noreferrer noopener" target="_blank">src/capture/fanout.rs:92</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/hep.rs#L3885" rel="noreferrer noopener" target="_blank">src/capture/hep.rs:3885</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/libpcap.rs#L153" rel="noreferrer noopener" target="_blank">src/capture/libpcap.rs:153</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/uprobe/bpf.rs#L121" rel="noreferrer noopener" target="_blank">src/capture/uprobe/bpf.rs:121</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/uprobe/mod.rs#L145" rel="noreferrer noopener" target="_blank">src/capture/uprobe/mod.rs:145</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/output/cli_print.rs#L249" rel="noreferrer noopener" target="_blank">src/output/cli_print.rs:249</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/tfps.rs#L796" rel="noreferrer noopener" target="_blank">src/security/tfps.rs:796</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/signals.rs#L90" rel="noreferrer noopener" target="_blank">src/signals.rs:90</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/tui/controllers/file_open.rs#L1427" rel="noreferrer noopener" target="_blank">src/tui/controllers/file_open.rs:1427</a> </span></li>
+
+<li><code class="evidence-text">7 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/archive/tty.rs#L113" rel="noreferrer noopener" target="_blank">src/capture/archive/tty.rs:113</a> </span></li>
+
+<li><code class="evidence-text">12 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/keylog_source.rs#L200" rel="noreferrer noopener" target="_blank">src/capture/keylog_source.rs:200</a> </span></li>
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/mapped.rs#L173" rel="noreferrer noopener" target="_blank">src/capture/mapped.rs:173</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/seccomp.rs#L791" rel="noreferrer noopener" target="_blank">src/seccomp.rs:791</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/uprobe/bpf_record.rs#L187" rel="noreferrer noopener" target="_blank">src/capture/uprobe/bpf_record.rs:187</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/writer.rs#L1364" rel="noreferrer noopener" target="_blank">src/capture/writer.rs:1364</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/clock.rs#L114" rel="noreferrer noopener" target="_blank">src/clock.rs:114</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/crash.rs#L170" rel="noreferrer noopener" target="_blank">src/crash.rs:170</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/mcp/server.rs#L3088" rel="noreferrer noopener" target="_blank">src/mcp/server.rs:3088</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/names.rs#L645" rel="noreferrer noopener" target="_blank">src/names.rs:645</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/security/alerting.rs#L1097" rel="noreferrer noopener" target="_blank">src/security/alerting.rs:1097</a> </span></li>
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/capture/uprobe/perf.rs#L121" rel="noreferrer noopener" target="_blank">src/capture/uprobe/perf.rs:121</a> </span></li>
+
+<li><code class="evidence-text">9 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/crash/frames.rs#L255" rel="noreferrer noopener" target="_blank">src/crash/frames.rs:255</a> <a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/sandbox.rs#L512" rel="noreferrer noopener" target="_blank">src/sandbox.rs:512</a> </span></li>
+
+<li><code class="evidence-text">21 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/privilege.rs#L291" rel="noreferrer noopener" target="_blank">src/privilege.rs:291</a> </span></li>
+
+<li><code class="evidence-text">8 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation.rs#L120" rel="noreferrer noopener" target="_blank">src/process_isolation.rs:120</a> </span></li>
+
+<li><code class="evidence-text">13 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/rtp/playback.rs#L111" rel="noreferrer noopener" target="_blank">src/rtp/playback.rs:111</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">environment_enumeration</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/sipnab/0.5.231/code/src/process_isolation/worker_process.rs#L812" rel="noreferrer noopener" target="_blank">src/process_isolation/worker_process.rs:812</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>351 ms</dd></div><div><dt>VM restore</dt><dd>82 ms</dd></div><div><dt>Payload</dt><dd>17014 files, 423.4 MiB</dd></div><div><dt>Files opened</dt><dd>680</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.</p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">5 ms</td>
+<td class="nowrap">343 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>7</dd></div><div><dt>Directories</dt><dd>12</dd></div><div><dt>Size</dt><dd>56.6 KiB</dd></div><div><dt>Compiled units</dt><dd>0</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>error: rustc 1.98.1 is not supported by the following packages:
+  sipnab@0.5.231 requires rustc 1.99
+  sipnab@0.5.231 requires rustc 1.99
+  sipnab@0.5.231 requires rustc 1.99
+  sipnab-bpf-types@0.1.3 requires rustc 1.99
+Either upgrade rustc or select compatible dependency versions with
+`cargo update &#60;name&#62;@&#60;current-ver&#62; --precise &#60;compatible-ver&#62;`
+where `&#60;compatible-ver&#62;` is the latest version supporting rustc 1.98.1
+
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-28 00:39 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 00:39 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 00:39 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 00:39 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot0</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 00:39 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-28 00:39 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

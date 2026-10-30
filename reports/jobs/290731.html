@@ -1,0 +1,1569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: crawlberg-browser 1.12.3</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>crawlberg-browser <span class="version">1.12.3</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 290731</span>
+      <a class="muted" href="https://crates.io/crates/crawlberg-browser/1.12.3" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="290731.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="290731.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="290731-diff.html">Compare with 1.12.2</a>
+    </p>
+    <p class="headline">The build looked up github.com.</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">4</span></a>
+  <a href="#behavior">Behavior <span class="count">3</span></a>
+  <a href="#findings">Static findings <span class="count">442</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">network_lookup</span><div class="sub">network · v8</div></td><td class="mono where">github.com</td><td>The build looked up github.com.</td></tr>
+
+<tr><td class="num"><span class="points low">5</span></td><td class="signal"><span class="word">exec_downloader</span><div class="sub">trace · v8</div></td><td class="mono where">/usr/bin/curl</td><td>The build ran /usr/bin/curl.</td></tr>
+
+<tr><td class="num"><span class="points low">3</span></td><td class="signal"><span class="word">exec_interpreter</span><div class="sub">trace · v8</div></td><td class="mono where">/usr/bin/python3</td><td>The build ran /usr/bin/python3.</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · crawlberg-browser</div></td><td class="mono where"><a href="https://crates.io/crates/crawlberg-browser/1.12.3/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">exec:downloader</code> <code class="chip">exec:interpreter</code> <code class="chip">net:github.com</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">442</span></label>
+  
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">143</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">299</span></label>
+  <span class="muted">4 groups</span>
+</div>
+
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">142</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">reqwest::Client::builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L158" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:158</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L433" rel="noreferrer noopener" target="_blank">src/js/ops.rs:433</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L353" rel="noreferrer noopener" target="_blank">src/net/client.rs:353</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L389" rel="noreferrer noopener" target="_blank">src/net/client.rs:389</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L349" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:349</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L356" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:356</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L364" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:364</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L375" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:375</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L404" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:404</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L444" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:444</a> </span></li>
+
+<li><code class="evidence-text">reqwest::redirect::Policy::none</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L159" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:159</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L434" rel="noreferrer noopener" target="_blank">src/js/ops.rs:434</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L354" rel="noreferrer noopener" target="_blank">src/net/client.rs:354</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L390" rel="noreferrer noopener" target="_blank">src/net/client.rs:390</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::USER_AGENT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L179" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:179</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L131" rel="noreferrer noopener" target="_blank">src/net/client.rs:131</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::COOKIE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L187" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:187</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L614" rel="noreferrer noopener" target="_blank">src/net/client.rs:614</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderMap::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L190" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:190</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L910" rel="noreferrer noopener" target="_blank">src/js/ops.rs:910</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L129" rel="noreferrer noopener" target="_blank">src/net/client.rs:129</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderName::from_bytes</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L192" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:192</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L912" rel="noreferrer noopener" target="_blank">src/js/ops.rs:912</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L618" rel="noreferrer noopener" target="_blank">src/net/client.rs:618</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L628" rel="noreferrer noopener" target="_blank">src/net/client.rs:628</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue::from_str</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L194" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:194</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L914" rel="noreferrer noopener" target="_blank">src/js/ops.rs:914</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L132" rel="noreferrer noopener" target="_blank">src/net/client.rs:132</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L612" rel="noreferrer noopener" target="_blank">src/net/client.rs:612</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L618" rel="noreferrer noopener" target="_blank">src/net/client.rs:618</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L628" rel="noreferrer noopener" target="_blank">src/net/client.rs:628</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::SET_COOKIE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L209" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:209</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L948" rel="noreferrer noopener" target="_blank">src/js/ops.rs:948</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L577" rel="noreferrer noopener" target="_blank">src/net/client.rs:577</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::LOCATION</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L218" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:218</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L966" rel="noreferrer noopener" target="_blank">src/js/ops.rs:966</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L530" rel="noreferrer noopener" target="_blank">src/net/client.rs:530</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L365" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:365</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1131" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1131</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L794" rel="noreferrer noopener" target="_blank">src/net/client.rs:794</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L828" rel="noreferrer noopener" target="_blank">src/net/client.rs:828</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L227" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:227</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L303" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:303</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L353" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:353</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L540" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:540</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L581" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:581</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L647" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:647</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client/chrome145_tests.rs#L85" rel="noreferrer noopener" target="_blank">src/net/wreq_client/chrome145_tests.rs:85</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Client</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L411" rel="noreferrer noopener" target="_blank">src/js/ops.rs:411</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L421" rel="noreferrer noopener" target="_blank">src/js/ops.rs:421</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L431" rel="noreferrer noopener" target="_blank">src/js/ops.rs:431</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L765" rel="noreferrer noopener" target="_blank">src/js/ops.rs:765</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1050" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1050</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L241" rel="noreferrer noopener" target="_blank">src/net/client.rs:241</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L242" rel="noreferrer noopener" target="_blank">src/net/client.rs:242</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L350" rel="noreferrer noopener" target="_blank">src/net/client.rs:350</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L371" rel="noreferrer noopener" target="_blank">src/net/client.rs:371</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Response</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L535" rel="noreferrer noopener" target="_blank">src/js/ops.rs:535</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L808" rel="noreferrer noopener" target="_blank">src/js/ops.rs:808</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L873" rel="noreferrer noopener" target="_blank">src/js/ops.rs:873</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L939" rel="noreferrer noopener" target="_blank">src/js/ops.rs:939</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L963" rel="noreferrer noopener" target="_blank">src/js/ops.rs:963</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L180" rel="noreferrer noopener" target="_blank">src/net/client.rs:180</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L576" rel="noreferrer noopener" target="_blank">src/net/client.rs:576</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L642" rel="noreferrer noopener" target="_blank">src/net/client.rs:642</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L695" rel="noreferrer noopener" target="_blank">src/js/ops.rs:695</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L799" rel="noreferrer noopener" target="_blank">src/js/ops.rs:799</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L867" rel="noreferrer noopener" target="_blank">src/js/ops.rs:867</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L440" rel="noreferrer noopener" target="_blank">src/net/client.rs:440</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L452" rel="noreferrer noopener" target="_blank">src/net/client.rs:452</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L463" rel="noreferrer noopener" target="_blank">src/net/client.rs:463</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L484" rel="noreferrer noopener" target="_blank">src/net/client.rs:484</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L567" rel="noreferrer noopener" target="_blank">src/net/client.rs:567</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L639" rel="noreferrer noopener" target="_blank">src/net/client.rs:639</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L703" rel="noreferrer noopener" target="_blank">src/net/client.rs:703</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::GET</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L719" rel="noreferrer noopener" target="_blank">src/js/ops.rs:719</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L729" rel="noreferrer noopener" target="_blank">src/js/ops.rs:729</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L858" rel="noreferrer noopener" target="_blank">src/js/ops.rs:858</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1192" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1192</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L430" rel="noreferrer noopener" target="_blank">src/net/client.rs:430</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L478" rel="noreferrer noopener" target="_blank">src/net/client.rs:478</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L537" rel="noreferrer noopener" target="_blank">src/net/client.rs:537</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L704" rel="noreferrer noopener" target="_blank">src/net/client.rs:704</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1369" rel="noreferrer noopener" target="_blank">src/net/client.rs:1369</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/mod.rs#L182" rel="noreferrer noopener" target="_blank">src/page/mod.rs:182</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::HEAD</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L730" rel="noreferrer noopener" target="_blank">src/js/ops.rs:730</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L704" rel="noreferrer noopener" target="_blank">src/net/client.rs:704</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::POST</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L731" rel="noreferrer noopener" target="_blank">src/js/ops.rs:731</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L434" rel="noreferrer noopener" target="_blank">src/net/client.rs:434</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L650" rel="noreferrer noopener" target="_blank">src/net/client.rs:650</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L173" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:173</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::OPTIONS</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L771" rel="noreferrer noopener" target="_blank">src/js/ops.rs:771</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L704" rel="noreferrer noopener" target="_blank">src/net/client.rs:704</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderMap</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L128" rel="noreferrer noopener" target="_blank">src/net/client.rs:128</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L607" rel="noreferrer noopener" target="_blank">src/net/client.rs:607</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L641" rel="noreferrer noopener" target="_blank">src/net/client.rs:641</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue::from_static</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L132" rel="noreferrer noopener" target="_blank">src/net/client.rs:132</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L136" rel="noreferrer noopener" target="_blank">src/net/client.rs:136</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L142" rel="noreferrer noopener" target="_blank">src/net/client.rs:142</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L146" rel="noreferrer noopener" target="_blank">src/net/client.rs:146</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L150" rel="noreferrer noopener" target="_blank">src/net/client.rs:150</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L154" rel="noreferrer noopener" target="_blank">src/net/client.rs:154</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L158" rel="noreferrer noopener" target="_blank">src/net/client.rs:158</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L162" rel="noreferrer noopener" target="_blank">src/net/client.rs:162</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L166" rel="noreferrer noopener" target="_blank">src/net/client.rs:166</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L170" rel="noreferrer noopener" target="_blank">src/net/client.rs:170</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L174" rel="noreferrer noopener" target="_blank">src/net/client.rs:174</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L135" rel="noreferrer noopener" target="_blank">src/net/client.rs:135</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::ACCEPT_LANGUAGE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L141" rel="noreferrer noopener" target="_blank">src/net/client.rs:141</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderName::from_static</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L145" rel="noreferrer noopener" target="_blank">src/net/client.rs:145</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L149" rel="noreferrer noopener" target="_blank">src/net/client.rs:149</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L153" rel="noreferrer noopener" target="_blank">src/net/client.rs:153</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L157" rel="noreferrer noopener" target="_blank">src/net/client.rs:157</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L161" rel="noreferrer noopener" target="_blank">src/net/client.rs:161</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L165" rel="noreferrer noopener" target="_blank">src/net/client.rs:165</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L169" rel="noreferrer noopener" target="_blank">src/net/client.rs:169</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L173" rel="noreferrer noopener" target="_blank">src/net/client.rs:173</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::HeaderValue</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L188" rel="noreferrer noopener" target="_blank">src/net/client.rs:188</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L35" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:35</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L199" rel="noreferrer noopener" target="_blank">src/net/client.rs:199</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::MOVED_PERMANENTLY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L200" rel="noreferrer noopener" target="_blank">src/net/client.rs:200</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::FOUND</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L201" rel="noreferrer noopener" target="_blank">src/net/client.rs:201</a> </span></li>
+
+<li><code class="evidence-text">reqwest::StatusCode::SEE_OTHER</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L202" rel="noreferrer noopener" target="_blank">src/net/client.rs:202</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Proxy</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L245" rel="noreferrer noopener" target="_blank">src/net/client.rs:245</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L322" rel="noreferrer noopener" target="_blank">src/net/client.rs:322</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L149" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:149</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L77" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:77</a> </span></li>
+
+<li><code class="evidence-text">reqwest::header::CONTENT_TYPE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L651" rel="noreferrer noopener" target="_blank">src/net/client.rs:651</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Method::TRACE</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L704" rel="noreferrer noopener" target="_blank">src/net/client.rs:704</a> </span></li>
+
+<li><code class="evidence-text">reqwest::Proxy::all</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L150" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:150</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L354" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:354</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L406" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:406</a> </span></li>
+
+<li><code class="evidence-text">hyper_util::client::proxy::matcher::Matcher::from_system</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L48" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:48</a> </span></li>
+
+<li><code class="evidence-text">reqwest::ClientBuilder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L133" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:133</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L138" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:138</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L196" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:196</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L199" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:199</a> </span></li>
+
+<li><code class="evidence-text">reqwest::dns::Resolve</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L175" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:175</a> </span></li>
+
+<li><code class="evidence-text">reqwest::dns::Name</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L176" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:176</a> </span></li>
+
+<li><code class="evidence-text">reqwest::dns::Resolving</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L176" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:176</a> </span></li>
+
+<li><code class="evidence-text">reqwest::dns::Addrs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L178" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:178</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::lookup_host</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L127" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:127</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">298</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">socks5://proxy.test:1080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/context.rs#L186" rel="noreferrer noopener" target="_blank">src/context.rs:186</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L439" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:439</a> </span></li>
+
+<li><code class="evidence-text">&#60;a href=&#34;https://example.com&#34; class=&#34;link&#34;&#62;Click&#60;/a&#62;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/dom/serialize.rs#L189" rel="noreferrer noopener" target="_blank">src/dom/serialize.rs:189</a> </span></li>
+
+<li><code class="evidence-text">href=&#34;https://example.com&#34;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/dom/serialize.rs#L192" rel="noreferrer noopener" target="_blank">src/dom/serialize.rs:192</a> </span></li>
+
+<li><code class="evidence-text">http://origin.test/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L295" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:295</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L345" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:345</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L403" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:403</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1053" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1053</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L346" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:346</a> </span></li>
+
+<li><code class="evidence-text">http://origin.test/module.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L330" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:330</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L338" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:338</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L409" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:409</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L343" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:343</a> </span></li>
+
+<li><code class="evidence-text">http://target.example/module.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L351" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:351</a> </span></li>
+
+<li><code class="evidence-text">http://{}/module.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L366" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:366</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 302 Found\u{d}\u{a}Location: http://localhost:{target_port}/module.js\u{d}\u{a}Content-Length: 0\u{d}\u{a}Connection: close\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L395" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:395</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{proxy_port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L400" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:400</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1176" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1176</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L876" rel="noreferrer noopener" target="_blank">src/net/client.rs:876</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L905" rel="noreferrer noopener" target="_blank">src/net/client.rs:905</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L972" rel="noreferrer noopener" target="_blank">src/net/client.rs:972</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L478" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:478</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L420" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:420</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L424" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:424</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L433" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:433</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L440" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:440</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L465" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:465</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L699" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:699</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L902" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:902</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1001" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1001</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1017" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1017</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1034" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1034</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1045" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1045</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1072" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1072</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L152" rel="noreferrer noopener" target="_blank">src/net/credential.rs:152</a> </span></li>
+
+<li><code class="evidence-text">http://user:s3cret@example.com/m.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L423" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:423</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/m.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L430" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:430</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L435" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:435</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L443" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:443</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L456" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:456</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{port}/m.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/module_loader.rs#L470" rel="noreferrer noopener" target="_blank">src/js/module_loader.rs:470</a> </span></li>
+
+<li><code class="evidence-text">{}://{}:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L706" rel="noreferrer noopener" target="_blank">src/js/ops.rs:706</a> </span></li>
+
+<li><code class="evidence-text">{}://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L707" rel="noreferrer noopener" target="_blank">src/js/ops.rs:707</a> </span></li>
+
+<li><code class="evidence-text">http://proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1058" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1058</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1080" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1080</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L331" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:331</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L338" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:338</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L420" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:420</a> </span></li>
+
+<li><code class="evidence-text">http://target.example/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1082" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1082</a> </span></li>
+
+<li><code class="evidence-text">http://198.51.100.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1090" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1090</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L891" rel="noreferrer noopener" target="_blank">src/net/client.rs:891</a> </span></li>
+
+<li><code class="evidence-text">http://origin.test/data</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1115" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1115</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1124" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1124</a> </span></li>
+
+<li><code class="evidence-text">http://{}/data</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1132" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1132</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 302 Found\u{d}\u{a}Location: http://localhost:{target_port}/end\u{d}\u{a}Content-Length: 0\u{d}\u{a}Connection: close\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1171" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1171</a> </span></li>
+
+<li><code class="evidence-text">http://origin.test/start</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1180" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1180</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1188" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1188</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1191" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1191</a> </span></li>
+
+<li><code class="evidence-text">http://origin.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/js/ops.rs#L1188" rel="noreferrer noopener" target="_blank">src/js/ops.rs:1188</a> </span></li>
+
+<li><code class="evidence-text">file:// access is disabled; enable allow_file_access to permit it</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L421" rel="noreferrer noopener" target="_blank">src/net/client.rs:421</a> </span></li>
+
+<li><code class="evidence-text">https://example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L753" rel="noreferrer noopener" target="_blank">src/net/client.rs:753</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L816" rel="noreferrer noopener" target="_blank">src/net/client.rs:816</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L841" rel="noreferrer noopener" target="_blank">src/net/client.rs:841</a> </span></li>
+
+<li><code class="evidence-text">http://split.example/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L881" rel="noreferrer noopener" target="_blank">src/net/client.rs:881</a> </span></li>
+
+<li><code class="evidence-text">http://public.example/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L906" rel="noreferrer noopener" target="_blank">src/net/client.rs:906</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{first_port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L944" rel="noreferrer noopener" target="_blank">src/net/client.rs:944</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L447" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:447</a> </span></li>
+
+<li><code class="evidence-text">http://example.invalid/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L948" rel="noreferrer noopener" target="_blank">src/net/client.rs:948</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1009" rel="noreferrer noopener" target="_blank">src/net/client.rs:1009</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L454" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:454</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{second_port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L951" rel="noreferrer noopener" target="_blank">src/net/client.rs:951</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L457" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:457</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{target_port}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L979" rel="noreferrer noopener" target="_blank">src/net/client.rs:979</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L486" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:486</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 302 Found\u{d}\u{a}Location: http://10.0.0.1/admin\u{d}\u{a}Content-Length: 0\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1078" rel="noreferrer noopener" target="_blank">src/net/client.rs:1078</a> </span></li>
+
+<li><code class="evidence-text">file:///etc/passwd</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1112" rel="noreferrer noopener" target="_blank">src/net/client.rs:1112</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L500" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:500</a> </span></li>
+
+<li><code class="evidence-text">expected SsrfDenied for file://, got {err:?}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1118" rel="noreferrer noopener" target="_blank">src/net/client.rs:1118</a> </span></li>
+
+<li><code class="evidence-text">file:// is decided before the network policy is consulted</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1122" rel="noreferrer noopener" target="_blank">src/net/client.rs:1122</a> </span></li>
+
+<li><code class="evidence-text">http://origin.test/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1456" rel="noreferrer noopener" target="_blank">src/net/client.rs:1456</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1461" rel="noreferrer noopener" target="_blank">src/net/client.rs:1461</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1506" rel="noreferrer noopener" target="_blank">src/net/client.rs:1506</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L526" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:526</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L533" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:533</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L602" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:602</a> </span></li>
+
+<li><code class="evidence-text">GET http://origin.test/page </code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1515" rel="noreferrer noopener" target="_blank">src/net/client.rs:1515</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L612" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:612</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{port}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1532" rel="noreferrer noopener" target="_blank">src/net/client.rs:1532</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L451" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:451</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L393" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:393</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 302 Found\u{d}\u{a}Location: http://localhost:{port}/away\u{d}\u{a}Content-Length: 0\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1568" rel="noreferrer noopener" target="_blank">src/net/client.rs:1568</a> </span></li>
+
+<li><code class="evidence-text">http://example.invalid/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1608" rel="noreferrer noopener" target="_blank">src/net/client.rs:1608</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L414" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:414</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L423" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:423</a> </span></li>
+
+<li><code class="evidence-text">GET http://example.invalid/ </code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1614" rel="noreferrer noopener" target="_blank">src/net/client.rs:1614</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1627" rel="noreferrer noopener" target="_blank">src/net/client.rs:1627</a> </span></li>
+
+<li><code class="evidence-text">http://user:{URL_PASSWORD}@</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1627" rel="noreferrer noopener" target="_blank">src/net/client.rs:1627</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 302 Found\u{d}\u{a}Location: http://localhost:{other_port}/away\u{d}\u{a}Content-Length: 0\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/client.rs#L1694" rel="noreferrer noopener" target="_blank">src/net/client.rs:1694</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/path</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L643" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:643</a> </span></li>
+
+<li><code class="evidence-text">https://www.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L653" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:653</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1104" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1104</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L659" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:659</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L684" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:684</a> </span></li>
+
+<li><code class="evidence-text">https://other.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L663" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:663</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L688" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:688</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L680" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:680</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L696" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:696</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L707" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:707</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L718" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:718</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L726" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:726</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L734" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:734</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L745" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:745</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L755" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:755</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L789" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:789</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L800" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:800</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L808" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:808</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L816" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:816</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L829" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:829</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L863" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:863</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1071" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1071</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1082" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1082</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1084" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1084</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1162" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1162</a> </span></li>
+
+<li><code class="evidence-text">https://www.example.com/app/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L765" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:765</a> </span></li>
+
+<li><code class="evidence-text">http://www.example.com/app/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L780" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:780</a> </span></li>
+
+<li><code class="evidence-text">https://www.example.com/other</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L782" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:782</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/a/b/c</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L840" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:840</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L851" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:851</a> </span></li>
+
+<li><code class="evidence-text">http://www.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L879" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:879</a> </span></li>
+
+<li><code class="evidence-text">http://other.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L884" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:884</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1080" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1080</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L890" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:890</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L164" rel="noreferrer noopener" target="_blank">src/net/credential.rs:164</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L385" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:385</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L455" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:455</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L587" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:587</a> </span></li>
+
+<li><code class="evidence-text">http://a.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L919" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:919</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L950" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:950</a> </span></li>
+
+<li><code class="evidence-text">http://b.a.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L923" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:923</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L946" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:946</a> </span></li>
+
+<li><code class="evidence-text">http://www.example.co.uk/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L962" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:962</a> </span></li>
+
+<li><code class="evidence-text">http://victim.co.uk/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L963" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:963</a> </span></li>
+
+<li><code class="evidence-text">http://evil.github.io/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L967" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:967</a> </span></li>
+
+<li><code class="evidence-text">http://victim.github.io/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L968" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:968</a> </span></li>
+
+<li><code class="evidence-text">http://evil.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L970" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:970</a> </span></li>
+
+<li><code class="evidence-text">http://victim.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L970" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:970</a> </span></li>
+
+<li><code class="evidence-text">http://a.localhost/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L973" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:973</a> </span></li>
+
+<li><code class="evidence-text">http://b.localhost/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L974" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:974</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L994" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:994</a> </span></li>
+
+<li><code class="evidence-text">http://localhost/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L991" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:991</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L488" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:488</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1028" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1028</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/n</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1039" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1039</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/onlyfoo</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1048" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1048</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1049" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1049</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/only/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1050" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1050</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/dir/x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1051" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1051</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/dir/a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1057" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1057</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1058" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1058</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1059" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1059</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/top</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1060" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1060</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/dir/b</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1062" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1062</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/other</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1065" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1065</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/deeper</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1077" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1077</a> </span></li>
+
+<li><code class="evidence-text">https://www.example.com/dir/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1093" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1093</a> </span></li>
+
+<li><code class="evidence-text">http://www.пример.рф/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1112" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1112</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1115" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1115</a> </span></li>
+
+<li><code class="evidence-text">http://xn--e1afmkfd.xn--p1ai/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1116" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1116</a> </span></li>
+
+<li><code class="evidence-text">https://accounts.example.com/finish</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1122" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1122</a> </span></li>
+
+<li><code class="evidence-text">https://other.example.net/start</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1126" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1126</a> </span></li>
+
+<li><code class="evidence-text">https://login.example.co.uk/finish</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1143" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1143</a> </span></li>
+
+<li><code class="evidence-text">https://shop.example.co.uk/start</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1146" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1146</a> </span></li>
+
+<li><code class="evidence-text">http://shop.example.co.uk/start</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1152" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1152</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/finish</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1172" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1172</a> </span></li>
+
+<li><code class="evidence-text">https://other.test/start</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1173" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1173</a> </span></li>
+
+<li><code class="evidence-text">https://cdn.example/image</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1195" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1195</a> </span></li>
+
+<li><code class="evidence-text">https://other.test/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/cookies.rs#L1196" rel="noreferrer noopener" target="_blank">src/net/cookies.rs:1196</a> </span></li>
+
+<li><code class="evidence-text">https://EXAMPLE.com:8443/a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L123" rel="noreferrer noopener" target="_blank">src/net/credential.rs:123</a> </span></li>
+
+<li><code class="evidence-text">http://cdn.test/a.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L132" rel="noreferrer noopener" target="_blank">src/net/credential.rs:132</a> </span></li>
+
+<li><code class="evidence-text">http://sub.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L133" rel="noreferrer noopener" target="_blank">src/net/credential.rs:133</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L153" rel="noreferrer noopener" target="_blank">src/net/credential.rs:153</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L177" rel="noreferrer noopener" target="_blank">src/net/credential.rs:177</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L187" rel="noreferrer noopener" target="_blank">src/net/credential.rs:187</a> </span></li>
+
+<li><code class="evidence-text">http://example.com.evil.test/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L134" rel="noreferrer noopener" target="_blank">src/net/credential.rs:134</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L161" rel="noreferrer noopener" target="_blank">src/net/credential.rs:161</a> </span></li>
+
+<li><code class="evidence-text">https://a.docs.EXAMPLE.com:8443/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L153" rel="noreferrer noopener" target="_blank">src/net/credential.rs:153</a> </span></li>
+
+<li><code class="evidence-text">http://other.test/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L160" rel="noreferrer noopener" target="_blank">src/net/credential.rs:160</a> </span></li>
+
+<li><code class="evidence-text">http://notexample.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L162" rel="noreferrer noopener" target="_blank">src/net/credential.rs:162</a> </span></li>
+
+<li><code class="evidence-text">http://.example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L163" rel="noreferrer noopener" target="_blank">src/net/credential.rs:163</a> </span></li>
+
+<li><code class="evidence-text">http://[::1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L165" rel="noreferrer noopener" target="_blank">src/net/credential.rs:165</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L389" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:389</a> </span></li>
+
+<li><code class="evidence-text">custom://sub.127.0.0.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L186" rel="noreferrer noopener" target="_blank">src/net/credential.rs:186</a> </span></li>
+
+<li><code class="evidence-text">http://user:s3cret@example.com/a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L207" rel="noreferrer noopener" target="_blank">src/net/credential.rs:207</a> </span></li>
+
+<li><code class="evidence-text">http://example.com/a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L210" rel="noreferrer noopener" target="_blank">src/net/credential.rs:210</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/credential.rs#L211" rel="noreferrer noopener" target="_blank">src/net/credential.rs:211</a> </span></li>
+
+<li><code class="evidence-text">http://{proxy_url}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L46" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:46</a> </span></li>
+
+<li><code class="evidence-text">expected an address such as http://proxy:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L49" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:49</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L130" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:130</a> </span></li>
+
+<li><code class="evidence-text">://operator:s3cr3t@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L189" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:189</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L349" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:349</a> </span></li>
+
+<li><code class="evidence-text">gopher://operator:s3cr3t@proxy.test:70</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L191" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:191</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L228" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:228</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L582" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:582</a> </span></li>
+
+<li><code class="evidence-text">http://operator:4242#s3cr3t@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L303" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:303</a> </span></li>
+
+<li><code class="evidence-text">http://operator:4242/s3cr3t@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L304" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:304</a> </span></li>
+
+<li><code class="evidence-text">http://operator:4242?s3cr3t@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L305" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:305</a> </span></li>
+
+<li><code class="evidence-text">http://operator:s3%23cr%2F3t%3F@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L313" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:313</a> </span></li>
+
+<li><code class="evidence-text">http://proxy.test:8080/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L315" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:315</a> </span></li>
+
+<li><code class="evidence-text">http://proxy.test:8080/proxy</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L322" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:322</a> </span></li>
+
+<li><code class="evidence-text">https://user:pw@proxy.test:8443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L332" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:332</a> </span></li>
+
+<li><code class="evidence-text">https://u:p@proxy.test:8443</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L339" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:339</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:3128/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L375" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:375</a> </span></li>
+
+<li><code class="evidence-text">http://[::1]:3128/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L376" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:376</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:3128/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L377" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:377</a> </span></li>
+
+<li><code class="evidence-text">http://operator:s3cr3t@proxy:8080/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L378" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:378</a> </span></li>
+
+<li><code class="evidence-text">http://operator:IMPL385-UP@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L399" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:399</a> </span></li>
+
+<li><code class="evidence-text">http://operator@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L400" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:400</a> </span></li>
+
+<li><code class="evidence-text">http://:IMPL385-UP@proxy.test:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L401" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:401</a> </span></li>
+
+<li><code class="evidence-text">ftp://proxy.test:21</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L408" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:408</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L442" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:442</a> </span></li>
+
+<li><code class="evidence-text">socks5h://proxy.test:1080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L440" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:440</a> </span></li>
+
+<li><code class="evidence-text">socks4://proxy.test:1080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L441" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:441</a> </span></li>
+
+<li><code class="evidence-text">gopher://proxy.test:70</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/proxy.rs#L443" rel="noreferrer noopener" target="_blank">src/net/proxy.rs:443</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L355" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:355</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:8081</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L362" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:362</a> </span></li>
+
+<li><code class="evidence-text">http://rebind.invalid:{port}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L382" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:382</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/resolver.rs#L406" rel="noreferrer noopener" target="_blank">src/net/resolver.rs:406</a> </span></li>
+
+<li><code class="evidence-text">https://public.example/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L355" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:355</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L369" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:369</a> </span></li>
+
+<li><code class="evidence-text">https://198.51.100.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L363" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:363</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L378" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:378</a> </span></li>
+
+<li><code class="evidence-text">http://10.1.2.3/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L386" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:386</a> </span></li>
+
+<li><code class="evidence-text">http://192.168.1.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L387" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:387</a> </span></li>
+
+<li><code class="evidence-text">http://169.254.169.254/latest/meta-data/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L388" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:388</a> </span></li>
+
+<li><code class="evidence-text">http://[fc00::1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L390" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:390</a> </span></li>
+
+<li><code class="evidence-text">http://[::ffff:127.0.0.1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L393" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:393</a> </span></li>
+
+<li><code class="evidence-text">http://[::ffff:169.254.169.254]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L394" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:394</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b::7f00:1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L395" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:395</a> </span></li>
+
+<li><code class="evidence-text">http://[::ffff:0:a00:5]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L396" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:396</a> </span></li>
+
+<li><code class="evidence-text">http://[::a00:5]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L397" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:397</a> </span></li>
+
+<li><code class="evidence-text">http://[2002:a9fe:a9fe::]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L398" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:398</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L458" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:458</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1::a00:5]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L399" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:399</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1:a00::a00:5]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L400" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:400</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:db8::5efe:a00:5]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L401" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:401</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:db8::200:5efe:7f00:1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L402" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:402</a> </span></li>
+
+<li><code class="evidence-text">http://[fe80::5efe:808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L403" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:403</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1::]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L404" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:404</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1::e000:1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L405" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:405</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:0:4136:e378:0:ffff:5601:5601]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L408" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:408</a> </span></li>
+
+<li><code class="evidence-text">http://240.0.0.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L411" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:411</a> </span></li>
+
+<li><code class="evidence-text">http://255.255.255.255/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L412" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:412</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:0:4136:e378:8000:63bf:5fe:fdfc]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L413" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:413</a> </span></li>
+
+<li><code class="evidence-text">http://1.1.1.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L425" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:425</a> </span></li>
+
+<li><code class="evidence-text">http://[::ffff:0:808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L426" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:426</a> </span></li>
+
+<li><code class="evidence-text">http://[::808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L427" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:427</a> </span></li>
+
+<li><code class="evidence-text">http://[2002:808:808::]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L428" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:428</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1:808:8:800::]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L429" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:429</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1:8:8:808::]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L430" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:430</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1:0:8:808:800:0]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L431" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:431</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1::808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L432" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:432</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:db8::5efe:808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L433" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:433</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:db8::200:5efe:808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L434" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:434</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1:a00::808:808]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L435" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:435</a> </span></li>
+
+<li><code class="evidence-text">http://[64:ff9b:1:0:8:808:a00:0]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L436" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:436</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:0:4136:e378:8000:63bf:3fff:fdd2]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L437" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:437</a> </span></li>
+
+<li><code class="evidence-text">http://[2001:db8::1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L438" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:438</a> </span></li>
+
+<li><code class="evidence-text">http://223.255.255.1/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L441" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:441</a> </span></li>
+
+<li><code class="evidence-text">http://[2002:dfff:ff01::]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L442" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:442</a> </span></li>
+
+<li><code class="evidence-text">http://10.0.0.5/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L456" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:456</a> </span></li>
+
+<li><code class="evidence-text">http://[fd12::1]/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L457" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:457</a> </span></li>
+
+<li><code class="evidence-text">http://api.localhost/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L488" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:488</a> </span></li>
+
+<li><code class="evidence-text">ftp://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L500" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:500</a> </span></li>
+
+<li><code class="evidence-text">gopher://example.com/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L500" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:500</a> </span></li>
+
+<li><code class="evidence-text">ftp://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L534" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:534</a> </span></li>
+
+<li><code class="evidence-text">file:///x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L534" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:534</a> </span></li>
+
+<li><code class="evidence-text">{scheme}://x</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/ssrf.rs#L574" rel="noreferrer noopener" target="_blank">src/net/ssrf.rs:574</a> </span></li>
+
+<li><code class="evidence-text">http://user:s3cret@{addr}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L363" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:363</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L417" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:417</a> </span></li>
+
+<li><code class="evidence-text">http://{}/page</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L541" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:541</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L622" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:622</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L676" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:676</a> </span></li>
+
+<li><code class="evidence-text">http://localhost/source</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L628" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:628</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 301 Moved Permanently\u{d}\u{a}Location: http://{end}/end\u{d}\u{a}Content-Length: 0\u{d}\u{a}Connection: close\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L696" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:696</a> </span></li>
+
+<li><code class="evidence-text">http://{start}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L701" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:701</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L737" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:737</a> </span></li>
+
+<li><code class="evidence-text">HTTP/1.1 302 Found\u{d}\u{a}Location: http://user:s3cret@localhost:{}/away\u{d}\u{a}Content-Length: 0\u{d}\u{a}Connection: close\u{d}\u{a}\u{d}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client.rs#L725" rel="noreferrer noopener" target="_blank">src/net/wreq_client.rs:725</a> </span></li>
+
+<li><code class="evidence-text">http://{address}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/net/wreq_client/chrome145_tests.rs#L109" rel="noreferrer noopener" target="_blank">src/net/wreq_client/chrome145_tests.rs:109</a> </span></li>
+
+<li><code class="evidence-text">http://example.test/a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L357" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:357</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L374" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:374</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L391" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:391</a> <a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L416" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:416</a> </span></li>
+
+<li><code class="evidence-text">http://old:secret@EXAMPLE.test/b#part</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L404" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:404</a> </span></li>
+
+<li><code class="evidence-text">http://user:pass@example.test/b#part</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L405" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:405</a> </span></li>
+
+<li><code class="evidence-text">http://example.test/b#part</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L409" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:409</a> </span></li>
+
+<li><code class="evidence-text">http://user:pass@example.test/b#other</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L410" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:410</a> </span></li>
+
+<li><code class="evidence-text">http://EXAMPLE.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L413" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:413</a> </span></li>
+
+<li><code class="evidence-text">http://user:pass@example.test/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/page/navigation.rs#L413" rel="noreferrer noopener" target="_blank">src/page/navigation.rs:413</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/crawlberg-browser/1.12.3/code/src/dom/tree_sink.rs#L20" rel="noreferrer noopener" target="_blank">src/dom/tree_sink.rs:20</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>1 min 38 s</dd></div><div><dt>VM restore</dt><dd>80 ms</dd></div><div><dt>Payload</dt><dd>36556 files, 613.4 MiB</dd></div><div><dt>Files opened</dt><dd>19475</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">315</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 287 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">6 ms</td>
+<td class="nowrap">1 min 38 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="36 similar processes, the first one shown">×36</span></td>
+<td class="mono args">--crate-name build_script_build --edition=2021 /cw/vendor/proc-macro2-1.0.107/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg feature=&#34;default&#34; --cfg feature=&#34;proc-macro&#34; --cfg feature=&#34;span-locations&#34; --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values(&#34;default&#34;, &#34;nightly&#34;, &#34;proc-macro&#34;, &#34;span-locations&#34;)) -C metadata=c83ce984471a4e48 -C extra-filename=-5cb179a647ef6e51 --out-dir /work/target/debug/build/proc-macro2-5cb179a647ef6e51 -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">465 ms</td>
+<td class="nowrap">696 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 586: /usr/bin/cc">/usr/bin/cc</span></td>
+<td class="mono args">-m64 /work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcSj9Cfd/symbols.o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51.build_script_build.dfb9ac565abdb04-cgu.0.rcgu.o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51.7zrad1clk47dffwz5ub8n8yx5.rcgu.o -Wl,--as-needed -Wl,-Bstatic /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-64f5f36fb0927694.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-549498e8b2e4d924.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-7ff85ea729a864ff.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-0e3477fb2664a277.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-09755979c57b7e64.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-9a1fede77fbbf2f0.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-360da4ba13154744.rlib /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib/libr</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">148 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d3"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 587: /usr/libexec/gcc/x86_64-linux-gnu/14/collect2">/usr/libexec/gcc/x86_64-linux-gnu/14/collect2</span></td>
+<td class="mono args">-plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccrK7KKM.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -fuse-ld=lld -o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcSj9Cfd/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">141 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-toolchain compiler">
+<td class="d4"><span class="branch">└</span><span class="badge role">toolchain</span> <span class="mono" title="pid 588: /usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld">/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld</span></td>
+<td class="mono args">-flavor gnu -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccrK7KKM.res --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build_script_build-5cb179a647ef6e51 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/work/target/debug/build/proc-macro2-5cb179a647ef6e51/rustcSj9Cfd/raw-dylibs -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/lib -L/usr/local/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_6</td>
+<td class="nowrap muted">1.0 s</td>
+<td class="nowrap">137 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 591: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="125 similar processes, the first one shown">×125</span></td>
+<td class="mono args">--crate-name unicode_ident --edition=2021 /cw/vendor/unicode-ident-1.0.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=3bb98f7b2f589c61 -C extra-filename=-86dff03eb05ec8a5 --out-dir /work/target/debug/deps -L dependency=/work/target/debug/deps --cap-lints allow</td>
+<td class="nowrap muted">1.1 s</td>
+<td class="nowrap">53 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 599: /work/target/debug/build/proc-macro2-5cb179a647ef6e51/build-script-build">proc-macro2</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">82 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 600: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 602: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--cfg=procmacro2_build_probe --edition=2021 --crate-name=proc_macro2 --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/proc-macro2-97392f29eb377993/out/probe src/probe/proc_macro_span.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">1.2 s</td>
+<td class="nowrap">31 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 627: /work/target/debug/build/quote-1c85044effa74c64/build-script-build">quote</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 628: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">1.4 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 693: /work/target/debug/build/libc-24a0c765ebd7d3cb/build-script-build">libc</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">6.2 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 694: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">6.2 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 800: /work/target/debug/build/serde_core-040ff8da709058db/build-script-build">serde_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">9.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 801: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">9.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 874: /work/target/debug/build/parking_lot_core-61246ed223da5f57/build-script-build">parking_lot_core</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">15.4 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 959: /work/target/debug/build/icu_normalizer_data-f722c08713ba03b8/build-script-build">icu_normalizer_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 961: /work/target/debug/build/icu_properties_data-489780b4c65588d7/build-script-build">icu_properties_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">17.2 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1004: /work/target/debug/build/libm-bf7234d1701b6a93/build-script-build">libm</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">19.7 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1069: /work/target/debug/build/serde-aba6f6dbaff00389/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">22.1 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1070: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">22.1 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1203: /work/target/debug/build/crc32fast-87781c15d35e1c24/build-script-build">crc32fast</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">25.6 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1204: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">25.6 s</td>
+<td class="nowrap">8 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1252: /work/target/debug/build/icu_locale_fallback_data-bf7b11583620403f/build-script-build">icu_locale_fallback_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1254: /work/target/debug/build/zmij-00ef422b5889701d/build-script-build">zmij</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.5 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1255: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">26.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1258: /work/target/debug/build/num-traits-57979b40d0acfd6c/build-script-build">num-traits</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">26.5 s</td>
+<td class="nowrap">44 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1259: /usr/local/bin/rustc">/usr/local/bin/rustc</span> <span class="times" title="3 similar processes, the first one shown">×3</span></td>
+<td class="mono args">--version --verbose</td>
+<td class="nowrap muted">26.5 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1331: /work/target/debug/build/serde-d6689255ae87d4dc/build-script-build">serde</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">27.4 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1332: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">27.4 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1335: /work/target/debug/build/icu_calendar_data-7a454c57e94be495/build-script-build">icu_calendar_data</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">27.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1337: /work/target/debug/build/serde_json-458871d36e1d1775/build-script-build">serde_json</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">27.4 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1427: /work/target/debug/build/prettyplease-f6a2bc4e9eba36d9/build-script-build">prettyplease</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1429: /work/target/debug/build/clang-sys-6830b31322438d3c/build-script-build">clang-sys</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">32.2 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1514: /work/target/debug/build/rustix-c73ebbfa015263e8/build-script-build">rustix</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">35.6 s</td>
+<td class="nowrap">21 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1515: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-type=rlib --emit=metadata --target x86_64-unknown-linux-gnu -o - -</td>
+<td class="nowrap muted">35.6 s</td>
+<td class="nowrap">18 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1689: /work/target/debug/build/bindgen-d731df96f2397164/build-script-build">bindgen</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">41.5 s</td>
+<td class="nowrap">2 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1700: /work/target/debug/build/thiserror-da16b046c26d58d9/build-script-build">thiserror</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">41.8 s</td>
+<td class="nowrap">26 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1701: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--edition=2018 --crate-name=thiserror --crate-type=lib --cap-lints=allow --emit=dep-info,metadata --out-dir /work/target/debug/build/thiserror-2a2ace9117c7add0/out/probe build/probe.rs --target x86_64-unknown-linux-gnu</td>
+<td class="nowrap muted">41.8 s</td>
+<td class="nowrap">16 ms</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 1705: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">41.8 s</td>
+<td class="nowrap">7 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 1943: /work/target/debug/build/getrandom-18779180ef56a978/build-script-build">getrandom</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">56.0 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2147: /work/target/debug/build/paste-486a5cb33bee7857/build-script-build">paste</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">59.8 s</td>
+<td class="nowrap">9 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d2"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 2148: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--version</td>
+<td class="nowrap muted">59.8 s</td>
+<td class="nowrap">6 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2238: /work/target/debug/build/radium-64a681424b418443/build-script-build">radium</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">1 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-build_script">
+<td class="d1"><span class="branch">└</span><span class="badge role">build_script</span> <span class="mono" title="pid 2261: /work/target/debug/build/v8-4e5f1d38dea53796/build-script-build">v8</span></td>
+<td class="mono args"></td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">35.1 s</td>
+<td class="nowrap">25856</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2262: /usr/bin/python3">/usr/bin/python3</span></td>
+<td class="mono args">./tools/download_file.py --url https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz --filename /work/target/debug/gn_out/obj/librusty_v8.tmp</td>
+<td class="nowrap muted">1 min 3 s</td>
+<td class="nowrap">35.1 s</td>
+<td class="nowrap">256</td>
+</tr>
+
+<tr class="role-other">
+<td class="d2"><span class="branch">└</span><span class="badge role">other</span> <span class="mono" title="pid 2263: /usr/bin/curl">/usr/bin/curl</span></td>
+<td class="mono args">-L -f -s -o /work/target/debug/gn_out/obj/librusty_v8.tmp https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz</td>
+<td class="nowrap muted">1 min 38 s</td>
+<td class="nowrap">38 ms</td>
+<td class="nowrap">5632</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">6</span></h3>
+
+<p class="hint">The VM has no internet. Every name it looks up resolves to 10.0.2.1, the fake internet, which accepts every connection and records what was sent. Below, it is shown by its port alone, such as <code>:443</code>. The name the build wanted is in the lookups, the HTTP host and the TLS SNI.</p>
+<p class="chips">Looked up <code class="chip">github.com</code> </p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Destination</th><th>Protocol</th><th>What was sent</th><th>Bytes</th></tr></thead>
+<tbody>
+<tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com</td><td class="nowrap">1.5 KiB</td></tr><tr><td class="mono nowrap">:443</td><td class="nowrap">tls</td><td class="mono">SNI github.com, inside TLS: GET /denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz, host github.com, agent curl/8.14.1</td><td class="nowrap">1.5 KiB</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<details class="more">
+<summary>Sockets in the trace <span class="count">6</span></summary>
+<div class="scroll">
+<table>
+<thead><tr><th>When</th><th>Program</th><th>How</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td class="nowrap muted">1 min 3 s</td><td class="mono">/usr/bin/python3</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 3 s</td><td class="mono">/usr/bin/python3</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">1 min 3 s</td><td class="mono">/usr/bin/python3</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 38 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">unix:/var/run/nscd/socket</td><td class="nowrap">stream</td></tr><tr><td class="nowrap muted">1 min 38 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:53</td><td class="nowrap">datagram</td></tr><tr><td class="nowrap muted">1 min 38 s</td><td class="mono">/usr/bin/curl</td><td class="nowrap">connect</td><td class="mono">:443</td><td class="nowrap">stream</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>1234</dd></div><div><dt>Directories</dt><dd>569</dd></div><div><dt>Size</dt><dd>587.3 MiB</dd></div><div><dt>Compiled units</dt><dd>215</dd></div><div><dt>Scan</dt><dd>stopped at a limit</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling syn v3.0.9
+   Compiling libc v0.2.191
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling zerovec-derive v0.11.7
+   Compiling displaydoc v0.2.7
+   Compiling serde_core v1.0.229
+   Compiling syn v2.0.119
+   Compiling serde_derive v1.0.229
+   Compiling parking_lot_core v0.9.12
+    Checking stable_deref_trait v1.2.1
+    Checking zerofrom v0.1.8
+    Checking smallvec v1.16.4
+    Checking cfg-if v1.0.5
+    Checking yoke v0.8.4
+    Checking zerovec v0.11.9
+   Compiling icu_properties_data v2.4.0
+   Compiling icu_normalizer_data v2.4.0
+    Checking writeable v0.6.4
+   Compiling libm v0.2.16
+   Compiling tokio-macros v2.7.2
+    Checking potential_utf v0.1.6
+    Checking tinystr v0.8.5
+    Checking litemap v0.8.3
+   Compiling serde v1.0.229
+    Checking icu_locale_core v2.4.0
+   Compiling memchr v2.8.3
+    Checking scopeguard v1.2.0
+    Checking zerotrie v0.2.5
+    Checking lock_api v0.4.14
+    Checking pin-project-lite v0.2.17
+   Compiling crc32fast v1.5.3
+   Compiling autocfg v1.5.1
+   Compiling num-traits v0.2.19
+    Checking parking_lot v0.12.5
+    Checking icu_provider v2.4.0
+   Compiling zmij v1.0.23
+   Compiling icu_locale_fallback_data v2.4.0
+   Compiling serde_json v1.0.154
+   Compiling icu_calendar_data v2.4.0
+    Checking itoa v1.0.18
+    Checking errno v0.3.14
+    Checking signal-hook-registry v1.4.8
+    Checking socket2 v0.6.5
+    Checking mio v1.2.4
+   Compiling futures-macro v0.3.34
+   Compiling glob v0.3.4
+   Compiling clang-sys v1.9.1
+    Checking tokio v1.54.1
+   Compiling prettyplease v0.2.37
+    Checking utf8_iter v1.0.4
+    Checking icu_collections v2.4.0
+   Compiling either v1.19.0
+   Compiling minimal-lexical v0.2.1
+   Compiling rustix v0.38.44
+   Compiling bitflags v2.13.2
+   Compiling regex-syntax v0.8.11
+   Compiling regex-automata v0.4.18
+   Compiling nom v7.1.3
+   Compiling libloading v0.8.9
+   Compiling jobserver v0.1.35
+   Compiling strck v1.0.0
+    Checking percent-encoding v2.3.2
+    Checking futures-sink v0.3.34
+    Checking equivalent v1.0.3
+   Compiling thiserror v2.0.21
+   Compiling rustc-hash v2.1.3
+   Compiling bindgen v0.72.1
+   Compiling find-msvc-tools v0.1.15
+   Compiling shlex v2.0.1
+    Checking hashbrown v0.17.1
+   Compiling linux-raw-sys v0.4.15
+    Checking indexmap v2.14.2
+   Compiling cc v1.10.0
+   Compiling diplomat_core v0.16.1
+    Checking icu_normalizer v2.4.0
+    Checking icu_properties v2.4.0
+   Compiling cexpr v0.6.0
+   Compiling regex v1.13.1
+   Compiling itertools v0.13.0
+   Compiling thiserror-impl v2.0.21
+   Compiling adler2 v2.0.1
+   Compiling getrandom v0.4.3
+   Compiling home v0.5.12
+   Compiling siphasher v1.0.4
+   Compiling log v0.4.34
+   Compiling shlex v1.3.0
+   Compiling phf_shared v0.14.0
+   Compiling which v6.0.3
+   Compiling miniz_oxide v0.8.9
+   Compiling core_maths v0.1.1
+   Compiling gzip-header v1.1.0
+    Checking idna_adapter v1.2.2
+   Compiling diplomat v0.16.1
+   Compiling cmake v0.1.58
+   Compiling fslock v0.2.1
+   Compiling deno_error_macro v0.7.1
+   Compiling dunce v1.0.5
+   Compiling fs_extra v1.3.0
+   Compiling paste v1.0.15
+    Checking slab v0.4.12
+   Compiling pkg-config v0.3.34
+   Compiling fastrand v2.5.0
+   Compiling phf_generator v0.14.0
+   Compiling aws-lc-sys v0.46.0
+   Compiling v8 v150.4.0
+    Checking idna v1.1.0
+   Compiling calendrical_calculations v0.2.4
+    Checking futures-channel v0.3.34
+   Compiling radium v0.7.0
+error: failed to run custom build command for `v8 v150.4.0`
+
+Caused by:
+  process didn&#39;t exit successfully: `/work/target/debug/build/v8-4e5f1d38dea53796/build-script-build` (exit status: 101)
+  --- stdout
+  cargo:rerun-if-changed=.gn
+  cargo:rerun-if-changed=BUILD.gn
+  cargo:rerun-if-changed=src/binding.cc
+  cargo:rerun-if-env-changed=CCACHE
+  cargo:rerun-if-env-changed=CLANG_BASE_PATH
+  cargo:rerun-if-env-changed=CXXSTDLIB
+  cargo:rerun-if-env-changed=DENO_TRYBUILD
+  cargo:rerun-if-env-changed=DOCS_RS
+  cargo:rerun-if-env-changed=GN
+  cargo:rerun-if-env-changed=GN_ARGS
+  cargo:rerun-if-env-changed=HOST
+  cargo:rerun-if-env-changed=NINJA
+  cargo:rerun-if-env-changed=OUT_DIR
+  cargo:rerun-if-env-changed=RUSTY_V8_ARCHIVE
+  cargo:rerun-if-env-changed=RUSTY_V8_MIRROR
+  cargo:rerun-if-env-changed=RUSTY_V8_SRC_BINDING_PATH
+  cargo:rerun-if-env-changed=SCCACHE
+  cargo:rerun-if-env-changed=V8_FORCE_DEBUG
+  cargo:rerun-if-env-changed=V8_FROM_SOURCE
+  cargo:rerun-if-env-changed=PYTHON
+  cargo:rerun-if-env-changed=DISABLE_CLANG
+  cargo:rerun-if-env-changed=EXTRA_GN_ARGS
+  cargo:rerun-if-env-changed=PRINT_GN_ARGS
+  cargo:rerun-if-env-changed=CARGO_ENCODED_RUSTFLAGS
+  cargo:rustc-link-lib=static=rusty_v8
+  lockfile: &#34;/work/target/debug/build/v8.fslock&#34;
+  cargo:rustc-env=RUSTY_V8_SRC_BINDING_PATH=/cw/vendor/v8-150.4.0/gen/src_binding_simdutf_release_x86_64-unknown-linux-gnu.rs
+  static lib URL: https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz
+  cargo:rustc-link-search=/work/target/debug/gn_out/obj
+  Looking for download in &#39;&#34;/work/home/.cargo/.rusty_v8/https___github_com_denoland_rusty_v8_releases_download_v150_4_0_librusty_v8_simdutf_release_x86_64_unknown_linux_gnu_a_gz&#34;&#39;
+  Downloading https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz
+  Trying with Python...
+  Downloading https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz...
+  &#60;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1029)&#62;
+  Retrying in 5 s ...
+  Downloading https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz...
+  &#60;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1029)&#62;
+  Retrying in 10 s ...
+  Downloading https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz...
+  &#60;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1029)&#62;
+  Retrying in 20 s ...
+  Downloading https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz...
+  &#60;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1029)&#62;
+  Python downloader failed, trying with curl.
+
+  --- stderr
+  Traceback (most recent call last):
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 1319, in do_open
+      h.request(req.get_method(), req.selector, req.data, headers,
+      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                encode_chunked=req.has_header(&#39;Transfer-encoding&#39;))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/http/client.py&#34;, line 1367, in request
+      self._send_request(method, url, body, headers, encode_chunked)
+      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/http/client.py&#34;, line 1413, in _send_request
+      self.endheaders(body, encode_chunked=encode_chunked)
+      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/http/client.py&#34;, line 1362, in endheaders
+      self._send_output(message_body, encode_chunked=encode_chunked)
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/http/client.py&#34;, line 1122, in _send_output
+      self.send(msg)
+      ~~~~~~~~~^^^^^
+    File &#34;/usr/lib/python3.13/http/client.py&#34;, line 1066, in send
+      self.connect()
+      ~~~~~~~~~~~~^^
+    File &#34;/usr/lib/python3.13/http/client.py&#34;, line 1508, in connect
+      self.sock = self._context.wrap_socket(self.sock,
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+                                            server_hostname=server_hostname)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/ssl.py&#34;, line 455, in wrap_socket
+      return self.sslsocket_class._create(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+          sock=sock,
+          ^^^^^^^^^^
+      ...&#60;5 lines&#62;...
+          session=session
+          ^^^^^^^^^^^^^^^
+      )
+      ^
+    File &#34;/usr/lib/python3.13/ssl.py&#34;, line 1076, in _create
+      self.do_handshake()
+      ~~~~~~~~~~~~~~~~~^^
+    File &#34;/usr/lib/python3.13/ssl.py&#34;, line 1372, in do_handshake
+      self._sslobj.do_handshake()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1029)
+
+  During handling of the above exception, another exception occurred:
+
+  Traceback (most recent call last):
+    File &#34;/cw/vendor/v8-150.4.0/./tools/download_file.py&#34;, line 63, in &#60;module&#62;
+      sys.exit(main())
+               ~~~~^^
+    File &#34;/cw/vendor/v8-150.4.0/./tools/download_file.py&#34;, line 58, in main
+      DownloadUrl(args.url, f)
+      ~~~~~~~~~~~^^^^^^^^^^^^^
+    File &#34;/cw/vendor/v8-150.4.0/./tools/download_file.py&#34;, line 44, in DownloadUrl
+      raise e
+    File &#34;/cw/vendor/v8-150.4.0/./tools/download_file.py&#34;, line 28, in DownloadUrl
+      response = urlopen(url)
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 189, in urlopen
+      return opener.open(url, data, timeout)
+             ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 489, in open
+      response = self._open(req, data)
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 506, in _open
+      result = self._call_chain(self.handle_open, protocol, protocol +
+                                &#39;_open&#39;, req)
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 466, in _call_chain
+      result = func(*args)
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 1367, in https_open
+      return self.do_open(http.client.HTTPSConnection, req,
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                          context=self._context)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    File &#34;/usr/lib/python3.13/urllib/request.py&#34;, line 1322, in do_open
+      raise URLError(err)
+  urllib.error.URLError: &#60;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1029)&#62;
+
+  thread &#39;main&#39; (2261) panicked at /cw/vendor/v8-150.4.0/build.rs:852:5:
+  Failed to download V8 prebuilt archive from https://github.com/denoland/rusty_v8/releases/download/v150.4.0/librusty_v8_simdutf_release_x86_64-unknown-linux-gnu.a.gz
+  This is usually because no prebuilt archive is published for your target, in which case you should compile V8 from source by setting V8_FROM_SOURCE=1. It can also indicate a network connectivity problem.
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-27 17:02 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 17:02 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 17:02 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 17:04 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 17:04 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 17:04 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

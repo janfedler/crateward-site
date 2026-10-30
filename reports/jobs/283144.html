@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: murmur-cli 0.8.0</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>murmur-cli <span class="version">0.8.0</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 283144</span>
+      <a class="muted" href="https://crates.io/crates/murmur-cli/0.8.0" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="283144.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="283144.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      
+    </p>
+    <p class="headline">A build script was added since 0.7.0.</p>
+  </div>
+  
+  <div class="verdict tone-medium">
+    <div class="score">47</div>
+    <div class="level">medium</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">8</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">613</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">build_script_added</span><div class="sub">diff · murmur-cli</div></td><td class="mono where"></td><td>A build script was added since 0.7.0.</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">new_high_finding</span><div class="sub">diff · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L441" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:441</a></td><td>New since 0.7.0: yara:reverse_shell</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:process_spawn</span><div class="sub">static · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/build.rs#L59" rel="noreferrer noopener" target="_blank">build.rs:59</a></td><td>medium severity process_spawn in build_script code (119 places): std::process::Command::new</td></tr>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:yara:reverse_shell</span><div class="sub">static · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L441" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:441</a></td><td>high severity yara:reverse_shell in test code (4 places): Reverse shell idioms</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L83" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:83</a></td><td>medium severity credential_access in test code (3 places): id_ed25519</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L591" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:591</a></td><td>medium severity secret_environment_variable in library code (88 places): GITHUB_TOKEN</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L1425" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:1425</a></td><td>medium severity shell_command in library code (12 places): mkdir -p /usr/local/bin &#38;&#38; mv /tmp/mur-upload /usr/local/bin/mur &#38;&#38; chmod +x /usr/local/bin/mur</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · murmur-cli</div></td><td class="mono where"><a href="https://crates.io/crates/murmur-cli/0.8.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>New since the previous version</h4>
+<p class="chips"><code class="chip new">static:process_spawn</code> </p></div>
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:process_spawn</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> <code class="chip">static:yara:reverse_shell</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">613</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">4</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">104</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">266</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">239</span></label>
+  <span class="muted">18 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">yara_match reverse_shell</span> <span class="context">test</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Reverse shell idioms</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L441" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:441</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/fixtures/process-driver/fake-harness#L81" rel="noreferrer noopener" target="_blank">tests/fixtures/process-driver/fake-harness:81</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L514" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:514</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/session_network_namespace.rs#L95" rel="noreferrer noopener" target="_blank">tests/session_network_namespace.rs:95</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">44</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L591" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:591</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/default_versions.rs#L496" rel="noreferrer noopener" target="_blank">src/default_versions.rs:496</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L311" rel="noreferrer noopener" target="_blank">src/source/github.rs:311</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/mod.rs#L2027" rel="noreferrer noopener" target="_blank">src/source/mod.rs:2027</a> </span></li>
+
+<li><code class="evidence-text">GH_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L592" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:592</a> </span></li>
+
+<li><code class="evidence-text">OPENAI_API_KEY=sk-xxx</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2578" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2578</a> </span></li>
+
+<li><code class="evidence-text">ANTHROPIC_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L801" rel="noreferrer noopener" target="_blank">src/commands/new.rs:801</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L869" rel="noreferrer noopener" target="_blank">src/commands/new.rs:869</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L874" rel="noreferrer noopener" target="_blank">src/commands/new.rs:874</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L900" rel="noreferrer noopener" target="_blank">src/commands/new.rs:900</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L901" rel="noreferrer noopener" target="_blank">src/commands/new.rs:901</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L976" rel="noreferrer noopener" target="_blank">src/commands/new.rs:976</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L980" rel="noreferrer noopener" target="_blank">src/commands/new.rs:980</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L990" rel="noreferrer noopener" target="_blank">src/commands/new.rs:990</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L991" rel="noreferrer noopener" target="_blank">src/commands/new.rs:991</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1008" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1008</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1011" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1011</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1022" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1022</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1023" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1023</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1040" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1040</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1043" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1043</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1062" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1062</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1063" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1063</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1396" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1396</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L50" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:50</a> </span></li>
+
+<li><code class="evidence-text">OPENAI_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L805" rel="noreferrer noopener" target="_blank">src/commands/new.rs:805</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L870" rel="noreferrer noopener" target="_blank">src/commands/new.rs:870</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L877" rel="noreferrer noopener" target="_blank">src/commands/new.rs:877</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L904" rel="noreferrer noopener" target="_blank">src/commands/new.rs:904</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L905" rel="noreferrer noopener" target="_blank">src/commands/new.rs:905</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L977" rel="noreferrer noopener" target="_blank">src/commands/new.rs:977</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L983" rel="noreferrer noopener" target="_blank">src/commands/new.rs:983</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L994" rel="noreferrer noopener" target="_blank">src/commands/new.rs:994</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L995" rel="noreferrer noopener" target="_blank">src/commands/new.rs:995</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1009" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1009</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1013" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1013</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1026" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1026</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1027" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1027</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1041" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1041</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1044" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1044</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1066" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1066</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1067" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1067</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1401" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1401</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L58" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:58</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">test</span> <span class="count">44</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">GITHUB_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/agent_pull.rs#L113" rel="noreferrer noopener" target="_blank">tests/agent_pull.rs:113</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L576" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:576</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L39" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:39</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L59" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:59</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L62" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:62</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L179" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:179</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L215" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:215</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L222" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:222</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_asset_platform.rs#L62" rel="noreferrer noopener" target="_blank">tests/github_asset_platform.rs:62</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L191" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:191</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L192" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:192</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L262" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:262</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L363" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:363</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L402" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:402</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L458" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:458</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_default_source.rs#L35" rel="noreferrer noopener" target="_blank">tests/install_default_source.rs:35</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_platform.rs#L202" rel="noreferrer noopener" target="_blank">tests/install_platform.rs:202</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1429" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1429</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1505" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1505</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_runner.rs#L1127" rel="noreferrer noopener" target="_blank">tests/process_runner.rs:1127</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_runner.rs#L1138" rel="noreferrer noopener" target="_blank">tests/process_runner.rs:1138</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L386" rel="noreferrer noopener" target="_blank">tests/run.rs:386</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L400" rel="noreferrer noopener" target="_blank">tests/run.rs:400</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L429" rel="noreferrer noopener" target="_blank">tests/run.rs:429</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/scoped_names.rs#L66" rel="noreferrer noopener" target="_blank">tests/scoped_names.rs:66</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/source_resolution.rs#L37" rel="noreferrer noopener" target="_blank">tests/source_resolution.rs:37</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/wit_level.rs#L43" rel="noreferrer noopener" target="_blank">tests/wit_level.rs:43</a> </span></li>
+
+<li><code class="evidence-text">NPM_TOKEN</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L140" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:140</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L140" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:140</a> </span></li>
+
+<li><code class="evidence-text">ANTHROPIC_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L79" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:79</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L258" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:258</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1137" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1137</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1181" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1181</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1187" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1187</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1226" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1226</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_runner.rs#L1125" rel="noreferrer noopener" target="_blank">tests/process_runner.rs:1125</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_runner.rs#L1138" rel="noreferrer noopener" target="_blank">tests/process_runner.rs:1138</a> </span></li>
+
+<li><code class="evidence-text">OPENAI_API_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L80" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:80</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1212" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1212</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1759" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1759</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_runner.rs#L1126" rel="noreferrer noopener" target="_blank">tests/process_runner.rs:1126</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_runner.rs#L1138" rel="noreferrer noopener" target="_blank">tests/process_runner.rs:1138</a> </span></li>
+
+<li><code class="evidence-text">GITHUB_TOKEN=absent</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L389" rel="noreferrer noopener" target="_blank">tests/run.rs:389</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L410" rel="noreferrer noopener" target="_blank">tests/run.rs:410</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">test</span> <span class="count">7</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">bash -c &#39;echo still failing; exit 3&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L35" rel="noreferrer noopener" target="_blank">tests/done_check.rs:35</a> </span></li>
+
+<li><code class="evidence-text">bash -c &#39;if [ -f .dc-ran ]; then echo green; exit 0; fi; : &#62; .dc-ran; echo &#34;1 test failed: test_parse&#34;; exit 1&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L38" rel="noreferrer noopener" target="_blank">tests/done_check.rs:38</a> </span></li>
+
+<li><code class="evidence-text">bash -c &#39;echo $$ &#62; check.pid; exec sleep 600&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L561" rel="noreferrer noopener" target="_blank">tests/done_check.rs:561</a> </span></li>
+
+<li><code class="evidence-text">bash -c &#39;echo started; sleep 30&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L627" rel="noreferrer noopener" target="_blank">tests/done_check.rs:627</a> </span></li>
+
+<li><code class="evidence-text">bash -c &#39;: &#62; dc-started; exec sleep 600&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L850" rel="noreferrer noopener" target="_blank">tests/done_check.rs:850</a> </span></li>
+
+<li><code class="evidence-text">bash -c &#39;echo HOME=$HOME; echo y &#62; {}&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L940" rel="noreferrer noopener" target="_blank">tests/done_check.rs:940</a> </span></li>
+
+<li><code class="evidence-text">bash -c &#39;: &#62; {mine}; while [ ! -e {theirs} ] &#38;&#38; [ $SECONDS -lt 20 ]; do :; done; [ -e {theirs} ] &#38;&#38; printf {output} || printf alone&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/plan_tool.rs#L338" rel="noreferrer noopener" target="_blank">tests/plan_tool.rs:338</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">5</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">mkdir -p /usr/local/bin &#38;&#38; mv /tmp/mur-upload /usr/local/bin/mur &#38;&#38; chmod +x /usr/local/bin/mur</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L1425" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:1425</a> </span></li>
+
+<li><code class="evidence-text">printf &#39;%s&#39; &#39;{encoded}&#39; | base64 -d &#62; {remote_deploy_dir}/.env &#38;&#38; chmod 600 {remote_deploy_dir}/.env</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L1699" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:1699</a> </span></li>
+
+<li><code class="evidence-text">[mur doctor] warning[{E_RUN_019}]: this capsule declares capabilities.spawn.allow, and {ROOST_BINARY} was not found on PATH.\u{a}  `mur run` refuses a capsule that cannot register with the daemon that…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/doctor.rs#L817" rel="noreferrer noopener" target="_blank">src/commands/doctor.rs:817</a> </span></li>
+
+<li><code class="evidence-text">{&#34;event_type&#34;:&#34;done_check&#34;,&#34;event_id&#34;:&#34;evt_d1&#34;,&#34;parent_id&#34;:&#34;evt_2&#34;,&#34;session_id&#34;:&#34;s&#34;,&#34;timestamp&#34;:7,&#34;task_id&#34;:&#34;tsk_1&#34;,&#34;number&#34;:1,&#34;command&#34;:&#34;bash -c &#39;exit 3&#39;&#34;,&#34;outcome&#34;:&#34;failed&#34;,&#34;exit_code&#34;:3,&#34;duration_m…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/trace.rs#L7257" rel="noreferrer noopener" target="_blank">src/commands/trace.rs:7257</a> </span></li>
+
+<li><code class="evidence-text">{&#34;event_type&#34;:&#34;done_check&#34;,&#34;event_id&#34;:&#34;evt_d2&#34;,&#34;parent_id&#34;:&#34;evt_2&#34;,&#34;session_id&#34;:&#34;s&#34;,&#34;timestamp&#34;:8,&#34;task_id&#34;:&#34;tsk_1&#34;,&#34;number&#34;:2,&#34;command&#34;:&#34;bash -c &#39;sleep 9&#39;&#34;,&#34;outcome&#34;:&#34;timed_out&#34;,&#34;exit_code&#34;:null,&#34;dur…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/trace.rs#L7258" rel="noreferrer noopener" target="_blank">src/commands/trace.rs:7258</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">test</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">id_ed25519</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L83" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:83</a> </span></li>
+
+<li><code class="evidence-text">deploy_keys/dep_x/id_ed25519</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L2070" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:2070</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L2138" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:2138</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">process_spawn</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/build.rs#L59" rel="noreferrer noopener" target="_blank">build.rs:59</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">test</span> <span class="count">134</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/a2a.rs#L144" rel="noreferrer noopener" target="_blank">tests/a2a.rs:144</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/a2a_v1_tasks.rs#L734" rel="noreferrer noopener" target="_blank">tests/a2a_v1_tasks.rs:734</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L365" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:365</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/cancel.rs#L267" rel="noreferrer noopener" target="_blank">tests/cancel.rs:267</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/cancel.rs#L504" rel="noreferrer noopener" target="_blank">tests/cancel.rs:504</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/cancel.rs#L763" rel="noreferrer noopener" target="_blank">tests/cancel.rs:763</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/door_capsule.rs#L424" rel="noreferrer noopener" target="_blank">tests/common/door_capsule.rs:424</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L243" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:243</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L324" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:324</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/stream.rs#L286" rel="noreferrer noopener" target="_blank">tests/common/stream.rs:286</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/completion_lane.rs#L173" rel="noreferrer noopener" target="_blank">tests/completion_lane.rs:173</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L416" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:416</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L314" rel="noreferrer noopener" target="_blank">tests/delegation.rs:314</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L1304" rel="noreferrer noopener" target="_blank">tests/delegation.rs:1304</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L1320" rel="noreferrer noopener" target="_blank">tests/delegation.rs:1320</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_precompile.rs#L249" rel="noreferrer noopener" target="_blank">tests/deploy_precompile.rs:249</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L752" rel="noreferrer noopener" target="_blank">tests/done_check.rs:752</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_discovery.rs#L95" rel="noreferrer noopener" target="_blank">tests/door_discovery.rs:95</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_discovery.rs#L120" rel="noreferrer noopener" target="_blank">tests/door_discovery.rs:120</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_discovery.rs#L138" rel="noreferrer noopener" target="_blank">tests/door_discovery.rs:138</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L753" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:753</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/identity.rs#L509" rel="noreferrer noopener" target="_blank">tests/identity.rs:509</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/identity.rs#L537" rel="noreferrer noopener" target="_blank">tests/identity.rs:537</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L223" rel="noreferrer noopener" target="_blank">tests/input_required.rs:223</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L399" rel="noreferrer noopener" target="_blank">tests/input_required.rs:399</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/json_launch.rs#L144" rel="noreferrer noopener" target="_blank">tests/json_launch.rs:144</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/json_launch.rs#L756" rel="noreferrer noopener" target="_blank">tests/json_launch.rs:756</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/keep_working.rs#L592" rel="noreferrer noopener" target="_blank">tests/keep_working.rs:592</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/lifecycle.rs#L165" rel="noreferrer noopener" target="_blank">tests/lifecycle.rs:165</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/lifecycle.rs#L1601" rel="noreferrer noopener" target="_blank">tests/lifecycle.rs:1601</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_handoff.rs#L74" rel="noreferrer noopener" target="_blank">tests/peer_handoff.rs:74</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_handoff.rs#L125" rel="noreferrer noopener" target="_blank">tests/peer_handoff.rs:125</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_tasks.rs#L249" rel="noreferrer noopener" target="_blank">tests/peer_tasks.rs:249</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_tasks.rs#L423" rel="noreferrer noopener" target="_blank">tests/peer_tasks.rs:423</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_a2a_parity.rs#L624" rel="noreferrer noopener" target="_blank">tests/process_a2a_parity.rs:624</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_a2a_parity.rs#L694" rel="noreferrer noopener" target="_blank">tests/process_a2a_parity.rs:694</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_cancel.rs#L335" rel="noreferrer noopener" target="_blank">tests/process_cancel.rs:335</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_cancel.rs#L363" rel="noreferrer noopener" target="_blank">tests/process_cancel.rs:363</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_cancel.rs#L449" rel="noreferrer noopener" target="_blank">tests/process_cancel.rs:449</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_sessions.rs#L496" rel="noreferrer noopener" target="_blank">tests/process_sessions.rs:496</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_sessions.rs#L639" rel="noreferrer noopener" target="_blank">tests/process_sessions.rs:639</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_subscription_e2e.rs#L455" rel="noreferrer noopener" target="_blank">tests/process_subscription_e2e.rs:455</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_subscription_e2e.rs#L839" rel="noreferrer noopener" target="_blank">tests/process_subscription_e2e.rs:839</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/ps_stop.rs#L352" rel="noreferrer noopener" target="_blank">tests/ps_stop.rs:352</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/ps_stop.rs#L2073" rel="noreferrer noopener" target="_blank">tests/ps_stop.rs:2073</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/reopen_stream.rs#L230" rel="noreferrer noopener" target="_blank">tests/reopen_stream.rs:230</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/resource_plane.rs#L63" rel="noreferrer noopener" target="_blank">tests/resource_plane.rs:63</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/resource_plane.rs#L117" rel="noreferrer noopener" target="_blank">tests/resource_plane.rs:117</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/running_address.rs#L345" rel="noreferrer noopener" target="_blank">tests/running_address.rs:345</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/running_address.rs#L374" rel="noreferrer noopener" target="_blank">tests/running_address.rs:374</a> <span class="muted">and 8 more</span></span></li>
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L281" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:281</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L362" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:362</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L383" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:383</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L388" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:388</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/github_release.rs#L279" rel="noreferrer noopener" target="_blank">tests/common/github_release.rs:279</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L225" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:225</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L255" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:255</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L260" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:260</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L270" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:270</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/idle_capsule.rs#L303" rel="noreferrer noopener" target="_blank">tests/common/idle_capsule.rs:303</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L1092" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:1092</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/recording_upstream.rs#L123" rel="noreferrer noopener" target="_blank">tests/common/recording_upstream.rs:123</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/stream.rs#L326" rel="noreferrer noopener" target="_blank">tests/common/stream.rs:326</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/wire_recorder.rs#L145" rel="noreferrer noopener" target="_blank">tests/common/wire_recorder.rs:145</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/wire_recorder.rs#L167" rel="noreferrer noopener" target="_blank">tests/common/wire_recorder.rs:167</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L274" rel="noreferrer noopener" target="_blank">tests/delegation.rs:274</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L334" rel="noreferrer noopener" target="_blank">tests/delegation.rs:334</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L86" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:86</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L126" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:126</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L154" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:154</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L101" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:101</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L129" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:129</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L136" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:136</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L154" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:154</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L342" rel="noreferrer noopener" target="_blank">tests/input_required.rs:342</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L375" rel="noreferrer noopener" target="_blank">tests/input_required.rs:375</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L384" rel="noreferrer noopener" target="_blank">tests/input_required.rs:384</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L413" rel="noreferrer noopener" target="_blank">tests/input_required.rs:413</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L440" rel="noreferrer noopener" target="_blank">tests/input_required.rs:440</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_handoff.rs#L225" rel="noreferrer noopener" target="_blank">tests/peer_handoff.rs:225</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_cancel.rs#L443" rel="noreferrer noopener" target="_blank">tests/process_cancel.rs:443</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_subscription_e2e.rs#L866" rel="noreferrer noopener" target="_blank">tests/process_subscription_e2e.rs:866</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_subscription_e2e.rs#L886" rel="noreferrer noopener" target="_blank">tests/process_subscription_e2e.rs:886</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/reopen_stream.rs#L211" rel="noreferrer noopener" target="_blank">tests/reopen_stream.rs:211</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/reopen_stream.rs#L240" rel="noreferrer noopener" target="_blank">tests/reopen_stream.rs:240</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/streaming_protocol_doc.rs#L250" rel="noreferrer noopener" target="_blank">tests/streaming_protocol_doc.rs:250</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/streaming_protocol_doc.rs#L261" rel="noreferrer noopener" target="_blank">tests/streaming_protocol_doc.rs:261</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/streaming_protocol_doc.rs#L562" rel="noreferrer noopener" target="_blank">tests/streaming_protocol_doc.rs:562</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/topology_cmd.rs#L75" rel="noreferrer noopener" target="_blank">tests/topology_cmd.rs:75</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L284" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:284</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/github_release.rs#L66" rel="noreferrer noopener" target="_blank">tests/common/github_release.rs:66</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L176" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:176</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L972" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:972</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/recording_upstream.rs#L79" rel="noreferrer noopener" target="_blank">tests/common/recording_upstream.rs:79</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/completion_lane.rs#L366" rel="noreferrer noopener" target="_blank">tests/completion_lane.rs:366</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L68" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:68</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L176" rel="noreferrer noopener" target="_blank">tests/delegation.rs:176</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L186" rel="noreferrer noopener" target="_blank">tests/delegation.rs:186</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L443" rel="noreferrer noopener" target="_blank">tests/delegation.rs:443</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L476" rel="noreferrer noopener" target="_blank">tests/delegation.rs:476</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L561" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:561</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L71" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:71</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L427" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:427</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L51" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:51</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L104" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:104</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L87" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:87</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L69" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:69</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L95" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:95</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/input_required.rs#L1208" rel="noreferrer noopener" target="_blank">tests/input_required.rs:1208</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_default_source.rs#L85" rel="noreferrer noopener" target="_blank">tests/install_default_source.rs:85</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L370" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:370</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1470" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1470</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_handoff.rs#L155" rel="noreferrer noopener" target="_blank">tests/peer_handoff.rs:155</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/ps_stop.rs#L2108" rel="noreferrer noopener" target="_blank">tests/ps_stop.rs:2108</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L210" rel="noreferrer noopener" target="_blank">tests/run.rs:210</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/scoped_names.rs#L45" rel="noreferrer noopener" target="_blank">tests/scoped_names.rs:45</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawn_registration.rs#L50" rel="noreferrer noopener" target="_blank">tests/spawn_registration.rs:50</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L133" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:133</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/topology_cmd.rs#L50" rel="noreferrer noopener" target="_blank">tests/topology_cmd.rs:50</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/wit_level.rs#L250" rel="noreferrer noopener" target="_blank">tests/wit_level.rs:250</a> </span></li>
+
+<li><code class="evidence-text">std::net::UdpSocket::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L1046" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:1046</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_default_source.rs#L84" rel="noreferrer noopener" target="_blank">tests/install_default_source.rs:84</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_default_source.rs#L92" rel="noreferrer noopener" target="_blank">tests/install_default_source.rs:92</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/scoped_names.rs#L39" rel="noreferrer noopener" target="_blank">tests/scoped_names.rs:39</a> </span></li>
+
+<li><code class="evidence-text">std::net::ToSocketAddrs::to_socket_addrs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/streaming_protocol_doc.rs#L563" rel="noreferrer noopener" target="_blank">tests/streaming_protocol_doc.rs:563</a> </span></li>
+
+<li><code class="evidence-text">tokio::net::TcpSocket::new_v4</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/streaming_protocol_doc.rs#L572" rel="noreferrer noopener" target="_blank">tests/streaming_protocol_doc.rs:572</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">test</span> <span class="count">112</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/busy_door.rs#L150" rel="noreferrer noopener" target="_blank">tests/busy_door.rs:150</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/cancel.rs#L828" rel="noreferrer noopener" target="_blank">tests/cancel.rs:828</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/cancel.rs#L1545" rel="noreferrer noopener" target="_blank">tests/cancel.rs:1545</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/closed_output.rs#L71" rel="noreferrer noopener" target="_blank">tests/closed_output.rs:71</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/closed_output.rs#L189" rel="noreferrer noopener" target="_blank">tests/closed_output.rs:189</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/closed_output.rs#L283" rel="noreferrer noopener" target="_blank">tests/closed_output.rs:283</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/door_capsule.rs#L265" rel="noreferrer noopener" target="_blank">tests/common/door_capsule.rs:265</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/loopback_target.rs#L189" rel="noreferrer noopener" target="_blank">tests/common/loopback_target.rs:189</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/loopback_target.rs#L224" rel="noreferrer noopener" target="_blank">tests/common/loopback_target.rs:224</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L59" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:59</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L384" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:384</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/compiled_forms.rs#L625" rel="noreferrer noopener" target="_blank">tests/compiled_forms.rs:625</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L111" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:111</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L2988" rel="noreferrer noopener" target="_blank">tests/delegation.rs:2988</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/dev_version_script.rs#L23" rel="noreferrer noopener" target="_blank">tests/dev_version_script.rs:23</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/dev_version_script.rs#L70" rel="noreferrer noopener" target="_blank">tests/dev_version_script.rs:70</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_token.rs#L34" rel="noreferrer noopener" target="_blank">tests/door_token.rs:34</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L117" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:117</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L514" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:514</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L100" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:100</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L113" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:113</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/eval_variant.rs#L617" rel="noreferrer noopener" target="_blank">tests/eval_variant.rs:617</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L229" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:229</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L805" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:805</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L1436" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:1436</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L2058" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:2058</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L2296" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:2296</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_channel.rs#L95" rel="noreferrer noopener" target="_blank">tests/formation_channel.rs:95</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L320" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:320</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L2046" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:2046</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L2161" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:2161</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_lifeline.rs#L61" rel="noreferrer noopener" target="_blank">tests/formation_lifeline.rs:61</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_lifeline.rs#L565" rel="noreferrer noopener" target="_blank">tests/formation_lifeline.rs:565</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L188" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:188</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L262" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:262</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L273" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:273</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/index_cmd.rs#L149" rel="noreferrer noopener" target="_blank">tests/index_cmd.rs:149</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/index_cmd.rs#L157" rel="noreferrer noopener" target="_blank">tests/index_cmd.rs:157</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L229" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:229</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L805" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:805</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L194" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:194</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L213" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:213</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_script.rs#L186" rel="noreferrer noopener" target="_blank">tests/install_script.rs:186</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_script.rs#L455" rel="noreferrer noopener" target="_blank">tests/install_script.rs:455</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/json_launch.rs#L591" rel="noreferrer noopener" target="_blank">tests/json_launch.rs:591</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/json_launch.rs#L853" rel="noreferrer noopener" target="_blank">tests/json_launch.rs:853</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/launch_task.rs#L75" rel="noreferrer noopener" target="_blank">tests/launch_task.rs:75</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L785" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:785</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L924" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:924</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L74" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:74</a> <span class="muted">and 39 more</span></span></li>
+
+<li><code class="evidence-text">std::process::Command</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/closed_output.rs#L70" rel="noreferrer noopener" target="_blank">tests/closed_output.rs:70</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/closed_output.rs#L96" rel="noreferrer noopener" target="_blank">tests/closed_output.rs:96</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/formation.rs#L195" rel="noreferrer noopener" target="_blank">tests/common/formation.rs:195</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L110" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:110</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/dev_version_script.rs#L22" rel="noreferrer noopener" target="_blank">tests/dev_version_script.rs:22</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L116" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:116</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L99" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:99</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L112" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:112</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L129" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:129</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L134" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:134</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L465" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:465</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_channel.rs#L151" rel="noreferrer noopener" target="_blank">tests/formation_channel.rs:151</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L319" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:319</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_lifeline.rs#L60" rel="noreferrer noopener" target="_blank">tests/formation_lifeline.rs:60</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L187" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:187</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L228" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:228</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L212" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:212</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L73" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:73</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline.rs#L60" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline.rs:60</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L181" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:181</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L233" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:233</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L314" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:314</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L1407" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:1407</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">network_access</span> <span class="context">library</span> <span class="count">13</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::net::TcpStream</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/cancel.rs#L239" rel="noreferrer noopener" target="_blank">src/commands/cancel.rs:239</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect_timeout</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/cancel.rs#L246" rel="noreferrer noopener" target="_blank">src/commands/cancel.rs:246</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpListener::bind</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/cancel.rs#L269" rel="noreferrer noopener" target="_blank">src/commands/cancel.rs:269</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L554" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:554</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/default_versions.rs#L407" rel="noreferrer noopener" target="_blank">src/default_versions.rs:407</a> </span></li>
+
+<li><code class="evidence-text">ureq::Agent</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L145" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:145</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/http.rs#L5" rel="noreferrer noopener" target="_blank">src/http.rs:5</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L56" rel="noreferrer noopener" target="_blank">src/source/github.rs:56</a> </span></li>
+
+<li><code class="evidence-text">std::net::TcpStream::connect</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/watch.rs#L27" rel="noreferrer noopener" target="_blank">src/commands/watch.rs:27</a> </span></li>
+
+<li><code class="evidence-text">ureq::Agent::config_builder</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/http.rs#L6" rel="noreferrer noopener" target="_blank">src/http.rs:6</a> </span></li>
+
+<li><code class="evidence-text">ureq::http::StatusCode::NOT_FOUND</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L193" rel="noreferrer noopener" target="_blank">src/source/github.rs:193</a> </span></li>
+
+<li><code class="evidence-text">ureq::http::Response</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L274" rel="noreferrer noopener" target="_blank">src/source/github.rs:274</a> </span></li>
+
+<li><code class="evidence-text">ureq::Body</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L274" rel="noreferrer noopener" target="_blank">src/source/github.rs:274</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">process_spawn</span> <span class="context">library</span> <span class="count">6</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::process::Command::new</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L316" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:316</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L348" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:348</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L373" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:373</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L407" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:407</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L533" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:533</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L535" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:535</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">test</span> <span class="count">153</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">name: {name}\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: local/tool-progress-driver\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:1\u{a}     …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/a2a_v1_stream.rs#L89" rel="noreferrer noopener" target="_blank">tests/a2a_v1_stream.rs:89</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/x/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/a2a_v1_stream.rs#L449" rel="noreferrer noopener" target="_blank">tests/a2a_v1_stream.rs:449</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/bootstrap.rs#L363" rel="noreferrer noopener" target="_blank">tests/bootstrap.rs:363</a> </span></li>
+
+<li><code class="evidence-text">http://{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/github_release.rs#L67" rel="noreferrer noopener" target="_blank">tests/common/github_release.rs:67</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L177" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:177</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/completion_lane.rs#L367" rel="noreferrer noopener" target="_blank">tests/completion_lane.rs:367</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L187" rel="noreferrer noopener" target="_blank">tests/delegation.rs:187</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L444" rel="noreferrer noopener" target="_blank">tests/delegation.rs:444</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L477" rel="noreferrer noopener" target="_blank">tests/delegation.rs:477</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L562" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:562</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L72" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:72</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_discovery.rs#L622" rel="noreferrer noopener" target="_blank">tests/door_discovery.rs:622</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_retention.rs#L52" rel="noreferrer noopener" target="_blank">tests/formation_retention.rs:52</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L105" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:105</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L88" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:88</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L96" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:96</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_default_source.rs#L86" rel="noreferrer noopener" target="_blank">tests/install_default_source.rs:86</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1501" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1501</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_handoff.rs#L156" rel="noreferrer noopener" target="_blank">tests/peer_handoff.rs:156</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L211" rel="noreferrer noopener" target="_blank">tests/run.rs:211</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/running_address.rs#L1143" rel="noreferrer noopener" target="_blank">tests/running_address.rs:1143</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/scoped_names.rs#L46" rel="noreferrer noopener" target="_blank">tests/scoped_names.rs:46</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawn_registration.rs#L51" rel="noreferrer noopener" target="_blank">tests/spawn_registration.rs:51</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L134" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:134</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/wit_level.rs#L251" rel="noreferrer noopener" target="_blank">tests/wit_level.rs:251</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L974" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:974</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_auth.rs#L247" rel="noreferrer noopener" target="_blank">tests/door_auth.rs:247</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/topology_cmd.rs#L52" rel="noreferrer noopener" target="_blank">tests/topology_cmd.rs:52</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/agent-card/#murmur-door-v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L1343" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:1343</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/agent-card/#murmur-capsule-v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L1347" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:1347</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/streaming-protocol/#murmur-stream-v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L1351" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:1351</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/recording_upstream.rs#L109" rel="noreferrer noopener" target="_blank">tests/common/recording_upstream.rs:109</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_precompile.rs#L698" rel="noreferrer noopener" target="_blank">tests/deploy_precompile.rs:698</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L90" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:90</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L517" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:517</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/topology_cmd.rs#L305" rel="noreferrer noopener" target="_blank">tests/topology_cmd.rs:305</a> </span></li>
+
+<li><code class="evidence-text">capabilities:\u{a}  containment: sealed\u{a}  network:\u{a}    allow:\u{a}      - https://api.example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/containment.rs#L146" rel="noreferrer noopener" target="_blank">tests/containment.rs:146</a> </span></li>
+
+<li><code class="evidence-text">https://api.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/containment.rs#L166" rel="noreferrer noopener" target="_blank">tests/containment.rs:166</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/trace.rs#L730" rel="noreferrer noopener" target="_blank">tests/trace.rs:730</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/continuation.rs#L32" rel="noreferrer noopener" target="_blank">tests/continuation.rs:32</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L1353" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:1353</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L1554" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:1554</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L507" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:507</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deny.rs#L867" rel="noreferrer noopener" target="_blank">tests/deny.rs:867</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L2324" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:2324</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/done_check.rs#L983" rel="noreferrer noopener" target="_blank">tests/done_check.rs:983</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L967" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:967</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L1251" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:1251</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L1341" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:1341</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/driver_switch.rs#L1358" rel="noreferrer noopener" target="_blank">tests/driver_switch.rs:1358</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L384" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:384</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L585" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:585</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/egress_namespace_probe.rs#L635" rel="noreferrer noopener" target="_blank">tests/egress_namespace_probe.rs:635</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L377" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:377</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/keep_working.rs#L855" rel="noreferrer noopener" target="_blank">tests/keep_working.rs:855</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/model_limits.rs#L627" rel="noreferrer noopener" target="_blank">tests/model_limits.rs:627</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/model_limits.rs#L652" rel="noreferrer noopener" target="_blank">tests/model_limits.rs:652</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_subscription_e2e.rs#L1364" rel="noreferrer noopener" target="_blank">tests/process_subscription_e2e.rs:1364</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/session_status.rs#L1105" rel="noreferrer noopener" target="_blank">tests/session_status.rs:1105</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/session_status.rs#L1191" rel="noreferrer noopener" target="_blank">tests/session_status.rs:1191</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/session_temp_folder.rs#L234" rel="noreferrer noopener" target="_blank">tests/session_temp_folder.rs:234</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/task_outcome.rs#L370" rel="noreferrer noopener" target="_blank">tests/task_outcome.rs:370</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/trace_capture.rs#L35" rel="noreferrer noopener" target="_blank">tests/trace_capture.rs:35</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/truncated_turn.rs#L47" rel="noreferrer noopener" target="_blank">tests/truncated_turn.rs:47</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/usage_reporting.rs#L49" rel="noreferrer noopener" target="_blank">tests/usage_reporting.rs:49</a> </span></li>
+
+<li><code class="evidence-text">https://cards.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L1555" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:1555</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/control_surface.rs#L1593" rel="noreferrer noopener" target="_blank">tests/control_surface.rs:1593</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/conversation.rs#L308" rel="noreferrer noopener" target="_blank">tests/conversation.rs:308</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L1178" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:1178</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/door_auth.rs#L616" rel="noreferrer noopener" target="_blank">tests/door_auth.rs:616</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/no_registry_service.rs#L87" rel="noreferrer noopener" target="_blank">tests/no_registry_service.rs:87</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_tasks.rs#L655" rel="noreferrer noopener" target="_blank">tests/peer_tasks.rs:655</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/scoped_names.rs#L846" rel="noreferrer noopener" target="_blank">tests/scoped_names.rs:846</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawn_registration.rs#L252" rel="noreferrer noopener" target="_blank">tests/spawn_registration.rs:252</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawn_registration.rs#L260" rel="noreferrer noopener" target="_blank">tests/spawn_registration.rs:260</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/diagnostics/#w-sec-025</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L54" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:54</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L261" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:261</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/diagnostics/#w-sec-027</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L55" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:55</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_credential_rotation.rs#L35" rel="noreferrer noopener" target="_blank">tests/inference_credential_rotation.rs:35</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/diagnostics/#w-sec-030</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L56" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:56</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L420" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:420</a> </span></li>
+
+<li><code class="evidence-text">  endpoint: https://api.anthropic.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/credential_gateway.rs#L1124" rel="noreferrer noopener" target="_blank">tests/credential_gateway.rs:1124</a> </span></li>
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L845" rel="noreferrer noopener" target="_blank">tests/delegation.rs:845</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L1303" rel="noreferrer noopener" target="_blank">tests/delegation.rs:1303</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/delegation.rs#L1319" rel="noreferrer noopener" target="_blank">tests/delegation.rs:1319</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_precompile.rs#L198" rel="noreferrer noopener" target="_blank">tests/deploy_precompile.rs:198</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L600" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:600</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L1994" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:1994</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_calls.rs#L2290" rel="noreferrer noopener" target="_blank">tests/formation_calls.rs:2290</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L483" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:483</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L631" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:631</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L657" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:657</a> </span></li>
+
+<li><code class="evidence-text">https://1.2.3.4:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L143" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:143</a> </span></li>
+
+<li><code class="evidence-text">name: my-agent\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: murmur/driver-openai\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://localhost:8080\u{a}      …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/deploy_cmd.rs#L687" rel="noreferrer noopener" target="_blank">tests/deploy_cmd.rs:687</a> </span></li>
+
+<li><code class="evidence-text">name: solo\u{a}version: 0.0.1\u{a}artifacts:\u{a}  - name: local/murmur-driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080\u{a} …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L275" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:275</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L1783" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:1783</a> </span></li>
+
+<li><code class="evidence-text">{declared}    gateway:\u{a}      endpoint: https://api.example.com\u{a}      api_key: test-key\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L671" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:671</a> </span></li>
+
+<li><code class="evidence-text">  - name: local/pulled-skill\u{a}    version: 0.1.0\u{a}    runtime: skill\u{a}  - name: local/murmur-driver-anthropic\u{a}    version: 0.1.4\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoin…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L725" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:725</a> </span></li>
+
+<li><code class="evidence-text">no daemon answered at http://127.0.0.1:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L1185" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:1185</a> </span></li>
+
+<li><code class="evidence-text">name: worker\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: local/murmur-driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L1707" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:1707</a> </span></li>
+
+<li><code class="evidence-text">name: root-capsule\u{a}version: 0.0.1\u{a}artifacts:\u{a}  - name: local/murmur-driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:80…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/doctor_cmd.rs#L1883" rel="noreferrer noopener" target="_blank">tests/doctor_cmd.rs:1883</a> </span></li>
+
+<li><code class="evidence-text">name: stripped-env-capsule\u{a}version: 0.1.0\u{a}capabilities:\u{a}  env:\u{a}    allow:\u{a}      - GITHUB_TOKEN\u{a}artifacts:\u{a}  - name: local/uninstalled-tool\u{a}    version: 0.1.0\u{a}    ru…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/env_allow_stripped.rs#L167" rel="noreferrer noopener" target="_blank">tests/env_allow_stripped.rs:167</a> </span></li>
+
+<li><code class="evidence-text">coder=http://localhost:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_channel.rs#L238" rel="noreferrer noopener" target="_blank">tests/formation_channel.rs:238</a> </span></li>
+
+<li><code class="evidence-text">peers=coder=http://coder.formation.invalid</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L685" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:685</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L1031" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:1031</a> </span></li>
+
+<li><code class="evidence-text">peers=reviewer=http://reviewer.formation.invalid</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L698" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:698</a> </span></li>
+
+<li><code class="evidence-text">[mur run] warning[W-ROS-001]: roster.yaml lets 3 members call &#39;tester&#39; (coder, reviewer, planner), but it holds 2 tasks at once — one running and lifecycle.queue_depth: 1 waiting — so a call that …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L949" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:949</a> </span></li>
+
+<li><code class="evidence-text">coder=http://localhost:41873</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L1659" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:1659</a> </span></li>
+
+<li><code class="evidence-text">coder=http://localhost:41873  reviewer=http://localhost:1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L1665" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:1665</a> </span></li>
+
+<li><code class="evidence-text">{&#34;message&#34;:&#34;API rate limit exceeded for 127.0.0.1. (But here&#39;s the good news: Authenticated requests get a higher rate limit.)&#34;,&#34;documentation_url&#34;:&#34;https://docs.github.com/rest/overview/resources-in-…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/github_rate_limit.rs#L26" rel="noreferrer noopener" target="_blank">tests/github_rate_limit.rs:26</a> </span></li>
+
+<li><code class="evidence-text">MURMUR_INFERENCE_ENDPOINT=http://127.0.0.1:9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_gateway.rs#L562" rel="noreferrer noopener" target="_blank">tests/inference_gateway.rs:562</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:{}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/inference_retry.rs#L166" rel="noreferrer noopener" target="_blank">tests/inference_retry.rs:166</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_subscription_e2e.rs#L464" rel="noreferrer noopener" target="_blank">tests/process_subscription_e2e.rs:464</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{REPO}/releases/download/v{VERSION}/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/install_script.rs#L273" rel="noreferrer noopener" target="_blank">tests/install_script.rs:273</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/diagnostics/#w-run-009</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/model_limits.rs#L385" rel="noreferrer noopener" target="_blank">tests/model_limits.rs:385</a> </span></li>
+
+<li><code class="evidence-text">http://localhost:9999</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/murmur_md.rs#L106" rel="noreferrer noopener" target="_blank">tests/murmur_md.rs:106</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/murmur_md.rs#L164" rel="noreferrer noopener" target="_blank">tests/murmur_md.rs:164</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/murmur_md.rs#L219" rel="noreferrer noopener" target="_blank">tests/murmur_md.rs:219</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/murmur_md.rs#L270" rel="noreferrer noopener" target="_blank">tests/murmur_md.rs:270</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/murmur_md.rs#L383" rel="noreferrer noopener" target="_blank">tests/murmur_md.rs:383</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/murmur_md.rs#L433" rel="noreferrer noopener" target="_blank">tests/murmur_md.rs:433</a> </span></li>
+
+<li><code class="evidence-text">https://github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L1067" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:1067</a> </span></li>
+
+<li><code class="evidence-text">https://release-assets.githubusercontent.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/native_tool_confinement.rs#L1068" rel="noreferrer noopener" target="_blank">tests/native_tool_confinement.rs:1068</a> </span></li>
+
+<li><code class="evidence-text">https://api.anthropic.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1133" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1133</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1209" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1209</a> </span></li>
+
+<li><code class="evidence-text">inference:\u{a}  provider: anthropic\u{a}  model: my-model\u{a}  endpoint: http://127.0.0.1:4242\u{a}  api_key: {}\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1238" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1238</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:4242</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1247" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1247</a> </span></li>
+
+<li><code class="evidence-text">inference:\u{a}  endpoint: http://example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1281" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1281</a> </span></li>
+
+<li><code class="evidence-text">http://{}/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1523" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1523</a> </span></li>
+
+<li><code class="evidence-text">capabilities:\u{a}  peer_fetch:\u{a}    allow:\u{a}      - &#34;http://[not a host&#34;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/peer_handoff.rs#L1655" rel="noreferrer noopener" target="_blank">tests/peer_handoff.rs:1655</a> </span></li>
+
+<li><code class="evidence-text">  - name: {STREAMING_DRIVER}\u{a}    version: {VERSION}\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:1\u{a}      api_key: test-key\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_a2a_parity.rs#L295" rel="noreferrer noopener" target="_blank">tests/process_a2a_parity.rs:295</a> </span></li>
+
+<li><code class="evidence-text">  - name: {TOOL_PROGRESS_DRIVER}\u{a}    version: {VERSION}\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:1\u{a}      api_key: test-key\u{a}  - name: local/{TOOL}\u{a} …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_a2a_parity.rs#L335" rel="noreferrer noopener" target="_blank">tests/process_a2a_parity.rs:335</a> </span></li>
+
+<li><code class="evidence-text">    gateway:\u{a}      endpoint: &#34;http://127.0.0.1:9&#34;\u{a}      keyless: true\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_driver.rs#L56" rel="noreferrer noopener" target="_blank">tests/process_driver.rs:56</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_driver.rs#L275" rel="noreferrer noopener" target="_blank">tests/process_driver.rs:275</a> </span></li>
+
+<li><code class="evidence-text">name: {CAPSULE}-http\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: {HTTP_DRIVER}\u{a}    version: {DRIVER_VERSION}\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:1…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_sessions.rs#L1394" rel="noreferrer noopener" target="_blank">tests/process_sessions.rs:1394</a> </span></li>
+
+<li><code class="evidence-text">name: {CAPSULE_NAME}\u{a}version: 0.1.0\u{a}{blocks}artifacts:\u{a}  - name: {artifact_name}\u{a}    version: 0.1.0\u{a}    runtime: tool\u{a}  - name: local/murmur-driver-anthropic\u{a}    version: 0…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/reserved_tool_names.rs#L35" rel="noreferrer noopener" target="_blank">tests/reserved_tool_names.rs:35</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/diagnostics/#w-ros-001</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/roster.rs#L24" rel="noreferrer noopener" target="_blank">tests/roster.rs:24</a> </span></li>
+
+<li><code class="evidence-text">  network:\u{a}    allow:\u{a}      - https://allowed.example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L298" rel="noreferrer noopener" target="_blank">tests/run.rs:298</a> </span></li>
+
+<li><code class="evidence-text">  network:\u{a}    allow:\u{a}      - https://blocked.example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L333" rel="noreferrer noopener" target="_blank">tests/run.rs:333</a> </span></li>
+
+<li><code class="evidence-text">name: capsule\u{a}version: 0.0.1\u{a}artifacts:\u{a}  - name: local/dummy-driver\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080\u{a}      api…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L525" rel="noreferrer noopener" target="_blank">tests/run.rs:525</a> </span></li>
+
+<li><code class="evidence-text">  - name: {TOOL_ARTIFACT}\u{a}    version: {TOOL_VERSION}\u{a}    gateway:\u{a}      endpoint: https://api.example.com\u{a}      api_key: test-key\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/run.rs#L702" rel="noreferrer noopener" target="_blank">tests/run.rs:702</a> </span></li>
+
+<li><code class="evidence-text">name: scoped-capsule\u{a}version: 0.1.0\u{a}{blocks}artifacts:\u{a}{artifacts}  - name: {DRIVER}\u{a}    version: {DRIVER_VERSION}\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://1…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/scoped_names.rs#L84" rel="noreferrer noopener" target="_blank">tests/scoped_names.rs:84</a> </span></li>
+
+<li><code class="evidence-text">https://this-does-not-exist.invalid/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/search_cmd.rs#L458" rel="noreferrer noopener" target="_blank">tests/search_cmd.rs:458</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/diagnostics/#w-sec-024</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/secret_shaped_env.rs#L16" rel="noreferrer noopener" target="_blank">tests/secret_shaped_env.rs:16</a> </span></li>
+
+<li><code class="evidence-text">name: cap\u{a}version: 0.1.0\u{a}inference:\u{a}  transport: http\u{a}  model: test\u{a}  driver:\u{a}    artifact: local/dummy-driver\u{a}artifacts:\u{a}  - name: ghost\u{a}    source: ./skills/ghost…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/skill_local_source.rs#L350" rel="noreferrer noopener" target="_blank">tests/skill_local_source.rs:350</a> </span></li>
+
+<li><code class="evidence-text">name: cap\u{a}version: 0.1.0\u{a}inference:\u{a}  transport: http\u{a}  model: test\u{a}  driver:\u{a}    artifact: local/dummy-driver\u{a}artifacts:\u{a}  - name: empty-skill\u{a}    source: ./skills…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/skill_local_source.rs#L375" rel="noreferrer noopener" target="_blank">tests/skill_local_source.rs:375</a> </span></li>
+
+<li><code class="evidence-text">hint: https://docs.murmur.nexus/reference/wit-levels/ lists which mur release serves which WIT level</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/source_resolution.rs#L735" rel="noreferrer noopener" target="_blank">tests/source_resolution.rs:735</a> </span></li>
+
+<li><code class="evidence-text">registry:\u{a}  sources:\u{a}    - url: https://example.com\u{a}      repo: ana/a\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/source_resolution.rs#L1177" rel="noreferrer noopener" target="_blank">tests/source_resolution.rs:1177</a> </span></li>
+
+<li><code class="evidence-text">name: streaming-test\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: {STREAMING_DRIVER_NAME}\u{a}    version: {STREAMING_DRIVER_VERSION}\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: ht…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/streaming.rs#L537" rel="noreferrer noopener" target="_blank">tests/streaming.rs:537</a> </span></li>
+
+<li><code class="evidence-text">      - https://api.example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/trace.rs#L644" rel="noreferrer noopener" target="_blank">tests/trace.rs:644</a> </span></li>
+
+<li><code class="evidence-text">{{&#34;event_type&#34;:&#34;a2a_send&#34;,&#34;event_id&#34;:&#34;evt_7&#34;,&#34;parent_id&#34;:&#34;evt_1&#34;,&#34;session_id&#34;:&#34;{s}&#34;,&#34;timestamp&#34;:1210,&#34;peer_url&#34;:&#34;http://peer.example/a2a&#34;,&#34;message_id&#34;:&#34;msg-out&#34;,&#34;task_id&#34;:&#34;tsk_peer&#34;,&#34;context_id&#34;:&#34;ctx_…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/trace_cmd.rs#L2944" rel="noreferrer noopener" target="_blank">tests/trace_cmd.rs:2944</a> </span></li>
+
+<li><code class="evidence-text">http://peer.example/a2a</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/trace_cmd.rs#L2990" rel="noreferrer noopener" target="_blank">tests/trace_cmd.rs:2990</a> </span></li>
+
+<li><code class="evidence-text">name: retry-capsule\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: local/drv\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080\u{a}      api_ke…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/unknown_manifest_keys.rs#L170" rel="noreferrer noopener" target="_blank">tests/unknown_manifest_keys.rs:170</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">70</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">http://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/cancel.rs#L34" rel="noreferrer noopener" target="_blank">src/commands/cancel.rs:34</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/search.rs#L77" rel="noreferrer noopener" target="_blank">src/commands/search.rs:77</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/stop.rs#L495" rel="noreferrer noopener" target="_blank">src/commands/stop.rs:495</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/watch.rs#L24" rel="noreferrer noopener" target="_blank">src/commands/watch.rs:24</a> </span></li>
+
+<li><code class="evidence-text">https://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/cancel.rs#L35" rel="noreferrer noopener" target="_blank">src/commands/cancel.rs:35</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/search.rs#L77" rel="noreferrer noopener" target="_blank">src/commands/search.rs:77</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/stop.rs#L496" rel="noreferrer noopener" target="_blank">src/commands/stop.rs:496</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/watch.rs#L25" rel="noreferrer noopener" target="_blank">src/commands/watch.rs:25</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/config_cmd.rs#L167" rel="noreferrer noopener" target="_blank">src/commands/config_cmd.rs:167</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/search.rs#L305" rel="noreferrer noopener" target="_blank">src/commands/search.rs:305</a> </span></li>
+
+<li><code class="evidence-text">registry:\u{a}  index_url: https://example.com/kept.json\u{a}credentials:\u{a}  OTHER_KEY: keep-me\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/config_cmd.rs#L239" rel="noreferrer noopener" target="_blank">src/commands/config_cmd.rs:239</a> </span></li>
+
+<li><code class="evidence-text">https://example.com/kept.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/config_cmd.rs#L253" rel="noreferrer noopener" target="_blank">src/commands/config_cmd.rs:253</a> </span></li>
+
+<li><code class="evidence-text">https://api.github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L607" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:607</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L459" rel="noreferrer noopener" target="_blank">src/source/github.rs:459</a> </span></li>
+
+<li><code class="evidence-text">http://{host}:{port}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L1843" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:1843</a> </span></li>
+
+<li><code class="evidence-text">name: cap\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: murmur/driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://localhost:8080\u{a}      ke…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2235" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2235</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2256" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2256</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2278" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2278</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2298" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2298</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2324" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2324</a> </span></li>
+
+<li><code class="evidence-text">export OPENAI_API_KEY=sk-xxx\u{a}export DB_URL=postgres://\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2574" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2574</a> </span></li>
+
+<li><code class="evidence-text">DB_URL=postgres://</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2578" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2578</a> </span></li>
+
+<li><code class="evidence-text">name: my-agent\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: local/drv\u{a}    version: 1.0.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: https://api.example.com\u{a}      api_key: …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L3207" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:3207</a> </span></li>
+
+<li><code class="evidence-text">http://203.0.113.9:41873</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L3220" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:3220</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L3233" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:3233</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L3255" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:3255</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L3277" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:3277</a> </span></li>
+
+<li><code class="evidence-text">warning[W-SEC-032]: the door is published at http://203.0.113.9:41873 and network.authentication is not declared</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L3228" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:3228</a> </span></li>
+
+<li><code class="evidence-text">https://1.2.3.4:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy_state.rs#L174" rel="noreferrer noopener" target="_blank">src/commands/deploy_state.rs:174</a> </span></li>
+
+<li><code class="evidence-text">[mur doctor] warning[{E_RUN_019}]: this capsule declares capabilities.spawn.allow, and {ROOST_BINARY} was not found on PATH.\u{a}  `mur run` refuses a capsule that cannot register with the daemon that…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/doctor.rs#L817" rel="noreferrer noopener" target="_blank">src/commands/doctor.rs:817</a> </span></li>
+
+<li><code class="evidence-text">[mur doctor] warning[{E_RUN_019}]: this capsule declares capabilities.spawn.allow, and {ROOST_BINARY} is installed at {binary}, but MURMUR_ROOST_URL — the variable naming the daemon to register with…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/doctor.rs#L830" rel="noreferrer noopener" target="_blank">src/commands/doctor.rs:830</a> </span></li>
+
+<li><code class="evidence-text">https://github.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L86" rel="noreferrer noopener" target="_blank">src/commands/new.rs:86</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1187" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1187</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1208" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1208</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1245" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1245</a> </span></li>
+
+<li><code class="evidence-text">https://release-assets.githubusercontent.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L87" rel="noreferrer noopener" target="_blank">src/commands/new.rs:87</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1188" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1188</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1209" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1209</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1246" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1246</a> </span></li>
+
+<li><code class="evidence-text">https://custom.proxy.example.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L761" rel="noreferrer noopener" target="_blank">src/commands/new.rs:761</a> </span></li>
+
+<li><code class="evidence-text">https://api.anthropic.com</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L844" rel="noreferrer noopener" target="_blank">src/commands/new.rs:844</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L48" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:48</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8080/x/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1097" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1097</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1200" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1200</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8080</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1202" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1202</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1210" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1210</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/ana/my-artifacts/releases/latest/download/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L1236" rel="noreferrer noopener" target="_blank">src/commands/new.rs:1236</a> </span></li>
+
+<li><code class="evidence-text">https://api.openai.com/v1</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L56" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:56</a> </span></li>
+
+<li><code class="evidence-text">set inference.endpoint to an https:// URL, or an http:// URL on localhost or a loopback address; or remove it to use {}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L346" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:346</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:9999</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L1205" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:1205</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:4242</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L1272" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:1272</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new_roster.rs#L1279" rel="noreferrer noopener" target="_blank">src/commands/new_roster.rs:1279</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/murmur-nexus/default-artifacts/releases/latest/download/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/search.rs#L19" rel="noreferrer noopener" target="_blank">src/commands/search.rs:19</a> </span></li>
+
+<li><code class="evidence-text">https://github.com/{DEFAULT_ARTIFACTS_REPO}/releases/latest/download/{ARTIFACT_INDEX_FILE_NAME}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/search.rs#L290" rel="noreferrer noopener" target="_blank">src/commands/search.rs:290</a> </span></li>
+
+<li><code class="evidence-text">http://127.0.0.1:8080/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/search.rs#L304" rel="noreferrer noopener" target="_blank">src/commands/search.rs:304</a> </span></li>
+
+<li><code class="evidence-text">https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.9/dist/vis-network.min.js</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L20" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:20</a> </span></li>
+
+<li><code class="evidence-text">https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.9/dist/dist/vis-network.min.css</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L22" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:22</a> </span></li>
+
+<li><code class="evidence-text">http://{addr}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/topology.rs#L557" rel="noreferrer noopener" target="_blank">src/commands/topology.rs:557</a> </span></li>
+
+<li><code class="evidence-text">registry:\u{a}  default: official\u{a}  sources:\u{a}    - name: official\u{a}      type: github\u{a}      repo: some-user/custom-artifacts\u{a}      url: https://example.com\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/config.rs#L655" rel="noreferrer noopener" target="_blank">src/config.rs:655</a> </span></li>
+
+<li><code class="evidence-text">registry:\u{a}  index_url: https://example.com/index.json\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/config.rs#L1050" rel="noreferrer noopener" target="_blank">src/config.rs:1050</a> </span></li>
+
+<li><code class="evidence-text">http://{}/artifacts-index.json</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/default_versions.rs#L409" rel="noreferrer noopener" target="_blank">src/default_versions.rs:409</a> </span></li>
+
+<li><code class="evidence-text">name: infer-worker\u{a}version: 0.1.0\u{a}artifacts:\u{a}  - name: murmur/driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/env_requirements.rs#L931" rel="noreferrer noopener" target="_blank">src/env_requirements.rs:931</a> </span></li>
+
+<li><code class="evidence-text">name: solo\u{a}version: 0.0.1\u{a}artifacts:\u{a}  - name: murmur/driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080\u{a}      k…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/env_requirements.rs#L960" rel="noreferrer noopener" target="_blank">src/env_requirements.rs:960</a> </span></li>
+
+<li><code class="evidence-text">name: solo\u{a}version: 0.0.1\u{a}artifacts:\u{a}  - name: murmur/driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080\u{a}      a…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/env_requirements.rs#L977" rel="noreferrer noopener" target="_blank">src/env_requirements.rs:977</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/env_requirements.rs#L1014" rel="noreferrer noopener" target="_blank">src/env_requirements.rs:1014</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/env_requirements.rs#L1032" rel="noreferrer noopener" target="_blank">src/env_requirements.rs:1032</a> </span></li>
+
+<li><code class="evidence-text">name: src-root\u{a}version: 0.0.1\u{a}artifacts:\u{a}  - name: murmur/driver-anthropic\u{a}    version: 0.1.0\u{a}    runtime: driver\u{a}    gateway:\u{a}      endpoint: http://127.0.0.1:8080\u{a}   …</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/env_requirements.rs#L1068" rel="noreferrer noopener" target="_blank">src/env_requirements.rs:1068</a> </span></li>
+
+<li><code class="evidence-text">{&#34;message&#34;:&#34;API rate limit exceeded for 127.0.0.1.&#34;,&#34;documentation_url&#34;:&#34;https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting&#34;}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/github.rs#L468" rel="noreferrer noopener" target="_blank">src/source/github.rs:468</a> </span></li>
+
+<li><code class="evidence-text">https://docs.murmur.nexus/reference/wit-levels/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/mod.rs#L1742" rel="noreferrer noopener" target="_blank">src/source/mod.rs:1742</a> </span></li>
+
+<li><code class="evidence-text">registry:\u{a}  sources:\u{a}    - url: https://x\u{a}      repo: ana/a\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/source/mod.rs#L1897" rel="noreferrer noopener" target="_blank">src/source/mod.rs:1897</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">test</span> <span class="count">10</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/formation.rs#L150" rel="noreferrer noopener" target="_blank">tests/common/formation.rs:150</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/mod.rs#L138" rel="noreferrer noopener" target="_blank">tests/common/mod.rs:138</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_channel.rs#L155" rel="noreferrer noopener" target="_blank">tests/formation_channel.rs:155</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_launch.rs#L551" rel="noreferrer noopener" target="_blank">tests/formation_launch.rs:551</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline.rs#L508" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline.rs:508</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/spawner_lifeline_kill.rs#L1412" rel="noreferrer noopener" target="_blank">tests/spawner_lifeline_kill.rs:1412</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/common/loopback_target.rs#L250" rel="noreferrer noopener" target="_blank">tests/common/loopback_target.rs:250</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/formation_lifeline.rs#L500" rel="noreferrer noopener" target="_blank">tests/formation_lifeline.rs:500</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/process_cancel.rs#L99" rel="noreferrer noopener" target="_blank">tests/process_cancel.rs:99</a> <a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/session_network_namespace.rs#L272" rel="noreferrer noopener" target="_blank">tests/session_network_namespace.rs:272</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">3 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/control.rs#L389" rel="noreferrer noopener" target="_blank">src/commands/control.rs:389</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/deploy.rs#L2696" rel="noreferrer noopener" target="_blank">src/commands/deploy.rs:2696</a> </span></li>
+
+<li><code class="evidence-text">10 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/commands/new.rs#L814" rel="noreferrer noopener" target="_blank">src/commands/new.rs:814</a> </span></li>
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/config.rs#L588" rel="noreferrer noopener" target="_blank">src/config.rs:588</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">environment_enumeration</span> <span class="context">test</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">std::env::vars_os, keys only</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/tests/new_roster.rs#L1081" rel="noreferrer noopener" target="_blank">tests/new_roster.rs:1081</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">binary</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">Artifact index whose newest version that fits this mur the members&#39; driver is pinned at: an http:// or https:// URL is fetched; any other value is an index file. &#34;local&#34; is refused. Omitted, the index…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/murmur-cli/0.8.0/code/src/main.rs#L75" rel="noreferrer noopener" target="_blank">src/main.rs:75</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge ok">succeeded</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 0</dd></div><div><dt>Run time</dt><dd>638 ms</dd></div><div><dt>VM restore</dt><dd>62 ms</dd></div><div><dt>Payload</dt><dd>16988 files, 378.7 MiB</dd></div><div><dt>Files opened</dt><dd>851</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">2</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.
+<label class="toggle"><input type="checkbox" checked> Hide the 1 compiler processes (rustc, C toolchain)</label></p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">6 ms</td>
+<td class="nowrap">622 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+<tr class="role-rustc compiler">
+<td class="d1"><span class="branch">└</span><span class="badge role">rustc</span> <span class="mono" title="pid 579: /usr/local/bin/rustc">/usr/local/bin/rustc</span></td>
+<td class="mono args">--crate-name crateward_probe --edition=2021 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values()) -C metadata=d9152fcf76bf9b7f -C extra-filename=-8c7788aadf5d3a75 --out-dir /work/target/debug/deps -C incremental=/work/target/debug/incremental -L dependency=/work/target/debug/deps</td>
+<td class="nowrap muted">404 ms</td>
+<td class="nowrap">199 ms</td>
+<td class="nowrap">0</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>21</dd></div><div><dt>Directories</dt><dd>19</dd></div><div><dt>Size</dt><dd>77.8 KiB</dd></div><div><dt>Compiled units</dt><dd>1</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>warning: crateward-probe v0.0.0 (/cw/probe) ignoring invalid dependency `target` which is missing a lib target
+    Checking crateward-probe v0.0.0 (/cw/probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.55s
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-27 00:22 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 00:22 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 00:22 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 00:22 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot1</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 00:22 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-27 00:22 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>

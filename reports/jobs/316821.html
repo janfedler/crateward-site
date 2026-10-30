@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crateward: kingfisher-rules 3.0.1</title>
+<link rel="stylesheet" href="../static/crateward.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../index.html">Crateward</a>
+  <nav class="primary" aria-label="Main"><a href="../index.html">Archive</a></nav>
+</header>
+<main>
+
+<div class="report-head">
+  <div class="report-title">
+    <h1>kingfisher-rules <span class="version">3.0.1</span></h1>
+    <p class="meta">
+      <span class="badge">Done</span>
+      <span class="badge">dynamic on Linux</span>
+      <span class="muted">job 316821</span>
+      <a class="muted" href="https://crates.io/crates/kingfisher-rules/3.0.1" rel="noreferrer noopener" target="_blank">crates.io</a>
+      <a class="muted" href="316821.cdx.json" download title="CycloneDX SBOM of the crate and its locked dependencies">SBOM</a>
+      <a class="muted" href="316821.vex.cdx.json" download title="Crateward's findings as CycloneDX VEX, pointing into the SBOM">Findings (VEX)</a>
+      <a class="button compare" href="316821-diff.html">Compare with 3.0.0</a>
+    </p>
+    <p class="headline">high severity exfiltration_endpoint in library code: https://api.telegram.org/bot{{ TOKEN }}/getMe</p>
+  </div>
+  
+  <div class="verdict tone-low">
+    <div class="score">19</div>
+    <div class="level">low</div>
+  </div>
+  
+</div>
+
+
+<div class="decision">
+  <span><b>Automated verdict.</b> Nobody reviewed it. A score is a reason to look closer, not a finding.</span>
+</div>
+
+
+<nav class="toc" aria-label="Sections">
+  
+  <a href="#evidence">Evidence <span class="count">6</span></a>
+  <a href="#behavior">Behavior <span class="count">5</span></a>
+  <a href="#findings">Static findings <span class="count">73</span></a>
+  <a href="#run-check">Run: check</a>
+  <a href="#timeline">Timeline <span class="count">6</span></a>
+</nav>
+
+
+
+<h2 id="evidence">Evidence</h2>
+
+
+<table class="evidence">
+<thead><tr><th class="num">Points</th><th>Signal</th><th>Where</th><th>What</th></tr></thead>
+<tbody>
+
+<tr><td class="num"><span class="points warn">10</span></td><td class="signal"><span class="word">static:exfiltration_endpoint</span><div class="sub">static · kingfisher-rules</div></td><td class="mono where"><a href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L370" rel="noreferrer noopener" target="_blank">build_support/veles.rs:370</a></td><td>high severity exfiltration_endpoint in library code: https://api.telegram.org/bot{{ TOKEN }}/getMe</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:credential_access</span><div class="sub">static · kingfisher-rules</div></td><td class="mono where"><a href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L794" rel="noreferrer noopener" target="_blank">build_support/veles.rs:794</a></td><td>medium severity credential_access in library code: (?i)(?:\.git[/\\]config|(?:^|[/\\])\.git-credentials|_history)$</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:included_binary</span><div class="sub">static · kingfisher-rules</div></td><td class="mono where"><a href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L520" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:520</a></td><td>medium severity included_binary in library code (3 places): generated/upstream-sources.json.gz (209264 bytes)</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:secret_environment_variable</span><div class="sub">static · kingfisher-rules</div></td><td class="mono where"><a href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L982" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:982</a></td><td>medium severity secret_environment_variable in library code (4 places): AWS_SECRET_ACCESS_KEY</td></tr>
+
+<tr><td class="num"><span class="points low">2</span></td><td class="signal"><span class="word">static:shell_command</span><div class="sub">static · kingfisher-rules</div></td><td class="mono where"><a href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/liquid_filters.rs#L1411" rel="noreferrer noopener" target="_blank">src/liquid_filters.rs:1411</a></td><td>medium severity shell_command in library code (4 places): {{ &#34;hello&#34; | sha256 }}</td></tr>
+
+<tr><td class="num"><span class="points low">1</span></td><td class="signal"><span class="word">static:build_script</span><div class="sub">static · kingfisher-rules</div></td><td class="mono where"><a href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a></td><td>low severity build_script in build_script code: build.rs</td></tr>
+
+</tbody>
+</table>
+
+
+
+
+<h2 id="behavior">Behavior</h2>
+<div class="behavior">
+
+<div><h4>Profile</h4>
+<p class="chips"><code class="chip">static:credential_access</code> <code class="chip">static:exfiltration_endpoint</code> <code class="chip">static:included_binary</code> <code class="chip">static:secret_environment_variable</code> <code class="chip">static:shell_command</code> </p></div>
+</div>
+
+<h2 id="findings">Static findings</h2>
+
+<div class="findings">
+<div class="filter" role="radiogroup" aria-label="Severity">
+  <input type="radio" name="severity" id="sev-all" checked><label for="sev-all">All <span class="count">73</span></label>
+  
+  <input type="radio" name="severity" id="sev-high"><label for="sev-high" class="tone-high">high <span class="count">1</span></label>
+  <input type="radio" name="severity" id="sev-medium"><label for="sev-medium" class="tone-medium">medium <span class="count">12</span></label>
+  <input type="radio" name="severity" id="sev-low"><label for="sev-low" class="tone-low">low <span class="count">2</span></label>
+  <input type="radio" name="severity" id="sev-info"><label for="sev-info" class="tone-info">info <span class="count">58</span></label>
+  <span class="muted">9 groups</span>
+</div>
+
+
+<details class="group sev-high" open>
+<summary><span class="badge tone-high">high</span> <span class="kind">exfiltration_endpoint</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">https://api.telegram.org/bot{{ TOKEN }}/getMe</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L370" rel="noreferrer noopener" target="_blank">build_support/veles.rs:370</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">secret_environment_variable</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">AWS_SECRET_ACCESS_KEY</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L982" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:982</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2482" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2482</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L637" rel="noreferrer noopener" target="_blank">src/defaults.rs:637</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L672" rel="noreferrer noopener" target="_blank">src/defaults.rs:672</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">shell_command</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">{{ &#34;hello&#34; | sha256 }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/liquid_filters.rs#L1411" rel="noreferrer noopener" target="_blank">src/liquid_filters.rs:1411</a> </span></li>
+
+<li><code class="evidence-text">{{ &#34;hello&#34; | sha256_b32 }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/liquid_filters.rs#L1417" rel="noreferrer noopener" target="_blank">src/liquid_filters.rs:1417</a> </span></li>
+
+<li><code class="evidence-text">{{ &#34;hello&#34; | sha256_b32: 4 }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/liquid_filters.rs#L1419" rel="noreferrer noopener" target="_blank">src/liquid_filters.rs:1419</a> </span></li>
+
+<li><code class="evidence-text">{{ &#34;hello&#34; | sha256_b32: 60 }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/liquid_filters.rs#L1421" rel="noreferrer noopener" target="_blank">src/liquid_filters.rs:1421</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">included_binary</span> <span class="context">library</span> <span class="count">3</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">generated/upstream-sources.json.gz (209264 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L520" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:520</a> </span></li>
+
+<li><code class="evidence-text">data/betterleaks-words.txt.gz (93947 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/betterleaks_filter.rs#L1334" rel="noreferrer noopener" target="_blank">src/betterleaks_filter.rs:1334</a> </span></li>
+
+<li><code class="evidence-text">generated/builtin-rules.gz (211730 bytes)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L15" rel="noreferrer noopener" target="_blank">src/defaults.rs:15</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-medium">
+<summary><span class="badge tone-medium">medium</span> <span class="kind">credential_access</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">(?i)(?:\.git[/\\]config|(?:^|[/\\])\.git-credentials|_history)$</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L794" rel="noreferrer noopener" target="_blank">build_support/veles.rs:794</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">build_script</span> <span class="context">build_script</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">build.rs</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build.rs" rel="noreferrer noopener" target="_blank">build.rs</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-low">
+<summary><span class="badge tone-low">low</span> <span class="kind">foreign_functions</span> <span class="context">library</span> <span class="count">1</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">extern block</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule_cache_security_macos.rs#L10" rel="noreferrer noopener" target="_blank">src/rule_cache_security_macos.rs:10</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">url_literal</span> <span class="context">library</span> <span class="count">54</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">\u{a}[[rules]]\u{a}id = &#34;v2-token&#34;\u{a}description = &#34;Synthetic v2 token&#34;\u{a}regex = &#39;(cf[ua]t_[A-Za-z0-9]{48})&#39;\u{a}filter = &#39;lower(finding[&#34;match&#34;]) contains &#34;client&#34;&#39;\u{a}validate = &#39;&#39;&#39;\u{a}let ac…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2065" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2065</a> </span></li>
+
+<li><code class="evidence-text">[[rules]]\u{a}id=&#39;scope-test&#39;\u{a}regex=&#39;token&#39;\u{a}{validation}{field}=&#39;http.delete(&#34;https://example.invalid&#34;)&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2115" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2115</a> </span></li>
+
+<li><code class="evidence-text">[extend]\u{a}url=&#39;https://example.invalid/config.toml&#39;</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2203" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2203</a> </span></li>
+
+<li><code class="evidence-text">let r = http.get(&#34;https://example.test&#34;, {&#34;Authorization&#34;: &#34;Bearer &#34; + finding[&#34;secret&#34;]}); r.status == 200 ? {&#34;result&#34;: &#34;valid&#34;} : validate.unknown(r)</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2474" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2474</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[[rules]]\u{a}id = &#34;mongodb-connection-string-test&#34;\u{a}description = &#34;MongoDB connection string test&#34;\u{a}regex = &#39;&#39;&#39;(?P&#60;secret&#62;mongodb://[^\s]+)&#39;&#39;&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2648" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2648</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[[rules]]\u{a}id = &#34;tls-mode-typo-test&#34;\u{a}description = &#34;TLS mode typo test&#34;\u{a}regex = &#39;&#39;&#39;(?P&#60;secret&#62;mongodb://[^\s]+)&#39;&#39;&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2671" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2671</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[[rules]]\u{a}id = &#34;gcp-api-key&#34;\u{a}description = &#34;Google API key&#34;\u{a}regex = &#39;&#39;&#39;(?P&#60;secret&#62;AIza[a-zA-Z0-9_-]{35})&#39;&#39;&#39;\u{a}validate = &#39;&#39;&#39;let r = http.get(&#34;https://example.test&#34;); r.status == 200…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2797" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2797</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[[rules]]\u{a}id = &#34;provider-token&#34;\u{a}description = &#34;Provider token&#34;\u{a}regex = &#39;&#39;&#39;token_[a-z]+&#39;&#39;&#39;\u{a}validate = &#39;&#39;&#39;http.get(&#34;https://unsafe.example&#34;)&#39;&#39;&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2822" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2822</a> </span></li>
+
+<li><code class="evidence-text">\u{a}version: 1\u{a}rules:\u{a}  provider-token:\u{a}    validation_override: &#39;http.get(&#34;https://safe.example&#34;)&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2830" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2830</a> </span></li>
+
+<li><code class="evidence-text">value: https://safe.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2840" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2840</a> </span></li>
+
+<li><code class="evidence-text">\u{a}[[rules]]\u{a}id = &#34;private-key&#34;\u{a}description = &#34;Private key&#34;\u{a}regex = &#39;&#39;&#39;(-----BEGIN PRIVATE KEY-----)&#39;&#39;&#39;\u{a}\u{a}[[rules]]\u{a}id = &#34;mongodb-connection-string&#34;\u{a}description = &#34;MongoDB…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/betterleaks.rs#L2947" rel="noreferrer noopener" target="_blank">build_support/betterleaks.rs:2947</a> </span></li>
+
+<li><code class="evidence-text">https://raw.githubusercontent.com/google/osv-scalibr</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L7" rel="noreferrer noopener" target="_blank">build_support/veles.rs:7</a> </span></li>
+
+<li><code class="evidence-text">https://circleci.com/api/v1.1/project/scalibr-validation-nonexistent-a8f3c2d9</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L228" rel="noreferrer noopener" target="_blank">build_support/veles.rs:228</a> </span></li>
+
+<li><code class="evidence-text">https://api.deno.com/organization</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L241" rel="noreferrer noopener" target="_blank">build_support/veles.rs:241</a> </span></li>
+
+<li><code class="evidence-text">https://api.digitalocean.com/v2/account</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L251" rel="noreferrer noopener" target="_blank">build_support/veles.rs:251</a> </span></li>
+
+<li><code class="evidence-text">https://discord.com/api/v10/users/@me</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L262" rel="noreferrer noopener" target="_blank">build_support/veles.rs:262</a> </span></li>
+
+<li><code class="evidence-text">https://api.x.ai/v1/api-key</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L275" rel="noreferrer noopener" target="_blank">build_support/veles.rs:275</a> </span></li>
+
+<li><code class="evidence-text">https://registry.npmjs.org/-/whoami</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L289" rel="noreferrer noopener" target="_blank">build_support/veles.rs:289</a> </span></li>
+
+<li><code class="evidence-text">https://openrouter.ai/api/v1/auth/key</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L298" rel="noreferrer noopener" target="_blank">build_support/veles.rs:298</a> </span></li>
+
+<li><code class="evidence-text">https://api.getpostman.com/me</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L318" rel="noreferrer noopener" target="_blank">build_support/veles.rs:318</a> </span></li>
+
+<li><code class="evidence-text">https://api.postman.com/collections/aaaaaaaa-aaaaaaaa-aaaa-aaaa-aaaaaaaaaaaa?access_key={{ TOKEN | url_encode }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L331" rel="noreferrer noopener" target="_blank">build_support/veles.rs:331</a> </span></li>
+
+<li><code class="evidence-text">https://api.sendgrid.com/v3/user/account</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L344" rel="noreferrer noopener" target="_blank">build_support/veles.rs:344</a> </span></li>
+
+<li><code class="evidence-text">https://identity.bitwarden.com/connect/token</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L470" rel="noreferrer noopener" target="_blank">build_support/veles.rs:470</a> </span></li>
+
+<li><code class="evidence-text">https://api.cloudflare.com/client/v4/zones</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L496" rel="noreferrer noopener" target="_blank">build_support/veles.rs:496</a> </span></li>
+
+<li><code class="evidence-text">https://api.heroku.com/account</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L512" rel="noreferrer noopener" target="_blank">build_support/veles.rs:512</a> </span></li>
+
+<li><code class="evidence-text">https://hub.docker.com/v2/auth/token/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L532" rel="noreferrer noopener" target="_blank">build_support/veles.rs:532</a> </span></li>
+
+<li><code class="evidence-text">https://auth.idp.hashicorp.com/oauth2/token</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L588" rel="noreferrer noopener" target="_blank">build_support/veles.rs:588</a> </span></li>
+
+<li><code class="evidence-text">https://packagist.com/api/packages/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L619" rel="noreferrer noopener" target="_blank">build_support/veles.rs:619</a> </span></li>
+
+<li><code class="evidence-text">https://slack.com/api/auth.test</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L749" rel="noreferrer noopener" target="_blank">build_support/veles.rs:749</a> </span></li>
+
+<li><code class="evidence-text">https://[^:\s]+:[^\s@]+@</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L769" rel="noreferrer noopener" target="_blank">build_support/veles.rs:769</a> </span></li>
+
+<li><code class="evidence-text">https://(?P&#60;GIT_USERNAME&#62;[^:\s]+):(?P&#60;GIT_PASSWORD&#62;[^\s@]+)@</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L770" rel="noreferrer noopener" target="_blank">build_support/veles.rs:770</a> </span></li>
+
+<li><code class="evidence-text">https://bitbucket.org/{{ TOKEN | split: &#39;@bitbucket.org/&#39; | last }}/info/refs?service=git-upload-pack</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L801" rel="noreferrer noopener" target="_blank">build_support/veles.rs:801</a> </span></li>
+
+<li><code class="evidence-text">https://git-codecommit.{{ TOKEN | split: &#39;@git-codecommit.&#39; | last }}/info/refs?service=git-upload-pack</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L804" rel="noreferrer noopener" target="_blank">build_support/veles.rs:804</a> </span></li>
+
+<li><code class="evidence-text">https://git.{{ TOKEN | split: &#39;@git.&#39; | last }}/info/refs?service=git-upload-pack</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L807" rel="noreferrer noopener" target="_blank">build_support/veles.rs:807</a> </span></li>
+
+<li><code class="evidence-text">https://{{ SALESFORCE_INSTANCE }}/services/oauth2/token</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L828" rel="noreferrer noopener" target="_blank">build_support/veles.rs:828</a> </span></li>
+
+<li><code class="evidence-text">https://login.salesforce.com/services/oauth2/token</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/build_support/veles.rs#L873" rel="noreferrer noopener" target="_blank">build_support/veles.rs:873</a> </span></li>
+
+<li><code class="evidence-text">mongodb+srv://$(MONGODB_USERNAME):{password}@cluster.invalid/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L224" rel="noreferrer noopener" target="_blank">src/defaults.rs:224</a> </span></li>
+
+<li><code class="evidence-text">mongodb://$(MONGODB_USERNAME):r4nd0mLiteralSecret@cluster.invalid/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L228" rel="noreferrer noopener" target="_blank">src/defaults.rs:228</a> </span></li>
+
+<li><code class="evidence-text">mongodb://alice:r4nd0mLiteralSecret@$(MONGODB_HOST)/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L229" rel="noreferrer noopener" target="_blank">src/defaults.rs:229</a> </span></li>
+
+<li><code class="evidence-text">mongodb://alice:literal$(suffix)@cluster.invalid/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L230" rel="noreferrer noopener" target="_blank">src/defaults.rs:230</a> </span></li>
+
+<li><code class="evidence-text">mongodb://alice:dollar%24literal@cluster.invalid/db</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L231" rel="noreferrer noopener" target="_blank">src/defaults.rs:231</a> </span></li>
+
+<li><code class="evidence-text">https://user:password@bitbucket.org/team/repo.git</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/defaults.rs#L875" rel="noreferrer noopener" target="_blank">src/defaults.rs:875</a> </span></li>
+
+<li><code class="evidence-text">\u{a}type: Betterleaks\u{a}content:\u{a}  expression: &#39;let r = http.get(&#34;https://example.invalid&#34;); r.status == 200 ? {&#34;result&#34;: &#34;valid&#34;} : validate.unknown(r)&#39;\u{a}  analyze: &#39;analysis.capabilities({…</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1884" rel="noreferrer noopener" target="_blank">src/rule.rs:1884</a> </span></li>
+
+<li><code class="evidence-text">type: Betterleaks\u{a}content:\u{a}  expression: &#39;let r = http.delete(&#34;https://example.invalid&#34;); r.status == 204 ? {&#34;result&#34;: &#34;revoked&#34;} : revoke.unknown(r)&#39;\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1896" rel="noreferrer noopener" target="_blank">src/rule.rs:1896</a> </span></li>
+
+<li><code class="evidence-text">https://primary.example/identity</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1909" rel="noreferrer noopener" target="_blank">src/rule.rs:1909</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1911" rel="noreferrer noopener" target="_blank">src/rule.rs:1911</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1952" rel="noreferrer noopener" target="_blank">src/rule.rs:1952</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1954" rel="noreferrer noopener" target="_blank">src/rule.rs:1954</a> </span></li>
+
+<li><code class="evidence-text">https://secondary.example/identity</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1912" rel="noreferrer noopener" target="_blank">src/rule.rs:1912</a> </span></li>
+
+<li><code class="evidence-text">https://primary.example</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1935" rel="noreferrer noopener" target="_blank">src/rule.rs:1935</a> <a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1936" rel="noreferrer noopener" target="_blank">src/rule.rs:1936</a> </span></li>
+
+<li><code class="evidence-text">method: GET\u{a}url:\u{a}  - https://primary.example/identity\u{a}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule.rs#L1950" rel="noreferrer noopener" target="_blank">src/rule.rs:1950</a> </span></li>
+
+<li><code class="evidence-text">https://{{ APPID }}-dsn.algolia.net/1/keys/{{ TOKEN }}</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rules.rs#L387" rel="noreferrer noopener" target="_blank">src/rules.rs:387</a> </span></li>
+
+<li><code class="evidence-text">https://hooks\.slack\.com/services/</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rules_database.rs#L1555" rel="noreferrer noopener" target="_blank">src/rules_database.rs:1555</a> </span></li>
+
+</ul>
+</details>
+
+<details class="group sev-info">
+<summary><span class="badge tone-info">info</span> <span class="kind">unsafe_code</span> <span class="context">library</span> <span class="count">4</span></summary>
+<ul class="items">
+
+<li><code class="evidence-text">6 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule_cache_security_macos.rs#L24" rel="noreferrer noopener" target="_blank">src/rule_cache_security_macos.rs:24</a> </span></li>
+
+<li><code class="evidence-text">22 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rule_cache_security_windows.rs#L50" rel="noreferrer noopener" target="_blank">src/rule_cache_security_windows.rs:50</a> </span></li>
+
+<li><code class="evidence-text">2 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/rules_database.rs#L1069" rel="noreferrer noopener" target="_blank">src/rules_database.rs:1069</a> </span></li>
+
+<li><code class="evidence-text">1 unsafe blocks, functions or impls</code>
+<span class="places"><a class="place" href="https://crates.io/crates/kingfisher-rules/3.0.1/code/src/scanner_pool.rs#L76" rel="noreferrer noopener" target="_blank">src/scanner_pool.rs:76</a> </span></li>
+
+</ul>
+</details>
+
+</div>
+
+
+
+
+<section class="run" id="run-check">
+<div class="run-head">
+  <h2>Run: check</h2>
+  <span class="badge warn">failed</span>
+  
+</div>
+
+
+
+
+<dl class="facts">
+<div><dt>Ended</dt><dd>agent reported the end</dd></div><div><dt>Guest</dt><dd>exit code 101</dd></div><div><dt>Run time</dt><dd>562 ms</dd></div><div><dt>VM restore</dt><dd>207 ms</dd></div><div><dt>Payload</dt><dd>19293 files, 476.7 MiB</dd></div><div><dt>Files opened</dt><dd>821</dd></div>
+</dl>
+
+<div class="panel proc">
+<h3>Processes <span class="muted">1</span></h3>
+
+<p class="hint">Siblings that ran the same program with the same result and the same processes below are folded into one row, with their number.</p>
+<div class="scroll">
+<table class="tree">
+<thead><tr><th>Process</th><th>Arguments</th><th>Start</th><th>Took</th><th>Exit</th></tr></thead>
+<tbody>
+
+<tr class="role-cargo">
+<td class="d0"><span class="badge role">cargo</span> <span class="mono" title="pid 572: /usr/local/bin/cargo">/usr/local/bin/cargo</span></td>
+<td class="mono args">check --locked --offline</td>
+<td class="nowrap muted">12 ms</td>
+<td class="nowrap">541 ms</td>
+<td class="nowrap">25856</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>
+
+<div class="panel">
+<h3>Network <span class="muted">0</span></h3>
+
+<p class="muted">No network activity.</p>
+
+</div>
+
+<div class="panel">
+<h3>Files <span class="muted">0</span></h3>
+<h4>Secrets opened</h4>
+<p class="muted">None.</p>
+<h4>Written outside the build directories</h4>
+<p class="muted">None.</p>
+
+</div>
+
+<div class="panel">
+<h3>Scratch disk <span class="muted">0</span></h3>
+
+<dl class="facts">
+<div><dt>Files</dt><dd>7</dd></div><div><dt>Directories</dt><dd>12</dd></div><div><dt>Size</dt><dd>56.6 KiB</dd></div><div><dt>Compiled units</dt><dd>0</dd></div>
+</dl>
+<p class="muted">Nothing outside the build areas.</p>
+
+</div>
+
+<div class="panel">
+<h3>Output</h3>
+
+<details><summary>Standard error</summary><pre>error: rustc 1.98.1 is not supported by the following packages:
+  kingfisher-core@1.0.6 requires rustc 1.99
+  kingfisher-rules@3.0.1 requires rustc 1.99
+  kingfisher-rules@3.0.1 requires rustc 1.99
+  kingfisher-rules@3.0.1 requires rustc 1.99
+Either upgrade rustc or select compatible dependency versions with
+`cargo update &#60;name&#62;@&#60;current-ver&#62; --precise &#60;compatible-ver&#62;`
+where `&#60;compatible-ver&#62;` is the latest version supporting rustc 1.98.1
+
+</pre></details>
+
+</div>
+</section>
+
+
+<details class="section" id="timeline">
+<summary><h2>Timeline</h2> <span class="count">6</span></summary>
+<table>
+<thead><tr><th>When</th><th>From</th><th>To</th><th>Event</th><th>Worker</th></tr></thead>
+<tbody>
+
+<tr><td class="muted nowrap">2026-10-30 03:05 UTC</td><td class="nowrap">Discovered</td><td class="nowrap">Fetched</td><td>fetched</td><td class="muted">fetcher-12688</td></tr>
+
+<tr><td class="muted nowrap">2026-10-30 03:05 UTC</td><td class="nowrap">Fetched</td><td class="nowrap">ReadyForSandbox</td><td>static_analysis_completed</td><td class="muted">static-12726</td></tr>
+
+<tr><td class="muted nowrap">2026-10-30 03:05 UTC</td><td class="nowrap">ReadyForSandbox</td><td class="nowrap">Running</td><td>sandbox_started</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-30 03:05 UTC</td><td class="nowrap">Running</td><td class="nowrap">DynamicallyAnalyzed</td><td>sandbox_completed</td><td class="muted">orchestrator-12760-slot2</td></tr>
+
+<tr><td class="muted nowrap">2026-10-30 03:05 UTC</td><td class="nowrap">DynamicallyAnalyzed</td><td class="nowrap">Scored</td><td>scored</td><td class="muted">analyzer-12816</td></tr>
+
+<tr><td class="muted nowrap">2026-10-30 03:05 UTC</td><td class="nowrap">Scored</td><td class="nowrap">Done</td><td>finalized</td><td class="muted">analyzer-12816</td></tr>
+
+</tbody>
+</table>
+</details>
+
+</main>
+</body>
+</html>
